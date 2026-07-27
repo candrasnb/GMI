@@ -65,16 +65,17 @@
             margin-bottom: 16px; text-transform: uppercase;
         }
 
-        @keyframes flamePulseRed {
-            0% { filter: drop-shadow(-8px 2px 12px rgba(239, 68, 68, 0.7)) drop-shadow(0 0 5px rgba(245, 158, 11, 0.3)); }
-            50% { filter: drop-shadow(-12px 2px 22px rgba(239, 68, 68, 1)) drop-shadow(0 0 12px rgba(245, 158, 11, 0.7)); }
-            100% { filter: drop-shadow(-8px 2px 12px rgba(239, 68, 68, 0.7)) drop-shadow(0 0 5px rgba(245, 158, 11, 0.3)); }
+        /* EFEK API KECIL & NYALA TIPIS DI SISI KIRI SAJA */
+        @keyframes leftFlameSubtle {
+            0% { filter: drop-shadow(-3px -1px 3px rgba(239, 68, 68, 0.35)) drop-shadow(0 0 1px rgba(245, 158, 11, 0.15)); }
+            50% { filter: drop-shadow(-5px -2px 6px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 3px rgba(245, 158, 11, 0.3)); }
+            100% { filter: drop-shadow(-3px -1px 3px rgba(239, 68, 68, 0.35)) drop-shadow(0 0 1px rgba(245, 158, 11, 0.15)); }
         }
 
         .hero-logo-img { 
             height: 120px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 15px; 
             background: transparent; mix-blend-mode: screen; border: none;
-            animation: flamePulseRed 2s infinite ease-in-out;
+            animation: leftFlameSubtle 3s infinite ease-in-out;
         }
 
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; color: #fff; }
@@ -193,6 +194,7 @@
     <section class="hero">
         <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Portal Resmi Jemaat</div>
         
+        <!-- LOGO DENGAN EFEK NYALA TIPIS DI SISI KIRI SAJA -->
         <img id="main-logo-img" class="hero-logo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
         
         <h1>GMI Sungai Yordan <br><span>Bekasi</span></h1>
@@ -653,6 +655,13 @@
                         document.getElementById('warta-page-title').innerText = d.warta.title || 'Warta Jemaat Pekan Ini';
                         document.getElementById('warta-page-date').innerText = d.warta.date || '30 November 2025';
                         document.getElementById('warta-page-content').innerHTML = d.warta.content || 'Shalom...';
+                        
+                        // Update gambar banner warta di home jika ada foto yang di-upload
+                        if(d.warta.files && d.warta.files.length > 0) {
+                            let firstImg = d.warta.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
+                            if(firstImg) document.getElementById('car-img').src = firstImg.url;
+                        }
+
                         renderMultiMedia('warta-media-container', d.warta.files);
 
                         document.getElementById('in-warta-title').value = d.warta.title || '';
@@ -663,6 +672,13 @@
                     if(d.doa) {
                         document.getElementById('preview-doa').innerText = d.doa.content ? d.doa.content.substring(0, 80) + '...' : '...';
                         document.getElementById('doa-page-content').innerHTML = d.doa.content || '';
+                        
+                        // Update gambar banner Doa di home jika ada foto yang di-upload
+                        if(d.doa.files && d.doa.files.length > 0) {
+                            let firstImg = d.doa.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
+                            if(firstImg) document.getElementById('banner-doa-img').src = firstImg.url;
+                        }
+
                         renderMultiMedia('doa-media-container', d.doa.files);
                         document.getElementById('in-doa-content').value = d.doa.content || '';
                     }
@@ -673,6 +689,13 @@
                         document.getElementById('ren-judul-full').innerText = d.renungan.title || '';
                         document.getElementById('ren-ayat-full').innerText = d.renungan.verse || '';
                         document.getElementById('ren-isi-full').innerHTML = d.renungan.content || '';
+                        
+                        // Update gambar banner Renungan di home jika ada foto yang di-upload
+                        if(d.renungan.files && d.renungan.files.length > 0) {
+                            let firstImg = d.renungan.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
+                            if(firstImg) document.getElementById('banner-renungan-img').src = firstImg.url;
+                        }
+
                         renderMultiMedia('ren-media-container', d.renungan.files);
 
                         document.getElementById('in-ren-title').value = d.renungan.title || '';
@@ -683,6 +706,13 @@
                     if(d.alkitab) {
                         document.getElementById('preview-alkitab').innerText = d.alkitab.content ? d.alkitab.content.substring(0, 80) + '...' : '...';
                         document.getElementById('alk-page-content').innerHTML = d.alkitab.content || '';
+                        
+                        // Update gambar banner Alkitab di home jika ada foto yang di-upload
+                        if(d.alkitab.files && d.alkitab.files.length > 0) {
+                            let firstImg = d.alkitab.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
+                            if(firstImg) document.getElementById('banner-alkitab-img').src = firstImg.url;
+                        }
+
                         renderMultiMedia('alk-media-container', d.alkitab.files);
                         document.getElementById('in-alk-content').value = d.alkitab.content || '';
                     }
