@@ -20,7 +20,6 @@
             --gold-glow: rgba(245, 158, 11, 0.25);
             --accent-cyan: #38bdf8;
             --accent-red: #ef4444;
-            --red-glow: rgba(239, 68, 68, 0.4);
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
             --border-glass: rgba(255, 255, 255, 0.08);
@@ -30,10 +29,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         
         body { 
-            background-color: var(--bg-main); 
-            color: var(--text-light); 
-            overflow-x: hidden; 
-            padding-bottom: 110px;
+            background-color: var(--bg-main); color: var(--text-light); overflow-x: hidden; padding-bottom: 110px;
             background-image: 
                 radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
@@ -41,7 +37,7 @@
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 8, 17, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: rgba(5, 8, 17, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass); padding: 10px 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
@@ -57,58 +53,44 @@
         
         .btn-admin {
             padding: 4px 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
-            color: var(--text-light); border-radius: 15px; font-size: 0.68rem; font-weight: 600; cursor: pointer; transition: 0.3s;
+            color: var(--text-light); border-radius: 15px; font-size: 0.68rem; font-weight: 600; cursor: pointer;
             display: flex; align-items: center; gap: 4px;
         }
-        .btn-admin:hover { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
+        .btn-admin:hover { background: var(--accent-gold); color: #000; }
 
         .live-status { 
             display: flex; align-items: center; gap: 5px; font-size: 0.6rem; font-weight: 800; 
-            color: var(--accent-red); text-transform: uppercase; letter-spacing: 0.5px; 
+            color: var(--accent-red); text-transform: uppercase; 
             background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); 
-            padding: 2px 8px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            padding: 2px 8px; border-radius: 12px; cursor: pointer; 
         }
-        .live-status:hover { background: var(--accent-red); color: #fff; box-shadow: 0 0 10px var(--red-glow); }
-        .live-dot { width: 6px; height: 6px; background: var(--accent-red); border-radius: 50%; box-shadow: 0 0 8px var(--accent-red); animation: pulse 1.2s infinite; }
+        .live-dot { width: 6px; height: 6px; background: var(--accent-red); border-radius: 50%; animation: pulse 1.2s infinite; }
 
-        .hero {
-            position: relative; padding: 110px 20px 40px; text-align: center;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-
+        .hero { position: relative; padding: 110px 20px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgba(245, 158, 11, 0.1);
             border: 1px solid var(--border-gold); border-radius: 30px; color: var(--accent-gold); font-size: 0.72rem; font-weight: 700;
-            margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 16px; text-transform: uppercase;
         }
 
         .hero-logo-img { 
-            height: 120px; 
-            width: auto; 
-            max-width: 100%;
-            object-fit: contain;
-            margin-bottom: 15px; 
-            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.3)); 
-            background: #ffffff;
-            padding: 8px;
-            border-radius: 16px;
+            height: 120px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 15px; 
+            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.3)); background: #ffffff; padding: 8px; border-radius: 16px;
         }
 
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; color: #fff; }
         .hero h1 span { background: linear-gradient(135deg, var(--accent-gold), #fef08a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         .hero p { max-width: 550px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 20px; }
 
         .btn-hero-live {
             display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
             background: linear-gradient(135deg, var(--accent-red), #b91c1c); color: #fff;
             border: none; border-radius: 25px; font-weight: 700; font-size: 0.82rem; cursor: pointer;
-            box-shadow: 0 0 18px var(--red-glow); transition: 0.3s; margin-bottom: 20px;
+            box-shadow: 0 0 18px rgba(239, 68, 68, 0.4); margin-bottom: 20px;
         }
-        .btn-hero-live:hover { transform: scale(1.04); box-shadow: 0 0 25px var(--red-glow); }
 
         .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; width: 100%; max-width: 800px; margin-top: 10px; }
-        .hero-stat-card { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 14px; border-radius: 14px; backdrop-filter: blur(10px); text-align: center; }
+        .hero-stat-card { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 14px; border-radius: 14px; text-align: center; }
         .hero-stat-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 2px; }
         .hero-stat-card p { font-size: 0.7rem; color: var(--text-muted); }
 
@@ -127,8 +109,7 @@
         .badge-link { font-size: 0.72rem; color: var(--accent-gold); font-weight: 700; display: flex; align-items: center; gap: 4px; }
 
         .card-banner-box { position: relative; border-radius: 14px; overflow: hidden; height: 160px; margin-bottom: 14px; border: 1px solid var(--border-glass); }
-        .card-banner-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
-        .glass-card-interactive:hover .card-banner-img { transform: scale(1.05); }
+        .card-banner-img { width: 100%; height: 100%; object-fit: cover; }
         .card-banner-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 15px; background: linear-gradient(transparent, rgba(5, 8, 17, 0.9)); }
 
         .carousel-container { position: relative; border-radius: 14px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border-glass); }
@@ -140,7 +121,6 @@
 
         .item-list { list-style: none; }
         .item-list-node { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; }
-        .item-list-node:last-child { border: none; }
         .item-info h4 { font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 3px; }
         .item-info p { font-size: 0.78rem; color: var(--text-muted); }
 
@@ -148,22 +128,22 @@
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         
         .chart-filter-wrap { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
-        .chart-filter-btn { padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: var(--text-muted); border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .chart-filter-btn.active { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
+        .chart-filter-btn { padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: var(--text-muted); border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+        .chart-filter-btn.active { background: var(--accent-gold); color: #000; }
 
         .category-list { list-style: none; }
         .category-list li { border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
-        .category-list a { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; color: var(--text-light); text-decoration: none; font-size: 0.85rem; transition: 0.3s; cursor: pointer; }
-        .category-list a:hover { color: var(--accent-gold); padding-left: 4px; }
+        .category-list a { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; color: var(--text-light); text-decoration: none; font-size: 0.85rem; cursor: pointer; }
+        .category-list a:hover { color: var(--accent-gold); }
         .category-list span { font-size: 0.68rem; color: var(--text-muted); background: rgba(255,255,255,0.08); padding: 2px 8px; border-radius: 10px; }
 
         .bottom-nav-wrap { position: fixed; bottom: 16px; left: 0; right: 0; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; pointer-events: none; }
         .bottom-nav {
-            pointer-events: auto; width: 100%; max-width: 420px; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            pointer-events: auto; width: 100%; max-width: 420px; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(20px);
             border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 30px; padding: 8px 10px; display: flex; justify-content: space-around; align-items: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 15px var(--gold-glow);
         }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 0.65rem; font-weight: 600; cursor: pointer; transition: 0.3s; gap: 3px; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); text-decoration: none; font-size: 0.65rem; font-weight: 600; cursor: pointer; gap: 3px; }
         .nav-item i { font-size: 1rem; }
         .nav-item.active { color: var(--accent-gold); }
 
@@ -429,7 +409,7 @@
         </div>
     </div>
 
-    <!-- MODAL PANEL ADMIN LENGKAP -->
+    <!-- MODAL PANEL ADMIN LENGKAP DENGAN UPLOAD FILE -->
     <div class="modal" id="adminControlModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('adminControlModal')">&times;</span>
@@ -445,12 +425,12 @@
                 <button class="tab-btn" onclick="switchAdminTab('adm-jadwal', this)">Jadwal & About</button>
             </div>
 
-            <!-- 1. TAB LOGO & UMUM -->
+            <!-- 1. TAB LOGO & UMUM (UPLOAD FILE LANGSUNG) -->
             <div id="adm-logo" class="adm-content active">
                 <form onsubmit="saveAdminGeneral(event)">
                     <div class="form-group">
-                        <label>Link / URL Gambar Logo (Upload foto ke imgbb.com atau Google Drive publik, lalu salin link gambarnya ke sini):</label>
-                        <input type="text" id="in-logo-url" value="https://i.ibb.co.com/84100r7c/1000511042.jpg" required>
+                        <label>Upload File Gambar Logo dari HP:</label>
+                        <input type="file" id="in-logo-file" accept="image/*">
                     </div>
                     <div class="form-group">
                         <label>Deskripsi Singkat Hero (Bawah Judul):</label>
@@ -540,7 +520,6 @@
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
 
-        // Ambil data online dari Firestore saat halaman dimuat
         async function muatSemuaDataOnline() {
             try {
                 const docRef = doc(db, "gereja", "portal_data");
@@ -548,11 +527,9 @@
                 if (docSnap.exists()) {
                     const d = docSnap.data();
                     
-                    // Logo & Umum
-                    if(d.logoUrl) { document.getElementById('main-logo-img').src = d.logoUrl; document.getElementById('in-logo-url').value = d.logoUrl; }
+                    if(d.logoUrl) { document.getElementById('main-logo-img').src = d.logoUrl; }
                     if(d.heroDesc) { document.getElementById('txt-hero-desc').innerText = d.heroDesc; document.getElementById('in-hero-desc').value = d.heroDesc; }
 
-                    // Statistik
                     if(d.stats) {
                         document.getElementById('stat-total').innerText = d.stats.total || 345;
                         document.getElementById('stat-sekming').innerText = d.stats.sekming || 65;
@@ -569,7 +546,6 @@
                         document.getElementById('in-stat-usindah').value = d.stats.usindah || 35;
                     }
 
-                    // Warta
                     if(d.warta) {
                         document.getElementById('car-title').innerText = d.warta.title || 'Warta Jemaat Pekan Ini';
                         document.getElementById('car-date').innerText = d.warta.date || '30 November 2025';
@@ -582,34 +558,30 @@
                         document.getElementById('in-warta-content').value = d.warta.content || '';
                     }
 
-                    // Doa
                     if(d.doa) {
                         document.getElementById('preview-doa').innerText = d.doa.content ? d.doa.content.substring(0, 80) + '...' : '...';
                         document.getElementById('doa-page-content').innerHTML = d.doa.content || '';
                         document.getElementById('in-doa-content').value = d.doa.content || '';
                     }
 
-                    // Renungan
                     if(d.renungan) {
-                        document.getElementById('ren-judul-preview').innerText = d.ren.title || '';
-                        document.getElementById('ren-ayat-preview').innerText = d.ren.verse || '';
-                        document.getElementById('ren-judul-full').innerText = d.ren.title || '';
-                        document.getElementById('ren-ayat-full').innerText = d.ren.verse || '';
-                        document.getElementById('ren-isi-full').innerHTML = d.ren.content || '';
+                        document.getElementById('ren-judul-preview').innerText = d.renungan.title || '';
+                        document.getElementById('ren-ayat-preview').innerText = d.renungan.verse || '';
+                        document.getElementById('ren-judul-full').innerText = d.renungan.title || '';
+                        document.getElementById('ren-ayat-full').innerText = d.renungan.verse || '';
+                        document.getElementById('ren-isi-full').innerHTML = d.renungan.content || '';
 
-                        document.getElementById('in-ren-title').value = d.ren.title || '';
-                        document.getElementById('in-ren-verse').value = d.ren.verse || '';
-                        document.getElementById('in-ren-content').value = d.ren.content || '';
+                        document.getElementById('in-ren-title').value = d.renungan.title || '';
+                        document.getElementById('in-ren-verse').value = d.renungan.verse || '';
+                        document.getElementById('in-ren-content').value = d.renungan.content || '';
                     }
 
-                    // Alkitab
                     if(d.alkitab) {
                         document.getElementById('preview-alkitab').innerText = d.alkitab.content ? d.alkitab.content.substring(0, 80) + '...' : '...';
                         document.getElementById('alk-page-content').innerHTML = d.alkitab.content || '';
                         document.getElementById('in-alk-content').value = d.alkitab.content || '';
                     }
 
-                    // Jadwal & About
                     if(d.jadwalAbout) {
                         document.getElementById('jadwal-text-content').innerHTML = d.jadwalAbout.jadwal || '';
                         document.getElementById('about-text-content').innerHTML = d.jadwalAbout.about || '';
@@ -623,10 +595,8 @@
         }
         muatSemuaDataOnline();
 
-        // Fungsi Simpan Terpusat ke Firebase
         window.simpanDataKeFirebase = async function(newData, pesanSukses) {
             try {
-                // Ambil data lama dulu agar bagian lain tidak tertimpa kosong
                 const docRef = doc(db, "gereja", "portal_data");
                 const docSnap = await getDoc(docRef);
                 let currentData = docSnap.exists() ? docSnap.data() : {};
@@ -638,7 +608,7 @@
                 muatSemuaDataOnline();
             } catch (e) {
                 console.error("Gagal menyimpan: ", e);
-                alert("Gagal menyimpan ke database online.");
+                alert("Gagal menyimpan ke database online. Pastikan aturan database Firestore mengizinkan write.");
             }
         };
     </script>
@@ -693,12 +663,22 @@
             btn.classList.add('active');
         }
 
-        // Handler Tombol Simpan Panel Admin
+        // Handler Upload File Gambar Langsung
         function saveAdminGeneral(e) {
             e.preventDefault();
-            const logoUrl = document.getElementById('in-logo-url').value;
+            const fileInput = document.getElementById('in-logo-file');
             const heroDesc = document.getElementById('in-hero-desc').value;
-            window.simpanDataKeFirebase({ logoUrl, heroDesc }, "Logo & Deskripsi berhasil diperbarui secara online!");
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    const base64Image = uploadEvent.target.result;
+                    window.simpanDataKeFirebase({ logoUrl: base64Image, heroDesc }, "Logo & Deskripsi berhasil di-upload dan diperbarui secara online!");
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                window.simpanDataKeFirebase({ heroDesc }, "Deskripsi berhasil diperbarui secara online!");
+            }
         }
 
         function saveAdminStats(e) {
