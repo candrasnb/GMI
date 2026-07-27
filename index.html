@@ -73,17 +73,9 @@
             margin-bottom: 16px; text-transform: uppercase;
         }
 
-        /* LOGO DENGAN BACKGROUND TRANSPARAN */
         .hero-logo-img { 
-            height: 120px; 
-            width: auto; 
-            max-width: 100%; 
-            object-fit: contain; 
-            margin-bottom: 15px; 
-            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.3)); 
-            background: transparent; 
-            mix-blend-mode: screen;  
-            border: none;
+            height: 120px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 15px; 
+            filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.3)); background: transparent; mix-blend-mode: screen; border: none;
         }
 
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; color: #fff; }
@@ -126,11 +118,6 @@
         .carousel-tag { display: inline-block; padding: 3px 8px; background: var(--accent-gold); color: #000; font-weight: 700; font-size: 0.65rem; border-radius: 10px; margin-bottom: 5px; }
         .carousel-title { font-size: 1.05rem; font-weight: 700; color: #fff; }
         .carousel-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; }
-
-        .item-list { list-style: none; }
-        .item-list-node { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; }
-        .item-info h4 { font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 3px; }
-        .item-info p { font-size: 0.78rem; color: var(--text-muted); }
 
         .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-glass); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
@@ -198,7 +185,6 @@
     <section class="hero">
         <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Portal Resmi Jemaat</div>
         
-        <!-- LOGO UTAMA TRANSPARAN -->
         <img id="main-logo-img" class="hero-logo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
         
         <h1>GMI Sungai Yordan <br><span>Bekasi</span></h1>
@@ -206,13 +192,14 @@
 
         <button class="btn-hero-live" onclick="openLiveModal()"><i class="fa-solid fa-circle-play"></i> Tonton Live Streaming</button>
 
+        <!-- STATISTIK DENGAN ANIMASI ANGKA -->
         <div class="hero-stats">
-            <div class="hero-stat-card"><h3 id="stat-total">345</h3><p>Total Jemaat</p></div>
-            <div class="hero-stat-card"><h3 id="stat-sekming">65</h3><p>Sekolah Minggu</p></div>
-            <div class="hero-stat-card"><h3 id="stat-prmi">50</h3><p>Pemuda/Remaja</p></div>
-            <div class="hero-stat-card"><h3 id="stat-p2mi">80</h3><p>Kaum Pria (P2MI)</p></div>
-            <div class="hero-stat-card"><h3 id="stat-pwmi">95</h3><p>Kaum Wanita (PWMI)</p></div>
-            <div class="hero-stat-card"><h3 id="stat-usindah">35</h3><p>Usia Indah (Usindah)</p></div>
+            <div class="hero-stat-card"><h3 id="stat-total" class="counter" data-target="345">0</h3><p>Total Jemaat</p></div>
+            <div class="hero-stat-card"><h3 id="stat-sekming" class="counter" data-target="65">0</h3><p>Sekolah Minggu</p></div>
+            <div class="hero-stat-card"><h3 id="stat-prmi" class="counter" data-target="50">0</h3><p>P3MI / PRMI</p></div>
+            <div class="hero-stat-card"><h3 id="stat-p2mi" class="counter" data-target="80">0</h3><p>Kaum Pria (P2MI)</p></div>
+            <div class="hero-stat-card"><h3 id="stat-pwmi" class="counter" data-target="95">0</h3><p>Kaum Wanita (PWMI)</p></div>
+            <div class="hero-stat-card"><h3 id="stat-usindah" class="counter" data-target="35">0</h3><p>Usia Indah (Usindah)</p></div>
         </div>
     </section>
 
@@ -374,7 +361,7 @@
                 <h3 style="font-size:0.95rem; color:#fff; margin-bottom:12px;"><i class="fa-solid fa-layer-group"></i> PELAYANAN KATEGORIAL</h3>
                 <ul class="category-list">
                     <li><a onclick="openKategorialPage('Sekolah Minggu (Sekming)', 'Pelayanan pembinaan iman anak-anak setiap Minggu Pukul 08.00 WIB.')">Sekolah Minggu <span>Sekming</span></a></li>
-                    <li><a onclick="openKategorialPage('Pemuda & Remaja (P3MI / PRMI)', 'Wadah persekutuan pemuda setiap Sabtu Pukul 18.00 WIB.')">Pemuda / Remaja <span>P3MI</span></a></li>
+                    <li><a onclick="openKategorialPage('P3MI / PRMI (Pemuda & Remaja)', 'Wadah persekutuan pemuda dan remaja setiap Sabtu Pukul 18.00 WIB.')">P3MI / PRMI <span>P3MI</span></a></li>
                     <li><a onclick="openKategorialPage('Persekutuan Kaum Pria (P2MI)', 'Persekutuan bapak-bapak Minggu ke-2 & ke-4.')">Kaum Pria <span>P2MI</span></a></li>
                     <li><a onclick="openKategorialPage('Persekutuan Kaum Wanita (PWMI)', 'Persekutuan ibu-ibu setiap Selasa Pukul 16.00 WIB.')">Kaum Wanita <span>PWMI</span></a></li>
                     <li><a onclick="openKategorialPage('Usia Indah (Usindah)', 'Persekutuan kaum lansia Minggu ke-1 & ke-3.')">Usia Indah <span>Usindah</span></a></li>
@@ -453,7 +440,7 @@
                 <form onsubmit="saveAdminStats(event)">
                     <div class="form-group"><label>Total Keseluruhan Jemaat:</label><input type="number" id="in-stat-total" value="345" required></div>
                     <div class="form-group"><label>Jumlah Sekolah Minggu:</label><input type="number" id="in-stat-sekming" value="65" required></div>
-                    <div class="form-group"><label>Jumlah Pemuda / Remaja:</label><input type="number" id="in-stat-prmi" value="50" required></div>
+                    <div class="form-group"><label>Jumlah P3MI / PRMI:</label><input type="number" id="in-stat-prmi" value="50" required></div>
                     <div class="form-group"><label>Jumlah Kaum Pria (P2MI):</label><input type="number" id="in-stat-p2mi" value="80" required></div>
                     <div class="form-group"><label>Jumlah Kaum Wanita (PWMI):</label><input type="number" id="in-stat-pwmi" value="95" required></div>
                     <div class="form-group"><label>Jumlah Usia Indah (Usindah):</label><input type="number" id="in-stat-usindah" value="35" required></div>
@@ -528,6 +515,25 @@
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
 
+        function runCounterAnimation() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const speed = target / 35; 
+                const updateCount = () => {
+                    count += speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
         async function muatSemuaDataOnline() {
             try {
                 const docRef = doc(db, "gereja", "portal_data");
@@ -542,12 +548,12 @@
                     if(d.heroDesc) { document.getElementById('txt-hero-desc').innerText = d.heroDesc; document.getElementById('in-hero-desc').value = d.heroDesc; }
 
                     if(d.stats) {
-                        document.getElementById('stat-total').innerText = d.stats.total || 345;
-                        document.getElementById('stat-sekming').innerText = d.stats.sekming || 65;
-                        document.getElementById('stat-prmi').innerText = d.stats.prmi || 50;
-                        document.getElementById('stat-p2mi').innerText = d.stats.p2mi || 80;
-                        document.getElementById('stat-pwmi').innerText = d.stats.pwmi || 95;
-                        document.getElementById('stat-usindah').innerText = d.stats.usindah || 35;
+                        document.getElementById('stat-total').setAttribute('data-target', d.stats.total || 345);
+                        document.getElementById('stat-sekming').setAttribute('data-target', d.stats.sekming || 65);
+                        document.getElementById('stat-prmi').setAttribute('data-target', d.stats.prmi || 50);
+                        document.getElementById('stat-p2mi').setAttribute('data-target', d.stats.p2mi || 80);
+                        document.getElementById('stat-pwmi').setAttribute('data-target', d.stats.pwmi || 95);
+                        document.getElementById('stat-usindah').setAttribute('data-target', d.stats.usindah || 35);
                         
                         document.getElementById('in-stat-total').value = d.stats.total || 345;
                         document.getElementById('in-stat-sekming').value = d.stats.sekming || 65;
@@ -600,8 +606,10 @@
                         document.getElementById('in-about-text').value = d.jadwalAbout.about || '';
                     }
                 }
+                runCounterAnimation();
             } catch (e) {
                 console.error("Gagal memuat data online: ", e);
+                runCounterAnimation();
             }
         }
         muatSemuaDataOnline();
@@ -745,19 +753,19 @@
                 labelsMinggu = ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'];
                 dataSesi1 = [110, 125, 118, 130];
                 dataSesi2 = [85, 90, 92, 98];
-                labelsKategorial = ['Sekming', 'PRMI', 'P2MI', 'PWMI', 'Usindah'];
+                labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
                 dataKategorial = [65, 50, 80, 95, 35];
             } else if (filterType === 'month') {
                 labelsMinggu = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
                 dataSesi1 = [420, 390, 450, 480, 460, 490, 510, 500, 470, 490, 520, 600];
                 dataSesi2 = [310, 290, 330, 350, 340, 360, 380, 370, 350, 360, 390, 450];
-                labelsKategorial = ['Sekming', 'PRMI', 'P2MI', 'PWMI', 'Usindah'];
+                labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
                 dataKategorial = [260, 200, 320, 380, 140];
             } else if (filterType === 'year') {
                 labelsMinggu = ['2023', '2024', '2025', '2026'];
                 dataSesi1 = [4800, 5200, 5600, 6100];
                 dataSesi2 = [3600, 3900, 4200, 4700];
-                labelsKategorial = ['Sekming', 'PRMI', 'P2MI', 'PWMI', 'Usindah'];
+                labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
                 dataKategorial = [3100, 2500, 4100, 4900, 1800];
             }
 
