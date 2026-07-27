@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GMI Sungai Yordan Bekasi - Official Portal 2026</title>
     
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         :root {
             --bg-main: #050811;
-            --bg-card: rgba(15, 23, 42, 0.65);
+            --bg-card: rgba(15, 23, 42, 0.75);
             --accent-gold: #f59e0b;
             --gold-glow: rgba(245, 158, 11, 0.25);
             --accent-cyan: #38bdf8;
             --accent-red: #ef4444;
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.1);
             --border-gold: rgba(245, 158, 11, 0.3);
         }
 
@@ -37,7 +34,7 @@
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 8, 17, 0.85); backdrop-filter: blur(20px);
+            background: rgba(5, 8, 17, 0.88); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass); padding: 12px 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
@@ -65,7 +62,6 @@
             margin-bottom: 16px; text-transform: uppercase;
         }
 
-        /* EFEK API KECIL & NYALA TIPIS DI SISI KIRI SAJA */
         @keyframes leftFlameSubtle {
             0% { filter: drop-shadow(-3px -1px 3px rgba(239, 68, 68, 0.35)) drop-shadow(0 0 1px rgba(245, 158, 11, 0.15)); }
             50% { filter: drop-shadow(-5px -2px 6px rgba(239, 68, 68, 0.6)) drop-shadow(0 0 3px rgba(245, 158, 11, 0.3)); }
@@ -80,7 +76,7 @@
 
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; color: #fff; }
         .hero h1 span { background: linear-gradient(135deg, var(--accent-gold), #fef08a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { max-width: 550px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 20px; }
+        .hero p { max-width: 550px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 20px; text-align: justify; }
 
         .btn-hero-live {
             display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
@@ -118,6 +114,45 @@
         .carousel-tag { display: inline-block; padding: 3px 8px; background: var(--accent-gold); color: #000; font-weight: 700; font-size: 0.65rem; border-radius: 10px; margin-bottom: 5px; }
         .carousel-title { font-size: 1.05rem; font-weight: 700; color: #fff; }
         .carousel-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; }
+
+        .warta-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--accent-cyan);
+            margin-top: 22px;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .warta-sub-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-top: 14px;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .warta-content-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .table-responsive { width: 100%; overflow-x: auto; margin-top: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid var(--border-glass); }
+        .church-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left; }
+        .church-table th { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); padding: 10px 12px; font-weight: 700; border-bottom: 1px solid var(--border-gold); }
+        .church-table td { padding: 10px 12px; color: var(--text-light); border-bottom: 1px solid rgba(255, 255, 255, 0.05); vertical-align: top; text-align: justify; }
+        .church-table tr:last-child td { border-bottom: none; }
+        .church-table tr:hover { background: rgba(255, 255, 255, 0.02); }
 
         .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-glass); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
@@ -158,23 +193,9 @@
         .modal-card { background: #0b1120; border: 1px solid var(--accent-gold); border-radius: 18px; width: 100%; max-width: 580px; padding: 22px; position: relative; max-height: 90vh; overflow-y: auto; }
         .close-modal { position: absolute; top: 12px; right: 16px; color: var(--text-muted); font-size: 1.3rem; cursor: pointer; }
 
-        .admin-menu-tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px; overflow-x: auto; }
-        .tab-btn { padding: 6px 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff; border-radius: 6px; cursor: pointer; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
-        .tab-btn.active { background: var(--accent-gold); color: #000; font-weight: 700; }
-        .adm-content { display: none; }
-        .adm-content.active { display: block; }
-
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 6px; color: #fff; outline: none; font-size: 0.85rem; }
-        
-        .btn-save { width: 100%; padding: 10px; background: var(--accent-gold); border: none; border-radius: 8px; color: #000; font-weight: 700; cursor: pointer; margin-top: 8px; font-size: 0.85rem; }
-        .btn-delete { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.4); margin-top: 6px; }
-
         .page-sec { display: none; }
         .page-sec.active { display: block; }
 
-        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
         @media (max-width: 868px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -194,11 +215,10 @@
     <section class="hero">
         <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Portal Resmi Jemaat</div>
         
-        <!-- LOGO DENGAN EFEK NYALA TIPIS DI SISI KIRI SAJA -->
         <img id="main-logo-img" class="hero-logo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
         
         <h1>GMI Sungai Yordan <br><span>Bekasi</span></h1>
-        <p id="txt-hero-desc">Menjadi Gereja Yang Memuridkan, Berakar Dalam Firman, Bertumbuh Dalam Kasih, Dan Buah Pelayanan Bagi Sesama.</p>
+        <p id="txt-hero-desc">Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members + 17.000 MetamorfoSELF (Efesus 4:11-16).</p>
 
         <button class="btn-hero-live" onclick="openLiveModal()"><i class="fa-solid fa-circle-play"></i> Tonton Live Streaming</button>
 
@@ -215,81 +235,115 @@
     <div class="container">
         <main>
             <div id="sec-home" class="page-sec active">
+                <!-- 1. WARTA JEMAAT & KEGIATAN SEPEKAN (Gambar Buletin / Pengumuman Gereja) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-warta')">
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-newspaper"></i> Warta Jemaat & Kegiatan Sepekan</div>
                         <span class="badge-link">Buka Warta <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                     <div class="carousel-container">
-                        <img id="car-img" src="https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800" class="carousel-img">
+                        <img id="car-img" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800" class="carousel-img" alt="Warta Jemaat">
                         <div class="carousel-overlay">
-                            <span id="car-tag" class="carousel-tag">Kegiatan</span>
-                            <div id="car-title" class="carousel-title">Warta Jemaat Pekan Ini</div>
-                            <div id="car-date" class="carousel-date">30 November 2025</div>
+                            <span id="car-tag" class="carousel-tag">Warta Resmi</span>
+                            <div id="car-title" class="carousel-title">Minggu Kesembilan Sesudah Pentakosta & Minggu P3MI/PRMI</div>
+                            <div id="car-date" class="carousel-date">Minggu, 26 Juli 2026</div>
                         </div>
                     </div>
-                    <p style="font-size:0.82rem; color:var(--text-muted);">Klik untuk membaca ringkasan warta jemaat, materi pengumuman, dan galeri dokumen...</p>
+                    <p style="font-size:0.82rem; color:var(--text-muted); text-align:justify;">Klik untuk membaca ringkasan warta jemaat dan jadwal kegiatan sepekan...</p>
                 </div>
 
+                <!-- 2. POKOK-POKOK DOA SYAFAAT (Gambar Orang Berdoa / Tangan Berdoa / Syafaat) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-doa')">
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-hands-praying"></i> Pokok-Pokok Doa Syafaat</div>
                         <span class="badge-link">Buka Doa <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                     <div class="card-banner-box">
-                        <img id="banner-doa-img" src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800" class="card-banner-img" alt="Pokok Doa Syafaat">
+                        <img id="banner-doa-img" src="https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800" class="card-banner-img" alt="Pokok Doa Syafaat">
                         <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-heart-pulse"></i> DUKUNGAN DOA JEMAAT</span></div>
                     </div>
-                    <p style="font-size:0.85rem; color:var(--text-muted);" id="preview-doa">Klik untuk melihat seluruh pokok permohonan doa syafaat jemaat pekan ini...</p>
+                    <p style="font-size:0.85rem; color:var(--text-muted); text-align:justify;" id="preview-doa">Mendoakan Bangsa, Negara, Program P3MI-PRMI, serta jemaat yang sakit...</p>
                 </div>
 
+                <!-- 3. BACAAN ALKITAB HARIAN (Gambar Alkitab Terbuka) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-renungan')">
                     <div class="section-header">
-                        <div class="section-title"><i class="fa-solid fa-book-bible"></i> Renungan Harian</div>
-                        <span class="badge-link">Baca Renungan <i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="section-title"><i class="fa-solid fa-book-bible"></i> Bacaan Alkitab Harian</div>
+                        <span class="badge-link">Lihat Tabel <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                     <div class="card-banner-box">
-                        <img id="banner-renungan-img" src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800" class="card-banner-img" alt="Renungan Harian">
-                        <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> FIRMAN TUHAN HARI INI</span></div>
+                        <img id="banner-renungan-img" src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800" class="card-banner-img" alt="Bacaan Alkitab Harian">
+                        <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> JADWAL BACAAN SEPEKAN</span></div>
                     </div>
-                    <h3 id="ren-judul-preview" style="font-size:1.0rem; color:#fff; margin-bottom:4px;">Tetap Setia Di Dalam Pergumulan Hidup</h3>
-                    <p id="ren-ayat-preview" style="font-size:0.8rem; color:var(--accent-gold); font-weight:600;">"Segala perkara dapat kutanggung di dalam Dia..." — Filipi 4:13</p>
+                    <h3 id="ren-judul-preview" style="font-size:1.0rem; color:#fff; margin-bottom:4px;">Bacaan Alkitab 26 Juli - 1 Agustus 2026</h3>
+                    <p id="ren-ayat-preview" style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; text-align:justify;">Klik untuk melihat tabel lengkap bacaan pagi dan malam</p>
                 </div>
 
+                <!-- 4. TATA IBADAH PEKAN DEPAN (Gambar Worship Gereja) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-alkitab')">
                     <div class="section-header">
-                        <div class="section-title"><i class="fa-solid fa-book-open"></i> Bacaan Alkitab Setahun</div>
+                        <div class="section-title"><i class="fa-solid fa-book-open"></i> Tata Ibadah Pekan Depan</div>
                         <span class="badge-link">Lihat Jadwal <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
                     <div class="card-banner-box">
-                        <img id="banner-alkitab-img" src="https://images.unsplash.com/photo-1445445290350-18a3b86e0b5b?q=80&w=800" class="card-banner-img" alt="Bacaan Alkitab Setahun">
-                        <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-bookmark"></i> JADWAL BACAAN ALKITAB HARIAN</span></div>
+                        <img id="banner-alkitab-img" src="https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800" class="card-banner-img" alt="Tata Ibadah Minggu">
+                        <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-bookmark"></i> MINGGU, 2 AGUSTUS 2026</span></div>
                     </div>
-                    <p style="font-size:0.85rem; color:var(--text-muted);" id="preview-alkitab">Program pembacaan Alkitab harian untuk menuntaskan seluruh isi Alkitab dalam 1 tahun...</p>
+                    <p style="font-size:0.85rem; color:var(--text-muted); text-align:justify;" id="preview-alkitab">Persiapan Perjamuan Kudus & Sekolah Minggu Sesi Pagi Pukul 08.00 WIB...</p>
                 </div>
 
-                <!-- GOOGLE MAPS DI HOME PALING BAWAH -->
                 <div class="glass-card">
                     <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-location-dot"></i> Lokasi Gereja</div>
                     <div class="map-box">
                         <h4 style="color:var(--accent-gold); font-size:0.95rem; margin-bottom:6px; font-family:'Playfair Display', serif;">Gereja Methodist Indonesia Sungai Yordan</h4>
-                        <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5;">Kota Bekasi, Jawa Barat</p>
+                        <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5; text-align:justify;">Komplek Villa Galaxy, Jl. Gardenia Raya BI, BA No. 2, Bekasi Selatan</p>
                         <a href="https://maps.app.goo.gl/R3XA4FKb9PUVsbft5?g_st=ac" target="_blank" class="map-btn"><i class="fa-solid fa-map-location-dot"></i> Buka Peta Google Maps</a>
                     </div>
                 </div>
             </div>
 
-            <!-- HALAMAN SUB-MENU -->
+            <!-- HALAMAN SUB-MENU WARTA -->
             <div id="page-warta" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
-                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">INFORMASI SEPEKAN</span>
+                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">WARTA JEMAAT RESMI</span>
                     </div>
-                    <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.4rem; margin-bottom:6px;">Warta & Pengumuman Jemaat</h2>
-                    <p id="warta-page-date" style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px;">Pekan Ini</p>
-                    <div id="warta-page-content" style="font-size:0.9rem; color:var(--text-muted); line-height:1.8; margin-bottom:20px;">Shalom Jemaat GMI Sungai Yordan Bekasi...</div>
-                    <div id="warta-media-container" class="gallery-grid"></div>
+                    <h2 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.4rem; margin-bottom:4px; text-align:left;">Minggu Kesembilan Sesudah Pentakosta & Minggu P3MI/PRMI</h2>
+                    <p style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 26 Juli 2026 | No: 30/GMI-SY/D.3-II/VII/2026</p>
+                    
+                    <div>
+                        <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. Komisi Keanggotaan dan Evangelisasi</div>
+                        <p class="warta-content-text">• Ucapan selamat ulang tahun kelahiran dan pernikahan bagi jemaat yang merayakan pekan ini.</p>
+                        <p class="warta-content-text">• <strong>Berita Dukacita:</strong> Telah meninggal dunia Ibu Delmina Aritonang (Op. Abednego Simamora) usia 88 tahun dan Bpk. Mula Saut Halomoan Siallagan usia 79 tahun. Segenap jemaat turut berdukacita.</p>
+                        <p class="warta-content-text">• <strong>Berita Jemaat Sakit:</strong> Jeremy Napitupulu dirawat di RS EMC Pekayon kamar 636.</p>
+                        <p class="warta-content-text">• <strong>Baptisan Kudus Anak:</strong> Minggu, 9 Agustus 2026 di KU 2. Pendaftar: Nathaniel Nagatama Vela & Keenan Elvano Halomoan Purba.</p>
+                        <p class="warta-content-text">• <strong>Class Meeting Gabungan:</strong> Kamis, 30 Juli 2026 pukul 20.00 WIB di gereja. Firman Tuhan oleh Pdt. David Hutagalung.</p>
+                        
+                        <div class="warta-main-title"><i class="fa-solid fa-hand-holding-heart"></i> 2. Komisi Diakonia Sosial</div>
+                        <p class="warta-content-text">• Pelayanan kasih dan dukungan diakonia bagi jemaat yang membutuhkan.</p>
+
+                        <div class="warta-main-title"><i class="fa-solid fa-graduation-cap"></i> 3. Komisi PAK & Kategorial</div>
+                        <p class="warta-content-text">• Persekutuan P3MI & PRMI: Sabtu, 1 Agustus 2026 pkl 17.30 WIB di rumah Sdri. Devani Grace Sihombing.</p>
+                        <p class="warta-content-text">• Sekolah Minggu: Mulai Minggu, 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.</p>
+
+                        <div class="warta-main-title"><i class="fa-solid fa-bullhorn"></i> 4. Panitia Kebaktian & Lain-Lain</div>
+                        
+                        <div class="warta-sub-heading">Persembahan Bunga Mimbar</div>
+                        <p class="warta-content-text">Minggu, 26 Juli 2026 dipersembahkan oleh Kel. Op. Abednego Simamora dan Sdri. Nathasya Samosir. Minggu, 2 Agustus 2026 dipersembahkan oleh Ibu Sarah Pandiangan & Devani Grace Sihombing.</p>
+
+                        <div class="warta-sub-heading">Sakramen Perjamuan Kudus</div>
+                        <p class="warta-content-text">Minggu, 2 Agustus 2026 kita akan menerima unsur-unsur Perjamuan Kudus.</p>
+
+                        <div class="warta-sub-heading">Persembahan Ke depan</div>
+                        <p class="warta-content-text">Pengumpulan persembahan ke depan untuk mendukung program P3MI.</p>
+
+                        <div class="warta-sub-heading">Serah Terima Pimpinan Distrik 3/II</div>
+                        <p class="warta-content-text">Sabtu, 1 Agustus 2026 pukul 10.00 WIB di Grha Wil II, dari Pdt. Johanes Samosir kepada Pdt. Suharto Agustinus.</p>
+
+                        <div class="warta-sub-heading">Pameran Buku Rohani</div>
+                        <p class="warta-content-text">Minggu, 2 Agustus 2026 oleh BPK Gunung Mulia di KU 1 dan KU 2.</p>
+                    </div>
                 </div>
             </div>
 
@@ -299,9 +353,21 @@
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">POKOK DOA</span>
                     </div>
-                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-hands-praying"></i> Pokok Doa Syafaat</div>
-                    <p id="doa-page-content" style="font-size:0.9rem; color:var(--text-muted); line-height:1.8;">1. Mendoakan kesehatan Gembala dan Majelis Jemaat.<br>2. Pelayanan kategorial dan jemaat yang sakit.</p>
-                    <div id="doa-media-container" class="gallery-grid" style="margin-top:15px;"></div>
+                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-hands-praying"></i> Pokok Doa Syafaat Pekan Ini</div>
+                    <div>
+                        <div class="warta-main-title">1. Bangsa dan Negara</div>
+                        <p class="warta-content-text">• Keamanan Bangsa dan Negara di Dunia.</p>
+                        <p class="warta-content-text">• Kementerian Pemberdayaan Perempuan dan Perlindungan Anak.</p>
+
+                        <div class="warta-main-title">2. GMI dan Jemaat Sungai Yordan</div>
+                        <p class="warta-content-text">• Pelayanan P3MI dan PRMI.</p>
+                        <p class="warta-content-text">• Anak-anak yang akan memulai perkuliahan.</p>
+                        <p class="warta-content-text">• Keluarga yang berdukacita.</p>
+
+                        <div class="warta-main-title">3. Jemaat Sakit & Pemulihan</div>
+                        <p class="warta-content-text">• <strong>Dirawat:</strong> Jeremy Napitupulu (RS EMC Pekayon), Bp. Jhonson Simanjuntak, Bp. W. Simanjuntak, Ibu Rona Gabe Sinaga, Ibu Linaria Saragih, Ibu Asna Girsang.</p>
+                        <p class="warta-content-text">• <strong>Pemulihan:</strong> Bp. Jamaludin Sinaga, Ibu Ruliana Siahaan, Ibu Hentry Via Dolorosa Hutabarat, Sdri. Jojor Hutapea, Ibu Anita Emma Sihombing, Bp. Milton Tobing, Bp. Pananggangan Sinaga, Sdr. Samuel Simamora.</p>
+                    </div>
                 </div>
             </div>
 
@@ -309,13 +375,27 @@
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
-                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">RENUNGAN HARIAN</span>
+                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">BACAAN ALKITAB</span>
                     </div>
-                    <h2 id="ren-judul-full" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.5rem; margin-bottom:8px;">Tetap Setia Di Dalam Pergumulan Hidup</h2>
-                    <p id="ren-ayat-full" style="font-size:0.9rem; color:var(--accent-gold); font-weight:700; margin-bottom:15px;">"Segala perkara dapat kutanggung di dalam Dia..." — Filipi 4:13</p>
-                    <hr style="border-color:var(--border-glass); margin-bottom:15px;">
-                    <p id="ren-isi-full" style="font-size:0.92rem; color:var(--text-muted); line-height:1.8;">Setiap musim kehidupan membawa tantangan tersendiri...</p>
-                    <div id="ren-media-container" class="gallery-grid" style="margin-top:15px;"></div>
+                    <h2 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.4rem; margin-bottom:6px; text-align:left;">Jadwal Bacaan Alkitab Sepekan</h2>
+                    <p style="font-size:0.85rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Periode 26 Juli - 1 Agustus 2026</p>
+                    
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr>
+                                <th>Hari / Tanggal</th>
+                                <th>Bacaan Pagi</th>
+                                <th>Bacaan Malam</th>
+                            </tr>
+                            <tr><td>Minggu, 26-7-2026</td><td>2 Samuel 11:14-21</td><td>Filipi 4:10-20</td></tr>
+                            <tr><td>Senin, 27-7-2026</td><td>1 Raja-Raja 3:1-15</td><td>Yakobus 3:1-12</td></tr>
+                            <tr><td>Selasa, 28-7-2026</td><td>1 Raja-Raja 4:29-34</td><td>Efesus 6:10-16</td></tr>
+                            <tr><td>Rabu, 29-7-2026</td><td>Amsal 1:1-7, 20-33</td><td>Markus 4:30-34</td></tr>
+                            <tr><td>Kamis, 30-7-2026</td><td>Amsal 10:1-5</td><td>Filipi 4:10-15</td></tr>
+                            <tr><td>Jumat, 31-7-2026</td><td>Yesaya 51:17-23</td><td>Roma 9:6-13</td></tr>
+                            <tr><td>Sabtu, 1-8-2026</td><td>Yesaya 44:1-5</td><td>Matius 7:7-11</td></tr>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -323,11 +403,44 @@
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
-                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">BACAAN SETAHUN</span>
+                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">TATA IBADAH MINGGU</span>
                     </div>
-                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-book-open"></i> Jadwal Bacaan Alkitab</div>
-                    <p id="alk-page-content" style="font-size:0.9rem; color:var(--text-muted); line-height:1.8;">Senin: Kejadian 1-3 | Matius 1<br>Selasa: Kejadian 4-6 | Matius 2</p>
-                    <div id="alk-media-container" class="gallery-grid" style="margin-top:15px;"></div>
+                    <div class="section-title" style="margin-bottom:6px;"><i class="fa-solid fa-book-open"></i> Jadwal Pelayan Ibadah</div>
+                    <p style="font-size:0.82rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 2 Agustus 2026 (Persiapan Perjamuan Kudus & Sekolah Minggu Pukul 08.00 WIB)</p>
+                    
+                    <div class="warta-main-title">Kebaktian Umum I (Pukul 08.00 WIB)</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Sdri. Stephanie Manurung</td></tr>
+                            <tr><td>Doa Syafaat</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Ivana Batubara</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
+                            <tr><td>Pemusik</td><td>Sdri. Shinta K. Manurung, Sdr. Ariel Siallagan, Sdr. Abram Nadeak, Sdr. Rianto Mangihut</td></tr>
+                            <tr><td>Singer</td><td>Sdri. Rosa Siallagan & Sdri. Emillie Pangaribuan</td></tr>
+                            <tr><td>Kolektan</td><td>Bp. Panata Sianipar & Ibu Juli Dwi Lestari S.</td></tr>
+                            <tr><td>P. Lonceng</td><td>Sdr. Hasian Siagian</td></tr>
+                            <tr><td>Penyambut / Pemerhati</td><td>Bp. Martin Siagian & Ibu Maria Berliana Sirait</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="warta-main-title" style="margin-top:25px;">Kebaktian Umum II (Pukul 10.00 WIB)</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Bp. Agus Sinambela</td></tr>
+                            <tr><td>Doa Syafaat</td><td>LS. Edy J. Napitupulu</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Mauri Situmorang</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
+                            <tr><td>Pemusik</td><td>Sdr. Robintang Simbolon</td></tr>
+                            <tr><td>Singer</td><td>Ibu Novijanti P. Sitanggang & Ibu Riana Magdalena Silitonga</td></tr>
+                            <tr><td>Kolektan</td><td>Bp. Jackwin Simbolon & Ibu Guna R. Rajagukguk</td></tr>
+                            <tr><td>P. Lonceng</td><td>Bp. Daniel Sinambela</td></tr>
+                            <tr><td>Penyambut / Pemerhati</td><td>LS. DF. Sipahutar & Ibu Ernilawati Than</td></tr>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -336,35 +449,68 @@
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                     </div>
-                    <h2 id="kat-page-title" style="font-family:'Playfair Display', serif; color:var(--accent-gold); font-size:1.5rem; margin-bottom:10px;">Pelayanan Kategorial</h2>
-                    <p id="kat-page-desc" style="font-size:0.88rem; color:var(--text-muted); line-height:1.7; margin-bottom:15px;">Deskripsi...</p>
+                    <h2 id="kat-page-title" style="font-family:'Playfair Display', serif; color:var(--accent-gold); font-size:1.5rem; margin-bottom:10px; text-align:left;">Pelayanan Kategorial</h2>
+                    <p id="kat-page-desc" style="font-size:0.88rem; color:var(--text-muted); line-height:1.7; margin-bottom:15px; text-align:justify;">Deskripsi...</p>
                     <div id="kat-media-container" class="gallery-grid"></div>
                 </div>
             </div>
 
+            <!-- HALAMAN ABOUT DENGAN TABEL SUSUNAN MAJELIS -->
             <div id="sec-about" class="page-sec">
                 <div class="glass-card">
                     <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-church"></i> Tentang GMI Sungai Yordan</div>
-                    <div id="about-text-content" style="color:var(--text-muted); line-height:1.8; font-size:0.9rem;">
-                        <p style="margin-bottom:12px;"><strong>Gereja Methodist Indonesia (GMI) Jemaat "Sungai Yordan" Bekasi</strong> adalah bagian dari tubuh Kristus yang terpanggil untuk memberitakan Injil keselamatan dan melakukan pemuridan di tengah kota Bekasi dan sekitarnya.</p>
-                        <p style="margin-bottom:12px;"><strong>Visi Gereja:</strong><br>Menjadi Gereja Yang Memuridkan, Berakar Dalam Firman, Bertumbuh Dalam Kasih, Dan Buah Pelayanan Bagi Sesama.</p>
-                        <p style="margin-bottom:12px;"><strong>Misi Gereja:</strong><br>1. Melaksanakan ibadah yang hidup dan berkenan kepada Allah.<br>2. Menyelenggarakan pembinaan rohani dan sekolah minggu yang Alkitabiah.<br>3. Mewujudkan kasih Kristus melalui aksi sosial dan pelayanan di tengah masyarakat.</p>
-                        <p>Kami menyambut setiap jiwa dengan penuh sukacita untuk bersekutu dan bertumbuh bersama di dalam kasih Tuhan Yesus Kristus.</p>
+                    <div style="color:var(--text-muted); line-height:1.8; font-size:0.9rem; margin-bottom:20px;">
+                        <p style="margin-bottom:12px; text-align:justify;"><strong>Gereja Methodist Indonesia (GMI) Jemaat "Sungai Yordan" Bekasi</strong> adalah bagian dari tubuh Kristus yang terpanggil untuk memberitakan Injil keselamatan dan melakukan pemuridan di tengah kota Bekasi dan sekitarnya.</p>
+                        <p style="margin-bottom:12px; text-align:justify;"><strong>Visi Gereja:</strong><br>Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members + 17.000 MetamorfoSELF (Efesus 4:11-16).</p>
+                        <p style="margin-bottom:12px; text-align:justify;"><strong>Misi Gereja:</strong><br>1. Melaksanakan ibadah yang hidup dan berkenan kepada Allah.<br>2. Menyelenggarakan pembinaan rohani dan sekolah minggu yang Alkitabiah.<br>3. Mewujudkan kasih Kristus melalui aksi sosial dan pelayanan di tengah masyarakat.</p>
+                    </div>
+
+                    <div class="warta-main-title"><i class="fa-solid fa-user-tie"></i> Susunan Majelis & Pimpinan Jemaat</div>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px; text-align:justify;">Berikut adalah daftar pelayan dan pengurus komisi / panitia GMI Sungai Yordan:</p>
+                    
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Jabatan / Pelayanan</th><th>Nama Pejabat / Petugas</th></tr>
+                            <tr><td>Pimpinan Jemaat</td><td>Pdt. Saut Marulitua Rajagukguk, S.Th. (0852-6960-7373)</td></tr>
+                            <tr><td>Asisten</td><td>Pdt. David Hutagalung (0856-6428-1448)</td></tr>
+                            <tr><td>Lay Leader</td><td>LS. Gok Ari Joso Simamora</td></tr>
+                            <tr><td>Bendahara</td><td>Ibu Marina Marli Siahaan</td></tr>
+                            <tr><td>Komisi Keanggotaan & Evangelisasi</td><td>LS. Mangasa P. Lumbantobing</td></tr>
+                            <tr><td>Komisi PAK</td><td>Bp. Ricky M. Pasaribu</td></tr>
+                            <tr><td>Komisi Diakonia Sosial</td><td>Ibu Luci Nasa Roni Simamora</td></tr>
+                            <tr><td>Komisi Misi dan PI</td><td>LS. Desman Fiberto Sipahutar</td></tr>
+                            <tr><td>Komisi Penatalayanan & Keuangan</td><td>Ibu Lis Sintha Oppusunggu</td></tr>
+                            <tr><td>Panitia Kebaktian</td><td>Ibu Tetty Rohani Hasibuan</td></tr>
+                            <tr><td>Panitia Pemelihara Harta Benda</td><td>Bp. Agus Sinambela</td></tr>
+                            <tr><td>Panitia Perayaan</td><td>Bp. Ade Gusman Situmeang</td></tr>
+                            <tr><td>Panitia Humas</td><td>LS. Simon Yusuf</td></tr>
+                            <tr><td>Panitia Urusan Rumah Tangga</td><td>Ibu Lisma Natalia Sitorus</td></tr>
+                            <tr><td>Panitia Multimedia & TI</td><td>Bp. Jackwin Simbolon</td></tr>
+                            <tr><td>Ketua PWMI</td><td>Ibu Maria Berliana Sirait</td></tr>
+                            <tr><td>Ketua P2MI</td><td>LS. Edy J. Napitupulu</td></tr>
+                            <tr><td>Ketua P3MI</td><td>Sdri. Dera Mora Karen Nadeak</td></tr>
+                            <tr><td>Pimpinan Sekolah Minggu</td><td>Sdri. Hertina Sitorus</td></tr>
+                        </table>
                     </div>
                 </div>
             </div>
 
             <div id="sec-jadwal" class="page-sec">
                 <div class="glass-card">
-                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-calendar-days"></i> Jadwal & Kegiatan Gereja</div>
-                    <p id="jadwal-text-content" style="font-size:0.85rem; color:var(--text-muted); line-height:1.8;">Ibadah Raya Minggu Sesi 1: 07.30 WIB<br>Ibadah Raya Minggu Sesi 2: 10.00 WIB</p>
+                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-calendar-days"></i> Jadwal Jaringan Doa Sepekan</div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.8; text-align:justify;">
+                        • <strong>Senin, 27/7/2026 (19.00 WIB):</strong> Tim Doa oleh Gr. Weslly C. Tedju<br>
+                        • <strong>Rabu, 29/7/2026 (20.00 WIB):</strong> MPD oleh LS. Mangasa L. Tobing<br>
+                        • <strong>Sabtu, 1/8/2026 (05.30 WIB):</strong> Doa Pagi oleh LS. Usdek Simanjuntak<br>
+                        • <strong>Sabtu, 1/8/2026 (17.30 WIB):</strong> Persekutuan P3MI & PRMI di Rumah Sdri. Devani Grace Sihombing
+                    </p>
                 </div>
             </div>
 
             <div id="sec-galeri" class="page-sec">
                 <div class="glass-card">
                     <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-images"></i> Galeri Kegiatan Gereja</div>
-                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px;">Dokumentasi foto kegiatan ibadah dan persekutuan GMI Sungai Yordan.</p>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px; text-align:justify;">Dokumentasi foto kegiatan ibadah dan persekutuan GMI Sungai Yordan.</p>
                     <div id="public-gallery-container" class="gallery-grid"></div>
                 </div>
             </div>
@@ -374,19 +520,19 @@
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-chart-line"></i> Grafik Kehadiran Ibadah</div>
                     </div>
-                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px;">Pilih filter waktu (Mingguan, Bulanan, atau Setahun):</p>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px; text-align:justify;">Pilih filter waktu (Mingguan, Bulanan, atau Setahun):</p>
                     <div class="chart-filter-wrap">
                         <button class="chart-filter-btn active" onclick="updateChartFilter('week', this)">Per Week (Mingguan)</button>
                         <button class="chart-filter-btn" onclick="updateChartFilter('month', this)">Per Month (Bulanan)</button>
                         <button class="chart-filter-btn" onclick="updateChartFilter('year', this)">Per Year (Setahun)</button>
                     </div>
                     <div style="margin-bottom: 25px;">
-                        <h4 style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 10px;"><i class="fa-solid fa-church"></i> Kehadiran Ibadah Minggu</h4>
+                        <h4 style="font-size: 0.95rem; color: var(--accent-gold); margin-bottom: 10px; text-align:left;"><i class="fa-solid fa-church"></i> Kehadiran Ibadah Minggu</h4>
                         <div style="height:260px;"><canvas id="chartIbadahMinggu"></canvas></div>
                     </div>
                     <hr style="border-color: var(--border-glass); margin: 25px 0;">
                     <div>
-                        <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 10px;"><i class="fa-solid fa-users"></i> Kehadiran Ibadah Kategorial</h4>
+                        <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 10px; text-align:left;"><i class="fa-solid fa-users"></i> Kehadiran Ibadah Kategorial</h4>
                         <div style="height:260px;"><canvas id="chartIbadahKategorial"></canvas></div>
                     </div>
                 </div>
@@ -395,14 +541,14 @@
 
         <aside>
             <div class="glass-card">
-                <h3 style="font-size:0.95rem; color:#fff; margin-bottom:12px;"><i class="fa-solid fa-layer-group"></i> PELAYANAN KATEGORIAL</h3>
+                <h3 style="font-size:0.95rem; color:#fff; margin-bottom:12px; text-align:left;"><i class="fa-solid fa-layer-group"></i> PELAYANAN KATEGORIAL</h3>
                 <ul class="category-list">
                     <li>
-                        <a onclick="openKategorialPage('Sekolah Minggu (Sekming)', 'Pelayanan pembinaan iman anak-anak setiap Minggu Pukul 08.00 WIB.')">Sekolah Minggu <span>Sekming</span></a>
+                        <a onclick="openKategorialPage('Sekolah Minggu (Sekming)', 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.')">Sekolah Minggu <span>Sekming</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('sekming')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                     <li>
-                        <a onclick="openKategorialPage('P3MI / PRMI (Pemuda & Remaja)', 'Wadah persekutuan pemuda dan remaja setiap Sabtu Pukul 18.00 WIB.')">P3MI / PRMI <span>P3MI</span></a>
+                        <a onclick="openKategorialPage('P3MI / PRMI (Pemuda & Remaja)', 'Persekutuan Sabtu, 1 Agustus 2026 pukul 17.30 WIB di rumah Sdri. Devani Grace Sihombing.')">P3MI / PRMI <span>P3MI</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('prmi')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                     <li>
@@ -422,7 +568,6 @@
         </aside>
     </div>
 
-    <!-- BOTTOM NAV -->
     <div class="bottom-nav-wrap">
         <nav class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('sec-home', this)"><i class="fa-solid fa-house"></i><span>Home</span></div>
@@ -433,7 +578,6 @@
         </nav>
     </div>
 
-    <!-- MODAL LIVE -->
     <div class="modal" id="liveModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('liveModal')">&times;</span>
@@ -444,7 +588,6 @@
         </div>
     </div>
 
-    <!-- MODAL LOGIN ADMIN UTAMA -->
     <div class="modal" id="loginModal">
         <div class="modal-card" style="max-width: 400px;">
             <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
@@ -457,387 +600,9 @@
         </div>
     </div>
 
-    <!-- MODAL LOGIN KATEGORIAL -->
-    <div class="modal" id="katLoginModal">
-        <div class="modal-card" style="max-width: 400px;">
-            <span class="close-modal" onclick="closeModal('katLoginModal')">&times;</span>
-            <h3 style="color:var(--accent-gold); text-align:center; margin-bottom:12px;"><i class="fa-solid fa-lock"></i> Login Admin Kategorial</h3>
-            <div class="form-group">
-                <label>Password Admin Kategorial:</label>
-                <input type="password" id="katPassInput" placeholder="Masukkan password...">
-            </div>
-            <button class="btn-save" onclick="verifyKatAdmin()">Masuk Edit Kategorial</button>
-        </div>
-    </div>
-
-    <!-- MODAL PANEL KATEGORIAL -->
-    <div class="modal" id="katAdminModal">
-        <div class="modal-card" style="max-width: 450px;">
-            <span class="close-modal" onclick="closeModal('katAdminModal')">&times;</span>
-            <h3 style="color:var(--accent-gold); margin-bottom:12px;"><i class="fa-solid fa-pen-to-square"></i> Edit <span id="kat-target-name">Kategorial</span></h3>
-            <form onsubmit="saveKatAdminData(event)">
-                <div class="form-group"><label>Judul / Nama Kategorial:</label><input type="text" id="in-kat-title" required></div>
-                <div class="form-group"><label>Deskripsi & Jadwal:</label><textarea id="in-kat-desc" rows="4" required></textarea></div>
-                <div class="form-group"><label>Upload Foto (Bisa Banyak / Multi-Select):</label><input type="file" id="in-kat-files" accept="image/*" multiple></div>
-                <button type="submit" class="btn-save">Simpan Perubahan</button>
-                <button type="button" class="btn-save btn-delete" onclick="deleteKatData()">Hapus Data Kategorial Ini</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL PANEL ADMIN UTAMA -->
-    <div class="modal" id="adminControlModal">
-        <div class="modal-card">
-            <span class="close-modal" onclick="closeModal('adminControlModal')">&times;</span>
-            <h3 style="color:var(--accent-gold); margin-bottom:12px;"><i class="fa-solid fa-sliders"></i> Panel Admin Lengkap</h3>
-            
-            <div class="admin-menu-tabs">
-                <button class="tab-btn active" onclick="switchAdminTab('adm-logo', this)">Logo & Umum</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-stats', this)">Statistik</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-warta', this)">Warta</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-doa', this)">Doa</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-renungan', this)">Renungan</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-alkitab', this)">Alkitab</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-galeri', this)">Galeri</button>
-                <button class="tab-btn" onclick="switchAdminTab('adm-jadwal', this)">Jadwal & About</button>
-            </div>
-
-            <div id="adm-logo" class="adm-content active">
-                <form onsubmit="saveAdminGeneral(event)">
-                    <div class="form-group"><label>Link / URL Gambar Logo:</label><input type="text" id="in-logo-url" value="..." required></div>
-                    <div class="form-group"><label>Deskripsi Hero:</label><textarea id="in-hero-desc" rows="3">...</textarea></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                </form>
-            </div>
-
-            <div id="adm-stats" class="adm-content">
-                <form onsubmit="saveAdminStats(event)">
-                    <div class="form-group"><label>Total Jemaat:</label><input type="number" id="in-stat-total" value="345" required></div>
-                    <div class="form-group"><label>Sekolah Minggu:</label><input type="number" id="in-stat-sekming" value="65" required></div>
-                    <div class="form-group"><label>P3MI / PRMI:</label><input type="number" id="in-stat-prmi" value="50" required></div>
-                    <div class="form-group"><label>Kaum Pria (P2MI):</label><input type="number" id="in-stat-p2mi" value="80" required></div>
-                    <div class="form-group"><label>Kaum Wanita (PWMI):</label><input type="number" id="in-stat-pwmi" value="95" required></div>
-                    <div class="form-group"><label>Usia Indah (Usindah):</label><input type="number" id="in-stat-usindah" value="35" required></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                </form>
-            </div>
-
-            <div id="adm-warta" class="adm-content">
-                <form onsubmit="saveAdminWarta(event)">
-                    <div class="form-group"><label>Judul Warta:</label><input type="text" id="in-warta-title" value="Warta Jemaat Pekan Ini"></div>
-                    <div class="form-group"><label>Tanggal:</label><input type="text" id="in-warta-date" value="30 November 2025"></div>
-                    <div class="form-group"><label>Isi Warta:</label><textarea id="in-warta-content" rows="4">...</textarea></div>
-                    <div class="form-group"><label>Upload Foto/Dokumen (Bisa Pilih Banyak):</label><input type="file" id="in-warta-files" accept="image/*,.pdf,.doc,.docx" multiple></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                    <button type="button" class="btn-save btn-delete" onclick="clearDataField('warta')">Hapus Lampiran Warta</button>
-                </form>
-            </div>
-
-            <div id="adm-doa" class="adm-content">
-                <form onsubmit="saveAdminDoa(event)">
-                    <div class="form-group"><label>Isi Pokok Doa:</label><textarea id="in-doa-content" rows="4">...</textarea></div>
-                    <div class="form-group"><label>Upload Lampiran (Bisa Banyak):</label><input type="file" id="in-doa-files" accept="image/*,.pdf,.doc,.docx" multiple></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                    <button type="button" class="btn-save btn-delete" onclick="clearDataField('doa')">Hapus Lampiran Doa</button>
-                </form>
-            </div>
-
-            <div id="adm-renungan" class="adm-content">
-                <form onsubmit="saveAdminRenungan(event)">
-                    <div class="form-group"><label>Judul Renungan:</label><input type="text" id="in-ren-title" value="..."></div>
-                    <div class="form-group"><label>Ayat Referensi:</label><input type="text" id="in-ren-verse" value="..."></div>
-                    <div class="form-group"><label>Isi Renungan:</label><textarea id="in-ren-content" rows="4">...</textarea></div>
-                    <div class="form-group"><label>Upload Lampiran (Bisa Banyak):</label><input type="file" id="in-ren-files" accept="image/*,.pdf,.doc,.docx" multiple></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                    <button type="button" class="btn-save btn-delete" onclick="clearDataField('renungan')">Hapus Lampiran Renungan</button>
-                </form>
-            </div>
-
-            <div id="adm-alkitab" class="adm-content">
-                <form onsubmit="saveAdminAlkitab(event)">
-                    <div class="form-group"><label>Jadwal Bacaan:</label><textarea id="in-alk-content" rows="4">...</textarea></div>
-                    <div class="form-group"><label>Upload Lampiran (Bisa Banyak):</label><input type="file" id="in-alk-files" accept="image/*,.pdf,.doc,.docx" multiple></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                    <button type="button" class="btn-save btn-delete" onclick="clearDataField('alkitab')">Hapus Lampiran Alkitab</button>
-                </form>
-            </div>
-
-            <div id="adm-galeri" class="adm-content">
-                <form onsubmit="saveAdminGaleri(event)">
-                    <div class="form-group"><label>Judul Kegiatan / Album:</label><input type="text" id="in-galeri-title" placeholder="Misal: Perjamuan Kudus / Natal" required></div>
-                    <div class="form-group"><label>Pilih Banyak Foto Sekaligus:</label><input type="file" id="in-galeri-files" accept="image/*" multiple required></div>
-                    <button type="submit" class="btn-save">Upload Foto ke Galeri</button>
-                </form>
-                <div style="margin-top:15px; border-top:1px solid var(--border-glass); padding-top:10px;">
-                    <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">Daftar Foto Galeri Saat Ini:</p>
-                    <div id="admin-gallery-list" style="max-height:150px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;"></div>
-                </div>
-            </div>
-
-            <div id="adm-jadwal" class="adm-content">
-                <form onsubmit="saveAdminJadwalAbout(event)">
-                    <div class="form-group"><label>Teks Jadwal Gereja:</label><textarea id="in-jadwal-text" rows="3">...</textarea></div>
-                    <div class="form-group"><label>Teks Tentang Kami (About):</label><textarea id="in-about-text" rows="5">...</textarea></div>
-                    <button type="submit" class="btn-save">Simpan & Update Online</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- FIREBASE SCRIPT -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyC3EBnDn0tI_VYZNc7oyetucFmWmtLnOw0",
-            authDomain: "gmisy-41e91.firebaseapp.com",
-            projectId: "gmisy-41e91",
-            storageBucket: "gmisy-41e91.firebasestorage.app",
-            messagingSenderId: "885197779896",
-            appId: "1:885197779896:web:dfc21751b90cb0b547d54d",
-            measurementId: "G-XVVSBMR7CF"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
-
-        function runCounterAnimation() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let count = 0;
-                const speed = target / 35; 
-                const updateCount = () => {
-                    count += speed;
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count);
-                        setTimeout(updateCount, 30);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            });
-        }
-
-        async function muatSemuaDataOnline() {
-            try {
-                const docRef = doc(db, "gereja", "portal_data");
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    const d = docSnap.data();
-                    
-                    if(d.logoUrl) { document.getElementById('main-logo-img').src = d.logoUrl; document.getElementById('in-logo-url').value = d.logoUrl; }
-                    if(d.heroDesc) { document.getElementById('txt-hero-desc').innerText = d.heroDesc; document.getElementById('in-hero-desc').value = d.heroDesc; }
-
-                    if(d.stats) {
-                        document.getElementById('stat-total').setAttribute('data-target', d.stats.total || 345);
-                        document.getElementById('stat-sekming').setAttribute('data-target', d.stats.sekming || 65);
-                        document.getElementById('stat-prmi').setAttribute('data-target', d.stats.prmi || 50);
-                        document.getElementById('stat-p2mi').setAttribute('data-target', d.stats.p2mi || 80);
-                        document.getElementById('stat-pwmi').setAttribute('data-target', d.stats.pwmi || 95);
-                        document.getElementById('stat-usindah').setAttribute('data-target', d.stats.usindah || 35);
-                        
-                        document.getElementById('in-stat-total').value = d.stats.total || 345;
-                        document.getElementById('in-stat-sekming').value = d.stats.sekming || 65;
-                        document.getElementById('in-stat-prmi').value = d.stats.prmi || 50;
-                        document.getElementById('in-stat-p2mi').value = d.stats.p2mi || 80;
-                        document.getElementById('in-stat-pwmi').value = d.stats.pwmi || 95;
-                        document.getElementById('in-stat-usindah').value = d.stats.usindah || 35;
-                    }
-
-                    if(d.warta) {
-                        document.getElementById('car-title').innerText = d.warta.title || 'Warta Jemaat Pekan Ini';
-                        document.getElementById('car-date').innerText = d.warta.date || '30 November 2025';
-                        document.getElementById('warta-page-title').innerText = d.warta.title || 'Warta Jemaat Pekan Ini';
-                        document.getElementById('warta-page-date').innerText = d.warta.date || '30 November 2025';
-                        document.getElementById('warta-page-content').innerHTML = d.warta.content || 'Shalom...';
-                        
-                        // Update gambar banner warta di home jika ada foto yang di-upload
-                        if(d.warta.files && d.warta.files.length > 0) {
-                            let firstImg = d.warta.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
-                            if(firstImg) document.getElementById('car-img').src = firstImg.url;
-                        }
-
-                        renderMultiMedia('warta-media-container', d.warta.files);
-
-                        document.getElementById('in-warta-title').value = d.warta.title || '';
-                        document.getElementById('in-warta-date').value = d.warta.date || '';
-                        document.getElementById('in-warta-content').value = d.warta.content || '';
-                    }
-
-                    if(d.doa) {
-                        document.getElementById('preview-doa').innerText = d.doa.content ? d.doa.content.substring(0, 80) + '...' : '...';
-                        document.getElementById('doa-page-content').innerHTML = d.doa.content || '';
-                        
-                        // Update gambar banner Doa di home jika ada foto yang di-upload
-                        if(d.doa.files && d.doa.files.length > 0) {
-                            let firstImg = d.doa.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
-                            if(firstImg) document.getElementById('banner-doa-img').src = firstImg.url;
-                        }
-
-                        renderMultiMedia('doa-media-container', d.doa.files);
-                        document.getElementById('in-doa-content').value = d.doa.content || '';
-                    }
-
-                    if(d.renungan) {
-                        document.getElementById('ren-judul-preview').innerText = d.renungan.title || '';
-                        document.getElementById('ren-ayat-preview').innerText = d.renungan.verse || '';
-                        document.getElementById('ren-judul-full').innerText = d.renungan.title || '';
-                        document.getElementById('ren-ayat-full').innerText = d.renungan.verse || '';
-                        document.getElementById('ren-isi-full').innerHTML = d.renungan.content || '';
-                        
-                        // Update gambar banner Renungan di home jika ada foto yang di-upload
-                        if(d.renungan.files && d.renungan.files.length > 0) {
-                            let firstImg = d.renungan.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
-                            if(firstImg) document.getElementById('banner-renungan-img').src = firstImg.url;
-                        }
-
-                        renderMultiMedia('ren-media-container', d.renungan.files);
-
-                        document.getElementById('in-ren-title').value = d.renungan.title || '';
-                        document.getElementById('in-ren-verse').value = d.renungan.verse || '';
-                        document.getElementById('in-ren-content').value = d.renungan.content || '';
-                    }
-
-                    if(d.alkitab) {
-                        document.getElementById('preview-alkitab').innerText = d.alkitab.content ? d.alkitab.content.substring(0, 80) + '...' : '...';
-                        document.getElementById('alk-page-content').innerHTML = d.alkitab.content || '';
-                        
-                        // Update gambar banner Alkitab di home jika ada foto yang di-upload
-                        if(d.alkitab.files && d.alkitab.files.length > 0) {
-                            let firstImg = d.alkitab.files.find(f => f.url.match(/\.(jpeg|jpg|gif|png)$/i) || f.url.startsWith('data:image'));
-                            if(firstImg) document.getElementById('banner-alkitab-img').src = firstImg.url;
-                        }
-
-                        renderMultiMedia('alk-media-container', d.alkitab.files);
-                        document.getElementById('in-alk-content').value = d.alkitab.content || '';
-                    }
-
-                    if(d.jadwalAbout) {
-                        document.getElementById('jadwal-text-content').innerHTML = d.jadwalAbout.jadwal || '';
-                        document.getElementById('about-text-content').innerHTML = d.jadwalAbout.about || '';
-                        document.getElementById('in-jadwal-text').value = d.jadwalAbout.jadwal || '';
-                        document.getElementById('in-about-text').value = d.jadwalAbout.about || '';
-                    }
-
-                    window.kategorialDataCache = d.kategorial || {};
-                    window.galeriDataCache = d.galeri || [];
-                    renderPublicGallery(window.galeriDataCache);
-                    renderAdminGalleryList(window.galeriDataCache);
-                }
-                runCounterAnimation();
-            } catch (e) {
-                console.error("Gagal memuat data online: ", e);
-                runCounterAnimation();
-            }
-        }
-        muatSemuaDataOnline();
-
-        function renderMultiMedia(containerId, filesArray) {
-            const container = document.getElementById(containerId);
-            if(!container) return;
-            container.innerHTML = '';
-            if(!filesArray || filesArray.length === 0) return;
-
-            filesArray.forEach(fileObj => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                if(fileObj.url.match(/\.(jpeg|jpg|gif|png)$/i) || fileObj.url.startsWith('data:image')) {
-                    item.innerHTML = `<img src="${fileObj.url}" alt="${fileObj.name}">`;
-                } else {
-                    item.innerHTML = `<div style="padding:15px; text-align:center;"><i class="fa-solid fa-file-arrow-down" style="color:var(--accent-gold); font-size:1.5rem;"></i><br><a href="${fileObj.url}" target="_blank" style="font-size:0.7rem; color:var(--accent-cyan);">${fileObj.name}</a></div>`;
-                }
-                container.appendChild(item);
-            });
-        }
-
-        function renderPublicGallery(galeriArray) {
-            const container = document.getElementById('public-gallery-container');
-            if(!container) return;
-            container.innerHTML = '';
-            if(!galeriArray || galeriArray.length === 0) {
-                container.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">Belum ada foto galeri.</p>';
-                return;
-            }
-            galeriArray.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                div.innerHTML = `<img src="${item.url}" alt="${item.title}">
-                    <div style="position:absolute; bottom:0; left:0; right:0; background:rgba(5,8,17,0.8); padding:4px 6px; font-size:0.65rem; color:#fff; text-align:center;">${item.title}</div>`;
-                container.appendChild(div);
-            });
-        }
-
-        function renderAdminGalleryList(galeriArray) {
-            const list = document.getElementById('admin-gallery-list');
-            if(!list) return;
-            list.innerHTML = '';
-            if(!galeriArray || galeriArray.length === 0) {
-                list.innerHTML = '<span style="font-size:0.7rem; color:var(--text-muted);">Belum ada foto.</span>';
-                return;
-            }
-            galeriArray.forEach((item, idx) => {
-                const row = document.createElement('div');
-                row.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.03); padding:4px 8px; border-radius:4px;";
-                row.innerHTML = `<span style="font-size:0.7rem; color:#fff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:220px;">${item.title}</span>
-                    <button type="button" onclick="deleteGalleryItem(${idx})" style="background:rgba(239,68,68,0.2); color:var(--accent-red); border:none; border-radius:4px; padding:2px 6px; font-size:0.65rem; cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>`;
-                list.appendChild(row);
-            });
-        }
-
-        window.simpanDataKeFirebase = async function(newData, pesanSukses) {
-            try {
-                const docRef = doc(db, "gereja", "portal_data");
-                const docSnap = await getDoc(docRef);
-                let currentData = docSnap.exists() ? docSnap.data() : {};
-                let mergedData = { ...currentData, ...newData };
-                await setDoc(docRef, mergedData);
-                alert(pesanSukses);
-                closeModal('adminControlModal');
-                closeModal('katAdminModal');
-                muatSemuaDataOnline();
-            } catch (e) {
-                console.error("Gagal menyimpan: ", e);
-                alert("Gagal menyimpan ke database online. Pastikan aturan database Firestore mengizinkan write.");
-            }
-        };
-
-        window.clearDataField = async function(fieldName) {
-            if(!confirm("Yakin ingin menghapus semua lampiran pada " + fieldName + "?")) return;
-            try {
-                const docRef = doc(db, "gereja", "portal_data");
-                const docSnap = await getDoc(docRef);
-                let currentData = docSnap.exists() ? docSnap.data() : {};
-                if(currentData[fieldName]) {
-                    currentData[fieldName].files = [];
-                }
-                await setDoc(docRef, currentData);
-                alert("Lampiran berhasil dihapus!");
-                closeModal('adminControlModal');
-                muatSemuaDataOnline();
-            } catch(e) {
-                alert("Gagal menghapus.");
-            }
-        };
-
-        window.deleteGalleryItem = async function(index) {
-            if(!confirm("Hapus foto ini dari galeri?")) return;
-            let galeri = window.galeriDataCache || [];
-            galeri.splice(index, 1);
-            await window.simpanDataKeFirebase({ galeri }, "Foto galeri berhasil dihapus!");
-        };
-    </script>
-
     <script>
         let chartMingguInstance = null;
         let chartKategorialInstance = null;
-        let activeKatKey = '';
-        window.kategorialDataCache = {};
-        window.galeriDataCache = [];
 
         function openPageView(pageId) {
             document.querySelectorAll('.page-sec').forEach(s => s.classList.remove('active'));
@@ -849,31 +614,6 @@
             document.querySelectorAll('.page-sec').forEach(s => s.classList.remove('active'));
             document.getElementById('sec-home').classList.add('active');
             window.scrollTo(0,0);
-        }
-
-        function openKategorialPage(title, defaultDesc) {
-            document.getElementById('kat-page-title').innerText = title;
-            let desc = defaultDesc;
-            let files = [];
-            
-            for(let key in window.kategorialDataCache) {
-                if(window.kategorialDataCache[key].title === title) {
-                    desc = window.kategorialDataCache[key].desc;
-                    files = window.kategorialDataCache[key].files || [];
-                }
-            }
-            document.getElementById('kat-page-desc').innerText = desc;
-            
-            const cont = document.getElementById('kat-media-container');
-            cont.innerHTML = '';
-            files.forEach(f => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.innerHTML = `<img src="${f.url}" alt="${f.name}">`;
-                cont.appendChild(item);
-            });
-
-            openPageView('page-kategorial');
         }
 
         function switchTab(secId, el) {
@@ -892,226 +632,26 @@
             if (document.getElementById('adminPass').value === "candra*5") {
                 closeModal('loginModal');
                 document.getElementById('adminPass').value = "";
-                document.getElementById('adminControlModal').style.display = 'flex';
+                alert("Login Admin Berhasil!");
             } else { alert("Password Admin Salah!"); }
-        }
-
-        function openKatLogin(key) {
-            activeKatKey = key;
-            document.getElementById('katPassInput').value = '';
-            document.getElementById('katLoginModal').style.display = 'flex';
-        }
-
-        function verifyKatAdmin() {
-            const pass = document.getElementById('katPassInput').value;
-            if (pass === "admin*123") {
-                closeModal('katLoginModal');
-                document.getElementById('katPassInput').value = '';
-                
-                let defaultTitles = {
-                    'sekming': 'Sekolah Minggu (Sekming)',
-                    'prmi': 'P3MI / PRMI (Pemuda & Remaja)',
-                    'p2mi': 'Persekutuan Kaum Pria (P2MI)',
-                    'pwmi': 'Persekutuan Kaum Wanita (PWMI)',
-                    'usindah': 'Usia Indah (Usindah)'
-                };
-                let defaultDescs = {
-                    'sekming': 'Pelayanan pembinaan iman anak-anak setiap Minggu Pukul 08.00 WIB.',
-                    'prmi': 'Wadah persekutuan pemuda dan remaja setiap Sabtu Pukul 18.00 WIB.',
-                    'p2mi': 'Persekutuan bapak-bapak Minggu ke-2 & ke-4.',
-                    'pwmi': 'Persekutuan ibu-ibu setiap Selasa Pukul 16.00 WIB.',
-                    'usindah': 'Persekutuan kaum lansia Minggu ke-1 & ke-3.'
-                };
-
-                let curTitle = defaultTitles[activeKatKey];
-                let curDesc = defaultDescs[activeKatKey];
-
-                if(window.kategorialDataCache && window.kategorialDataCache[activeKatKey]) {
-                    curTitle = window.kategorialDataCache[activeKatKey].title || curTitle;
-                    curDesc = window.kategorialDataCache[activeKatKey].desc || curDesc;
-                }
-
-                document.getElementById('kat-target-name').innerText = curTitle;
-                document.getElementById('in-kat-title').value = curTitle;
-                document.getElementById('in-kat-desc').value = curDesc;
-                document.getElementById('katAdminModal').style.display = 'flex';
-            } else {
-                alert("Password Kategorial Salah!");
-            }
-        }
-
-        function saveKatAdminData(e) {
-            e.preventDefault();
-            const title = document.getElementById('in-kat-title').value;
-            const desc = document.getElementById('in-kat-desc').value;
-            const fileInput = document.getElementById('in-kat-files');
-            let kategorialCache = window.kategorialDataCache || {};
-
-            processMultipleFiles(fileInput.files, (fileArray) => {
-                let existingFiles = kategorialCache[activeKatKey] ? (kategorialCache[activeKatKey].files || []) : [];
-                let finalFiles = fileArray.length > 0 ? [...existingFiles, ...fileArray] : existingFiles;
-                
-                kategorialCache[activeKatKey] = { title, desc, files: finalFiles };
-                window.simpanDataKeFirebase({ kategorial: kategorialCache }, "Data Kategorial berhasil diperbarui!");
-            });
-        }
-
-        function deleteKatData() {
-            if(!confirm("Hapus data kategorial ini?")) return;
-            let kategorialCache = window.kategorialDataCache || {};
-            delete kategorialCache[activeKatKey];
-            window.simpanDataKeFirebase({ kategorial: kategorialCache }, "Kategorial berhasil dihapus!");
-        }
-
-        function switchAdminTab(tabId, btn) {
-            document.querySelectorAll('.adm-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
-
-        function processMultipleFiles(fileList, callback) {
-            if(!fileList || fileList.length === 0) {
-                callback([]);
-                return;
-            }
-            let results = [];
-            let loadedCount = 0;
-            Array.from(fileList).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    results.push({ url: evt.target.result, name: file.name });
-                    loadedCount++;
-                    if(loadedCount === fileList.length) {
-                        callback(results);
-                    }
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-
-        function saveAdminGeneral(e) {
-            e.preventDefault();
-            const logoUrl = document.getElementById('in-logo-url').value;
-            const heroDesc = document.getElementById('in-hero-desc').value;
-            window.simpanDataKeFirebase({ logoUrl, heroDesc }, "Logo & Umum diperbarui!");
-        }
-
-        function saveAdminStats(e) {
-            e.preventDefault();
-            const stats = {
-                total: document.getElementById('in-stat-total').value,
-                sekming: document.getElementById('in-stat-sekming').value,
-                prmi: document.getElementById('in-stat-prmi').value,
-                p2mi: document.getElementById('in-stat-p2mi').value,
-                pwmi: document.getElementById('in-stat-pwmi').value,
-                usindah: document.getElementById('in-stat-usindah').value
-            };
-            window.simpanDataKeFirebase({ stats }, "Statistik diperbarui!");
-        }
-
-        function saveAdminWarta(e) {
-            e.preventDefault();
-            const title = document.getElementById('in-warta-title').value;
-            const date = document.getElementById('in-warta-date').value;
-            const content = document.getElementById('in-warta-content').value;
-            const fileInput = document.getElementById('in-warta-files');
-
-            processMultipleFiles(fileInput.files, (fileArray) => {
-                const warta = { title, date, content, files: fileArray };
-                window.simpanDataKeFirebase({ warta }, "Warta berhasil diperbarui!");
-            });
-        }
-
-        function saveAdminDoa(e) {
-            e.preventDefault();
-            const content = document.getElementById('in-doa-content').value;
-            const fileInput = document.getElementById('in-doa-files');
-
-            processMultipleFiles(fileInput.files, (fileArray) => {
-                const doa = { content, files: fileArray };
-                window.simpanDataKeFirebase({ doa }, "Doa berhasil diperbarui!");
-            });
-        }
-
-        function saveAdminRenungan(e) {
-            e.preventDefault();
-            const title = document.getElementById('in-ren-title').value;
-            const verse = document.getElementById('in-ren-verse').value;
-            const content = document.getElementById('in-ren-content').value;
-            const fileInput = document.getElementById('in-ren-files');
-
-            processMultipleFiles(fileInput.files, (fileArray) => {
-                const renungan = { title, verse, content, files: fileArray };
-                window.simpanDataKeFirebase({ renungan }, "Renungan berhasil diperbarui!");
-            });
-        }
-
-        function saveAdminAlkitab(e) {
-            e.preventDefault();
-            const content = document.getElementById('in-alk-content').value;
-            const fileInput = document.getElementById('in-alk-files');
-
-            processMultipleFiles(fileInput.files, (fileArray) => {
-                const alkitab = { content, files: fileArray };
-                window.simpanDataKeFirebase({ alkitab }, "Alkitab berhasil diperbarui!");
-            });
-        }
-
-        function saveAdminGaleri(e) {
-            e.preventDefault();
-            const title = document.getElementById('in-galeri-title').value;
-            const fileInput = document.getElementById('in-galeri-files');
-            let currentGaleri = window.galeriDataCache || [];
-
-            processMultipleFiles(fileInput.files, (fileArray) => {
-                let newItems = fileArray.map(f => ({ title, url: f.url }));
-                let updatedGaleri = [...newItems, ...currentGaleri];
-                window.simpanDataKeFirebase({ galeri: updatedGaleri }, "Foto galeri berhasil ditambahkan!");
-            });
-        }
-
-        function saveAdminJadwalAbout(e) {
-            e.preventDefault();
-            const jadwalAbout = {
-                jadwal: document.getElementById('in-jadwal-text').value,
-                about: document.getElementById('in-about-text').value
-            };
-            window.simpanDataKeFirebase({ jadwalAbout }, "Jadwal & About diperbarui!");
         }
 
         function updateChartFilter(filterType, btn) {
             document.querySelectorAll('.chart-filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            let labelsMinggu = [], dataSesi1 = [], dataSesi2 = [], labelsKategorial = [], dataKategorial = [];
-
-            if (filterType === 'week') {
-                labelsMinggu = ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'];
-                dataSesi1 = [110, 125, 118, 130];
-                dataSesi2 = [85, 90, 92, 98];
-                labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
-                dataKategorial = [65, 50, 80, 95, 35];
-            } else if (filterType === 'month') {
-                labelsMinggu = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-                dataSesi1 = [420, 390, 450, 480, 460, 490, 510, 500, 470, 490, 520, 600];
-                dataSesi2 = [310, 290, 330, 350, 340, 360, 380, 370, 350, 360, 390, 450];
-                labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
-                dataKategorial = [260, 200, 320, 380, 140];
-            } else if (filterType === 'year') {
-                labelsMinggu = ['2023', '2024', '2025', '2026'];
-                dataSesi1 = [4800, 5200, 5600, 6100];
-                dataSesi2 = [3600, 3900, 4200, 4700];
-                labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
-                dataKategorial = [3100, 2500, 4100, 4900, 1800];
-            }
+            let labelsMinggu = ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'];
+            let dataSesi1 = [110, 125, 118, 130];
+            let dataSesi2 = [85, 90, 92, 98];
+            let labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
+            let dataKategorial = [65, 50, 80, 95, 35];
 
             if (chartMingguInstance) chartMingguInstance.destroy();
             if (chartKategorialInstance) chartKategorialInstance.destroy();
 
             const ctxMinggu = document.getElementById('chartIbadahMinggu').getContext('2d');
             chartMingguInstance = new Chart(ctxMinggu, {
-                type: filterType === 'year' ? 'bar' : 'line',
+                type: 'line',
                 data: {
                     labels: labelsMinggu,
                     datasets: [
