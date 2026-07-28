@@ -112,7 +112,7 @@
         }
 
         .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; width: 100%; max-width: 800px; margin-top: 10px; }
-        .hero-stat-card { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 14px; border-radius: 14px; text-align: center; }
+        .hero-stat-card { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 14px; border-radius: 14px; text-align: center; position: relative; }
         .hero-stat-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 2px; }
         .hero-stat-card p { font-size: 0.7rem; color: var(--text-muted); }
 
@@ -268,7 +268,12 @@
         </div>
 
         <div class="hero-stats">
-            <div class="hero-stat-card"><h3 id="stat-total">345</h3><p>Total Jemaat</p></div>
+            <!-- Card Total Jemaat dengan Tombol Edit Admin -->
+            <div class="hero-stat-card">
+                <button class="btn-edit-card" style="display:none;" id="btnEditTotal" onclick="openEditModal('total_jemaat')"><i class="fa-solid fa-pen"></i> Edit</button>
+                <h3 id="stat-total">345</h3>
+                <p>Total Jemaat</p>
+            </div>
             <div class="hero-stat-card"><h3 id="stat-sekming">65</h3><p>Sekolah Minggu</p></div>
             <div class="hero-stat-card"><h3 id="stat-prmi">50</h3><p>P3MI / PRMI</p></div>
             <div class="hero-stat-card"><h3 id="stat-p2mi">80</h3><p>Kaum Pria (P2MI)</p></div>
@@ -728,6 +733,8 @@
             'usindah': { title: 'Usia Indah (Usindah)', desc: 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
         };
 
+        let customTotalJemaat = null; // Menyimpan override total jemaat manual jika diinput admin
+
         // Data Ibadah Minggu
         let chartDataStore = {
             week: {
@@ -747,7 +754,6 @@
             }
         };
 
-        // Data Kategorial: Sekarang mendukung multi-dataset (garis per kategorial) untuk setiap mode filter
         let chartKategorialStore = {
             week: {
                 labels: ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'],
@@ -808,6 +814,7 @@
                     if(data.homeStore) homeDataStore = data.homeStore;
                     if(data.chartStore) chartDataStore = data.chartStore;
                     if(data.chartKatStore) chartKategorialStore = data.chartKatStore;
+                    if(data.customTotalJemaat !== undefined) customTotalJemaat = data.customTotalJemaat;
                 }
             } catch (e) {
                 console.log("Menggunakan data default (offline/error koneksi)");
@@ -824,7 +831,8 @@
                     katStore: kategorialStore,
                     homeStore: homeDataStore,
                     chartStore: chartDataStore,
-                    chartKatStore: chartKategorialStore
+                    chartKatStore: chartKategorialStore,
+                    customTotalJemaat: customTotalJemaat
                 });
                 alert("Data berhasil diperbarui secara otomatis di Firebase!");
             } catch (e) {
@@ -851,13 +859,16 @@
                 document.getElementById('liveIframe').src = homeDataStore.liveUrl;
             }
 
-            let totalJemaat = 0;
+            let totalJemaatCalc = 0;
             for(let k in kategorialStore) {
                 document.getElementById('val-' + k).innerText = kategorialStore[k].count;
                 document.getElementById('stat-' + k).innerText = kategorialStore[k].count;
-                totalJemaat += parseInt(kategorialStore[k].count || 0);
+                totalJemaatCalc += parseInt(kategorialStore[k].count || 0);
             }
-            document.getElementById('stat-total').innerText = totalJemaat;
+            
+            // Jika admin menetapkan manual total jemaat, gunakan nilai custom. Jika tidak, pakai hasil hitung otomatis.
+            let finalTotal = (customTotalJemaat !== null && customTotalJemaat !== "") ? customTotalJemaat : totalJemaatCalc;
+            document.getElementById('stat-total').innerText = finalTotal;
         }
 
         function openArchiveModal() {
@@ -960,6 +971,7 @@
                 closeModal('loginModal');
                 document.getElementById('adminPass').value = "";
                 document.body.classList.add('admin-logged-in');
+                document.getElementById('btnEditTotal').style.display = 'inline-flex';
                 document.getElementById('authText').innerText = "Logout";
                 document.getElementById('authIcon').className = "fa-solid fa-lock-open";
                 alert("Login Admin Berhasil!");
@@ -1025,7 +1037,17 @@
             let title = "Edit Konten Menu";
             let bodyHTML = "";
 
-            if (target === 'warta') {
+            if (target === 'total_jemaat') {
+                title = "Edit Total Jemaat Gereja";
+                let currentTotalVal = document.getElementById('stat-total').innerText;
+                bodyHTML = `
+                    <div class="form-group">
+                        <label>Jumlah Total Jemaat:</label>
+                        <input type="number" id="editTotalJemaatVal" value="${currentTotalVal}">
+                        <small style="color:var(--text-muted); font-size:0.72rem; display:block; margin-top:4px;">Masukkan jumlah keseluruhan jemaat jika bertambah atau berkurang.</small>
+                    </div>
+                `;
+            } else if (target === 'warta') {
                 title = "Update Warta Baru (Otomatis Masuk Arsip)";
                 bodyHTML = `
                     <div class="form-group"><label>Judul Warta Baru:</label><input type="text" id="editWartaTitle" value="${homeDataStore.wartaTitle}"></div>
@@ -1107,7 +1129,9 @@
         }
 
         function saveAdminChanges() {
-            if (currentEditTarget === 'warta') {
+            if (currentEditTarget === 'total_jemaat') {
+                customTotalJemaat = parseInt(document.getElementById('editTotalJemaatVal').value) || 0;
+            } else if (currentEditTarget === 'warta') {
                 if(homeDataStore.wartaTitle) {
                     if(!homeDataStore.wartaArchive) homeDataStore.wartaArchive = [];
                     homeDataStore.wartaArchive.unshift({
@@ -1200,7 +1224,6 @@
                 }
             });
 
-            // Render Grafik Kategorial menggunakan tipe 'line' (garis) untuk semua mode (Mingguan, Bulanan, Tahunan)
             const ctxKategorial = document.getElementById('chartIbadahKategorial').getContext('2d');
             
             let formattedDatasets = activeKatData.datasets.map(ds => ({
