@@ -568,10 +568,11 @@
 
             <div id="sec-grafik" class="page-sec">
                 <div class="glass-card">
-                    <div class="section-header">
+                    <div class="section-header" style="position: relative;">
                         <div class="section-title"><i class="fa-solid fa-chart-line"></i> Grafik Kehadiran Ibadah</div>
+                        <button class="btn-edit-card" style="display:inline-flex; position:static;" onclick="openEditModal('grafik')"><i class="fa-solid fa-pen"></i> Edit Data Grafik</button>
                     </div>
-                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px; text-align:justify;">Pilih filter waktu (Mingguan, Bulanan, atau Setahun):</p>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px; text-align:justify;">Pilih filter waktu (Mingguan, Bulanan, atau Tahunan — data tampil otomatis mengikuti pilihan Anda):</p>
                     <div class="chart-filter-wrap">
                         <button class="chart-filter-btn active" onclick="updateChartFilter('week', this)">Per Week (Mingguan)</button>
                         <button class="chart-filter-btn" onclick="updateChartFilter('month', this)">Per Month (Bulanan)</button>
@@ -582,8 +583,11 @@
                         <div style="height:260px;"><canvas id="chartIbadahMinggu"></canvas></div>
                     </div>
                     <hr style="border-color: var(--border-glass); margin: 25px 0;">
-                    <div>
-                        <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 10px; text-align:left;"><i class="fa-solid fa-users"></i> Kehadiran Ibadah Kategorial</h4>
+                    <div style="position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 0.95rem; color: var(--accent-cyan); text-align:left;"><i class="fa-solid fa-users"></i> Kehadiran Ibadah Kategorial</h4>
+                            <button class="btn-edit-card" style="display:inline-flex; position:static;" onclick="openEditModal('grafik_kategorial')"><i class="fa-solid fa-pen"></i> Edit Grafik Kategorial</button>
+                        </div>
                         <div style="height:260px;"><canvas id="chartIbadahKategorial"></canvas></div>
                     </div>
                 </div>
@@ -714,6 +718,7 @@
         let chartMingguInstance = null;
         let chartKategorialInstance = null;
         let currentEditTarget = '';
+        let currentFilterMode = 'week';
 
         let kategorialStore = {
             'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800', count: 65 },
@@ -721,6 +726,59 @@
             'p2mi': { title: 'Persekutuan Kaum Pria (P2MI)', desc: 'Persekutuan bapak-bapak Minggu ke-2 & ke-4.', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800', count: 80 },
             'pwmi': { title: 'Persekutuan Kaum Wanita (PWMI)', desc: 'Persekutuan ibu-ibu setiap Selasa Pukul 16.00 WIB.', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800', count: 95 },
             'usindah': { title: 'Usia Indah (Usindah)', desc: 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
+        };
+
+        // Data Ibadah Minggu
+        let chartDataStore = {
+            week: {
+                labels: ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'],
+                sesi1: [110, 125, 118, 130],
+                sesi2: [85, 90, 92, 98]
+            },
+            month: {
+                labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                sesi1: [450, 480, 460, 490, 510, 500, 520, 0, 0, 0, 0, 0],
+                sesi2: [340, 360, 350, 370, 390, 380, 400, 0, 0, 0, 0, 0]
+            },
+            year: {
+                labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4', 'Minggu 5', 'Minggu 6', 'Minggu 7', 'Minggu 8', 'Minggu 9', 'Minggu 10', 'Minggu 11', 'Minggu 12', 'Minggu 13', 'Minggu 14', 'Minggu 15', 'Minggu 16', 'Minggu 17', 'Minggu 18', 'Minggu 19', 'Minggu 20', 'Minggu 21', 'Minggu 22', 'Minggu 23', 'Minggu 24', 'Minggu 25', 'Minggu 26', 'Minggu 27', 'Minggu 28', 'Minggu 29', 'Minggu 30', 'Minggu 31', 'Minggu 32', 'Minggu 33', 'Minggu 34', 'Minggu 35', 'Minggu 36', 'Minggu 37', 'Minggu 38', 'Minggu 39', 'Minggu 40', 'Minggu 41', 'Minggu 42', 'Minggu 43', 'Minggu 44', 'Minggu 45', 'Minggu 46', 'Minggu 47', 'Minggu 48', 'Minggu 49', 'Minggu 50', 'Minggu 51', 'Minggu 52'],
+                sesi1: [110, 125, 118, 130, 115, 120, 122, 128, 130, 125, 119, 121, 124, 126, 129, 131, 135, 122, 120, 118, 125, 127, 129, 130, 132, 134, 130, 128, 125, 122, 120, 125, 128, 130, 132, 135, 138, 130, 128, 125, 122, 120, 125, 128, 130, 132, 135, 138, 140, 142, 145, 150],
+                sesi2: [85, 90, 92, 98, 88, 91, 93, 95, 98, 94, 90, 92, 95, 97, 99, 100, 102, 95, 93, 91, 94, 96, 98, 100, 102, 104, 100, 98, 96, 94, 92, 95, 97, 99, 101, 103, 105, 100, 98, 96, 94, 92, 95, 97, 99, 101, 103, 105, 108, 110, 112, 115]
+            }
+        };
+
+        // Data Kategorial: Sekarang mendukung multi-dataset (garis per kategorial) untuk setiap mode filter
+        let chartKategorialStore = {
+            week: {
+                labels: ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'],
+                datasets: [
+                    { label: 'Sekolah Minggu', data: [60, 65, 62, 68], borderColor: '#f43f5e' },
+                    { label: 'P3MI / PRMI', data: [45, 48, 50, 52], borderColor: '#3b82f6' },
+                    { label: 'Kaum Pria', data: [75, 80, 78, 85], borderColor: '#a855f7' },
+                    { label: 'Kaum Wanita', data: [90, 92, 95, 98], borderColor: '#14b8a6' },
+                    { label: 'Usia Indah', data: [32, 35, 34, 38], borderColor: '#f59e0b' }
+                ]
+            },
+            month: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+                datasets: [
+                    { label: 'Sekolah Minggu', data: [250, 260, 255, 270, 280, 275, 290, 0, 0, 0, 0, 0], borderColor: '#f43f5e' },
+                    { label: 'P3MI / PRMI', data: [190, 200, 195, 210, 215, 210, 220, 0, 0, 0, 0, 0], borderColor: '#3b82f6' },
+                    { label: 'Kaum Pria', data: [310, 320, 315, 330, 340, 335, 350, 0, 0, 0, 0, 0], borderColor: '#a855f7' },
+                    { label: 'Kaum Wanita', data: [370, 380, 375, 390, 400, 395, 410, 0, 0, 0, 0, 0], borderColor: '#14b8a6' },
+                    { label: 'Usia Indah', data: [130, 140, 135, 145, 150, 148, 155, 0, 0, 0, 0, 0], borderColor: '#f59e0b' }
+                ]
+            },
+            year: {
+                labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4', 'Minggu 5', 'Minggu 6', 'Minggu 7', 'Minggu 8', 'Minggu 9', 'Minggu 10', 'Minggu 11', 'Minggu 12', 'Minggu 13', 'Minggu 14', 'Minggu 15', 'Minggu 16', 'Minggu 17', 'Minggu 18', 'Minggu 19', 'Minggu 20', 'Minggu 21', 'Minggu 22', 'Minggu 23', 'Minggu 24', 'Minggu 25', 'Minggu 26', 'Minggu 27', 'Minggu 28', 'Minggu 29', 'Minggu 30', 'Minggu 31', 'Minggu 32', 'Minggu 33', 'Minggu 34', 'Minggu 35', 'Minggu 36', 'Minggu 37', 'Minggu 38', 'Minggu 39', 'Minggu 40', 'Minggu 41', 'Minggu 42', 'Minggu 43', 'Minggu 44', 'Minggu 45', 'Minggu 46', 'Minggu 47', 'Minggu 48', 'Minggu 49', 'Minggu 50', 'Minggu 51', 'Minggu 52'],
+                datasets: [
+                    { label: 'Sekolah Minggu', data: [60,65,62,68,63,66,64,69,65,67,61,64,66,68,70,72,75,64,62,60,66,68,70,71,73,75,70,68,66,64,62,66,69,71,73,76,78,70,68,66,64,62,66,68,70,72,75,78,80,82,85,88], borderColor: '#f43f5e' },
+                    { label: 'P3MI / PRMI', data: [45,48,50,52,47,49,51,53,50,49,48,50,52,54,56,58,60,51,49,47,52,54,56,58,60,62,58,56,54,52,50,53,55,57,59,61,63,56,54,52,50,48,53,55,57,59,61,63,65,67,69,72], borderColor: '#3b82f6' },
+                    { label: 'Kaum Pria', data: [75,80,78,85,79,81,82,86,84,82,78,80,83,85,88,90,93,81,79,77,83,85,87,89,91,93,89,87,85,83,81,84,87,89,91,94,96,88,86,84,82,80,84,87,89,91,94,96,98,100,102,105], borderColor: '#a855f7' },
+                    { label: 'Kaum Wanita', data: [90,92,95,98,93,95,96,100,98,96,92,94,97,99,102,105,108,96,94,92,98,100,102,104,106,108,104,102,100,98,96,99,102,104,106,109,112,103,101,99,97,95,99,102,104,106,109,112,114,116,118,122], borderColor: '#14b8a6' },
+                    { label: 'Usia Indah', data: [32,35,34,38,33,36,35,39,37,35,33,35,37,39,41,43,45,36,34,33,37,39,41,43,45,47,43,41,39,37,35,38,40,42,44,46,48,41,39,37,35,34,38,40,42,44,46,48,50,52,54,58], borderColor: '#f59e0b' }
+                ]
+            }
         };
 
         let homeDataStore = {
@@ -748,11 +806,15 @@
                     const data = docSnap.data();
                     if(data.katStore) kategorialStore = data.katStore;
                     if(data.homeStore) homeDataStore = data.homeStore;
+                    if(data.chartStore) chartDataStore = data.chartStore;
+                    if(data.chartKatStore) chartKategorialStore = data.chartKatStore;
                 }
             } catch (e) {
                 console.log("Menggunakan data default (offline/error koneksi)");
             }
             applyDataToDOM();
+            const defaultBtn = document.querySelector('.chart-filter-btn.active');
+            updateChartFilter('week', defaultBtn);
         }
 
         async function saveToFirebase() {
@@ -760,7 +822,9 @@
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 await window.setDoc(docRef, {
                     katStore: kategorialStore,
-                    homeStore: homeDataStore
+                    homeStore: homeDataStore,
+                    chartStore: chartDataStore,
+                    chartKatStore: chartKategorialStore
                 });
                 alert("Data berhasil diperbarui secara otomatis di Firebase!");
             } catch (e) {
@@ -942,6 +1006,8 @@
 
             saveToFirebase();
             applyDataToDOM();
+            const activeBtn = document.querySelector('.chart-filter-btn.active');
+            updateChartFilter(currentFilterMode, activeBtn);
             closeModal('katEditModal');
         }
 
@@ -974,6 +1040,31 @@
                 bodyHTML = `
                     <div class="form-group"><label>URL Embed YouTube Live:</label><input type="text" id="editLiveUrl" value="${homeDataStore.liveUrl || ''}"></div>
                 `;
+            } else if (target === 'grafik') {
+                title = `Edit Kehadiran Ibadah Minggu (${currentFilterMode.toUpperCase()})`;
+                let activeData = chartDataStore[currentFilterMode];
+                bodyHTML = `
+                    <p style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:10px;">Anda sedang mengedit mode: <b>${currentFilterMode.toUpperCase()}</b>. Pisahkan dengan tanda koma.</p>
+                    <div class="form-group"><label>Label (${currentFilterMode}):</label><input type="text" id="editChartLabels" value="${activeData.labels.join(', ')}"></div>
+                    <div class="form-group"><label>Kehadiran Sesi 1:</label><input type="text" id="editChartSesi1" value="${activeData.sesi1.join(', ')}"></div>
+                    <div class="form-group"><label>Kehadiran Sesi 2:</label><input type="text" id="editChartSesi2" value="${activeData.sesi2.join(', ')}"></div>
+                `;
+            } else if (target === 'grafik_kategorial') {
+                title = `Edit Kehadiran Ibadah Kategorial (${currentFilterMode.toUpperCase()})`;
+                let activeKatData = chartKategorialStore[currentFilterMode];
+                bodyHTML = `
+                    <p style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:10px;">Anda sedang mengedit kategorial mode: <b>${currentFilterMode.toUpperCase()}</b>. Pisahkan dengan tanda koma.</p>
+                    <div class="form-group"><label>Label Sumbu X (${currentFilterMode}):</label><input type="text" id="editKatLabels" value="${activeKatData.labels.join(', ')}"></div>
+                    <div style="font-size:0.75rem; color:var(--accent-gold); margin:10px 0 4px 0; font-weight:700;">Data Kehadiran Masing-Masing Komisi:</div>
+                `;
+                activeKatData.datasets.forEach((ds, idx) => {
+                    bodyHTML += `
+                        <div class="form-group">
+                            <label>${ds.label}:</label>
+                            <input type="text" class="edit-kat-ds-input" data-index="${idx}" value="${ds.data.join(', ')}">
+                        </div>
+                    `;
+                });
             } else if (target === 'doa') {
                 title = "Edit Pokok Doa Syafaat & Upload Gambar";
                 bodyHTML = `
@@ -1033,6 +1124,16 @@
                 if(imgOut) homeDataStore.wartaImg = imgOut;
             } else if (currentEditTarget === 'live') {
                 homeDataStore.liveUrl = document.getElementById('editLiveUrl').value;
+            } else if (currentEditTarget === 'grafik') {
+                chartDataStore[currentFilterMode].labels = document.getElementById('editChartLabels').value.split(',').map(s => s.trim());
+                chartDataStore[currentFilterMode].sesi1 = document.getElementById('editChartSesi1').value.split(',').map(s => parseInt(s.trim()) || 0);
+                chartDataStore[currentFilterMode].sesi2 = document.getElementById('editChartSesi2').value.split(',').map(s => parseInt(s.trim()) || 0);
+            } else if (currentEditTarget === 'grafik_kategorial') {
+                chartKategorialStore[currentFilterMode].labels = document.getElementById('editKatLabels').value.split(',').map(s => s.trim());
+                document.querySelectorAll('.edit-kat-ds-input').forEach(input => {
+                    let idx = parseInt(input.getAttribute('data-index'));
+                    chartKategorialStore[currentFilterMode].datasets[idx].data = input.value.split(',').map(s => parseInt(s.trim()) || 0);
+                });
             } else if (currentEditTarget === 'doa') {
                 homeDataStore.doaText = document.getElementById('editDoaText').value;
                 let imgOut = document.getElementById('editDoaImgOut').value;
@@ -1058,24 +1159,22 @@
 
             saveToFirebase();
             applyDataToDOM();
+            const activeBtn = document.querySelector('.chart-filter-btn.active');
+            updateChartFilter(currentFilterMode, activeBtn);
             closeModal('editModal');
         }
 
         function updateChartFilter(filterType, btn) {
+            currentFilterMode = filterType;
             document.querySelectorAll('.chart-filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            let labelsMinggu = ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'];
-            let dataSesi1 = [110, 125, 118, 130];
-            let dataSesi2 = [85, 90, 92, 98];
-            let labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
-            let dataKategorial = [
-                kategorialStore['sekming'].count,
-                kategorialStore['prmi'].count,
-                kategorialStore['p2mi'].count,
-                kategorialStore['pwmi'].count,
-                kategorialStore['usindah'].count
-            ];
+            let activeChartData = chartDataStore[filterType];
+            let labelsMinggu = activeChartData.labels;
+            let dataSesi1 = activeChartData.sesi1;
+            let dataSesi2 = activeChartData.sesi2;
+
+            let activeKatData = chartKategorialStore[filterType];
 
             if (chartMingguInstance) chartMingguInstance.destroy();
             if (chartKategorialInstance) chartKategorialInstance.destroy();
@@ -1090,24 +1189,46 @@
                         { label: 'Sesi 2', data: dataSesi2, borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.1)', fill: true, tension: 0.3 }
                     ]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#f8fafc' } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { labels: { color: '#f8fafc' } } },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' } },
+                        y: { ticks: { color: '#94a3b8' } }
+                    }
+                }
             });
 
+            // Render Grafik Kategorial menggunakan tipe 'line' (garis) untuk semua mode (Mingguan, Bulanan, Tahunan)
             const ctxKategorial = document.getElementById('chartIbadahKategorial').getContext('2d');
+            
+            let formattedDatasets = activeKatData.datasets.map(ds => ({
+                label: ds.label,
+                data: ds.data,
+                borderColor: ds.borderColor,
+                backgroundColor: 'transparent',
+                fill: false,
+                tension: 0.3
+            }));
+
             chartKategorialInstance = new Chart(ctxKategorial, {
-                type: 'bar',
+                type: 'line',
                 data: {
-                    labels: labelsKategorial,
-                    datasets: [{ label: 'Kehadiran Kategorial', data: dataKategorial, backgroundColor: ['#f43f5e', '#3b82f6', '#a855f7', '#14b8a6', '#f59e0b'] }]
+                    labels: activeKatData.labels,
+                    datasets: formattedDatasets
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#f8fafc' } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { labels: { color: '#f8fafc' } } },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' } },
+                        y: { ticks: { color: '#94a3b8' } }
+                    }
+                }
             });
         }
-
-        window.onload = function() {
-            const defaultBtn = document.querySelector('.chart-filter-btn.active');
-            updateChartFilter('week', defaultBtn);
-        };
     </script>
 </body>
 </html>
