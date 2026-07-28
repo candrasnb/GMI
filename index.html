@@ -9,6 +9,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Firebase SDK v10 -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyC3EBnDn0tI_VYZNc7oyetucFmWmtLnOw0",
+          authDomain: "gmisy-41e91.firebaseapp.com",
+          projectId: "gmisy-41e91",
+          storageBucket: "gmisy-41e91.firebasestorage.app",
+          messagingSenderId: "885197779896",
+          appId: "1:885197779896:web:dfc21751b90cb0b547d54d",
+          measurementId: "G-XVVSBMR7CF"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.db = db;
+        window.doc = doc;
+        window.getDoc = getDoc;
+        window.setDoc = setDoc;
+
+        // Load data dari Firebase saat halaman dibuka
+        window.loadFromFirebase();
+    </script>
+
     <style>
         :root {
             --bg-main: #050811;
@@ -603,13 +630,13 @@
         </nav>
     </div>
 
-    <!-- MODAL EDIT ADMIN UNIVERSAL (DENGAN COMPRESSOR OTOMATIS) -->
+    <!-- MODAL EDIT ADMIN UNIVERSAL -->
     <div class="modal" id="editModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('editModal')">&times;</span>
             <h3 id="editModalTitle" style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-pen-to-square"></i> Edit Konten</h3>
             <div id="editFormBody"></div>
-            <button class="btn-save" onclick="saveAdminChanges()">Simpan Perubahan</button>
+            <button class="btn-save" onclick="saveAdminChanges()">Simpan ke Firebase</button>
         </div>
     </div>
 
@@ -635,7 +662,7 @@
         </div>
     </div>
 
-    <!-- PANEL LOGIN KATEGORIAL DENGAN PASSWORD admin*123 -->
+    <!-- PANEL LOGIN KATEGORIAL -->
     <div class="modal" id="katLoginModal">
         <div class="modal-card" style="max-width: 400px;">
             <span class="close-modal" onclick="closeModal('katLoginModal')">&times;</span>
@@ -649,7 +676,7 @@
         </div>
     </div>
 
-    <!-- MODAL EDIT KATEGORIAL SPESIFIK (DENGAN COMPRESSOR OTOMATIS) -->
+    <!-- MODAL EDIT KATEGORIAL SPESIFIK -->
     <div class="modal" id="katEditModal">
         <div class="modal-card" style="max-width: 400px;">
             <span class="close-modal" onclick="closeModal('katEditModal')">&times;</span>
@@ -669,7 +696,7 @@
                 <input type="hidden" id="katCompressedImg">
                 <small id="katSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small>
             </div>
-            <button class="btn-save" onclick="saveKatEditData()">Simpan Perubahan</button>
+            <button class="btn-save" onclick="saveKatEditData()">Simpan ke Firebase</button>
         </div>
     </div>
 
@@ -678,16 +705,76 @@
         let chartKategorialInstance = null;
         let currentEditTarget = '';
 
-        const kategorialStore = {
-            'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800' },
-            'prmi': { title: 'P3MI / PRMI (Pemuda & Remaja)', desc: 'Persekutuan Sabtu, 1 Agustus 2026 pukul 17.30 WIB di rumah Sdri. Devani Grace Sihombing.', img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800' },
-            'p2mi': { title: 'Persekutuan Kaum Pria (P2MI)', desc: 'Persekutuan bapak-bapak Minggu ke-2 & ke-4.', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800' },
-            'pwmi': { title: 'Persekutuan Kaum Wanita (PWMI)', desc: 'Persekutuan ibu-ibu setiap Selasa Pukul 16.00 WIB.', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800' },
-            'usindah': { title: 'Usia Indah (Usindah)', desc: 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800' }
+        let kategorialStore = {
+            'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800', count: 65 },
+            'prmi': { title: 'P3MI / PRMI (Pemuda & Remaja)', desc: 'Persekutuan Sabtu, 1 Agustus 2026 pukul 17.30 WIB di rumah Sdri. Devani Grace Sihombing.', img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800', count: 50 },
+            'p2mi': { title: 'Persekutuan Kaum Pria (P2MI)', desc: 'Persekutuan bapak-bapak Minggu ke-2 & ke-4.', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800', count: 80 },
+            'pwmi': { title: 'Persekutuan Kaum Wanita (PWMI)', desc: 'Persekutuan ibu-ibu setiap Selasa Pukul 16.00 WIB.', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800', count: 95 },
+            'usindah': { title: 'Usia Indah (Usindah)', desc: 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
         };
+
+        let homeDataStore = {
+            wartaTitle: "Minggu Kesembilan Sesudah Pentakosta & Minggu P3MI/PRMI",
+            wartaImg: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800",
+            doaText: "Mendoakan Bangsa, Negara, Program P3MI-PRMI, serta jemaat yang sakit...",
+            doaImg: "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800",
+            renJudul: "Bacaan Alkitab 26 Juli - 1 Agustus 2026",
+            renImg: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800",
+            alkitabText: "Persiapan Perjamuan Kudus & Sekolah Minggu Sesi Pagi Pukul 08.00 WIB...",
+            alkitabImg: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800"
+        };
+
         let activeCurrentKatKey = 'sekming';
 
-        // Fungsi Otomatis Kompres Gambar ke ukuran target (~100KB)
+        // Sinkronisasi dengan Firebase Firestore
+        async function loadFromFirebase() {
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                const docSnap = await window.getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if(data.katStore) kategorialStore = data.katStore;
+                    if(data.homeStore) homeDataStore = data.homeStore;
+                }
+            } catch (e) {
+                console.log("Menggunakan data default (offline/error koneksi)");
+            }
+            applyDataToDOM();
+        }
+
+        async function saveToFirebase() {
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                await window.setDoc(docRef, {
+                    katStore: kategorialStore,
+                    homeStore: homeDataStore
+                });
+                alert("Data berhasil disimpan secara otomatis ke Firebase! Semua orang kini bisa melihat pembaruan ini.");
+            } catch (e) {
+                alert("Gagal menyimpan ke Firebase: " + e.message);
+            }
+        }
+
+        function applyDataToDOM() {
+            document.getElementById('car-title').innerText = homeDataStore.wartaTitle;
+            document.getElementById('car-img').src = homeDataStore.wartaImg;
+            document.getElementById('preview-doa').innerText = homeDataStore.doaText;
+            document.getElementById('banner-doa-img').src = homeDataStore.doaImg;
+            document.getElementById('ren-judul-preview').innerText = homeDataStore.renJudul;
+            document.getElementById('banner-renungan-img').src = homeDataStore.renImg;
+            document.getElementById('preview-alkitab').innerText = homeDataStore.alkitabText;
+            document.getElementById('banner-alkitab-img').src = homeDataStore.alkitabImg;
+
+            let totalJemaat = 0;
+            for(let k in kategorialStore) {
+                document.getElementById('val-' + k).innerText = kategorialStore[k].count;
+                document.getElementById('stat-' + k).innerText = kategorialStore[k].count;
+                totalJemaat += parseInt(kategorialStore[k].count || 0);
+            }
+            document.getElementById('stat-total').innerText = totalJemaat;
+        }
+
+        // Kompresor otomatis gambar ke ukuran optimal (~100KB) sebelum masuk ke database
         function compressImage(input, hiddenOutputId, infoId, maxWidth = 800, quality = 0.7) {
             const file = input.files[0];
             if (!file) return;
@@ -712,12 +799,9 @@
                     ctx.drawImage(img, 0, 0, width, height);
 
                     let dataUrl = canvas.toDataURL('image/jpeg', quality);
-                    
-                    // Cek ukuran hasil kompresi base64
                     let head = 'data:image/jpeg;base64,';
                     let kb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
 
-                    // Jika masih di atas 120KB, turunkan quality secara rekursif/iteratif ringan
                     if (kb > 120 && quality > 0.3) {
                         dataUrl = canvas.toDataURL('image/jpeg', 0.4);
                         kb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
@@ -762,7 +846,7 @@
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authText').innerText = "Logout";
                 document.getElementById('authIcon').className = "fa-solid fa-lock-open";
-                alert("Login Admin Utama Berhasil! Tombol edit universal & upload gambar aktif.");
+                alert("Login Admin Berhasil! Tombol edit universal aktif.");
             } else { alert("Password Admin Salah!"); }
         }
 
@@ -787,7 +871,7 @@
         function openKatEditPanel(key) {
             activeCurrentKatKey = key;
             document.getElementById('activeKatKey').value = key;
-            document.getElementById('katNewVal').value = document.getElementById('val-' + key).innerText;
+            document.getElementById('katNewVal').value = kategorialStore[key].count;
             document.getElementById('katNewDesc').value = kategorialStore[key].desc;
             document.getElementById('katCompressedImg').value = kategorialStore[key].img;
             document.getElementById('katSizeInfo').innerText = "Menggunakan gambar aktif saat ini.";
@@ -800,19 +884,13 @@
             let desc = document.getElementById('katNewDesc').value;
             let img = document.getElementById('katCompressedImg').value;
             
-            document.getElementById('val-' + key).innerText = val;
-            if(kategorialStore[key]) {
-                kategorialStore[key].desc = desc;
-                if(img) kategorialStore[key].img = img;
-            }
-            if (key === 'sekming') document.getElementById('stat-sekming').innerText = val;
-            if (key === 'prmi') document.getElementById('stat-prmi').innerText = val;
-            if (key === 'p2mi') document.getElementById('stat-p2mi').innerText = val;
-            if (key === 'pwmi') document.getElementById('stat-pwmi').innerText = val;
-            if (key === 'usindah') document.getElementById('stat-usindah').innerText = val;
+            kategorialStore[key].count = parseInt(val || 0);
+            kategorialStore[key].desc = desc;
+            if(img) kategorialStore[key].img = img;
 
+            saveToFirebase();
+            applyDataToDOM();
             closeModal('katEditModal');
-            alert("Data kategorial dan gambar terkompresi berhasil disimpan!");
         }
 
         function openKategorialPage(key) {
@@ -832,48 +910,43 @@
             if (target === 'warta') {
                 title = "Edit Warta Jemaat & Upload Gambar";
                 bodyHTML = `
-                    <div class="form-group"><label>Judul Warta:</label><input type="text" id="editWartaTitle" value="${document.getElementById('car-title').innerText}"></div>
+                    <div class="form-group"><label>Judul Warta:</label><input type="text" id="editWartaTitle" value="${homeDataStore.wartaTitle}"></div>
                     <div class="form-group"><label>Browse Gambar Banner Warta (Auto-Compress ~100KB):</label><input type="file" id="editWartaFile" accept="image/*" onchange="compressImage(this, 'editWartaImgOut', 'wartaSizeInfo')">
-                    <input type="hidden" id="editWartaImgOut" value="${document.getElementById('car-img').src}">
+                    <input type="hidden" id="editWartaImgOut" value="${homeDataStore.wartaImg}">
                     <small id="wartaSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'doa') {
                 title = "Edit Pokok Doa Syafaat & Upload Gambar";
                 bodyHTML = `
-                    <div class="form-group"><label>Ringkasan Doa:</label><textarea id="editDoaText">${document.getElementById('preview-doa').innerText}</textarea></div>
+                    <div class="form-group"><label>Ringkasan Doa:</label><textarea id="editDoaText">${homeDataStore.doaText}</textarea></div>
                     <div class="form-group"><label>Browse Gambar Doa (Auto-Compress ~100KB):</label><input type="file" id="editDoaFile" accept="image/*" onchange="compressImage(this, 'editDoaImgOut', 'doaSizeInfo')">
-                    <input type="hidden" id="editDoaImgOut" value="${document.getElementById('banner-doa-img').src}">
+                    <input type="hidden" id="editDoaImgOut" value="${homeDataStore.doaImg}">
                     <small id="doaSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'renungan') {
                 title = "Edit Bacaan Alkitab & Upload Gambar";
                 bodyHTML = `
-                    <div class="form-group"><label>Judul Bacaan:</label><input type="text" id="editRenJudul" value="${document.getElementById('ren-judul-preview').innerText}"></div>
+                    <div class="form-group"><label>Judul Bacaan:</label><input type="text" id="editRenJudul" value="${homeDataStore.renJudul}"></div>
                     <div class="form-group"><label>Browse Gambar Alkitab (Auto-Compress ~100KB):</label><input type="file" id="editRenFile" accept="image/*" onchange="compressImage(this, 'editRenImgOut', 'renSizeInfo')">
-                    <input type="hidden" id="editRenImgOut" value="${document.getElementById('banner-renungan-img').src}">
+                    <input type="hidden" id="editRenImgOut" value="${homeDataStore.renImg}">
                     <small id="renSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'alkitab') {
                 title = "Edit Tata Ibadah & Upload Gambar";
                 bodyHTML = `
-                    <div class="form-group"><label>Keterangan Ibadah:</label><textarea id="editAlkitabText">${document.getElementById('preview-alkitab').innerText}</textarea></div>
+                    <div class="form-group"><label>Keterangan Ibadah:</label><textarea id="editAlkitabText">${homeDataStore.alkitabText}</textarea></div>
                     <div class="form-group"><label>Browse Gambar Tata Ibadah (Auto-Compress ~100KB):</label><input type="file" id="editAlkitabFile" accept="image/*" onchange="compressImage(this, 'editAlkitabImgOut', 'alkSizeInfo')">
-                    <input type="hidden" id="editAlkitabImgOut" value="${document.getElementById('banner-alkitab-img').src}">
+                    <input type="hidden" id="editAlkitabImgOut" value="${homeDataStore.alkitabImg}">
                     <small id="alkSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
-                `;
-            } else if (target === 'lokasi') {
-                title = "Edit Lokasi Gereja";
-                bodyHTML = `
-                    <div class="form-group"><label>Nama Gedung Gereja:</label><input type="text" id="editLokasiNama" value="Gereja Methodist Indonesia Sungai Yordan"></div>
-                    <div class="form-group"><label>Alamat Lengkap:</label><textarea id="editLokasiAlamat">Komplek Villa Galaxy, Jl. Gardenia Raya BI, BA No. 2, Bekasi Selatan</textarea></div>
                 `;
             } else if (target === 'kategorial_detail') {
                 title = "Edit Halaman Kategorial & Upload Gambar";
+                let currData = kategorialStore[activeCurrentKatKey];
                 bodyHTML = `
-                    <div class="form-group"><label>Judul Kategorial:</label><input type="text" id="editKatDetTitle" value="${document.getElementById('kat-page-title').innerText}"></div>
-                    <div class="form-group"><label>Deskripsi Kategorial:</label><textarea id="editKatDetDesc">${document.getElementById('kat-page-desc').innerText}</textarea></div>
+                    <div class="form-group"><label>Judul Kategorial:</label><input type="text" id="editKatDetTitle" value="${currData.title}"></div>
+                    <div class="form-group"><label>Deskripsi Kategorial:</label><textarea id="editKatDetDesc">${currData.desc}</textarea></div>
                     <div class="form-group"><label>Browse Gambar Baru (Auto-Compress ~100KB):</label><input type="file" id="editKatDetFile" accept="image/*" onchange="compressImage(this, 'editKatDetImgOut', 'katDetSizeInfo')">
-                    <input type="hidden" id="editKatDetImgOut" value="${document.getElementById('kat-page-img').src}">
+                    <input type="hidden" id="editKatDetImgOut" value="${currData.img}">
                     <small id="katDetSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             }
@@ -885,30 +958,35 @@
 
         function saveAdminChanges() {
             if (currentEditTarget === 'warta') {
-                document.getElementById('car-title').innerText = document.getElementById('editWartaTitle').value;
-                document.getElementById('car-img').src = document.getElementById('editWartaImgOut').value;
+                homeDataStore.wartaTitle = document.getElementById('editWartaTitle').value;
+                let imgOut = document.getElementById('editWartaImgOut').value;
+                if(imgOut) homeDataStore.wartaImg = imgOut;
             } else if (currentEditTarget === 'doa') {
-                document.getElementById('preview-doa').innerText = document.getElementById('editDoaText').value;
-                document.getElementById('banner-doa-img').src = document.getElementById('editDoaImgOut').value;
+                homeDataStore.doaText = document.getElementById('editDoaText').value;
+                let imgOut = document.getElementById('editDoaImgOut').value;
+                if(imgOut) homeDataStore.doaImg = imgOut;
             } else if (currentEditTarget === 'renungan') {
-                document.getElementById('ren-judul-preview').innerText = document.getElementById('editRenJudul').value;
-                document.getElementById('banner-renungan-img').src = document.getElementById('editRenImgOut').value;
+                homeDataStore.renJudul = document.getElementById('editRenJudul').value;
+                let imgOut = document.getElementById('editRenImgOut').value;
+                if(imgOut) homeDataStore.renImg = imgOut;
             } else if (currentEditTarget === 'alkitab') {
-                document.getElementById('preview-alkitab').innerText = document.getElementById('editAlkitabText').value;
-                document.getElementById('banner-alkitab-img').src = document.getElementById('editAlkitabImgOut').value;
+                homeDataStore.alkitabText = document.getElementById('editAlkitabText').value;
+                let imgOut = document.getElementById('editAlkitabImgOut').value;
+                if(imgOut) homeDataStore.alkitabImg = imgOut;
             } else if (currentEditTarget === 'kategorial_detail') {
-                document.getElementById('kat-page-title').innerText = document.getElementById('editKatDetTitle').value;
-                document.getElementById('kat-page-desc').innerText = document.getElementById('editKatDetDesc').value;
-                document.getElementById('kat-page-img').src = document.getElementById('editKatDetImgOut').value;
-                if(kategorialStore[activeCurrentKatKey]) {
-                    kategorialStore[activeCurrentKatKey].title = document.getElementById('kat-page-title').innerText;
-                    kategorialStore[activeCurrentKatKey].desc = document.getElementById('kat-page-desc').innerText;
-                    kategorialStore[activeCurrentKatKey].img = document.getElementById('kat-page-img').src;
-                }
+                kategorialStore[activeCurrentKatKey].title = document.getElementById('editKatDetTitle').value;
+                kategorialStore[activeCurrentKatKey].desc = document.getElementById('editKatDetDesc').value;
+                let imgOut = document.getElementById('editKatDetImgOut').value;
+                if(imgOut) kategorialStore[activeCurrentKatKey].img = imgOut;
+
+                document.getElementById('kat-page-title').innerText = kategorialStore[activeCurrentKatKey].title;
+                document.getElementById('kat-page-desc').innerText = kategorialStore[activeCurrentKatKey].desc;
+                document.getElementById('kat-page-img').src = kategorialStore[activeCurrentKatKey].img;
             }
 
+            saveToFirebase();
+            applyDataToDOM();
             closeModal('editModal');
-            alert("Perubahan menu dan kompresi gambar berhasil disimpan!");
         }
 
         function updateChartFilter(filterType, btn) {
@@ -920,11 +998,11 @@
             let dataSesi2 = [85, 90, 92, 98];
             let labelsKategorial = ['Sekming', 'P3MI / PRMI', 'P2MI', 'PWMI', 'Usindah'];
             let dataKategorial = [
-                parseInt(document.getElementById('val-sekming').innerText),
-                parseInt(document.getElementById('val-prmi').innerText),
-                parseInt(document.getElementById('val-p2mi').innerText),
-                parseInt(document.getElementById('val-pwmi').innerText),
-                parseInt(document.getElementById('val-usindah').innerText)
+                kategorialStore['sekming'].count,
+                kategorialStore['prmi'].count,
+                kategorialStore['p2mi'].count,
+                kategorialStore['pwmi'].count,
+                kategorialStore['usindah'].count
             ];
 
             if (chartMingguInstance) chartMingguInstance.destroy();
