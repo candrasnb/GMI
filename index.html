@@ -203,7 +203,7 @@
 
         .form-group { margin-bottom: 14px; text-align: left; }
         .form-group label { display: block; font-size: 0.78rem; color: var(--accent-gold); margin-bottom: 4px; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff; font-size: 0.85rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff; font-size: 0.85rem; }
         .form-group textarea { resize: vertical; min-height: 90px; }
         .btn-save { width: 100%; padding: 10px; background: var(--accent-gold); color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; font-size: 0.85rem; }
 
@@ -475,7 +475,7 @@
                     <p id="kat-page-desc" style="font-size:0.88rem; color:var(--text-muted); line-height:1.7; margin-bottom:20px; text-align:justify;">Pilih menu kategorial di samping atau bawah untuk melihat detail jadwal, kegiatan, serta informasi pelayanan khusus.</p>
                     
                     <div class="card-banner-box" style="height: 200px;">
-                        <img id="kat-page-img" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800" class="card-banner-img" alt="Kategorial">
+                        <img id="kat-page-img" src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800" class="card-banner-img" alt="Kategorial">
                     </div>
                 </div>
             </div>
@@ -569,23 +569,23 @@
                 <h3 style="font-size:0.95rem; color:#fff; margin-bottom:12px; text-align:left;"><i class="fa-solid fa-layer-group"></i> PELAYANAN KATEGORIAL</h3>
                 <ul class="category-list">
                     <li>
-                        <a onclick="openKategorialPage('Sekolah Minggu (Sekming)', 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.', 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800')">Sekolah Minggu <span id="val-sekming">65</span></a>
+                        <a onclick="openKategorialPage('sekming')">Sekolah Minggu <span id="val-sekming">65</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('sekming')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                     <li>
-                        <a onclick="openKategorialPage('P3MI / PRMI (Pemuda & Remaja)', 'Persekutuan Sabtu, 1 Agustus 2026 pukul 17.30 WIB di rumah Sdri. Devani Grace Sihombing.', 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800')">P3MI / PRMI <span id="val-prmi">50</span></a>
+                        <a onclick="openKategorialPage('prmi')">P3MI / PRMI <span id="val-prmi">50</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('prmi')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                     <li>
-                        <a onclick="openKategorialPage('Persekutuan Kaum Pria (P2MI)', 'Persekutuan bapak-bapak Minggu ke-2 & ke-4.', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800')">Kaum Pria <span id="val-p2mi">80</span></a>
+                        <a onclick="openKategorialPage('p2mi')">Kaum Pria <span id="val-p2mi">80</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('p2mi')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                     <li>
-                        <a onclick="openKategorialPage('Persekutuan Kaum Wanita (PWMI)', 'Persekutuan ibu-ibu setiap Selasa Pukul 16.00 WIB.', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800')">Kaum Wanita <span id="val-pwmi">95</span></a>
+                        <a onclick="openKategorialPage('pwmi')">Kaum Wanita <span id="val-pwmi">95</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('pwmi')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                     <li>
-                        <a onclick="openKategorialPage('Usia Indah (Usindah)', 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800')">Usia Indah <span id="val-usindah">35</span></a>
+                        <a onclick="openKategorialPage('usindah')">Usia Indah <span id="val-usindah">35</span></a>
                         <button class="btn-edit-kat" onclick="openKatLogin('usindah')"><i class="fa-solid fa-pen"></i></button>
                     </li>
                 </ul>
@@ -603,7 +603,7 @@
         </nav>
     </div>
 
-    <!-- MODAL EDIT ADMIN UNIVERSAL (SUPORT UPLOAD URL GAMBAR) -->
+    <!-- MODAL EDIT ADMIN UNIVERSAL (DENGAN COMPRESSOR OTOMATIS) -->
     <div class="modal" id="editModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('editModal')">&times;</span>
@@ -649,7 +649,7 @@
         </div>
     </div>
 
-    <!-- MODAL EDIT KATEGORIAL SPESIFIK -->
+    <!-- MODAL EDIT KATEGORIAL SPESIFIK (DENGAN COMPRESSOR OTOMATIS) -->
     <div class="modal" id="katEditModal">
         <div class="modal-card" style="max-width: 400px;">
             <span class="close-modal" onclick="closeModal('katEditModal')">&times;</span>
@@ -660,8 +660,14 @@
                 <input type="number" id="katNewVal">
             </div>
             <div class="form-group">
-                <label>URL Gambar Kategorial:</label>
-                <input type="text" id="katNewImg" placeholder="https://images.unsplash.com/...">
+                <label>Deskripsi Kategorial:</label>
+                <textarea id="katNewDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Browse Gambar Baru (Auto-Compress ~100KB):</label>
+                <input type="file" id="katNewFile" accept="image/*" onchange="compressImage(this, 'katCompressedImg', 'katSizeInfo')">
+                <input type="hidden" id="katCompressedImg">
+                <small id="katSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small>
             </div>
             <button class="btn-save" onclick="saveKatEditData()">Simpan Perubahan</button>
         </div>
@@ -680,6 +686,50 @@
             'usindah': { title: 'Usia Indah (Usindah)', desc: 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800' }
         };
         let activeCurrentKatKey = 'sekming';
+
+        // Fungsi Otomatis Kompres Gambar ke ukuran target (~100KB)
+        function compressImage(input, hiddenOutputId, infoId, maxWidth = 800, quality = 0.7) {
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    let dataUrl = canvas.toDataURL('image/jpeg', quality);
+                    
+                    // Cek ukuran hasil kompresi base64
+                    let head = 'data:image/jpeg;base64,';
+                    let kb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
+
+                    // Jika masih di atas 120KB, turunkan quality secara rekursif/iteratif ringan
+                    if (kb > 120 && quality > 0.3) {
+                        dataUrl = canvas.toDataURL('image/jpeg', 0.4);
+                        kb = Math.round((dataUrl.length - head.length) * 3/4 / 1024);
+                    }
+
+                    document.getElementById(hiddenOutputId).value = dataUrl;
+                    document.getElementById(infoId).innerText = `Ukuran berhasil dioptimalkan: ~${kb} KB`;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
 
         function openPageView(pageId) {
             document.querySelectorAll('.page-sec').forEach(s => s.classList.remove('active'));
@@ -712,7 +762,7 @@
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authText').innerText = "Logout";
                 document.getElementById('authIcon').className = "fa-solid fa-lock-open";
-                alert("Login Admin Utama Berhasil! Tombol edit universal aktif.");
+                alert("Login Admin Utama Berhasil! Tombol edit universal & upload gambar aktif.");
             } else { alert("Password Admin Salah!"); }
         }
 
@@ -738,18 +788,22 @@
             activeCurrentKatKey = key;
             document.getElementById('activeKatKey').value = key;
             document.getElementById('katNewVal').value = document.getElementById('val-' + key).innerText;
-            document.getElementById('katNewImg').value = kategorialStore[key].img;
+            document.getElementById('katNewDesc').value = kategorialStore[key].desc;
+            document.getElementById('katCompressedImg').value = kategorialStore[key].img;
+            document.getElementById('katSizeInfo').innerText = "Menggunakan gambar aktif saat ini.";
             document.getElementById('katEditModal').style.display = 'flex';
         }
 
         function saveKatEditData() {
             let key = document.getElementById('activeKatKey').value;
             let val = document.getElementById('katNewVal').value;
-            let img = document.getElementById('katNewImg').value;
+            let desc = document.getElementById('katNewDesc').value;
+            let img = document.getElementById('katCompressedImg').value;
             
             document.getElementById('val-' + key).innerText = val;
             if(kategorialStore[key]) {
-                kategorialStore[key].img = img;
+                kategorialStore[key].desc = desc;
+                if(img) kategorialStore[key].img = img;
             }
             if (key === 'sekming') document.getElementById('stat-sekming').innerText = val;
             if (key === 'prmi') document.getElementById('stat-prmi').innerText = val;
@@ -758,16 +812,15 @@
             if (key === 'usindah') document.getElementById('stat-usindah').innerText = val;
 
             closeModal('katEditModal');
-            alert("Data kategorial dan gambar berhasil diperbarui!");
+            alert("Data kategorial dan gambar terkompresi berhasil disimpan!");
         }
 
-        function openKategorialPage(title, desc, img) {
-            if(kategorialStore && activeCurrentKatKey) {
-                // jika diklik dari list kategorial
-            }
-            document.getElementById('kat-page-title').innerText = title;
-            document.getElementById('kat-page-desc').innerText = desc;
-            document.getElementById('kat-page-img').src = img;
+        function openKategorialPage(key) {
+            activeCurrentKatKey = key;
+            const data = kategorialStore[key];
+            document.getElementById('kat-page-title').innerText = data.title;
+            document.getElementById('kat-page-desc').innerText = data.desc;
+            document.getElementById('kat-page-img').src = data.img;
             openPageView('page-kategorial');
         }
 
@@ -777,28 +830,36 @@
             let bodyHTML = "";
 
             if (target === 'warta') {
-                title = "Edit Warta Jemaat & Gambar";
+                title = "Edit Warta Jemaat & Upload Gambar";
                 bodyHTML = `
                     <div class="form-group"><label>Judul Warta:</label><input type="text" id="editWartaTitle" value="${document.getElementById('car-title').innerText}"></div>
-                    <div class="form-group"><label>URL Gambar Banner Warta:</label><input type="text" id="editWartaImg" value="${document.getElementById('car-img').src}"></div>
+                    <div class="form-group"><label>Browse Gambar Banner Warta (Auto-Compress ~100KB):</label><input type="file" id="editWartaFile" accept="image/*" onchange="compressImage(this, 'editWartaImgOut', 'wartaSizeInfo')">
+                    <input type="hidden" id="editWartaImgOut" value="${document.getElementById('car-img').src}">
+                    <small id="wartaSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'doa') {
-                title = "Edit Pokok Doa Syafaat & Gambar";
+                title = "Edit Pokok Doa Syafaat & Upload Gambar";
                 bodyHTML = `
                     <div class="form-group"><label>Ringkasan Doa:</label><textarea id="editDoaText">${document.getElementById('preview-doa').innerText}</textarea></div>
-                    <div class="form-group"><label>URL Gambar Doa:</label><input type="text" id="editDoaImg" value="${document.getElementById('banner-doa-img').src}"></div>
+                    <div class="form-group"><label>Browse Gambar Doa (Auto-Compress ~100KB):</label><input type="file" id="editDoaFile" accept="image/*" onchange="compressImage(this, 'editDoaImgOut', 'doaSizeInfo')">
+                    <input type="hidden" id="editDoaImgOut" value="${document.getElementById('banner-doa-img').src}">
+                    <small id="doaSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'renungan') {
-                title = "Edit Bacaan Alkitab Harian & Gambar";
+                title = "Edit Bacaan Alkitab & Upload Gambar";
                 bodyHTML = `
                     <div class="form-group"><label>Judul Bacaan:</label><input type="text" id="editRenJudul" value="${document.getElementById('ren-judul-preview').innerText}"></div>
-                    <div class="form-group"><label>URL Gambar Alkitab:</label><input type="text" id="editRenImg" value="${document.getElementById('banner-renungan-img').src}"></div>
+                    <div class="form-group"><label>Browse Gambar Alkitab (Auto-Compress ~100KB):</label><input type="file" id="editRenFile" accept="image/*" onchange="compressImage(this, 'editRenImgOut', 'renSizeInfo')">
+                    <input type="hidden" id="editRenImgOut" value="${document.getElementById('banner-renungan-img').src}">
+                    <small id="renSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'alkitab') {
-                title = "Edit Tata Ibadah & Gambar";
+                title = "Edit Tata Ibadah & Upload Gambar";
                 bodyHTML = `
                     <div class="form-group"><label>Keterangan Ibadah:</label><textarea id="editAlkitabText">${document.getElementById('preview-alkitab').innerText}</textarea></div>
-                    <div class="form-group"><label>URL Gambar Tata Ibadah:</label><input type="text" id="editAlkitabImg" value="${document.getElementById('banner-alkitab-img').src}"></div>
+                    <div class="form-group"><label>Browse Gambar Tata Ibadah (Auto-Compress ~100KB):</label><input type="file" id="editAlkitabFile" accept="image/*" onchange="compressImage(this, 'editAlkitabImgOut', 'alkSizeInfo')">
+                    <input type="hidden" id="editAlkitabImgOut" value="${document.getElementById('banner-alkitab-img').src}">
+                    <small id="alkSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             } else if (target === 'lokasi') {
                 title = "Edit Lokasi Gereja";
@@ -807,11 +868,13 @@
                     <div class="form-group"><label>Alamat Lengkap:</label><textarea id="editLokasiAlamat">Komplek Villa Galaxy, Jl. Gardenia Raya BI, BA No. 2, Bekasi Selatan</textarea></div>
                 `;
             } else if (target === 'kategorial_detail') {
-                title = "Edit Informasi Halaman Kategorial";
+                title = "Edit Halaman Kategorial & Upload Gambar";
                 bodyHTML = `
                     <div class="form-group"><label>Judul Kategorial:</label><input type="text" id="editKatDetTitle" value="${document.getElementById('kat-page-title').innerText}"></div>
                     <div class="form-group"><label>Deskripsi Kategorial:</label><textarea id="editKatDetDesc">${document.getElementById('kat-page-desc').innerText}</textarea></div>
-                    <div class="form-group"><label>URL Gambar Kategorial:</label><input type="text" id="editKatDetImg" value="${document.getElementById('kat-page-img').src}"></div>
+                    <div class="form-group"><label>Browse Gambar Baru (Auto-Compress ~100KB):</label><input type="file" id="editKatDetFile" accept="image/*" onchange="compressImage(this, 'editKatDetImgOut', 'katDetSizeInfo')">
+                    <input type="hidden" id="editKatDetImgOut" value="${document.getElementById('kat-page-img').src}">
+                    <small id="katDetSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
                 `;
             }
 
@@ -823,24 +886,29 @@
         function saveAdminChanges() {
             if (currentEditTarget === 'warta') {
                 document.getElementById('car-title').innerText = document.getElementById('editWartaTitle').value;
-                document.getElementById('car-img').src = document.getElementById('editWartaImg').value;
+                document.getElementById('car-img').src = document.getElementById('editWartaImgOut').value;
             } else if (currentEditTarget === 'doa') {
                 document.getElementById('preview-doa').innerText = document.getElementById('editDoaText').value;
-                document.getElementById('banner-doa-img').src = document.getElementById('editDoaImg').value;
+                document.getElementById('banner-doa-img').src = document.getElementById('editDoaImgOut').value;
             } else if (currentEditTarget === 'renungan') {
                 document.getElementById('ren-judul-preview').innerText = document.getElementById('editRenJudul').value;
-                document.getElementById('banner-renungan-img').src = document.getElementById('editRenImg').value;
+                document.getElementById('banner-renungan-img').src = document.getElementById('editRenImgOut').value;
             } else if (currentEditTarget === 'alkitab') {
                 document.getElementById('preview-alkitab').innerText = document.getElementById('editAlkitabText').value;
-                document.getElementById('banner-alkitab-img').src = document.getElementById('editAlkitabImg').value;
+                document.getElementById('banner-alkitab-img').src = document.getElementById('editAlkitabImgOut').value;
             } else if (currentEditTarget === 'kategorial_detail') {
                 document.getElementById('kat-page-title').innerText = document.getElementById('editKatDetTitle').value;
                 document.getElementById('kat-page-desc').innerText = document.getElementById('editKatDetDesc').value;
-                document.getElementById('kat-page-img').src = document.getElementById('editKatDetImg').value;
+                document.getElementById('kat-page-img').src = document.getElementById('editKatDetImgOut').value;
+                if(kategorialStore[activeCurrentKatKey]) {
+                    kategorialStore[activeCurrentKatKey].title = document.getElementById('kat-page-title').innerText;
+                    kategorialStore[activeCurrentKatKey].desc = document.getElementById('kat-page-desc').innerText;
+                    kategorialStore[activeCurrentKatKey].img = document.getElementById('kat-page-img').src;
+                }
             }
 
             closeModal('editModal');
-            alert("Perubahan menu dan gambar berhasil disimpan!");
+            alert("Perubahan menu dan kompresi gambar berhasil disimpan!");
         }
 
         function updateChartFilter(filterType, btn) {
