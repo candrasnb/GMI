@@ -32,7 +32,6 @@
         window.getDoc = getDoc;
         window.setDoc = setDoc;
 
-        // Load data dari Firebase saat halaman dibuka
         window.loadFromFirebase();
     </script>
 
@@ -204,9 +203,11 @@
         body.admin-logged-in .btn-edit-kat { display: inline-block; opacity: 1; }
         .btn-edit-kat:hover { color: #fff; }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px; }
-        .gallery-item { border-radius: 10px; overflow: hidden; height: 110px; border: 1px solid var(--border-glass); position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .archive-btn-wrap { margin-top: 15px; text-align: right; }
+        .btn-archive-list { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer; }
+        .btn-archive-list:hover { background: var(--accent-cyan); color: #000; }
+
+        .archive-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
 
         .map-box { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); padding: 18px; border-radius: 14px; margin-top: 20px; text-align: center; border-color: var(--border-gold); }
         .map-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 20px; background: var(--accent-gold); color: #000; font-weight: 700; border-radius: 20px; font-size: 0.8rem; text-decoration: none; box-shadow: 0 0 12px var(--gold-glow); }
@@ -348,17 +349,21 @@
                 </div>
             </div>
 
-            <!-- HALAMAN SUB-MENU WARTA -->
+            <!-- HALAMAN SUB-MENU WARTA & ARSIP -->
             <div id="page-warta" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">WARTA JEMAAT RESMI</span>
                     </div>
-                    <h2 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.4rem; margin-bottom:4px; text-align:left;">Minggu Kesembilan Sesudah Pentakosta & Minggu P3MI/PRMI</h2>
-                    <p style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 26 Juli 2026 | No: 30/GMI-SY/D.3-II/VII/2026</p>
+                    <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.4rem; margin-bottom:4px; text-align:left;">Minggu Kesembilan Sesudah Pentakosta & Minggu P3MI/PRMI</h2>
+                    <p id="warta-page-date" style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 26 Juli 2026 | No: 30/GMI-SY/D.3-II/VII/2026</p>
                     
-                    <div>
+                    <div class="archive-btn-wrap">
+                        <button class="btn-archive-list" onclick="openArchiveModal()"><i class="fa-solid fa-box-archive"></i> Lihat Arsip Warta Sebelumnya</button>
+                    </div>
+
+                    <div id="warta-body-content">
                         <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. Komisi Keanggotaan dan Evangelisasi</div>
                         <p class="warta-content-text">• Ucapan selamat ulang tahun kelahiran dan pernikahan bagi jemaat yang merayakan pekan ini.</p>
                         <p class="warta-content-text">• <strong>Berita Dukacita:</strong> Telah meninggal dunia Ibu Delmina Aritonang (Op. Abednego Simamora) usia 88 tahun dan Bpk. Mula Saut Halomoan Siallagan usia 79 tahun. Segenap jemaat turut berdukacita.</p>
@@ -380,15 +385,6 @@
 
                         <div class="warta-sub-heading">Sakramen Perjamuan Kudus</div>
                         <p class="warta-content-text">Minggu, 2 Agustus 2026 kita akan menerima unsur-unsur Perjamuan Kudus.</p>
-
-                        <div class="warta-sub-heading">Persembahan Ke depan</div>
-                        <p class="warta-content-text">Pengumpulan persembahan ke depan untuk mendukung program P3MI.</p>
-
-                        <div class="warta-sub-heading">Serah Terima Pimpinan Distrik 3/II</div>
-                        <p class="warta-content-text">Sabtu, 1 Agustus 2026 pukul 10.00 WIB di Grha Wil II, dari Pdt. Johanes Samosir kepada Pdt. Suharto Agustinus.</p>
-
-                        <div class="warta-sub-heading">Pameran Buku Rohani</div>
-                        <p class="warta-content-text">Minggu, 2 Agustus 2026 oleh BPK Gunung Mulia di KU 1 dan KU 2.</p>
                     </div>
                 </div>
             </div>
@@ -640,6 +636,17 @@
         </div>
     </div>
 
+    <!-- MODAL ARSIP WARTA -->
+    <div class="modal" id="archiveModal">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal('archiveModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-box-archive"></i> Arsip Warta Pekan Lalu</h3>
+            <div id="archiveListContainer">
+                <p style="color:var(--text-muted); font-size:0.85rem;">Belum ada arsip warta sebelumnya.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="liveModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('liveModal')">&times;</span>
@@ -715,18 +722,20 @@
 
         let homeDataStore = {
             wartaTitle: "Minggu Kesembilan Sesudah Pentakosta & Minggu P3MI/PRMI",
+            wartaDate: "Minggu, 26 Juli 2026 | No: 30/GMI-SY/D.3-II/VII/2026",
             wartaImg: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800",
+            wartaDetails: "• Ucapan selamat ulang tahun kelahiran dan pernikahan bagi jemaat yang merayakan pekan ini.<br>• <strong>Berita Dukacita:</strong> Telah meninggal dunia Ibu Delmina Aritonang (Op. Abednego Simamora) usia 88 tahun dan Bpk. Mula Saut Halomoan Siallagan usia 79 tahun.<br>• <strong>Berita Jemaat Sakit:</strong> Jeremy Napitupulu dirawat di RS EMC Pekayon kamar 636.",
             doaText: "Mendoakan Bangsa, Negara, Program P3MI-PRMI, serta jemaat yang sakit...",
             doaImg: "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800",
             renJudul: "Bacaan Alkitab 26 Juli - 1 Agustus 2026",
             renImg: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800",
             alkitabText: "Persiapan Perjamuan Kudus & Sekolah Minggu Sesi Pagi Pukul 08.00 WIB...",
-            alkitabImg: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800"
+            alkitabImg: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800",
+            wartaArchive: []
         };
 
         let activeCurrentKatKey = 'sekming';
 
-        // Sinkronisasi dengan Firebase Firestore
         async function loadFromFirebase() {
             try {
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
@@ -749,7 +758,7 @@
                     katStore: kategorialStore,
                     homeStore: homeDataStore
                 });
-                alert("Data berhasil disimpan secara otomatis ke Firebase! Semua orang kini bisa melihat pembaruan ini.");
+                alert("Data berhasil diperbarui secara otomatis di Firebase!");
             } catch (e) {
                 alert("Gagal menyimpan ke Firebase: " + e.message);
             }
@@ -758,6 +767,12 @@
         function applyDataToDOM() {
             document.getElementById('car-title').innerText = homeDataStore.wartaTitle;
             document.getElementById('car-img').src = homeDataStore.wartaImg;
+            document.getElementById('warta-page-title').innerText = homeDataStore.wartaTitle;
+            document.getElementById('warta-page-date').innerText = homeDataStore.wartaDate;
+            if(homeDataStore.wartaDetails) {
+                document.getElementById('warta-body-content').innerHTML = homeDataStore.wartaDetails;
+            }
+
             document.getElementById('preview-doa').innerText = homeDataStore.doaText;
             document.getElementById('banner-doa-img').src = homeDataStore.doaImg;
             document.getElementById('ren-judul-preview').innerText = homeDataStore.renJudul;
@@ -774,7 +789,38 @@
             document.getElementById('stat-total').innerText = totalJemaat;
         }
 
-        // Kompresor otomatis gambar ke ukuran optimal (~100KB) sebelum masuk ke database
+        function openArchiveModal() {
+            let container = document.getElementById('archiveListContainer');
+            if(!homeDataStore.wartaArchive || homeDataStore.wartaArchive.length === 0) {
+                container.innerHTML = `<p style="color:var(--text-muted); font-size:0.85rem; text-align:center;">Belum ada arsip warta sebelumnya.</p>`;
+            } else {
+                let html = "";
+                homeDataStore.wartaArchive.forEach((item, index) => {
+                    html += `
+                        <div class="archive-item">
+                            <div>
+                                <h4 style="color:var(--accent-gold); font-size:0.9rem; margin-bottom:2px;">${item.title}</h4>
+                                <p style="color:var(--text-muted); font-size:0.72rem;">${item.date}</p>
+                            </div>
+                            <button class="btn-admin" onclick="viewArchiveItem(${index})">Baca</button>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            }
+            document.getElementById('archiveModal').style.display = 'flex';
+        }
+
+        function viewArchiveItem(index) {
+            let item = homeDataStore.wartaArchive[index];
+            document.getElementById('warta-page-title').innerText = item.title;
+            document.getElementById('warta-page-date').innerText = item.date;
+            document.getElementById('warta-body-content').innerHTML = item.details;
+            closeModal('archiveModal');
+            openPageView('page-warta');
+        }
+
+        // Kompresor otomatis gambar ke ukuran optimal (~100KB)
         function compressImage(input, hiddenOutputId, infoId, maxWidth = 800, quality = 0.7) {
             const file = input.files[0];
             if (!file) return;
@@ -846,7 +892,7 @@
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authText').innerText = "Logout";
                 document.getElementById('authIcon').className = "fa-solid fa-lock-open";
-                alert("Login Admin Berhasil! Tombol edit universal aktif.");
+                alert("Login Admin Berhasil!");
             } else { alert("Password Admin Salah!"); }
         }
 
@@ -908,9 +954,11 @@
             let bodyHTML = "";
 
             if (target === 'warta') {
-                title = "Edit Warta Jemaat & Upload Gambar";
+                title = "Update Warta Baru (Otomatis Masuk Arsip)";
                 bodyHTML = `
-                    <div class="form-group"><label>Judul Warta:</label><input type="text" id="editWartaTitle" value="${homeDataStore.wartaTitle}"></div>
+                    <div class="form-group"><label>Judul Warta Baru:</label><input type="text" id="editWartaTitle" value="${homeDataStore.wartaTitle}"></div>
+                    <div class="form-group"><label>Keterangan Tanggal & No Warta:</label><input type="text" id="editWartaDate" value="${homeDataStore.wartaDate}"></div>
+                    <div class="form-group"><label>Isi Detail Warta Baru:</label><textarea id="editWartaDetails" style="min-height:120px;">${document.getElementById('warta-body-content').innerHTML}</textarea></div>
                     <div class="form-group"><label>Browse Gambar Banner Warta (Auto-Compress ~100KB):</label><input type="file" id="editWartaFile" accept="image/*" onchange="compressImage(this, 'editWartaImgOut', 'wartaSizeInfo')">
                     <input type="hidden" id="editWartaImgOut" value="${homeDataStore.wartaImg}">
                     <small id="wartaSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small></div>
@@ -958,7 +1006,19 @@
 
         function saveAdminChanges() {
             if (currentEditTarget === 'warta') {
+                // Masukkan warta saat ini ke arsip sebelum diganti baru
+                if(homeDataStore.wartaTitle) {
+                    if(!homeDataStore.wartaArchive) homeDataStore.wartaArchive = [];
+                    homeDataStore.wartaArchive.unshift({
+                        title: homeDataStore.wartaTitle,
+                        date: homeDataStore.wartaDate,
+                        details: document.getElementById('warta-body-content').innerHTML
+                    });
+                }
+
                 homeDataStore.wartaTitle = document.getElementById('editWartaTitle').value;
+                homeDataStore.wartaDate = document.getElementById('editWartaDate').value;
+                homeDataStore.wartaDetails = document.getElementById('editWartaDetails').value;
                 let imgOut = document.getElementById('editWartaImgOut').value;
                 if(imgOut) homeDataStore.wartaImg = imgOut;
             } else if (currentEditTarget === 'doa') {
