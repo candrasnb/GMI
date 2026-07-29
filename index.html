@@ -412,6 +412,7 @@
                 </div>
             </div>
 
+            <!-- HALAMAN WARTA -->
             <div id="page-warta" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -448,6 +449,23 @@
                         <div class="warta-sub-heading">Sakramen Perjamuan Kudus</div>
                         <p class="warta-content-text">Minggu, 2 Agustus 2026 kita akan menerima unsur-unsur Perjamuan Kudus.</p>
                     </div>
+
+                    <!-- BAGIAN LAPORAN PERSEMBAHAN BERPASSWORD -->
+                    <div style="margin-top: 30px; padding: 18px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-gold); border-radius: 12px;">
+                        <h4 style="color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 10px; font-family: 'Playfair Display', serif;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Keuangan & Persembahan Jemaat</h4>
+                        <div id="persembahanLockedBox">
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Bagian ini dikunci. Masukkan password rahasia untuk membuka tabel laporan persembahan.</p>
+                            <div style="display: flex; gap: 8px; max-width: 350px;">
+                                <input type="password" id="inputPersembahanPass" placeholder="Masukkan password..." style="padding: 8px; font-size: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 8px; color: #fff; flex-grow: 1;">
+                                <button onclick="unlockPersembahanTable()" style="padding: 8px 14px; background: var(--accent-gold); border: none; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">Buka</button>
+                            </div>
+                        </div>
+                        <div id="persembahanUnlockedInfo" style="display: none; margin-top: 15px;">
+                            <p style="font-size: 0.8rem; color: #4ade80; margin-bottom: 10px; font-weight: 700;"><i class="fa-solid fa-circle-check"></i> Akses Berhasil. Tabel laporan persembahan siap ditampilkan.</p>
+                            <button onclick="openPersembahanModal()" style="padding: 10px 18px; background: var(--accent-cyan); color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85rem;"><i class="fa-solid fa-table"></i> Tampilkan Tabel Laporan Persembahan (Full Screen)</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -680,6 +698,45 @@
         </aside>
     </div>
 
+    <!-- MODAL FULL SCREEN TABEL LAPORAN PERSEMBAHAN -->
+    <div class="modal" id="persembahanModal">
+        <div class="modal-card" style="max-width: 900px; width: 95%;">
+            <span class="close-modal" onclick="closeModal('persembahanModal')">&times;</span>
+            <div class="section-title" style="margin-bottom: 15px;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Keuangan & Persembahan Lengkap</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">Data di bawah ini disinkronkan otomatis dari rekam jejak upload warta & laporan gereja.</p>
+            <div class="table-responsive">
+                <table class="church-table">
+                    <tr>
+                        <th>Sumber / Kategori Gambar Upload Warta</th>
+                        <th>Keterangan Keuangan</th>
+                        <th>Jumlah (Rp)</th>
+                    </tr>
+                    <tr>
+                        <td><img id="tableImg1" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 1"></td>
+                        <td>Persembahan Kebaktian Umum I & II (Minggu Utama)</td>
+                        <td>Rp 4.550.000</td>
+                    </tr>
+                    <tr>
+                        <td><img id="tableImg2" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 2"></td>
+                        <td>Persembahan Sekolah Minggu & Kategorial</td>
+                        <td>Rp 1.770.000</td>
+                    </tr>
+                    <tr>
+                        <td><img id="tableImg3" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 3"></td>
+                        <td>Persembahan Bulanan / Persepuluhan Jemaat</td>
+                        <td>Rp 8.750.000</td>
+                    </tr>
+                    <tr>
+                        <td><img id="tableImg4" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 4"></td>
+                        <td>Persembahan Diakonia Sosial & Kasih</td>
+                        <td>Rp 1.150.000</td>
+                    </tr>
+                </table>
+            </div>
+            <button class="btn-save" onclick="closeModal('persembahanModal')"><i class="fa-solid fa-xmark"></i> Tutup & Lanjutkan Membaca Warta</button>
+        </div>
+    </div>
+
     <div class="bottom-nav-wrap">
         <nav class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('sec-home', this)"><i class="fa-solid fa-house"></i><span>Home</span></div>
@@ -724,7 +781,7 @@
             <span class="close-modal" onclick="closeModal('formModal')">&times;</span>
             <h3 id="formModalTitle" style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-file-lines"></i> Form Layanan</h3>
             <div id="formModalBody"></div>
-            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-brands fa-whatsapp"></i> Kirim ke WhatsApp</button>
+            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-brands fa-whatsapp"></i> SUBMIT</button>
         </div>
     </div>
 
@@ -811,6 +868,14 @@
         let currentEditTarget = '';
         let currentFormType = '';
         let currentFilterMode = 'week';
+
+        // Koleksi 4 gambar referensi warta/laporan
+        let persembahanImages = [
+            "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800",
+            "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800",
+            "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800",
+            "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800"
+        ];
 
         const bibleQuizPool = [
             { q: "Siapakah tokoh alkitab yang menelan ikan besar atas izin Tuhan?", options: ["Musa", "Yunus", "Daud", "Nuh"], correct: 1 },
@@ -926,6 +991,26 @@
                 });
             });
         });
+
+        // Validasi Password Laporan Persembahan
+        function unlockPersembahanTable() {
+            let pass = document.getElementById('inputPersembahanPass').value;
+            if (pass === "sungaiyordan*5") {
+                document.getElementById('persembahanLockedBox').style.display = 'none';
+                document.getElementById('persembahanUnlockedInfo').style.display = 'block';
+            } else {
+                alert("Password laporan persembahan salah!");
+            }
+        }
+
+        function openPersembahanModal() {
+            document.getElementById('tableImg1').src = homeDataStore.wartaImg || persembahanImages[0];
+            document.getElementById('tableImg2').src = homeDataStore.doaImg || persembahanImages[1];
+            document.getElementById('tableImg3').src = homeDataStore.renImg || persembahanImages[2];
+            document.getElementById('tableImg4').src = homeDataStore.alkitabImg || persembahanImages[3];
+            
+            document.getElementById('persembahanModal').style.display = 'flex';
+        }
 
         function openVerseModal() {
             const now = new Date();
@@ -1096,10 +1181,9 @@
                     <div class="form-group"><label>Nomor WhatsApp:</label><input type="text" id="formWa" placeholder="08xxxxxxxxxx"></div>
                     <div class="form-group"><label>Keterangan Perubahan Data:</label><textarea id="formIsi" placeholder="Contoh: Penambahan anggota keluarga baru, pindah alamat, dll..."></textarea></div>
                     <div class="form-group">
-                        <label>Lampirkan Dokumen / Gambar (Opsional):</label>
-                        <input type="file" id="formFile" accept="image/*,.pdf" onchange="compressImage(this, 'formFileBase64', 'fileSizeInfo')">
-                        <input type="hidden" id="formFileBase64">
-                        <small id="fileSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small>
+                        <label>Dokumen / Gambar Pendukung (Lampirkan manual di WhatsApp):</label>
+                        <input type="file" id="formFile" accept="image/*,.pdf">
+                        <small style="color:var(--text-muted); font-size:0.7rem; display:block; margin-top:4px;">Silakan lampirkan file/gambar secara manual saat membuka WhatsApp.</small>
                     </div>
                 `;
             }
@@ -1127,8 +1211,7 @@
                 message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nSaya *${nama}* (${wa}) ingin mendaftarkan jadwal Persembahan Bunga Mimbar:\n\n*Tanggal:* ${document.getElementById('formTanggal').value}\n*Keterangan:* ${isi}\n\nMohon dicatat dalam jadwal warta. Terima kasih Tuhan Yesus memberkati. 🌸`;
             } else if (currentFormType === 'update_data') {
                 targetPhone = "6281311327715";
-                let fileData = document.getElementById('formFileBase64').value;
-                message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nBerikut adalah pengajuan Update Data Jemaat:\n\n*Nama:* ${nama}\n*No WA:* ${wa}\n*Keterangan:* ${isi}\n${fileData ? '[Melampirkan Dokumen/Foto Pendukung]' : ''}\n\nMohon bantuannya untuk pembaruan data jemaat. Terima kasih. 📋`;
+                message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nBerikut adalah pengajuan Update Data Jemaat:\n\n*Nama:* ${nama}\n*No WA:* ${wa}\n*Keterangan:* ${isi}\n\n(File/Gambar akan saya lampirkan secara manual di chat ini).\n\nMohon bantuannya untuk pembaruan data jemaat. Terima kasih. 📋`;
             }
 
             let encodedUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(message)}`;
@@ -1407,7 +1490,10 @@
                 homeDataStore.wartaDate = document.getElementById('editWartaDate').value;
                 homeDataStore.wartaDetails = document.getElementById('editWartaDetails').value;
                 let imgOut = document.getElementById('editWartaImgOut').value;
-                if(imgOut) homeDataStore.wartaImg = imgOut;
+                if(imgOut) {
+                    homeDataStore.wartaImg = imgOut;
+                    persembahanImages[0] = imgOut;
+                }
             } else if (currentEditTarget === 'live') {
                 homeDataStore.liveUrl = document.getElementById('editLiveUrl').value;
             } else if (currentEditTarget === 'grafik') {
@@ -1423,15 +1509,24 @@
             } else if (currentEditTarget === 'doa') {
                 homeDataStore.doaText = document.getElementById('editDoaText').value;
                 let imgOut = document.getElementById('editDoaImgOut').value;
-                if(imgOut) homeDataStore.doaImg = imgOut;
+                if(imgOut) {
+                    homeDataStore.doaImg = imgOut;
+                    persembahanImages[1] = imgOut;
+                }
             } else if (currentEditTarget === 'renungan') {
                 homeDataStore.renJudul = document.getElementById('editRenJudul').value;
                 let imgOut = document.getElementById('editRenImgOut').value;
-                if(imgOut) homeDataStore.renImg = imgOut;
+                if(imgOut) {
+                    homeDataStore.renImg = imgOut;
+                    persembahanImages[2] = imgOut;
+                }
             } else if (currentEditTarget === 'alkitab') {
                 homeDataStore.alkitabText = document.getElementById('editAlkitabText').value;
                 let imgOut = document.getElementById('editAlkitabImgOut').value;
-                if(imgOut) homeDataStore.alkitabImg = imgOut;
+                if(imgOut) {
+                    homeDataStore.alkitabImg = imgOut;
+                    persembahanImages[3] = imgOut;
+                }
             } else if (currentEditTarget === 'kategorial_detail') {
                 kategorialStore[activeCurrentKatKey].title = document.getElementById('editKatDetTitle').value;
                 kategorialStore[activeCurrentKatKey].desc = document.getElementById('editKatDetDesc').value;
