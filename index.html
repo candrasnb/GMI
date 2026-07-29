@@ -111,7 +111,6 @@
             box-shadow: 0 0 18px rgba(239, 68, 68, 0.4); margin-bottom: 12px;
         }
 
-        /* Tombol Layanan Interaktif Jemaat */
         .jemaat-actions-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -258,6 +257,32 @@
         .form-group textarea { resize: vertical; min-height: 90px; }
         .btn-save { width: 100%; padding: 10px; background: var(--accent-gold); color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; font-size: 0.85rem; }
 
+        .verse-banner-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(56, 189, 248, 0.1));
+            border: 1px solid var(--border-gold);
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .quiz-option-btn {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            color: var(--text-light);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .quiz-option-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--accent-gold); }
+        .quiz-option-btn.correct { background: rgba(34, 197, 94, 0.3); border-color: #22c55e; color: #4ade80; }
+        .quiz-option-btn.wrong { background: rgba(239, 68, 68, 0.3); border-color: #ef4444; color: #f87171; }
+
         .page-sec { display: none; }
         .page-sec.active { display: block; }
 
@@ -266,9 +291,7 @@
 </head>
 <body>
 
-    <!-- PEMUTAR MUSIK ROHANI KRISTEN AUTOPLAY -->
     <audio id="bgMusic" src="https://cdns.tubidy.ws/get.php?id=dQw4w9WgXcQ&type=audio&h=b1a2c3" autoplay loop style="display:none;"></audio>
-    <!-- Fallback Audio Online Rohani Aman -->
     <audio id="bgMusicFallback" src="https://actions.google.com/sounds/v1/ambiences/windchimes.ogg" autoplay loop style="display:none;"></audio>
 
     <header>
@@ -295,12 +318,13 @@
             <button class="btn-edit-card" style="top: -8px; right: -8px;" onclick="openEditModal('live')"><i class="fa-solid fa-pen"></i> Edit</button>
         </div>
 
-        <!-- Tombol Layanan Interaktif Jemaat -->
         <div class="jemaat-actions-grid">
             <button class="btn-jemaat-action" onclick="openFormModal('doa')"><i class="fa-solid fa-hands-praying"></i> Permohonan Doa</button>
             <button class="btn-jemaat-action" onclick="openFormModal('konseling')"><i class="fa-solid fa-comments"></i> Request Konseling</button>
             <button class="btn-jemaat-action" onclick="openFormModal('bunga')"><i class="fa-solid fa-seedling"></i> Bunga Mimbar</button>
             <button class="btn-jemaat-action" onclick="openFormModal('update_data')"><i class="fa-solid fa-address-card"></i> Update Data Jemaat</button>
+            <button class="btn-jemaat-action" onclick="openVerseModal()"><i class="fa-solid fa-book-bible"></i> Ayat Hari Ini</button>
+            <button class="btn-jemaat-action" onclick="openQuizModal()"><i class="fa-solid fa-brain"></i> Kuis Alkitab</button>
         </div>
 
         <div class="hero-stats">
@@ -320,7 +344,6 @@
     <div class="container">
         <main>
             <div id="sec-home" class="page-sec active">
-                <!-- 1. WARTA JEMAAT & KEGIATAN SEPEKAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-warta')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('warta')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -338,7 +361,6 @@
                     <p style="font-size:0.82rem; color:var(--text-muted); text-align:justify;">Klik untuk membaca ringkasan warta jemaat dan jadwal kegiatan sepekan...</p>
                 </div>
 
-                <!-- 2. POKOK-POKOK DOA SYAFAAT -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-doa')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -352,7 +374,6 @@
                     <p style="font-size:0.85rem; color:var(--text-muted); text-align:justify;" id="preview-doa">Mendoakan Bangsa, Negara, Program P3MI-PRMI, serta jemaat yang sakit...</p>
                 </div>
 
-                <!-- 3. BACAAN ALKITAB HARIAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-renungan')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('renungan')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -367,7 +388,6 @@
                     <p id="ren-ayat-preview" style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; text-align:justify;">Klik untuk melihat tabel lengkap bacaan pagi dan malam</p>
                 </div>
 
-                <!-- 4. TATA IBADAH PEKAN DEPAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-alkitab')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -392,7 +412,6 @@
                 </div>
             </div>
 
-            <!-- HALAMAN SUB-MENU WARTA & ARSIP -->
             <div id="page-warta" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -529,7 +548,6 @@
                 </div>
             </div>
 
-            <!-- HALAMAN KHUSUS KATEGORIAL -->
             <div id="page-kategorial" class="page-sec">
                 <div class="glass-card">
                     <button class="btn-edit-card" onclick="openEditModal('kategorial_detail')"><i class="fa-solid fa-pen"></i> Edit Info</button>
@@ -546,7 +564,6 @@
                 </div>
             </div>
 
-            <!-- HALAMAN ABOUT DENGAN TABEL SUSUNAN MAJELIS -->
             <div id="sec-about" class="page-sec">
                 <div class="glass-card">
                     <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-church"></i> Tentang GMI Sungai Yordan</div>
@@ -673,7 +690,35 @@
         </nav>
     </div>
 
-    <!-- MODAL FORM INTERAKTIF JEMAAT -->
+    <div class="modal" id="verseModal">
+        <div class="modal-card" style="text-align: center;">
+            <span class="close-modal" onclick="closeModal('verseModal')">&times;</span>
+            <div style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 10px;"><i class="fa-solid fa-book-bible"></i></div>
+            <h3 style="color: #fff; font-family: 'Playfair Display', serif; margin-bottom: 15px;">Ayat Renungan Hari Ini</h3>
+            <div class="verse-banner-box">
+                <p id="verseText" style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; font-style: italic; margin-bottom: 10px;"></p>
+                <h4 id="verseRef" style="color: var(--accent-gold); font-size: 0.9rem; font-weight: 700;"></h4>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted);">Tuhan memberkati langkah hidup Anda sepanjang hari ini. ✨</p>
+        </div>
+    </div>
+
+    <div class="modal" id="quizModal">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal('quizModal')">&times;</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="color: var(--accent-gold); font-family: 'Playfair Display', serif;"><i class="fa-solid fa-brain"></i> Kuis Alkitab Rohani</h3>
+                <span id="quizScoreBadge" style="font-size: 0.75rem; background: rgba(245,158,11,0.2); color: var(--accent-gold); padding: 3px 10px; border-radius: 10px; font-weight: 700;">Skor: 0</span>
+            </div>
+            <div id="quizContainer">
+                <p id="quizQuestion" style="font-size: 0.92rem; color: #fff; margin-bottom: 15px; font-weight: 600; text-align: left;"></p>
+                <div id="quizOptionsList"></div>
+                <div id="quizFeedback" style="margin-top: 12px; font-size: 0.85rem; font-weight: 700; text-align: center; min-height: 24px;"></div>
+            </div>
+            <button id="nextQuizBtn" class="btn-save" style="display: none; margin-top: 15px;" onclick="loadNextQuizQuestion()">Soal Selanjutnya <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
     <div class="modal" id="formModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('formModal')">&times;</span>
@@ -683,7 +728,6 @@
         </div>
     </div>
 
-    <!-- MODAL EDIT ADMIN UNIVERSAL -->
     <div class="modal" id="editModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('editModal')">&times;</span>
@@ -693,7 +737,6 @@
         </div>
     </div>
 
-    <!-- MODAL ARSIP WARTA -->
     <div class="modal" id="archiveModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('archiveModal')">&times;</span>
@@ -726,7 +769,6 @@
         </div>
     </div>
 
-    <!-- PANEL LOGIN KATEGORIAL -->
     <div class="modal" id="katLoginModal">
         <div class="modal-card" style="max-width: 400px;">
             <span class="close-modal" onclick="closeModal('katLoginModal')">&times;</span>
@@ -740,7 +782,6 @@
         </div>
     </div>
 
-    <!-- MODAL EDIT KATEGORIAL SPESIFIK -->
     <div class="modal" id="katEditModal">
         <div class="modal-card" style="max-width: 400px;">
             <span class="close-modal" onclick="closeModal('katEditModal')">&times;</span>
@@ -771,6 +812,33 @@
         let currentFormType = '';
         let currentFilterMode = 'week';
 
+        const bibleQuizPool = [
+            { q: "Siapakah tokoh alkitab yang menelan ikan besar atas izin Tuhan?", options: ["Musa", "Yunus", "Daud", "Nuh"], correct: 1 },
+            { q: "Di gunung manakah Allah memberikan 10 Perintah Allah kepada Musa?", options: ["Gunung Sinai", "Gunung Tabor", "Gunung Karmel", "Gunung Zaitun"], correct: 0 },
+            { q: "Siapakah rasul yang menulis sebagian besar surat Perjanjian Baru?", options: ["Petrus", "Yohanes", "Paulus", "Yakobus"], correct: 2 },
+            { q: "Kitab pertama di dalam Perjanjian Baru adalah?", options: ["Kejadian", "Matius", "Kisah Para Rasul", "Wahyu"], correct: 1 },
+            { q: "Siapakah raja Israel yang dikenal sangat bijaksana dan membangun Bait Allah?", options: ["Daud", "Saul", "Salomo", "Rehabeam"], correct: 2 },
+            { q: "Kota manakah yang temboknya runtuh setelah bangsa Israel mengelilinginya selama 7 hari?", options: ["Yerikho", "Niniveh", "Babilon", "Samaria"], correct: 0 },
+            { q: "Buah sulung Roh Kudus yang pertama disebutkan dalam Galatia 5:22 adalah?", options: ["Damai sejahtera", "Kasih", "Kesabaran", "Penguasaan diri"], correct: 1 },
+            { q: "Siapakah perempuan yang diurapi Tuhan menjadi Ratu Ester untuk menyelamatkan bangsa Yahudi?", options: ["Rut", "Ester", "Ester", "Debora"], correct: 1 },
+            { q: "Berapa jumlah murid utama (rasul) yang dipilih oleh Tuhan Yesus?", options: ["10 orang", "12 orang", "70 orang", "120 orang"], correct: 1 },
+            { q: "Mukjizat pertama yang dilakukan oleh Tuhan Yesus tercatat di kota mana?", options: ["Kana", "Nazaret", "Kapernaum", "Yerusalem"], correct: 0 }
+        ];
+
+        let shuffledQuizList = [];
+        let currentQuizIndex = 0;
+        let userQuizScore = 0;
+
+        const dailyVersesList = [
+            { text: "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.", ref: "Filipi 4:13" },
+            { text: "TUHAN adalah gembalaku, takkan kekurangan aku.", ref: "Mazmur 23:1" },
+            { text: "Percayalah kepada TUHAN dengan segenap hatimu, dan janganlah bersandar kepada pengertianmu sendiri.", ref: "Amsal 3:5" },
+            { text: "Sebab aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan.", ref: "Yeremia 29:11" },
+            { text: "Tetapi orang-orang yang menanti-nantikan TUHAN mendapat kekuatan baru: mereka seumpama rajawali yang naik terbang dengan kekuatan sayapnya; mereka berlari dan tidak menjadi lesu, mereka berjalan dan tidak menjadi lelah.", ref: "Yesaya 40:31" },
+            { text: "Serahkanlah perbuatanmu kepada TUHAN, maka terlaksanalah segala rencanamu.", ref: "Amsal 16:3" },
+            { text: "Janganlah hendaknya kamu kuatir tentang apa pun juga, tetapi nyatakanlah dalam segala hal keinginanmu kepada Allah dalam doa dan permohonan dengan ucapan syukur.", ref: "Filipi 4:6" }
+        ];
+
         let kategorialStore = {
             'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800', count: 65 },
             'prmi': { title: 'P3MI / PRMI (Pemuda & Remaja)', desc: 'Persekutuan Sabtu, 1 Agustus 2026 pukul 17.30 WIB di rumah Sdri. Devani Grace Sihombing.', img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800', count: 50 },
@@ -781,7 +849,6 @@
 
         let customTotalJemaat = null;
 
-        // Data Ibadah Minggu
         let chartDataStore = {
             week: {
                 labels: ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'],
@@ -850,19 +917,83 @@
 
         let activeCurrentKatKey = 'sekming';
 
-        // AutoPlay Audio handling with fallback
         window.addEventListener('DOMContentLoaded', () => {
             const music = document.getElementById('bgMusic');
             const fallback = document.getElementById('bgMusicFallback');
             music.play().catch(() => {
                 fallback.play().catch(() => {
-                    console.log("Autoplay diblokir browser, akan menyala saat interaksi pertama.");
-                    document.body.addEventListener('click', () => {
-                        music.play();
-                    }, { once: true });
+                    document.body.addEventListener('click', () => { music.play(); }, { once: true });
                 });
             });
         });
+
+        function openVerseModal() {
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+            const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            const selectedVerse = dailyVersesList[dayOfYear % dailyVersesList.length];
+            document.getElementById('verseText').innerText = `"${selectedVerse.text}"`;
+            document.getElementById('verseRef').innerText = `— ${selectedVerse.ref}`;
+            document.getElementById('verseModal').style.display = 'flex';
+        }
+
+        function openQuizModal() {
+            shuffledQuizList = [...bibleQuizPool].sort(() => Math.random() - 0.5);
+            currentQuizIndex = 0;
+            userQuizScore = 0;
+            document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore}`;
+            document.getElementById('nextQuizBtn').style.display = 'none';
+            loadQuizQuestion();
+            document.getElementById('quizModal').style.display = 'flex';
+        }
+
+        function loadQuizQuestion() {
+            if (currentQuizIndex >= shuffledQuizList.length) {
+                document.getElementById('quizQuestion').innerText = "🎉 Puji Tuhan! Anda telah menyelesaikan seluruh sesi Kuis Alkitab.";
+                document.getElementById('quizOptionsList').innerHTML = `<p style="color:var(--accent-gold); text-align:center; font-weight:700; margin: 15px 0;">Skor Akhir Anda: ${userQuizScore} dari ${shuffledQuizList.length}</p>`;
+                document.getElementById('quizFeedback').innerText = "Tuhan Yesus memberkati pertumbuhan rohani Anda!";
+                document.getElementById('nextQuizBtn').style.display = 'none';
+                return;
+            }
+
+            let qData = shuffledQuizList[currentQuizIndex];
+            document.getElementById('quizQuestion').innerText = `Soal ${currentQuizIndex + 1}: ${qData.q}`;
+            document.getElementById('quizFeedback').innerText = "";
+            document.getElementById('nextQuizBtn').style.display = 'none';
+
+            let optionsHTML = "";
+            qData.options.forEach((opt, idx) => {
+                optionsHTML += `<button class="quiz-option-btn" onclick="checkQuizAnswer(${idx}, ${qData.correct})">${String.fromCharCode(65 + idx)}. ${opt}</button>`;
+            });
+            document.getElementById('quizOptionsList').innerHTML = optionsHTML;
+        }
+
+        function checkQuizAnswer(selectedIndex, correctIndex) {
+            let buttons = document.querySelectorAll('.quiz-option-btn');
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === correctIndex) btn.classList.add('correct');
+                if (idx === selectedIndex && idx !== correctIndex) btn.classList.add('wrong');
+            });
+
+            let feedbackEl = document.getElementById('quizFeedback');
+            if (selectedIndex === correctIndex) {
+                userQuizScore += 1;
+                document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore}`;
+                feedbackEl.innerHTML = `<span style="color: #4ade80;"><i class="fa-solid fa-circle-check"></i> Benar! Puji Tuhan! 🙌</span>`;
+            } else {
+                feedbackEl.innerHTML = `<span style="color: #f87171;"><i class="fa-solid fa-circle-xmark"></i> Kurang tepat, tetap semangat! 💪</span>`;
+            }
+
+            document.getElementById('nextQuizBtn').style.display = 'block';
+            currentQuizIndex++;
+        }
+
+        function loadNextQuizQuestion() {
+            loadQuizQuestion();
+        }
 
         async function loadFromFirebase() {
             try {
@@ -986,16 +1117,16 @@
             let message = "";
 
             if (currentFormType === 'doa') {
-                targetPhone = "6285269607373"; // No WhatsApp Pendeta
-                message = `Shalom Pdt. Saut Marulitua Rajagukguk, S.Th. 🙏\n\nMelalui portal resmi GMI Sungai Yordan Bekasi, saya *${nama}* (${wa}) ingin menyampaikan permohonan doa syafaat dengan penuh kerendahan hati:\n\n"${isi}"\n\nKiranya Tuhan Yesus memberkati pelayanan Bapak Pendeta. Amin. ✨`;
+                targetPhone = "6285269607373";
+                message = `Shalom Bapak Pendeta 🙏\n\nMelalui portal resmi GMI Sungai Yordan Bekasi, saya *${nama}* (${wa}) ingin menyampaikan permohonan doa syafaat dengan penuh kerendahan hati:\n\n"${isi}"\n\nKiranya Tuhan Yesus memberkati pelayanan Bapak Pendeta. Amin. ✨`;
             } else if (currentFormType === 'konseling') {
-                targetPhone = "6285269607373"; // No WhatsApp Pendeta
-                message = `Shalom Pdt. Saut Marulitua Rajagukguk, S.Th. 🙏\n\nSaya *${nama}* (${wa}) bermaksud mengajukan permohonan waktu konseling pastoral dengan detail berikut:\n\n*Topik:* ${isi}\n*Rencana Waktu:* ${document.getElementById('formWaktu').value}\n\nMohon konfirmasi ketersediaan waktu dari Bapak Pendeta. Terima kasih Tuhan Yesus memberkati. 🕊️`;
+                targetPhone = "6285269607373";
+                message = `Shalom Bapak Pendeta 🙏\n\nSaya *${nama}* (${wa}) bermaksud mengajukan permohonan waktu konseling pastoral dengan detail berikut:\n\n*Topik:* ${isi}\n*Rencana Waktu:* ${document.getElementById('formWaktu').value}\n\nMohon konfirmasi ketersediaan waktu dari Bapak Pendeta. Terima kasih Tuhan Yesus memberkati. 🕊️`;
             } else if (currentFormType === 'bunga') {
-                targetPhone = "6281311327715"; // No WhatsApp Sekretariat
+                targetPhone = "6281311327715";
                 message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nSaya *${nama}* (${wa}) ingin mendaftarkan jadwal Persembahan Bunga Mimbar:\n\n*Tanggal:* ${document.getElementById('formTanggal').value}\n*Keterangan:* ${isi}\n\nMohon dicatat dalam jadwal warta. Terima kasih Tuhan Yesus memberkati. 🌸`;
             } else if (currentFormType === 'update_data') {
-                targetPhone = "6281311327715"; // No WhatsApp Sekretariat
+                targetPhone = "6281311327715";
                 let fileData = document.getElementById('formFileBase64').value;
                 message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nBerikut adalah pengajuan Update Data Jemaat:\n\n*Nama:* ${nama}\n*No WA:* ${wa}\n*Keterangan:* ${isi}\n${fileData ? '[Melampirkan Dokumen/Foto Pendukung]' : ''}\n\nMohon bantuannya untuk pembaruan data jemaat. Terima kasih. 📋`;
             }
