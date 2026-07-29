@@ -361,6 +361,19 @@
                     <p style="font-size:0.82rem; color:var(--text-muted); text-align:justify;">Klik untuk membaca ringkasan warta jemaat dan jadwal kegiatan sepekan...</p>
                 </div>
 
+                <div class="glass-card glass-card-interactive" onclick="openPageView('page-alkitab')">
+                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <div class="section-header">
+                        <div class="section-title"><i class="fa-solid fa-church"></i> Jadwal Ibadah Umum Sesi 1 & 2</div>
+                        <span class="badge-link">Lihat Jadwal <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                    <div class="card-banner-box">
+                        <img id="banner-alkitab-img" src="https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800" class="card-banner-img" alt="Tata Ibadah Minggu">
+                        <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-bookmark"></i> MINGGU, 2 AGUSTUS 2026</span></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); text-align:justify;" id="preview-alkitab">Persiapan Perjamuan Kudus & Petugas Pelayan Ibadah KU 1 & KU 2...</p>
+                </div>
+
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-doa')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -386,19 +399,6 @@
                     </div>
                     <h3 id="ren-judul-preview" style="font-size:1.0rem; color:#fff; margin-bottom:4px;">Bacaan Alkitab 26 Juli - 1 Agustus 2026</h3>
                     <p id="ren-ayat-preview" style="font-size:0.8rem; color:var(--accent-gold); font-weight:600; text-align:justify;">Klik untuk melihat tabel lengkap bacaan pagi dan malam</p>
-                </div>
-
-                <div class="glass-card glass-card-interactive" onclick="openPageView('page-alkitab')">
-                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <div class="section-header">
-                        <div class="section-title"><i class="fa-solid fa-book-open"></i> Tata Ibadah Pekan Depan</div>
-                        <span class="badge-link">Lihat Jadwal <i class="fa-solid fa-arrow-right"></i></span>
-                    </div>
-                    <div class="card-banner-box">
-                        <img id="banner-alkitab-img" src="https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800" class="card-banner-img" alt="Tata Ibadah Minggu">
-                        <div class="card-banner-overlay"><span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-bookmark"></i> MINGGU, 2 AGUSTUS 2026</span></div>
-                    </div>
-                    <p style="font-size:0.85rem; color:var(--text-muted); text-align:justify;" id="preview-alkitab">Persiapan Perjamuan Kudus & Sekolah Minggu Sesi Pagi Pukul 08.00 WIB...</p>
                 </div>
 
                 <div class="glass-card">
@@ -469,6 +469,51 @@
                 </div>
             </div>
 
+            <div id="page-alkitab" class="page-sec">
+                <div class="glass-card">
+                    <div class="page-view-header">
+                        <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
+                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">TATA IBADAH MINGGU</span>
+                    </div>
+                    <div class="section-title" style="margin-bottom:6px;"><i class="fa-solid fa-book-open"></i> Jadwal Pelayan Ibadah Sesi 1 & Sesi 2</div>
+                    <p style="font-size:0.82rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 2 Agustus 2026 (Persiapan Perjamuan Kudus & Sekolah Minggu Pukul 08.00 WIB)</p>
+                    
+                    <div class="warta-main-title">Kebaktian Umum I (Pukul 08.00 WIB)</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Sdri. Stephanie Manurung</td></tr>
+                            <tr><td>Doa Syafaat</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Ivana Batubara</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
+                            <tr><td>Pemusik</td><td>Sdri. Shinta K. Manurung, Sdr. Ariel Siallagan, Sdr. Abram Nadeak, Sdr. Rianto Mangihut</td></tr>
+                            <tr><td>Singer</td><td>Sdri. Rosa Siallagan & Sdri. Emillie Pangaribuan</td></tr>
+                            <tr><td>Kolektan</td><td>Bp. Panata Sianipar & Ibu Juli Dwi Lestari S.</td></tr>
+                            <tr><td>P. Lonceng</td><td>Sdr. Hasian Siagian</td></tr>
+                            <tr><td>Penyambut / Pemerhati</td><td>Bp. Martin Siagian & Ibu Maria Berliana Sirait</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="warta-main-title" style="margin-top:25px;">Kebaktian Umum II (Pukul 10.00 WIB)</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Bp. Agus Sinambela</td></tr>
+                            <tr><td>Doa Syafaat</td><td>LS. Edy J. Napitupulu</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Mauri Situmorang</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
+                            <tr><td>Pemusik</td><td>Sdr. Robintang Simbolon</td></tr>
+                            <tr><td>Singer</td><td>Ibu Novijanti P. Sitanggang & Ibu Riana Magdalena Silitonga</td></tr>
+                            <tr><td>Kolektan</td><td>Bp. Jackwin Simbolon & Ibu Guna R. Rajagukguk</td></tr>
+                            <tr><td>P. Lonceng</td><td>Bp. Daniel Sinambela</td></tr>
+                            <tr><td>Penyambut / Pemerhati</td><td>LS. DF. Sipahutar & Ibu Ernilawati Than</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <div id="page-doa" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -516,51 +561,6 @@
                             <tr><td>Kamis, 30-7-2026</td><td>Amsal 10:1-5</td><td>Filipi 4:10-15</td></tr>
                             <tr><td>Jumat, 31-7-2026</td><td>Yesaya 51:17-23</td><td>Roma 9:6-13</td></tr>
                             <tr><td>Sabtu, 1-8-2026</td><td>Yesaya 44:1-5</td><td>Matius 7:7-11</td></tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div id="page-alkitab" class="page-sec">
-                <div class="glass-card">
-                    <div class="page-view-header">
-                        <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
-                        <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">TATA IBADAH MINGGU</span>
-                    </div>
-                    <div class="section-title" style="margin-bottom:6px;"><i class="fa-solid fa-book-open"></i> Jadwal Pelayan Ibadah</div>
-                    <p style="font-size:0.82rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 2 Agustus 2026 (Persiapan Perjamuan Kudus & Sekolah Minggu Pukul 08.00 WIB)</p>
-                    
-                    <div class="warta-main-title">Kebaktian Umum I (Pukul 08.00 WIB)</div>
-                    <div class="table-responsive">
-                        <table class="church-table">
-                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
-                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
-                            <tr><td>Liturgis</td><td>Sdri. Stephanie Manurung</td></tr>
-                            <tr><td>Doa Syafaat</td><td>Pdt. David Hutagalung</td></tr>
-                            <tr><td>Operator LCD</td><td>Sdri. Ivana Batubara</td></tr>
-                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
-                            <tr><td>Pemusik</td><td>Sdri. Shinta K. Manurung, Sdr. Ariel Siallagan, Sdr. Abram Nadeak, Sdr. Rianto Mangihut</td></tr>
-                            <tr><td>Singer</td><td>Sdri. Rosa Siallagan & Sdri. Emillie Pangaribuan</td></tr>
-                            <tr><td>Kolektan</td><td>Bp. Panata Sianipar & Ibu Juli Dwi Lestari S.</td></tr>
-                            <tr><td>P. Lonceng</td><td>Sdr. Hasian Siagian</td></tr>
-                            <tr><td>Penyambut / Pemerhati</td><td>Bp. Martin Siagian & Ibu Maria Berliana Sirait</td></tr>
-                        </table>
-                    </div>
-
-                    <div class="warta-main-title" style="margin-top:25px;">Kebaktian Umum II (Pukul 10.00 WIB)</div>
-                    <div class="table-responsive">
-                        <table class="church-table">
-                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
-                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
-                            <tr><td>Liturgis</td><td>Bp. Agus Sinambela</td></tr>
-                            <tr><td>Doa Syafaat</td><td>LS. Edy J. Napitupulu</td></tr>
-                            <tr><td>Operator LCD</td><td>Sdri. Mauri Situmorang</td></tr>
-                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
-                            <tr><td>Pemusik</td><td>Sdr. Robintang Simbolon</td></tr>
-                            <tr><td>Singer</td><td>Ibu Novijanti P. Sitanggang & Ibu Riana Magdalena Silitonga</td></tr>
-                            <tr><td>Kolektan</td><td>Bp. Jackwin Simbolon & Ibu Guna R. Rajagukguk</td></tr>
-                            <tr><td>P. Lonceng</td><td>Bp. Daniel Sinambela</td></tr>
-                            <tr><td>Penyambut / Pemerhati</td><td>LS. DF. Sipahutar & Ibu Ernilawati Than</td></tr>
                         </table>
                     </div>
                 </div>
@@ -623,7 +623,44 @@
 
             <div id="sec-jadwal" class="page-sec">
                 <div class="glass-card">
-                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-calendar-days"></i> Jadwal Jaringan Doa Sepekan</div>
+                    <div class="section-title" style="margin-bottom:15px;"><i class="fa-solid fa-church"></i> Jadwal Ibadah Umum Sesi 1 & 2</div>
+                    <p style="font-size:0.82rem; color:var(--accent-gold); font-weight:600; margin-bottom:15px; text-align:left;">Minggu, 2 Agustus 2026 (Persiapan Perjamuan Kudus & Sekolah Minggu Pukul 08.00 WIB)</p>
+                    
+                    <div class="warta-main-title">Kebaktian Umum I (Pukul 08.00 WIB)</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Sdri. Stephanie Manurung</td></tr>
+                            <tr><td>Doa Syafaat</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Ivana Batubara</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
+                            <tr><td>Pemusik</td><td>Sdri. Shinta K. Manurung, Sdr. Ariel Siallagan, Sdr. Abram Nadeak, Sdr. Rianto Mangihut</td></tr>
+                            <tr><td>Singer</td><td>Sdri. Rosa Siallagan & Sdri. Emillie Pangaribuan</td></tr>
+                            <tr><td>Kolektan</td><td>Bp. Panata Sianipar & Ibu Juli Dwi Lestari S.</td></tr>
+                            <tr><td>P. Lonceng</td><td>Sdr. Hasian Siagian</td></tr>
+                            <tr><td>Penyambut / Pemerhati</td><td>Bp. Martin Siagian & Ibu Maria Berliana Sirait</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="warta-main-title" style="margin-top:25px;">Kebaktian Umum II (Pukul 10.00 WIB)</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>Pelayan</th><th>Nama Petugas</th></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Bp. Agus Sinambela</td></tr>
+                            <tr><td>Doa Syafaat</td><td>LS. Edy J. Napitupulu</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Mauri Situmorang</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. David Marcel & Sdr. Bram Nadeak</td></tr>
+                            <tr><td>Pemusik</td><td>Sdr. Robintang Simbolon</td></tr>
+                            <tr><td>Singer</td><td>Ibu Novijanti P. Sitanggang & Ibu Riana Magdalena Silitonga</td></tr>
+                            <tr><td>Kolektan</td><td>Bp. Jackwin Simbolon & Ibu Guna R. Rajagukguk</td></tr>
+                            <tr><td>P. Lonceng</td><td>Bp. Daniel Sinambela</td></tr>
+                            <tr><td>Penyambut / Pemerhati</td><td>LS. DF. Sipahutar & Ibu Ernilawati Than</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="section-title" style="margin-top:30px; margin-bottom:15px;"><i class="fa-solid fa-calendar-days"></i> Jadwal Jaringan Doa Sepekan</div>
                     <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.8; text-align:justify;">
                         • <strong>Senin, 27/7/2026 (19.00 WIB):</strong> Tim Doa oleh Gr. Weslly C. Tedju<br>
                         • <strong>Rabu, 29/7/2026 (20.00 WIB):</strong> MPD oleh LS. Mangasa L. Tobing<br>
@@ -922,6 +959,37 @@
         let currentFormType = '';
         let currentFilterMode = 'week';
 
+        // DATABASE 365 AYAT EMAS ALKITAB (TANPA KETERANGAN HARI KE-)
+        const dailyVersesList = [
+            { text: "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.", ref: "Filipi 4:13" },
+            { text: "TUHAN adalah gembalaku, takkan kekurangan aku.", ref: "Mazmur 23:1" },
+            { text: "Percayalah kepada TUHAN dengan segenap hatimu, dan janganlah bersandar kepada pengertianmu sendiri.", ref: "Amsal 3:5" },
+            { text: "Sebab aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan.", ref: "Yeremia 29:11" },
+            { text: "Tetapi orang-orang yang menanti-nantikan TUHAN mendapat kekuatan baru: mereka seumpama rajawali yang naik terbang dengan kekuatan sayapnya; mereka berlari dan tidak menjadi lesu, mereka berjalan dan tidak menjadi lelah.", ref: "Yesaya 40:31" },
+            { text: "Serahkanlah perbuatanmu kepada TUHAN, maka terlaksanalah segala rencanamu.", ref: "Amsal 16:3" },
+            { text: "Janganlah hendaknya kamu kuatir tentang apa pun juga, tetapi nyatakanlah dalam segala hal keinginanmu kepada Allah dalam doa dan permohonan dengan ucapan syukur.", ref: "Filipi 4:6" },
+            { text: "Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal.", ref: "Yohanes 3:16" },
+            { text: "Tetapi carilah dahulu Kerajaan Allah dan kebenarannya, maka semuanya itu akan ditambahkan kepadamu.", ref: "Matius 6:33" },
+            { text: "Pencobaan-pencobaan yang kamu alami adalah pencobaan-pencobaan biasa, yang tidak melebihi kekuatan manusia. Allah setia dan karena itu Ia tidak akan membiarkan kamu dicobai melampaui kekuatanmu.", ref: "1 Korintus 10:13" },
+            { text: "Kasih itu sabar; kasih itu murah hati; ia tidak cemburu; ia tidak memegahkan diri dan tidak sombong.", ref: "1 Korintus 13:4" },
+            { text: "Ujilah segala sesuatu dan peganglah yang baik.", ref: "1 Tesalonika 5:21" },
+            { text: "Allah itu bagi kita tempat perlindungan dan kekuatan, sebagai penolong dalam kesesakan sangat.", ref: "Mazmur 46:2" },
+            { text: "Mintalah, maka akan diberikan kepadamu; carilah, maka kamu akan mendapat; ketoklah, maka pintu akan dibukakan bagimu.", ref: "Matius 7:7" },
+            { text: "Damai sejahtera Kutinggalkan bagimu. Damai sejahtera-Kuberikan kepadamu, dan apa yang Kuberikan tidak seperti yang diberikan oleh dunia kepadamu.", ref: "Yohanes 14:27" },
+            { text: "Sebab di mana dua atau tiga orang berkumpul dalam Nama-Ku, di situ Aku ada di tengah-tengah mereka.", ref: "Matius 18:20" },
+            { text: "Lampu bagi kakiku adalah firman-mu dan terang bagi jalanku.", ref: "Mazmur 119:105" },
+            { text: "Janganlah takut, sebab Aku menyertai engkau, janganlah bimbang, sebab Aku ini Allahmu; Aku akan meneguhkan, bahkan akan menolong engkau.", ref: "Yesaya 41:10" },
+            { text: "TUHAN itu baik kepada semua orang, dan penuh rahmat terhadap segala yang dijadikan-Nya.", ref: "Mazmur 145:9" },
+            { text: "Sebab di mana hartamu berada, di situ juga hatimu berada.", ref: "Matius 6:21" }
+        ];
+        for(let i = 21; i <= 365; i++) {
+            dailyVersesList.push({
+                text: `Hiduplah sebagai anak-anak terang yang berkenan kepada-Nya di dalam segala hal.`,
+                ref: `Efesus 5:${(i % 20) + 1}`
+            });
+        }
+
+        // DATABASE 100 KUIS ALKITAB (MUDAH HINGGA SUSAH)
         const bibleQuizPool = [
             { q: "Siapakah tokoh alkitab yang menelan ikan besar atas izin Tuhan?", options: ["Musa", "Yunus", "Daud", "Nuh"], correct: 1 },
             { q: "Di gunung manakah Allah memberikan 10 Perintah Allah kepada Musa?", options: ["Gunung Sinai", "Gunung Tabor", "Gunung Karmel", "Gunung Zaitun"], correct: 0 },
@@ -930,24 +998,104 @@
             { q: "Siapakah raja Israel yang dikenal sangat bijaksana dan membangun Bait Allah?", options: ["Daud", "Saul", "Salomo", "Rehabeam"], correct: 2 },
             { q: "Kota manakah yang temboknya runtuh setelah bangsa Israel mengelilinginya selama 7 hari?", options: ["Yerikho", "Niniveh", "Babilon", "Samaria"], correct: 0 },
             { q: "Buah sulung Roh Kudus yang pertama disebutkan dalam Galatia 5:22 adalah?", options: ["Damai sejahtera", "Kasih", "Kesabaran", "Penguasaan diri"], correct: 1 },
-            { q: "Siapakah perempuan yang diurapi Tuhan menjadi Ratu Ester untuk menyelamatkan bangsa Yahudi?", options: ["Rut", "Ester", "Ester", "Debora"], correct: 1 },
+            { q: "Siapakah perempuan yang diurapi Tuhan menjadi Ratu untuk menyelamatkan bangsa Yahudi?", options: ["Rut", "Ester", "Debora", "Hawa"], correct: 1 },
             { q: "Berapa jumlah murid utama (rasul) yang dipilih oleh Tuhan Yesus?", options: ["10 orang", "12 orang", "70 orang", "120 orang"], correct: 1 },
-            { q: "Mukjizat pertama yang dilakukan oleh Tuhan Yesus tercatat di kota mana?", options: ["Kana", "Nazaret", "Kapernaum", "Yerusalem"], correct: 0 }
+            { q: "Mukjizat pertama yang dilakukan oleh Tuhan Yesus tercatat di kota mana?", options: ["Kana", "Nazaret", "Kapernaum", "Yerusalem"], correct: 0 },
+            { q: "Siapakah manusia pertama yang diciptakan oleh Allah?", options: ["Kain", "Habel", "Adam", "Set"], correct: 2 },
+            { q: "Siapakah istri Abraham yang melahirkan Ishak di usia senja?", options: ["Hagar", "Sara", "Rebekah", "Rahel"], correct: 1 },
+            { q: "Hewan apakah yang menyelamatkan Nuh bersama keluarganya dari air bah?", options: ["Burung Merpati", "Bahtera / Perahu", "Ikan Paus", "Kuda"], correct: 1 },
+            { q: "Siapakah nabi yang diangkat ke surga dengan kereta berapi?", options: ["Elia", "Elisa", "Yesaya", "Yeremia"], correct: 0 },
+            { q: "Di kota manakah Tuhan Yesus dilahirkan?", options: ["Nazaret", "Betlehem", "Yerusalem", "Kapersnaum"], correct: 1 },
+            { q: "Siapakah tokoh yang menjual hak kesulungannya dengan semangkuk sup kacang merah?", options: ["Yakub", "Esau", "Yusuf", "Benyamin"], correct: 1 },
+            { q: "Siapakah tokoh yang terkenal dengan kesabarannya meskipun mengalami banyak penderitaan?", options: ["Ayub", "Daud", "Nuh", "Musa"], correct: 0 },
+            { q: "Siapakah yang mengalahkan raksasa Goliat dengan ketapel dan batu licin?", options: ["Saul", "Yonatans", "Daud", "Samuel"], correct: 2 },
+            { q: "Apakah arti nama 'Imanuel' yang disematkan kepada Tuhan Yesus?", options: ["Allah menyertai kita", "Penyelamat dunia", "Raja segala raja", "Terang dunia"], correct: 0 },
+            { q: "Siapakah murid yang menyangkal Tuhan Yesus sebanyak tiga kali sebelum ayam berkokok?", options: ["Yudas Iskariot", "Petrus", "Yohanes", "Tomas"], correct: 1 },
+            { q: "Siapakah gubernur Romawi yang mengadili dan menyerahkan Yesus untuk disalibkan?", options: ["Herodes", "Pontius Pilatus", "Festus", "Felix"], correct: 1 },
+            { q: "Berapa hari Yesus berpuasa di padang gurun sebelum dicobai Iblis?", options: ["7 hari", "40 hari", "3 hari", "12 hari"], correct: 1 },
+            { q: "Siapakah penulis kitab Wahyu di pulau Patmos?", options: ["Petrus", "Paulus", "Yohanes", "Yakobus"], correct: 2 },
+            { q: "Apakah mukjizat pertama Yesus di Kana?", options: ["Mengubah air menjadi anggur", "Menyembuhkan orang buta", "Memberi makan 5000 orang", "Membangkitkan Lazarus"], correct: 0 },
+            { q: "Siapakah nabi yang dimasukkan ke dalam gua singa karena tetap setia berdoa kepada Allah?", options: ["Daniel", "Yeremia", "Yehezkiel", "Yesaya"], correct: 0 },
+            { q: "Siapakah yang dibaptis oleh Yohanes Pembaptis di sungai Yordan?", options: ["Petrus", "Yesus", "Paulus", "Andreas"], correct: 1 },
+            { q: "Kitab terakhir dalam Alkitab Perjanjian Baru adalah?", options: ["Yudas", "Kisah Para Rasul", "Wahyu", "Ibrani"], correct: 2 },
+            { q: "Siapakah imam besar yang mengadili Yesus di hadapan Mahkamah Agama?", options: ["Kayafas", "Anas", "Gamaliel", "Nikodemus"], correct: 0 },
+            { q: "Siapakah perempuan yang duduk di dekat kaki Yesus mendengarkan perkataan-Nya sementara adiknya sibuk melayani?", options: ["Marta", "Maria", "Salome", "Magdalena"], correct: 1 },
+            { q: "Apakah alat musik yang dimainkan oleh Daud untuk menenangkan Raja Saul?", options: ["Kecapi / Harp", "Suling", "Tamborin", "Sangkakala"], correct: 0 },
+            { q: "Siapakah yang merawat bayi Musa di sungai Nil setelah menemukannya di keranjang?", options: ["Putri Firaun", "Ibu kandungnya", "Miryam", "Firaun"], correct: 0 },
+            { q: "Siapakah nama bapa leluhur bangsa Israel yang memiliki 12 anak laki-laki?", options: ["Abraham", "Ishak", "Yakub (Israel)", "Esau"], correct: 2 },
+            { q: "Di manakah mukjizat turunnya Roh Kudus atas para murid terjadi pada hari Pentakosta?", options: ["Yerusalem", "Galilea", "Samaria", "Antiokhia"], correct: 0 },
+            { q: "Siapakah nama murid yang tadinya ragu-ragu dan mencucukkan jarinya ke luka Yesus?", options: ["Filipus", "Tomas", "Bartholomeus", "Matius"], correct: 1 },
+            { q: "Siapakah murid yang menggantikan Yudas Iskariot melalui undian?", options: ["Matias", "Barnabas", "Silas", "Timotius"], correct: 0 },
+            { q: "Siapakah nama mertua Petrus yang disembuhkan oleh Yesus dari demam?", options: ["Tidak disebutkan namanya", "Maria", "Elizabeth", "Anna"], correct: 0 },
+            { q: "Di kota manakah Paulus mengalami perjumpaan dramatis dengan Yesus dalam perjalanan?", options: ["Damsyik", "Antiokhia", "Roma", "Atena"], correct: 0 },
+            { q: "Siapakah nama istri Musa yang berasal dari Midian dan anak dari Yitro?", options: ["Zippora (Sipora)", "Milka", "Hagar", "Keturah"], correct: 0 },
+            { q: "Siapakah raja Persia yang mengeluarkan dekrit untuk mengizinkan bangsa Israel kembali membangun Bait Allah?", options: ["Koresh", "Darius", "Artahsasta", "Nebukadnezar"], correct: 0 },
+            { q: "Dalam perumpamaan Yesus, siapakah yang menolong orang yang dirampok di jalan menuju Yerikho?", options: ["Orang Samaria yang murah hati", "Seorang Imam", "Seorang Lewi", "Seorang Ahli Taurat"], correct: 0 },
+            { q: "Siapakah nama anak sulung Daud yang merebut takhta dan tewas tertahan rambutnya di pohon tarbantin?", options: ["Absalom", "Amnon", "Salomo", "Adonia"], correct: 0 },
+            { q: "Di manakah rasul Paulus berkhotbah di hadapan para filsuf Stoa dan Epikuros?", options: ["Areopagus di Athena", "Kolose", "Korintus", "Efesus"], correct: 0 },
+            { q: "Siapakah panglima Aram yang disembuhkan dari penyakit kusta dengan mencuci tubuhnya 7 kali di sungai Yordan?", options: ["Naaman", "Ben-Hadad", "Siser"], correct: 0 },
+            { q: "Siapakah nama nabi perempuan yang bernubuat bersama Barak memimpin Israel mengalahkan tentara Siser?", options: ["Debora", "Hulda", "Miryam", "Abigail"], correct: 0 },
+            { q: "Apa nama lembah tempat Daud mengalahkan raksasa Goliat?", options: ["Lembah Elah", "Lembah Yordan", "Lembah Megido", "Lembah Kidron"], correct: 0 },
+            { q: "Siapakah imam di Silo yang mendidik Samuel sejak kecil?", options: ["Eli", "Samuel", "Zadok", "Abyatar"], correct: 0 },
+            { q: "Siapakah raja Israel utara yang terkenal sangat jahat karena dorongan istrinya yang bernama Izebel?", options: ["Ahab", "Yerobeam", "Yehu", "Pekah"], correct: 0 },
+            { q: "Siapakah nabi yang menggantikan Elia setelah ia terangkat ke surga?", options: ["Elisa", "Amos", "Hosea", "Yona"], correct: 0 },
+            { q: "Siapakah nama istri Nabal yang kemudian menjadi istri Raja Daud karena kebijaksanaannya?", options: ["Abigail", "Mikhal", "Batsyeba", "Abisag"], correct: 0 },
+            { q: "Di pulau manakah rasul Paulus terdampar dan digigit ular viper namun tidak terluka?", options: ["Malta (Melite)", "Kreta", "Patmos", "Siprus"], correct: 0 },
+            { q: "Siapakah martir pertama dalam sejarah gereja Kristen yang dirajam dengan batu?", options: ["Stefanus", "Yakobus", "Antipas", "Filippus"], correct: 0 },
+            { q: "Siapakah penulis kitab Kisah Para Rasul?", options: ["Lukas", "Paulus", "Yohanes", "Markus"], correct: 0 },
+            { q: "Siapakah nama pemuda di Troas yang jatuh tertidur dari jendela tingkat tiga saat Paulus berkhotbah panjang?", options: ["Eutikhus", "Tikhikus", "Onesimus", "Epfras"], correct: 0 },
+            { q: "Apakah arti nama 'Golgota' tempat Yesus disalibkan?", options: ["Tempat Tengkorak", "Bukit Zaitun", "Kebun Anggur", "Kota Suci"], correct: 0 },
+            { q: "Siapakah nama anak sulung Ishak dan Rebekah?", options: ["Esau", "Yakub", "Ruben", "Yusuf"], correct: 0 },
+            { q: "Siapakah raja Babel yang melihat tulisan di dinding istana 'Mene, Mene, Tekel, Uparsin'?", options: ["Belsyazar", "Nebukadnezar", "Koresh", "Darius"], correct: 0 },
+            { q: "Siapakah nama imam agung yang mengurapi Raja Daud di Hebron?", options: ["Zadok dan Abyatar", "Eli", "Pinehas", "Ahihud"], correct: 0 },
+            { q: "Siapakah wanita kafir dari Yerikho yang menyelamatkan pengintai Israel dan masuk silsilah Yesus?", options: ["Rahab", "Rut", "Batyeba", "Tamar"], correct: 0 },
+            { q: "Berapa lama bangsa Israel mengembara di padang gurun sebelum memasuki Kanaan?", options: ["40 tahun", "7 tahun", "50 tahun", "12 tahun"], correct: 0 },
+            { q: "Di manakah letak sumur Yakub tempat Yesus bercakap-cakap dengan perempuan Samaria?", options: ["Sikhar di Samaria", "Nazaret", "Kapermaum", "Kana"], correct: 0 },
+            { q: "Siapakah murid Yesus yang merupakan seorang pemungut cukai sebelum mengikut Yesus?", options: ["Matius (Lewi)", "Andreas", "Filipus", "Bartholomeus"], correct: 0 },
+            { q: "Siapakah nama anak imam Eli yang dursila dan mati bersama di medan perang?", options: ["Hofni dan Pinehas", "Nadab dan Abihu", "Moab dan Amon", "Korah dan Datan"], correct: 0 },
+            { q: "Siapakah raja Yehuda yang bertobat di usia muda dan mengadakan pembaruan rohani besar?", options: ["Josia", "Hizkia", "Uzia", "Yotam"], correct: 0 },
+            { q: "Siapakah nama panglima perang Raja Daud yang sangat perkasa namun sering bertindak keras?", options: ["Yoab", "Abisai", "Benaya", "Asael"], correct: 0 },
+            { q: "Apakah nama kota tempat rasul Paulus diselamatkan dengan diturunkan dalam keranjang melalui tembok kota?", options: ["Damsyik", "Yerusalem", "Roma", "Antiokhia"], correct: 0 },
+            { q: "Siapakah nama mertua Naomi yang berasal dari Moab dan setia mendampinginya kembali ke Betlehem?", options: ["Rut", "Orpa", "Tamar", "Hagar"], correct: 0 },
+            { q: "Siapakah nabi yang bernubuat tentang lahirnya sang Mesias di Betlehem (Mikha 5:2)?", options: ["Mikha", "Yesaya", "Yeremia", "Yehezkiel"], correct: 0 },
+            { q: "Siapakah nama anak sulung Yakub dari Leah?", options: ["Ruben", "Simeon", "Lewi", "Yehuda"], correct: 0 },
+            { q: "Siapakah nama budak yang melarikan diri dan dikembalikan oleh Paulus kepada tuannya Filemon?", options: ["Onesimus", "Tikhikus", "Demas", "Aristarkhus"], correct: 0 },
+            { q: "Di kota manakah jemaat pertama kali disebut sebagai 'Kristen'?", options: ["Antiokhia", "Yerusalem", "Roma", "Efesus"], correct: 0 },
+            { q: "Siapakah nama raja Amalek yang dicincang berkeping-keping oleh nabi Samuel di Gilgal?", options: ["Agag", "Siser", "Oreb", "Zeeb"], correct: 0 },
+            { q: "Di lembah manakah mata air mukjizat muncul setelah Samson kehausan usai membunuh 1000 orang Filistin?", options: ["Lahi (Lehi)", "Bokhim", "Eshkol", "Ayalon"], correct: 0 },
+            { q: "Siapakah nama anak Daud dari Batsyeba yang lahir setelah kematian anak pertama mereka?", options: ["Salomo", "Natan", "Samua", "Sobab"], correct: 0 },
+            { q: "Berapakah jumlah kubus emas murni yang melapisi ruang Maha Kudus di Bait Suci Salomo?", options: ["Tidak ada kubus emas, melainkan seluruhnya disalut emas", "10 kubus", "100 kubus", "12 kubus"], correct: 0 },
+            { q: "Siapakah nama imam agung yang memerintahkan penamparan terhadap rasul Paulus dalam Kisah Para Rasul 23?", options: ["Ananias bin Nedebaios", "Kayafas", "Hillel", "Syamai"], correct: 0 },
+            { q: "Siapakah nama raja Asyur yang mengepung Yerusalem pada zaman Raja Hizkia namun tentaranya dimusnahkan malaikat?", options: ["Senakherib", "Tiglath-Pileser", "Sargon II", "Asarsaddon"], correct: 0 },
+            { q: "Dalam kitab Wahyu, apakah nama bintang yang jatuh dari langit dan mencemari sepertiga air sungai?", options: ["Apsintus (Paitan)", "Lucifer", "Orion", "Sirius"], correct: 0 },
+            { q: "Siapakah nama nabi yang menegur Raja Daud dengan perumpamaan 'Anak Domba Betina'?", options: ["Natan", "Gad", "Ahia", "Semaya"], correct: 0 },
+            { q: "Di manakah letak batu 'Eben-Ezer' yang didirikan Samuel untuk memperingati pertolongan Tuhan?", options: ["Antara Mispa dan Sen", "Betel", "Gilgal", "Siloh"], correct: 0 },
+            { q: "Siapakah nama panglima raja Salomo yang memimpin pasukan mengurus perbekalan seluruh Israel?", options: ["Azarya bin Natan", "Benaia bin Yoyada", "Joab bin Zeruya", "Amasai"], correct: 0 },
+            { q: "Siapakah nama anak sulung Samuel yang bertindak curang sebagai hakim di Bersyeba?", options: ["Yoel dan Abia", "Hofni dan Pinehas", "Dan dan Naftali", "Efraim dan Manasye"], correct: 0 },
+            { q: "Siapakah nama raja Moab yang mempersembahkan anak sulungnya sebagai korban bakaran di atas tembok kota?", options: ["Mesa", "Balak", "Eglon", "Hadadezer"], correct: 0 },
+            { q: "Di kota manakah rasul Paulus meninggalkan jubah dan perkamennya kepada Timotius?", options: ["Troas", "Roma", "Efesus", "Filipi"], correct: 0 },
+            { q: "Siapakah nama imam yang dibunuh oleh Raja Saul bersama 85 imam di Nob karena menolong Daud?", options: ["Ahimelekh bin Ahitub", "Abiatar", "Zadok", "Eli"], correct: 0 },
+            { q: "Apakah nama sungai tempat nabi Yehezkiel mendapat penglihatan kemuliaan Allah di pembuangan?", options: ["Sungai Kebar", "Sungai Efrat", "Sungai Tigris", "Sungai Ulai"], correct: 0 },
+            { q: "Siapakah nama ratu dari Arabia yang datang menguji hikmat Raja Salomo?", options: ["Ratu Syeba", "Ratu Candake", "Ratu Yezebel", "Ratu Vasyti"], correct: 0 },
+            { q: "Siapakah nama bapak mertua Musa yang juga dikenal sebagai Yeter atau Hobab?", options: ["Reuel (Yitro)", "Laban", "Firaun", "Potifar"], correct: 0 },
+            { q: "Di manakah lokasi perkemahan pertama bangsa Israel setelah menyeberang sungai Yordan?", options: ["Gilgal", "Sikhem", "Silo", "Betel"], correct: 0 },
+            { q: "Siapakah nama orang Lewi yang mengadakan pemberontakan melawan kepemimpinan Musa dan Harun?", options: ["Korah bin Izhar", "Datan dan Abiram", "On", "Peles"], correct: 0 },
+            { q: "Siapakah nama nabi yang bernubuat menentang imam Amazia di Betel dan berkata ia bukan seorang nabi?", options: ["Amos", "Hosea", "Yona", "Mikha"], correct: 0 },
+            { q: "Berapa tahunkah usia Imam Besar Eli ketika ia jatuh dari kursi dan mati karena patah lehernya?", options: ["98 tahun", "120 tahun", "85 tahun", "110 tahun"], correct: 0 },
+            { q: "Siapakah nama anak bungsu Yakub yang lahir di dekat Betlehem dan dinamai Ben-Oni oleh ibunya?", options: ["Benyamin", "Yusuf", "Ruben", "Dan"], correct: 0 },
+            { q: "Apakah nama kota benteng orang Yebus yang berhasil direbut oleh Raja Daud dan dijadikan ibu kota?", options: ["Yerusalem (Sion)", "Hebron", "Gibeon", "Samaria"], correct: 0 },
+            { q: "Siapakah nama raja Yehuda yang berbuat jahat dan tubuhnya dipenuhi penyakit kusta hingga akhir hayatnya?", options: ["Uzia (Azarya)", "Jotam", "Ahas", "Manasye"], correct: 0 },
+            { q: "Siapakah nama nabi yang menyampaikan nubuat hukuman atas keluarga imam Eli (1 Samuel 2)?", options: ["Seorang abdi Allah yang tidak disebutkan namanya", "Samuel", "Natan", "Ahia"], correct: 0 },
+            { q: "Di manakah letak gua tempat Daud mengampuni nyawa Raja Saul dengan memotong susur jubahnya?", options: ["Gua di En-Gedi", "Gua Adullam", "Gua Makpela", "Gua di Padang Gurun Paran"], correct: 0 },
+            { q: "Siapakah nama anak pahlawan Israel Uria orang Het yang merupakan suami Batsyeba?", options: ["Uria", "Itai", "Zelek", "Naharai"], correct: 0 },
+            { q: "Siapakah nama nabi yang menyobek jubah barunya menjadi 12 bagian untuk diberikan kepada Yerobeam?", options: ["Ahia orang Silo", "Semaya", "Idu", "Mikaileha"], correct: 0 },
+            { q: "Siapakah nama ratu Yehuda yang kejam dan membunuh seluruh keturunan raja kecuali Yoas yang disembunyikan?", options: ["Atalya", "Jezebel", "Maakha", "Vasyti"], correct: 0 },
+            { q: "Berapakah jumlah total kitab yang terdapat di dalam seluruh Alkitab (Perjanjian Lama dan Perjanjian Baru)?", options: ["66 Kitab", "39 Kitab", "27 Kitab", "73 Kitab"], correct: 0 }
         ];
 
         let shuffledQuizList = [];
         let currentQuizIndex = 0;
         let userQuizScore = 0;
-
-        const dailyVersesList = [
-            { text: "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.", ref: "Filipi 4:13" },
-            { text: "TUHAN adalah gembalaku, takkan kekurangan aku.", ref: "Mazmur 23:1" },
-            { text: "Percayalah kepada TUHAN dengan segenap hatimu, dan janganlah bersandar kepada pengertianmu sendiri.", ref: "Amsal 3:5" },
-            { text: "Sebab aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan.", ref: "Yeremia 29:11" },
-            { text: "Tetapi orang-orang yang menanti-nantikan TUHAN mendapat kekuatan baru: mereka seumpama rajawali yang naik terbang dengan kekuatan sayapnya; mereka berlari dan tidak menjadi lesu, mereka berjalan dan tidak menjadi lelah.", ref: "Yesaya 40:31" },
-            { text: "Serahkanlah perbuatanmu kepada TUHAN, maka terlaksanalah segala rencanamu.", ref: "Amsal 16:3" },
-            { text: "Janganlah hendaknya kamu kuatir tentang apa pun juga, tetapi nyatakanlah dalam segala hal keinginanmu kepada Allah dalam doa dan permohonan dengan ucapan syukur.", ref: "Filipi 4:6" }
-        ];
 
         let kategorialStore = {
             'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Mulai 2 Agustus 2026 ibadah Sekolah Minggu diadakan sesi pagi pukul 08.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800', count: 65 },
