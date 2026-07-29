@@ -193,11 +193,23 @@
         .category-list a:hover { color: var(--accent-gold); }
         .category-list span { font-size: 0.68rem; color: var(--text-muted); background: rgba(255,255,255,0.08); padding: 2px 8px; border-radius: 10px; }
         
+        /* Tombol edit disembunyikan secara default, hanya muncul jika admin sudah login */
         .btn-edit-card {
-            display: none; position: absolute; top: 12px; right: 12px; background: var(--accent-gold); color: #000;
+            display: none !important; position: absolute; top: 12px; right: 12px; background: var(--accent-gold); color: #000;
             border: none; padding: 5px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; cursor: pointer; z-index: 10;
         }
-        body.admin-logged-in .btn-edit-card { display: inline-flex; align-items: center; gap: 4px; }
+        body.admin-logged-in .btn-edit-card { display: inline-flex !important; align-items: center; gap: 4px; }
+
+        /* Khusus tombol edit di dalam bagian grafik agar mengikuti aturan admin */
+        .chart-admin-edit {
+            display: none !important;
+        }
+        body.admin-logged-in .chart-admin-edit {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 4px;
+            position: static;
+        }
 
         .btn-edit-kat { background: transparent; border: none; color: var(--accent-gold); font-size: 0.75rem; cursor: pointer; padding: 5px; opacity: 0.7; display: none; }
         body.admin-logged-in .btn-edit-kat { display: inline-block; opacity: 1; }
@@ -264,13 +276,12 @@
 
         <div style="position: relative; display: inline-block; margin-bottom: 20px;">
             <button class="btn-hero-live" onclick="openLiveModal()"><i class="fa-solid fa-circle-play"></i> Tonton Live Streaming</button>
-            <button class="btn-edit-card" style="top: -8px; right: -8px;" onclick="openEditModal('live')"><i class="fa-solid fa-pen"></i> Edit</button>
+            <button class="btn-edit-card btn-edit-card-general" style="top: -8px; right: -8px;" onclick="openEditModal('live')"><i class="fa-solid fa-pen"></i> Edit</button>
         </div>
 
         <div class="hero-stats">
-            <!-- Card Total Jemaat dengan Tombol Edit Admin -->
             <div class="hero-stat-card">
-                <button class="btn-edit-card" style="display:none;" id="btnEditTotal" onclick="openEditModal('total_jemaat')"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="btn-edit-card btn-edit-card-general" id="btnEditTotal" onclick="openEditModal('total_jemaat')"><i class="fa-solid fa-pen"></i> Edit</button>
                 <h3 id="stat-total">345</h3>
                 <p>Total Jemaat</p>
             </div>
@@ -287,7 +298,7 @@
             <div id="sec-home" class="page-sec active">
                 <!-- 1. WARTA JEMAAT & KEGIATAN SEPEKAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-warta')">
-                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('warta')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('warta')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-newspaper"></i> Warta Jemaat & Kegiatan Sepekan</div>
                         <span class="badge-link">Buka Warta <i class="fa-solid fa-arrow-right"></i></span>
@@ -305,7 +316,7 @@
 
                 <!-- 2. POKOK-POKOK DOA SYAFAAT -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-doa')">
-                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-hands-praying"></i> Pokok-Pokok Doa Syafaat</div>
                         <span class="badge-link">Buka Doa <i class="fa-solid fa-arrow-right"></i></span>
@@ -319,7 +330,7 @@
 
                 <!-- 3. BACAAN ALKITAB HARIAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-renungan')">
-                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('renungan')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('renungan')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-book-bible"></i> Bacaan Alkitab Harian</div>
                         <span class="badge-link">Lihat Tabel <i class="fa-solid fa-arrow-right"></i></span>
@@ -334,7 +345,7 @@
 
                 <!-- 4. TATA IBADAH PEKAN DEPAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-alkitab')">
-                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-book-open"></i> Tata Ibadah Pekan Depan</div>
                         <span class="badge-link">Lihat Jadwal <i class="fa-solid fa-arrow-right"></i></span>
@@ -347,7 +358,7 @@
                 </div>
 
                 <div class="glass-card">
-                    <button class="btn-edit-card" onclick="openEditModal('lokasi')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card btn-edit-card-general" onclick="openEditModal('lokasi')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-location-dot"></i> Lokasi Gereja</div>
                     <div class="map-box">
                         <h4 style="color:var(--accent-gold); font-size:0.95rem; margin-bottom:6px; font-family:'Playfair Display', serif;">Gereja Methodist Indonesia Sungai Yordan</h4>
@@ -497,7 +508,7 @@
             <!-- HALAMAN KHUSUS KATEGORIAL -->
             <div id="page-kategorial" class="page-sec">
                 <div class="glass-card">
-                    <button class="btn-edit-card" onclick="openEditModal('kategorial_detail')"><i class="fa-solid fa-pen"></i> Edit Info</button>
+                    <button class="btn-edit-card btn-edit-card-general" onclick="openEditModal('kategorial_detail')"><i class="fa-solid fa-pen"></i> Edit Info</button>
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;" id="kat-badge-label">INFORMASI KATEGORIAL</span>
@@ -575,7 +586,7 @@
                 <div class="glass-card">
                     <div class="section-header" style="position: relative;">
                         <div class="section-title"><i class="fa-solid fa-chart-line"></i> Grafik Kehadiran Ibadah</div>
-                        <button class="btn-edit-card" style="display:inline-flex; position:static;" onclick="openEditModal('grafik')"><i class="fa-solid fa-pen"></i> Edit Data Grafik</button>
+                        <button class="btn-edit-card chart-admin-edit" onclick="openEditModal('grafik')"><i class="fa-solid fa-pen"></i> Edit Data Grafik</button>
                     </div>
                     <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:15px; text-align:justify;">Pilih filter waktu (Mingguan, Bulanan, atau Tahunan — data tampil otomatis mengikuti pilihan Anda):</p>
                     <div class="chart-filter-wrap">
@@ -591,7 +602,7 @@
                     <div style="position: relative;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                             <h4 style="font-size: 0.95rem; color: var(--accent-cyan); text-align:left;"><i class="fa-solid fa-users"></i> Kehadiran Ibadah Kategorial</h4>
-                            <button class="btn-edit-card" style="display:inline-flex; position:static;" onclick="openEditModal('grafik_kategorial')"><i class="fa-solid fa-pen"></i> Edit Grafik Kategorial</button>
+                            <button class="btn-edit-card chart-admin-edit" onclick="openEditModal('grafik_kategorial')"><i class="fa-solid fa-pen"></i> Edit Grafik Kategorial</button>
                         </div>
                         <div style="height:260px;"><canvas id="chartIbadahKategorial"></canvas></div>
                     </div>
@@ -733,7 +744,7 @@
             'usindah': { title: 'Usia Indah (Usindah)', desc: 'Persekutuan kaum lansia Minggu ke-1 & ke-3.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
         };
 
-        let customTotalJemaat = null; // Menyimpan override total jemaat manual jika diinput admin
+        let customTotalJemaat = null;
 
         // Data Ibadah Minggu
         let chartDataStore = {
@@ -866,7 +877,6 @@
                 totalJemaatCalc += parseInt(kategorialStore[k].count || 0);
             }
             
-            // Jika admin menetapkan manual total jemaat, gunakan nilai custom. Jika tidak, pakai hasil hitung otomatis.
             let finalTotal = (customTotalJemaat !== null && customTotalJemaat !== "") ? customTotalJemaat : totalJemaatCalc;
             document.getElementById('stat-total').innerText = finalTotal;
         }
@@ -971,9 +981,6 @@
                 closeModal('loginModal');
                 document.getElementById('adminPass').value = "";
                 document.body.classList.add('admin-logged-in');
-                document.getElementById('btnEditTotal').style.display = 'inline-flex';
-                document.getElementById('authText').innerText = "Logout";
-                document.getElementById('authIcon').className = "fa-solid fa-lock-open";
                 alert("Login Admin Berhasil!");
             } else { alert("Password Admin Salah!"); }
         }
