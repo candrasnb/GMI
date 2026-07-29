@@ -248,7 +248,7 @@
         .btn-back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--accent-gold); cursor: pointer; font-weight: 700; background: transparent; border: none; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 3000; backdrop-filter: blur(10px); justify-content: center; align-items: center; padding: 15px; }
-        .modal-card { background: #0b1120; border: 1px solid var(--accent-gold); border-radius: 18px; width: 100%; max-width: 580px; padding: 22px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-card { background: #0b1120; border: 1px solid var(--accent-gold); border-radius: 18px; width: 100%; max-width: 900px; padding: 22px; position: relative; max-height: 90vh; overflow-y: auto; }
         .close-modal { position: absolute; top: 12px; right: 16px; color: var(--text-muted); font-size: 1.3rem; cursor: pointer; }
 
         .form-group { margin-bottom: 14px; text-align: left; }
@@ -700,39 +700,92 @@
 
     <!-- MODAL FULL SCREEN TABEL LAPORAN PERSEMBAHAN -->
     <div class="modal" id="persembahanModal">
-        <div class="modal-card" style="max-width: 900px; width: 95%;">
+        <div class="modal-card">
             <span class="close-modal" onclick="closeModal('persembahanModal')">&times;</span>
-            <div class="section-title" style="margin-bottom: 15px;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Keuangan & Persembahan Lengkap</div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">Data di bawah ini disinkronkan otomatis dari rekam jejak upload warta & laporan gereja.</p>
+            <div class="section-title" style="margin-bottom: 15px;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Keuangan & Persembahan Lengkap (19 Juli 2026)</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">Sesuai data resmi warta jemaat.</p>
+            
+            <h4 style="color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;">5. PENATALAYANAN DAN KEUANGAN</h4>
+            <p style="font-size: 0.85rem; color: #fff; font-weight: 700; margin-bottom: 8px;">❖ Laporan Persembahan Minggu, 19 Juli 2026</p>
+            
             <div class="table-responsive">
                 <table class="church-table">
                     <tr>
-                        <th>Sumber / Kategori Gambar Upload Warta</th>
-                        <th>Keterangan Keuangan</th>
-                        <th>Jumlah (Rp)</th>
+                        <th style="width: 10%;">NO</th>
+                        <th style="width: 65%;">URAIAN</th>
+                        <th style="width: 25%; text-align: right;">JUMLAH/RP</th>
                     </tr>
-                    <tr>
-                        <td><img id="tableImg1" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 1"></td>
-                        <td>Persembahan Kebaktian Umum I & II (Minggu Utama)</td>
-                        <td>Rp 4.550.000</td>
-                    </tr>
-                    <tr>
-                        <td><img id="tableImg2" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 2"></td>
-                        <td>Persembahan Sekolah Minggu & Kategorial</td>
-                        <td>Rp 1.770.000</td>
-                    </tr>
-                    <tr>
-                        <td><img id="tableImg3" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 3"></td>
-                        <td>Persembahan Bulanan / Persepuluhan Jemaat</td>
-                        <td>Rp 8.750.000</td>
-                    </tr>
-                    <tr>
-                        <td><img id="tableImg4" src="" style="width: 50px; height: 35px; object-fit: cover; border-radius: 4px; border:1px solid var(--border-gold);" alt="Warta 4"></td>
-                        <td>Persembahan Diakonia Sosial & Kasih</td>
-                        <td>Rp 1.150.000</td>
+                    <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td style="text-align: right;">3.745.000</td></tr>
+                    <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td style="text-align: right;">1.023.000</td></tr>
+                    <tr><td>2</td><td>Persembahan Persepuluhan: Theresa Septiani Simandjuntak, Kel. SMT. Nadeak, Kel. Bp. Sumaryono Sianipar, Kel. Usdek Simanjuntak, Kel. Messach Samosir, NN (2 amplop)</td><td style="text-align: right;">13.654.100</td></tr>
+                    <tr><td>3</td><td>Persembahan Ucapan Syukur: Bram, Messach, Nathasya, Kel. Usdek Simanjuntak/Flora br. Napitupulu, Jufrian Haposan S. Sigiro, Ester Agustina Simanjuntak, NN</td><td style="text-align: right;">4.600.000</td></tr>
+                    <tr><td>4</td><td>Persembahan Dana Sosial: Bram, Messach, Nathasya, NN</td><td style="text-align: right;">600.000</td></tr>
+                    <tr><td>5</td><td>Persembahan Class Meeting</td><td style="text-align: right;">1.225.000</td></tr>
+                    <tr style="background: rgba(245, 158, 11, 0.2); font-weight: 800;">
+                        <td colspan="2" style="text-align: right; color: var(--accent-gold);">T O T A L</td>
+                        <td style="text-align: right; color: var(--accent-gold);">24.847.100</td>
                     </tr>
                 </table>
             </div>
+
+            <p style="font-size: 0.85rem; color: #fff; font-weight: 700; margin: 20px 0 8px 0;">❖ Nama-Nama Jemaat Yang Sudah Mengembalikan Formulir Janji Iman:</p>
+            
+            <div class="table-responsive">
+                <table class="church-table">
+                    <tr>
+                        <th style="width: 8%;">NO</th>
+                        <th style="width: 42%;">NAMA</th>
+                        <th style="width: 18%; text-align: right;">JANJI IMAN (Rp)</th>
+                        <th style="width: 18%; text-align: right;">PEMBAYARAN</th>
+                        <th style="width: 14%; text-align: center;">KET.</th>
+                    </tr>
+                    <tr><td>1</td><td>NN</td><td style="text-align: right;">10.000.000</td><td style="text-align: right;">10.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>3</td><td>Kel. Ricky Pasaribu</td><td style="text-align: right;">7.500.000</td><td style="text-align: right;">7.500.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>4</td><td>Kel. DF Sipahutar</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>7</td><td>Sdri. Elsa SLA. Simatupang</td><td style="text-align: right;">7.000.000</td><td style="text-align: right;">3.700.000</td><td style="text-align: center;">Cicil XII</td></tr>
+                    <tr><td>8</td><td>Kel. GAJ. Simamora</td><td style="text-align: right;">20.000.000</td><td style="text-align: right;">20.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>9</td><td>Ibu Luci Simamora</td><td style="text-align: right;">10.240.000</td><td style="text-align: right;">10.240.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>10</td><td>Kel. Odi Siahaan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>12</td><td>Kel. M. Manullang</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>13</td><td>Kel. Daniel Sinambela</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Cicilan 2</td></tr>
+                    <tr><td>14</td><td>Kel. Volkano Pangaribuan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">2.500.000</td><td style="text-align: center;">Cicilan 1</td></tr>
+                    <tr><td>16</td><td>Kel. Pdt. Karno Siritotet</td><td style="text-align: right;">1.500.000</td><td style="text-align: right;">1.500.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>20</td><td>Kel. Sahat Nadeak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>21</td><td>Kel. FH. Panggabean</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>22</td><td>Kel. SBA</td><td style="text-align: right;">3.600.000</td><td style="text-align: right;">3.600.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td style="text-align: right;">18.000.000</td><td style="text-align: right;">8.500.000</td><td style="text-align: center;">Cicilan 10</td></tr>
+                    <tr><td>24</td><td>Bram, Messach, Nathasya</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>25</td><td>Ibu Salonta Situmorang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td style="text-align: right;">400.000</td><td style="text-align: right;">400.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>27</td><td>NN Bekasi</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>28</td><td>Kel. Mustafa Sihombing</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>29</td><td>Nathasya Suwarsono</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                    <tr><td>30</td><td>Kel. HS. Hutajulu</td><td style="text-align: right;">777.000</td><td style="text-align: right;">777.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>32</td><td>Kel. Koster Pangaribuan</td><td style="text-align: right;">200.000</td><td style="text-align: right;">200.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>33</td><td>Irma Siagian</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>34</td><td>NN</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td style="text-align: right;">600.000</td><td style="text-align: right;">600.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>36</td><td>Hertina Sitorus</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Tunai</td></tr>
+                    <tr style="background: rgba(245, 158, 11, 0.2); font-weight: 800;">
+                        <td colspan="2" style="text-align: right; color: var(--accent-gold);">T O T A L</td>
+                        <td style="text-align: right; color: var(--accent-gold);">153.517.000</td>
+                        <td style="text-align: right; color: var(--accent-gold);">134.477.000</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
             <button class="btn-save" onclick="closeModal('persembahanModal')"><i class="fa-solid fa-xmark"></i> Tutup & Lanjutkan Membaca Warta</button>
         </div>
     </div>
@@ -748,7 +801,7 @@
     </div>
 
     <div class="modal" id="verseModal">
-        <div class="modal-card" style="text-align: center;">
+        <div class="modal-card" style="text-align: center; max-width: 580px;">
             <span class="close-modal" onclick="closeModal('verseModal')">&times;</span>
             <div style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 10px;"><i class="fa-solid fa-book-bible"></i></div>
             <h3 style="color: #fff; font-family: 'Playfair Display', serif; margin-bottom: 15px;">Ayat Renungan Hari Ini</h3>
@@ -761,7 +814,7 @@
     </div>
 
     <div class="modal" id="quizModal">
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 580px;">
             <span class="close-modal" onclick="closeModal('quizModal')">&times;</span>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <h3 style="color: var(--accent-gold); font-family: 'Playfair Display', serif;"><i class="fa-solid fa-brain"></i> Kuis Alkitab Rohani</h3>
@@ -777,7 +830,7 @@
     </div>
 
     <div class="modal" id="formModal">
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 580px;">
             <span class="close-modal" onclick="closeModal('formModal')">&times;</span>
             <h3 id="formModalTitle" style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-file-lines"></i> Form Layanan</h3>
             <div id="formModalBody"></div>
@@ -786,7 +839,7 @@
     </div>
 
     <div class="modal" id="editModal">
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 580px;">
             <span class="close-modal" onclick="closeModal('editModal')">&times;</span>
             <h3 id="editModalTitle" style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-pen-to-square"></i> Edit Konten</h3>
             <div id="editFormBody"></div>
@@ -795,7 +848,7 @@
     </div>
 
     <div class="modal" id="archiveModal">
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 580px;">
             <span class="close-modal" onclick="closeModal('archiveModal')">&times;</span>
             <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-box-archive"></i> Arsip Warta Pekan Lalu</h3>
             <div id="archiveListContainer">
@@ -805,7 +858,7 @@
     </div>
 
     <div class="modal" id="liveModal">
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 580px;">
             <span class="close-modal" onclick="closeModal('liveModal')">&times;</span>
             <div class="section-title" style="margin-bottom:12px; color:var(--accent-red);"><i class="fa-solid fa-headset"></i> Live Streaming Ibadah</div>
             <div class="video-container">
@@ -868,14 +921,6 @@
         let currentEditTarget = '';
         let currentFormType = '';
         let currentFilterMode = 'week';
-
-        // Koleksi 4 gambar referensi warta/laporan
-        let persembahanImages = [
-            "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800",
-            "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800",
-            "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800",
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800"
-        ];
 
         const bibleQuizPool = [
             { q: "Siapakah tokoh alkitab yang menelan ikan besar atas izin Tuhan?", options: ["Musa", "Yunus", "Daud", "Nuh"], correct: 1 },
@@ -992,7 +1037,6 @@
             });
         });
 
-        // Validasi Password Laporan Persembahan
         function unlockPersembahanTable() {
             let pass = document.getElementById('inputPersembahanPass').value;
             if (pass === "sungaiyordan*5") {
@@ -1004,11 +1048,6 @@
         }
 
         function openPersembahanModal() {
-            document.getElementById('tableImg1').src = homeDataStore.wartaImg || persembahanImages[0];
-            document.getElementById('tableImg2').src = homeDataStore.doaImg || persembahanImages[1];
-            document.getElementById('tableImg3').src = homeDataStore.renImg || persembahanImages[2];
-            document.getElementById('tableImg4').src = homeDataStore.alkitabImg || persembahanImages[3];
-            
             document.getElementById('persembahanModal').style.display = 'flex';
         }
 
@@ -1180,11 +1219,6 @@
                     <div class="form-group"><label>Nama Kepala Keluarga / Jemaat:</label><input type="text" id="formNama" placeholder="Nama lengkap..."></div>
                     <div class="form-group"><label>Nomor WhatsApp:</label><input type="text" id="formWa" placeholder="08xxxxxxxxxx"></div>
                     <div class="form-group"><label>Keterangan Perubahan Data:</label><textarea id="formIsi" placeholder="Contoh: Penambahan anggota keluarga baru, pindah alamat, dll..."></textarea></div>
-                    <div class="form-group">
-                        <label>Dokumen / Gambar Pendukung (Lampirkan manual di WhatsApp):</label>
-                        <input type="file" id="formFile" accept="image/*,.pdf">
-                        <small style="color:var(--text-muted); font-size:0.7rem; display:block; margin-top:4px;">Silakan lampirkan file/gambar secara manual saat membuka WhatsApp.</small>
-                    </div>
                 `;
             }
 
@@ -1211,7 +1245,7 @@
                 message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nSaya *${nama}* (${wa}) ingin mendaftarkan jadwal Persembahan Bunga Mimbar:\n\n*Tanggal:* ${document.getElementById('formTanggal').value}\n*Keterangan:* ${isi}\n\nMohon dicatat dalam jadwal warta. Terima kasih Tuhan Yesus memberkati. 🌸`;
             } else if (currentFormType === 'update_data') {
                 targetPhone = "6281311327715";
-                message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nBerikut adalah pengajuan Update Data Jemaat:\n\n*Nama:* ${nama}\n*No WA:* ${wa}\n*Keterangan:* ${isi}\n\n(File/Gambar akan saya lampirkan secara manual di chat ini).\n\nMohon bantuannya untuk pembaruan data jemaat. Terima kasih. 📋`;
+                message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nBerikut adalah pengajuan Update Data Jemaat:\n\n*Nama:* ${nama}\n*No WA:* ${wa}\n*Keterangan:* ${isi}\n\n*(File/Gambar saya lampirkan)*\n\nMohon bantuannya untuk pembaruan data jemaat. Terima kasih. 📋`;
             }
 
             let encodedUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(message)}`;
@@ -1490,10 +1524,7 @@
                 homeDataStore.wartaDate = document.getElementById('editWartaDate').value;
                 homeDataStore.wartaDetails = document.getElementById('editWartaDetails').value;
                 let imgOut = document.getElementById('editWartaImgOut').value;
-                if(imgOut) {
-                    homeDataStore.wartaImg = imgOut;
-                    persembahanImages[0] = imgOut;
-                }
+                if(imgOut) homeDataStore.wartaImg = imgOut;
             } else if (currentEditTarget === 'live') {
                 homeDataStore.liveUrl = document.getElementById('editLiveUrl').value;
             } else if (currentEditTarget === 'grafik') {
@@ -1509,24 +1540,15 @@
             } else if (currentEditTarget === 'doa') {
                 homeDataStore.doaText = document.getElementById('editDoaText').value;
                 let imgOut = document.getElementById('editDoaImgOut').value;
-                if(imgOut) {
-                    homeDataStore.doaImg = imgOut;
-                    persembahanImages[1] = imgOut;
-                }
+                if(imgOut) homeDataStore.doaImg = imgOut;
             } else if (currentEditTarget === 'renungan') {
                 homeDataStore.renJudul = document.getElementById('editRenJudul').value;
                 let imgOut = document.getElementById('editRenImgOut').value;
-                if(imgOut) {
-                    homeDataStore.renImg = imgOut;
-                    persembahanImages[2] = imgOut;
-                }
+                if(imgOut) homeDataStore.renImg = imgOut;
             } else if (currentEditTarget === 'alkitab') {
                 homeDataStore.alkitabText = document.getElementById('editAlkitabText').value;
                 let imgOut = document.getElementById('editAlkitabImgOut').value;
-                if(imgOut) {
-                    homeDataStore.alkitabImg = imgOut;
-                    persembahanImages[3] = imgOut;
-                }
+                if(imgOut) homeDataStore.alkitabImg = imgOut;
             } else if (currentEditTarget === 'kategorial_detail') {
                 kategorialStore[activeCurrentKatKey].title = document.getElementById('editKatDetTitle').value;
                 kategorialStore[activeCurrentKatKey].desc = document.getElementById('editKatDetDesc').value;
