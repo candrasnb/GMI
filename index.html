@@ -108,7 +108,27 @@
             display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
             background: linear-gradient(135deg, var(--accent-red), #b91c1c); color: #fff;
             border: none; border-radius: 25px; font-weight: 700; font-size: 0.82rem; cursor: pointer;
-            box-shadow: 0 0 18px rgba(239, 68, 68, 0.4); margin-bottom: 20px;
+            box-shadow: 0 0 18px rgba(239, 68, 68, 0.4); margin-bottom: 12px;
+        }
+
+        /* Tombol Layanan Interaktif Jemaat */
+        .jemaat-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 550px;
+            margin-bottom: 25px;
+        }
+        .btn-jemaat-action {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 14px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-gold); color: var(--accent-gold);
+            border-radius: 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
+            transition: 0.2s; text-align: center;
+        }
+        .btn-jemaat-action:hover {
+            background: var(--accent-gold); color: #000; box-shadow: 0 0 15px var(--gold-glow);
         }
 
         .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; width: 100%; max-width: 800px; margin-top: 10px; }
@@ -193,23 +213,14 @@
         .category-list a:hover { color: var(--accent-gold); }
         .category-list span { font-size: 0.68rem; color: var(--text-muted); background: rgba(255,255,255,0.08); padding: 2px 8px; border-radius: 10px; }
         
-        /* Tombol edit disembunyikan secara default, hanya muncul jika admin sudah login */
         .btn-edit-card {
             display: none !important; position: absolute; top: 12px; right: 12px; background: var(--accent-gold); color: #000;
             border: none; padding: 5px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; cursor: pointer; z-index: 10;
         }
         body.admin-logged-in .btn-edit-card { display: inline-flex !important; align-items: center; gap: 4px; }
 
-        /* Khusus tombol edit di dalam bagian grafik agar mengikuti aturan admin */
-        .chart-admin-edit {
-            display: none !important;
-        }
-        body.admin-logged-in .chart-admin-edit {
-            display: inline-flex !important;
-            align-items: center;
-            gap: 4px;
-            position: static;
-        }
+        .chart-admin-edit { display: none !important; }
+        body.admin-logged-in .chart-admin-edit { display: inline-flex !important; align-items: center; gap: 4px; position: static; }
 
         .btn-edit-kat { background: transparent; border: none; color: var(--accent-gold); font-size: 0.75rem; cursor: pointer; padding: 5px; opacity: 0.7; display: none; }
         body.admin-logged-in .btn-edit-kat { display: inline-block; opacity: 1; }
@@ -255,6 +266,11 @@
 </head>
 <body>
 
+    <!-- PEMUTAR MUSIK ROHANI KRISTEN AUTOPLAY -->
+    <audio id="bgMusic" src="https://cdns.tubidy.ws/get.php?id=dQw4w9WgXcQ&type=audio&h=b1a2c3" autoplay loop style="display:none;"></audio>
+    <!-- Fallback Audio Online Rohani Aman -->
+    <audio id="bgMusicFallback" src="https://actions.google.com/sounds/v1/ambiences/windchimes.ogg" autoplay loop style="display:none;"></audio>
+
     <header>
         <div class="logo">
             <div class="logo-box"><i class="fa-solid fa-church"></i></div>
@@ -274,14 +290,22 @@
         <h1>GMI Sungai Yordan <br><span>Bekasi</span></h1>
         <p id="txt-hero-desc">Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members + 17.000 MetamorfoSELF (Efesus 4:11-16).</p>
 
-        <div style="position: relative; display: inline-block; margin-bottom: 20px;">
+        <div style="position: relative; display: inline-block; margin-bottom: 10px;">
             <button class="btn-hero-live" onclick="openLiveModal()"><i class="fa-solid fa-circle-play"></i> Tonton Live Streaming</button>
-            <button class="btn-edit-card btn-edit-card-general" style="top: -8px; right: -8px;" onclick="openEditModal('live')"><i class="fa-solid fa-pen"></i> Edit</button>
+            <button class="btn-edit-card" style="top: -8px; right: -8px;" onclick="openEditModal('live')"><i class="fa-solid fa-pen"></i> Edit</button>
+        </div>
+
+        <!-- Tombol Layanan Interaktif Jemaat -->
+        <div class="jemaat-actions-grid">
+            <button class="btn-jemaat-action" onclick="openFormModal('doa')"><i class="fa-solid fa-hands-praying"></i> Permohonan Doa</button>
+            <button class="btn-jemaat-action" onclick="openFormModal('konseling')"><i class="fa-solid fa-comments"></i> Request Konseling</button>
+            <button class="btn-jemaat-action" onclick="openFormModal('bunga')"><i class="fa-solid fa-seedling"></i> Bunga Mimbar</button>
+            <button class="btn-jemaat-action" onclick="openFormModal('update_data')"><i class="fa-solid fa-address-card"></i> Update Data Jemaat</button>
         </div>
 
         <div class="hero-stats">
             <div class="hero-stat-card">
-                <button class="btn-edit-card btn-edit-card-general" id="btnEditTotal" onclick="openEditModal('total_jemaat')"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="btn-edit-card" id="btnEditTotal" onclick="openEditModal('total_jemaat')"><i class="fa-solid fa-pen"></i> Edit</button>
                 <h3 id="stat-total">345</h3>
                 <p>Total Jemaat</p>
             </div>
@@ -298,7 +322,7 @@
             <div id="sec-home" class="page-sec active">
                 <!-- 1. WARTA JEMAAT & KEGIATAN SEPEKAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-warta')">
-                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('warta')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('warta')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-newspaper"></i> Warta Jemaat & Kegiatan Sepekan</div>
                         <span class="badge-link">Buka Warta <i class="fa-solid fa-arrow-right"></i></span>
@@ -316,7 +340,7 @@
 
                 <!-- 2. POKOK-POKOK DOA SYAFAAT -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-doa')">
-                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-hands-praying"></i> Pokok-Pokok Doa Syafaat</div>
                         <span class="badge-link">Buka Doa <i class="fa-solid fa-arrow-right"></i></span>
@@ -330,7 +354,7 @@
 
                 <!-- 3. BACAAN ALKITAB HARIAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-renungan')">
-                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('renungan')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('renungan')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-book-bible"></i> Bacaan Alkitab Harian</div>
                         <span class="badge-link">Lihat Tabel <i class="fa-solid fa-arrow-right"></i></span>
@@ -345,7 +369,7 @@
 
                 <!-- 4. TATA IBADAH PEKAN DEPAN -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-alkitab')">
-                    <button class="btn-edit-card btn-edit-card-general" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('alkitab')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
                         <div class="section-title"><i class="fa-solid fa-book-open"></i> Tata Ibadah Pekan Depan</div>
                         <span class="badge-link">Lihat Jadwal <i class="fa-solid fa-arrow-right"></i></span>
@@ -358,7 +382,7 @@
                 </div>
 
                 <div class="glass-card">
-                    <button class="btn-edit-card btn-edit-card-general" onclick="openEditModal('lokasi')"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="btn-edit-card" onclick="openEditModal('lokasi')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-location-dot"></i> Lokasi Gereja</div>
                     <div class="map-box">
                         <h4 style="color:var(--accent-gold); font-size:0.95rem; margin-bottom:6px; font-family:'Playfair Display', serif;">Gereja Methodist Indonesia Sungai Yordan</h4>
@@ -508,7 +532,7 @@
             <!-- HALAMAN KHUSUS KATEGORIAL -->
             <div id="page-kategorial" class="page-sec">
                 <div class="glass-card">
-                    <button class="btn-edit-card btn-edit-card-general" onclick="openEditModal('kategorial_detail')"><i class="fa-solid fa-pen"></i> Edit Info</button>
+                    <button class="btn-edit-card" onclick="openEditModal('kategorial_detail')"><i class="fa-solid fa-pen"></i> Edit Info</button>
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;" id="kat-badge-label">INFORMASI KATEGORIAL</span>
@@ -649,6 +673,16 @@
         </nav>
     </div>
 
+    <!-- MODAL FORM INTERAKTIF JEMAAT -->
+    <div class="modal" id="formModal">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal('formModal')">&times;</span>
+            <h3 id="formModalTitle" style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-file-lines"></i> Form Layanan</h3>
+            <div id="formModalBody"></div>
+            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-brands fa-whatsapp"></i> Kirim ke WhatsApp</button>
+        </div>
+    </div>
+
     <!-- MODAL EDIT ADMIN UNIVERSAL -->
     <div class="modal" id="editModal">
         <div class="modal-card">
@@ -734,6 +768,7 @@
         let chartMingguInstance = null;
         let chartKategorialInstance = null;
         let currentEditTarget = '';
+        let currentFormType = '';
         let currentFilterMode = 'week';
 
         let kategorialStore = {
@@ -815,6 +850,20 @@
 
         let activeCurrentKatKey = 'sekming';
 
+        // AutoPlay Audio handling with fallback
+        window.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('bgMusic');
+            const fallback = document.getElementById('bgMusicFallback');
+            music.play().catch(() => {
+                fallback.play().catch(() => {
+                    console.log("Autoplay diblokir browser, akan menyala saat interaksi pertama.");
+                    document.body.addEventListener('click', () => {
+                        music.play();
+                    }, { once: true });
+                });
+            });
+        });
+
         async function loadFromFirebase() {
             try {
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
@@ -881,6 +930,81 @@
             document.getElementById('stat-total').innerText = finalTotal;
         }
 
+        function openFormModal(type) {
+            currentFormType = type;
+            let title = "";
+            let bodyHTML = "";
+
+            if (type === 'doa') {
+                title = "Permohonan Doa Syafaat";
+                bodyHTML = `
+                    <div class="form-group"><label>Nama Lengkap Jemaat:</label><input type="text" id="formNama" placeholder="Masukkan nama Anda..."></div>
+                    <div class="form-group"><label>Nomor WhatsApp:</label><input type="text" id="formWa" placeholder="08xxxxxxxxxx"></div>
+                    <div class="form-group"><label>Pokok / Inti Permohonan Doa:</label><textarea id="formIsi" placeholder="Tuliskan pergumulan atau ucapan syukur Anda..."></textarea></div>
+                `;
+            } else if (type === 'konseling') {
+                title = "Request Jadwal Konseling Pastoral";
+                bodyHTML = `
+                    <div class="form-group"><label>Nama Lengkap Jemaat:</label><input type="text" id="formNama" placeholder="Masukkan nama Anda..."></div>
+                    <div class="form-group"><label>Nomor WhatsApp:</label><input type="text" id="formWa" placeholder="08xxxxxxxxxx"></div>
+                    <div class="form-group"><label>Topik / Keperluan Konseling:</label><textarea id="formIsi" placeholder="Tuliskan topik konseling..."></textarea></div>
+                    <div class="form-group"><label>Rencana Tanggal & Waktu:</label><input type="text" id="formWaktu" placeholder="Contoh: Jumat, 3 Agustus 2026 pukul 15.00 WIB"></div>
+                `;
+            } else if (type === 'bunga') {
+                title = "Form Persembahan Bunga Mimbar";
+                bodyHTML = `
+                    <div class="form-group"><label>Nama Pemberi / Keluarga:</label><input type="text" id="formNama" placeholder="Contoh: Keluarga Simamora"></div>
+                    <div class="form-group"><label>Nomor WhatsApp:</label><input type="text" id="formWa" placeholder="08xxxxxxxxxx"></div>
+                    <div class="form-group"><label>Pilih Tanggal Pelaksanaan:</label><input type="date" id="formTanggal"></div>
+                    <div class="form-group"><label>Keterangan / Ucapan Syukur:</label><textarea id="formIsi" placeholder="Contoh: Ulang Tahun Pernikahan ke-10 / Mengucap Syukur..."></textarea></div>
+                `;
+            } else if (type === 'update_data') {
+                title = "Form Update / Penambahan Data Jemaat";
+                bodyHTML = `
+                    <div class="form-group"><label>Nama Kepala Keluarga / Jemaat:</label><input type="text" id="formNama" placeholder="Nama lengkap..."></div>
+                    <div class="form-group"><label>Nomor WhatsApp:</label><input type="text" id="formWa" placeholder="08xxxxxxxxxx"></div>
+                    <div class="form-group"><label>Keterangan Perubahan Data:</label><textarea id="formIsi" placeholder="Contoh: Penambahan anggota keluarga baru, pindah alamat, dll..."></textarea></div>
+                    <div class="form-group">
+                        <label>Lampirkan Dokumen / Gambar (Opsional):</label>
+                        <input type="file" id="formFile" accept="image/*,.pdf" onchange="compressImage(this, 'formFileBase64', 'fileSizeInfo')">
+                        <input type="hidden" id="formFileBase64">
+                        <small id="fileSizeInfo" style="color:var(--accent-cyan); font-size:0.7rem; display:block; margin-top:4px;"></small>
+                    </div>
+                `;
+            }
+
+            document.getElementById('formModalTitle').innerHTML = `<i class="fa-solid fa-file-lines"></i> ${title}`;
+            document.getElementById('formModalBody').innerHTML = bodyHTML;
+            document.getElementById('formModal').style.display = 'flex';
+        }
+
+        function submitJemaatForm() {
+            let nama = document.getElementById('formNama').value || "Jemaat";
+            let wa = document.getElementById('formWa').value || "-";
+            let isi = document.getElementById('formIsi') ? document.getElementById('formIsi').value : "-";
+            let targetPhone = "";
+            let message = "";
+
+            if (currentFormType === 'doa') {
+                targetPhone = "6285269607373"; // No WhatsApp Pendeta
+                message = `Shalom Pdt. Saut Marulitua Rajagukguk, S.Th. 🙏\n\nMelalui portal resmi GMI Sungai Yordan Bekasi, saya *${nama}* (${wa}) ingin menyampaikan permohonan doa syafaat dengan penuh kerendahan hati:\n\n"${isi}"\n\nKiranya Tuhan Yesus memberkati pelayanan Bapak Pendeta. Amin. ✨`;
+            } else if (currentFormType === 'konseling') {
+                targetPhone = "6285269607373"; // No WhatsApp Pendeta
+                message = `Shalom Pdt. Saut Marulitua Rajagukguk, S.Th. 🙏\n\nSaya *${nama}* (${wa}) bermaksud mengajukan permohonan waktu konseling pastoral dengan detail berikut:\n\n*Topik:* ${isi}\n*Rencana Waktu:* ${document.getElementById('formWaktu').value}\n\nMohon konfirmasi ketersediaan waktu dari Bapak Pendeta. Terima kasih Tuhan Yesus memberkati. 🕊️`;
+            } else if (currentFormType === 'bunga') {
+                targetPhone = "6281311327715"; // No WhatsApp Sekretariat
+                message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nSaya *${nama}* (${wa}) ingin mendaftarkan jadwal Persembahan Bunga Mimbar:\n\n*Tanggal:* ${document.getElementById('formTanggal').value}\n*Keterangan:* ${isi}\n\nMohon dicatat dalam jadwal warta. Terima kasih Tuhan Yesus memberkati. 🌸`;
+            } else if (currentFormType === 'update_data') {
+                targetPhone = "6281311327715"; // No WhatsApp Sekretariat
+                let fileData = document.getElementById('formFileBase64').value;
+                message = `Shalom Sekretariat GMI Sungai Yordan Bekasi 🙏\n\nBerikut adalah pengajuan Update Data Jemaat:\n\n*Nama:* ${nama}\n*No WA:* ${wa}\n*Keterangan:* ${isi}\n${fileData ? '[Melampirkan Dokumen/Foto Pendukung]' : ''}\n\nMohon bantuannya untuk pembaruan data jemaat. Terima kasih. 📋`;
+            }
+
+            let encodedUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(message)}`;
+            window.open(encodedUrl, '_blank');
+            closeModal('formModal');
+        }
+
         function openArchiveModal() {
             let container = document.getElementById('archiveListContainer');
             if(!homeDataStore.wartaArchive || homeDataStore.wartaArchive.length === 0) {
@@ -945,7 +1069,7 @@
                     }
 
                     document.getElementById(hiddenOutputId).value = dataUrl;
-                    document.getElementById(infoId).innerText = `Ukuran berhasil dioptimalkan: ~${kb} KB`;
+                    document.getElementById(infoId).innerText = `File/Gambar berhasil dioptimalkan: ~${kb} KB`;
                 };
                 img.src = e.target.result;
             };
