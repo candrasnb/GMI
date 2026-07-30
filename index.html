@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GMI Sungai Yordan Bekasi - Official Portal 2026</title>
     
+    <!-- Favicon (Logo di Samping Alamat Website / Tab Browser) -->
+    <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png">
+    <link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -56,6 +60,43 @@
             background-image: 
                 radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+        }
+
+        /* Splash Screen / Loading Animasi */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #050811; z-index: 99999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #splash-screen.fade-out { opacity: 0; visibility: hidden; }
+
+        @keyframes logoGlowPulse {
+            0% { transform: scale(0.95); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4)) drop-shadow(0 0 20px rgba(56, 189, 248, 0.3)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 45px rgba(56, 189, 248, 0.6)); }
+            100% { transform: scale(0.95); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4)) drop-shadow(0 0 20px rgba(56, 189, 248, 0.3)); }
+        }
+
+        .splash-logo {
+            width: 110px; height: auto; object-fit: contain; margin-bottom: 25px;
+            animation: logoGlowPulse 2s infinite ease-in-out; mix-blend-mode: screen;
+        }
+
+        @keyframes textFadeSlide {
+            0% { opacity: 0; transform: translateY(15px); filter: blur(4px); }
+            20% { opacity: 1; transform: translateY(0); filter: blur(0); }
+            80% { opacity: 1; transform: translateY(0); filter: blur(0); }
+            100% { opacity: 0; transform: translateY(-15px); filter: blur(4px); }
+        }
+
+        .splash-text-container {
+            height: 40px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+
+        .splash-text {
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-gold), #fef08a, var(--accent-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-align: center; letter-spacing: 1px; animation: textFadeSlide 1.8s infinite ease-in-out;
         }
 
         header {
@@ -290,6 +331,14 @@
     </style>
 </head>
 <body>
+
+    <!-- SPLASH SCREEN / LOADING ANIMASI DENGAN KALIMAT BERGANTIAN -->
+    <div id="splash-screen">
+        <img class="splash-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
+        <div class="splash-text-container">
+            <div id="splash-changing-text" class="splash-text">Welcome</div>
+        </div>
+    </div>
 
     <audio id="bgMusic" src="https://cdns.tubidy.ws/get.php?id=dQw4w9WgXcQ&type=audio&h=b1a2c3" autoplay loop style="display:none;"></audio>
     <audio id="bgMusicFallback" src="https://actions.google.com/sounds/v1/ambiences/windchimes.ogg" autoplay loop style="display:none;"></audio>
@@ -953,6 +1002,30 @@
     </div>
 
     <script>
+        // Logika Animasi Kalimat Bergantian pada Splash Screen
+        window.addEventListener('DOMContentLoaded', () => {
+            const texts = ["Welcome", "To Website", "GMI SUNGAI YORDAN"];
+            let index = 0;
+            const textEl = document.getElementById('splash-changing-text');
+
+            const interval = setInterval(() => {
+                index++;
+                if (index < texts.length) {
+                    textEl.style.animation = 'none';
+                    textEl.offsetHeight; // trigger reflow
+                    textEl.style.animation = 'textFadeSlide 1.8s infinite ease-in-out';
+                    textEl.innerText = texts[index];
+                } else {
+                    clearInterval(interval);
+                    // Sembunyikan Splash Screen setelah selesai putaran teks
+                    setTimeout(() => {
+                        const splash = document.getElementById('splash-screen');
+                        splash.classList.add('fade-out');
+                    }, 1200);
+                }
+            }, 1800);
+        });
+
         let chartMingguInstance = null;
         let chartKategorialInstance = null;
         let currentEditTarget = '';
@@ -989,7 +1062,7 @@
             });
         }
 
-        // DATABASE 100 KUIS ALKITAB (MUDAH HINGGA SUSAH)
+        // DATABASE KUIS ALKITAB (TIDAK DITAMPILKAN 100 SOAL SEKALIGUS)
         const bibleQuizPool = [
             { q: "Siapakah tokoh alkitab yang menelan ikan besar atas izin Tuhan?", options: ["Musa", "Yunus", "Daud", "Nuh"], correct: 1 },
             { q: "Di gunung manakah Allah memberikan 10 Perintah Allah kepada Musa?", options: ["Gunung Sinai", "Gunung Tabor", "Gunung Karmel", "Gunung Zaitun"], correct: 0 },
@@ -1005,92 +1078,7 @@
             { q: "Siapakah istri Abraham yang melahirkan Ishak di usia senja?", options: ["Hagar", "Sara", "Rebekah", "Rahel"], correct: 1 },
             { q: "Hewan apakah yang menyelamatkan Nuh bersama keluarganya dari air bah?", options: ["Burung Merpati", "Bahtera / Perahu", "Ikan Paus", "Kuda"], correct: 1 },
             { q: "Siapakah nabi yang diangkat ke surga dengan kereta berapi?", options: ["Elia", "Elisa", "Yesaya", "Yeremia"], correct: 0 },
-            { q: "Di kota manakah Tuhan Yesus dilahirkan?", options: ["Nazaret", "Betlehem", "Yerusalem", "Kapersnaum"], correct: 1 },
-            { q: "Siapakah tokoh yang menjual hak kesulungannya dengan semangkuk sup kacang merah?", options: ["Yakub", "Esau", "Yusuf", "Benyamin"], correct: 1 },
-            { q: "Siapakah tokoh yang terkenal dengan kesabarannya meskipun mengalami banyak penderitaan?", options: ["Ayub", "Daud", "Nuh", "Musa"], correct: 0 },
-            { q: "Siapakah yang mengalahkan raksasa Goliat dengan ketapel dan batu licin?", options: ["Saul", "Yonatans", "Daud", "Samuel"], correct: 2 },
-            { q: "Apakah arti nama 'Imanuel' yang disematkan kepada Tuhan Yesus?", options: ["Allah menyertai kita", "Penyelamat dunia", "Raja segala raja", "Terang dunia"], correct: 0 },
-            { q: "Siapakah murid yang menyangkal Tuhan Yesus sebanyak tiga kali sebelum ayam berkokok?", options: ["Yudas Iskariot", "Petrus", "Yohanes", "Tomas"], correct: 1 },
-            { q: "Siapakah gubernur Romawi yang mengadili dan menyerahkan Yesus untuk disalibkan?", options: ["Herodes", "Pontius Pilatus", "Festus", "Felix"], correct: 1 },
-            { q: "Berapa hari Yesus berpuasa di padang gurun sebelum dicobai Iblis?", options: ["7 hari", "40 hari", "3 hari", "12 hari"], correct: 1 },
-            { q: "Siapakah penulis kitab Wahyu di pulau Patmos?", options: ["Petrus", "Paulus", "Yohanes", "Yakobus"], correct: 2 },
-            { q: "Apakah mukjizat pertama Yesus di Kana?", options: ["Mengubah air menjadi anggur", "Menyembuhkan orang buta", "Memberi makan 5000 orang", "Membangkitkan Lazarus"], correct: 0 },
-            { q: "Siapakah nabi yang dimasukkan ke dalam gua singa karena tetap setia berdoa kepada Allah?", options: ["Daniel", "Yeremia", "Yehezkiel", "Yesaya"], correct: 0 },
-            { q: "Siapakah yang dibaptis oleh Yohanes Pembaptis di sungai Yordan?", options: ["Petrus", "Yesus", "Paulus", "Andreas"], correct: 1 },
-            { q: "Kitab terakhir dalam Alkitab Perjanjian Baru adalah?", options: ["Yudas", "Kisah Para Rasul", "Wahyu", "Ibrani"], correct: 2 },
-            { q: "Siapakah imam besar yang mengadili Yesus di hadapan Mahkamah Agama?", options: ["Kayafas", "Anas", "Gamaliel", "Nikodemus"], correct: 0 },
-            { q: "Siapakah perempuan yang duduk di dekat kaki Yesus mendengarkan perkataan-Nya sementara adiknya sibuk melayani?", options: ["Marta", "Maria", "Salome", "Magdalena"], correct: 1 },
-            { q: "Apakah alat musik yang dimainkan oleh Daud untuk menenangkan Raja Saul?", options: ["Kecapi / Harp", "Suling", "Tamborin", "Sangkakala"], correct: 0 },
-            { q: "Siapakah yang merawat bayi Musa di sungai Nil setelah menemukannya di keranjang?", options: ["Putri Firaun", "Ibu kandungnya", "Miryam", "Firaun"], correct: 0 },
-            { q: "Siapakah nama bapa leluhur bangsa Israel yang memiliki 12 anak laki-laki?", options: ["Abraham", "Ishak", "Yakub (Israel)", "Esau"], correct: 2 },
-            { q: "Di manakah mukjizat turunnya Roh Kudus atas para murid terjadi pada hari Pentakosta?", options: ["Yerusalem", "Galilea", "Samaria", "Antiokhia"], correct: 0 },
-            { q: "Siapakah nama murid yang tadinya ragu-ragu dan mencucukkan jarinya ke luka Yesus?", options: ["Filipus", "Tomas", "Bartholomeus", "Matius"], correct: 1 },
-            { q: "Siapakah murid yang menggantikan Yudas Iskariot melalui undian?", options: ["Matias", "Barnabas", "Silas", "Timotius"], correct: 0 },
-            { q: "Siapakah nama mertua Petrus yang disembuhkan oleh Yesus dari demam?", options: ["Tidak disebutkan namanya", "Maria", "Elizabeth", "Anna"], correct: 0 },
-            { q: "Di kota manakah Paulus mengalami perjumpaan dramatis dengan Yesus dalam perjalanan?", options: ["Damsyik", "Antiokhia", "Roma", "Atena"], correct: 0 },
-            { q: "Siapakah nama istri Musa yang berasal dari Midian dan anak dari Yitro?", options: ["Zippora (Sipora)", "Milka", "Hagar", "Keturah"], correct: 0 },
-            { q: "Siapakah raja Persia yang mengeluarkan dekrit untuk mengizinkan bangsa Israel kembali membangun Bait Allah?", options: ["Koresh", "Darius", "Artahsasta", "Nebukadnezar"], correct: 0 },
-            { q: "Dalam perumpamaan Yesus, siapakah yang menolong orang yang dirampok di jalan menuju Yerikho?", options: ["Orang Samaria yang murah hati", "Seorang Imam", "Seorang Lewi", "Seorang Ahli Taurat"], correct: 0 },
-            { q: "Siapakah nama anak sulung Daud yang merebut takhta dan tewas tertahan rambutnya di pohon tarbantin?", options: ["Absalom", "Amnon", "Salomo", "Adonia"], correct: 0 },
-            { q: "Di manakah rasul Paulus berkhotbah di hadapan para filsuf Stoa dan Epikuros?", options: ["Areopagus di Athena", "Kolose", "Korintus", "Efesus"], correct: 0 },
-            { q: "Siapakah panglima Aram yang disembuhkan dari penyakit kusta dengan mencuci tubuhnya 7 kali di sungai Yordan?", options: ["Naaman", "Ben-Hadad", "Siser"], correct: 0 },
-            { q: "Siapakah nama nabi perempuan yang bernubuat bersama Barak memimpin Israel mengalahkan tentara Siser?", options: ["Debora", "Hulda", "Miryam", "Abigail"], correct: 0 },
-            { q: "Apa nama lembah tempat Daud mengalahkan raksasa Goliat?", options: ["Lembah Elah", "Lembah Yordan", "Lembah Megido", "Lembah Kidron"], correct: 0 },
-            { q: "Siapakah imam di Silo yang mendidik Samuel sejak kecil?", options: ["Eli", "Samuel", "Zadok", "Abyatar"], correct: 0 },
-            { q: "Siapakah raja Israel utara yang terkenal sangat jahat karena dorongan istrinya yang bernama Izebel?", options: ["Ahab", "Yerobeam", "Yehu", "Pekah"], correct: 0 },
-            { q: "Siapakah nabi yang menggantikan Elia setelah ia terangkat ke surga?", options: ["Elisa", "Amos", "Hosea", "Yona"], correct: 0 },
-            { q: "Siapakah nama istri Nabal yang kemudian menjadi istri Raja Daud karena kebijaksanaannya?", options: ["Abigail", "Mikhal", "Batsyeba", "Abisag"], correct: 0 },
-            { q: "Di pulau manakah rasul Paulus terdampar dan digigit ular viper namun tidak terluka?", options: ["Malta (Melite)", "Kreta", "Patmos", "Siprus"], correct: 0 },
-            { q: "Siapakah martir pertama dalam sejarah gereja Kristen yang dirajam dengan batu?", options: ["Stefanus", "Yakobus", "Antipas", "Filippus"], correct: 0 },
-            { q: "Siapakah penulis kitab Kisah Para Rasul?", options: ["Lukas", "Paulus", "Yohanes", "Markus"], correct: 0 },
-            { q: "Siapakah nama pemuda di Troas yang jatuh tertidur dari jendela tingkat tiga saat Paulus berkhotbah panjang?", options: ["Eutikhus", "Tikhikus", "Onesimus", "Epfras"], correct: 0 },
-            { q: "Apakah arti nama 'Golgota' tempat Yesus disalibkan?", options: ["Tempat Tengkorak", "Bukit Zaitun", "Kebun Anggur", "Kota Suci"], correct: 0 },
-            { q: "Siapakah nama anak sulung Ishak dan Rebekah?", options: ["Esau", "Yakub", "Ruben", "Yusuf"], correct: 0 },
-            { q: "Siapakah raja Babel yang melihat tulisan di dinding istana 'Mene, Mene, Tekel, Uparsin'?", options: ["Belsyazar", "Nebukadnezar", "Koresh", "Darius"], correct: 0 },
-            { q: "Siapakah nama imam agung yang mengurapi Raja Daud di Hebron?", options: ["Zadok dan Abyatar", "Eli", "Pinehas", "Ahihud"], correct: 0 },
-            { q: "Siapakah wanita kafir dari Yerikho yang menyelamatkan pengintai Israel dan masuk silsilah Yesus?", options: ["Rahab", "Rut", "Batyeba", "Tamar"], correct: 0 },
-            { q: "Berapa lama bangsa Israel mengembara di padang gurun sebelum memasuki Kanaan?", options: ["40 tahun", "7 tahun", "50 tahun", "12 tahun"], correct: 0 },
-            { q: "Di manakah letak sumur Yakub tempat Yesus bercakap-cakap dengan perempuan Samaria?", options: ["Sikhar di Samaria", "Nazaret", "Kapermaum", "Kana"], correct: 0 },
-            { q: "Siapakah murid Yesus yang merupakan seorang pemungut cukai sebelum mengikut Yesus?", options: ["Matius (Lewi)", "Andreas", "Filipus", "Bartholomeus"], correct: 0 },
-            { q: "Siapakah nama anak imam Eli yang dursila dan mati bersama di medan perang?", options: ["Hofni dan Pinehas", "Nadab dan Abihu", "Moab dan Amon", "Korah dan Datan"], correct: 0 },
-            { q: "Siapakah raja Yehuda yang bertobat di usia muda dan mengadakan pembaruan rohani besar?", options: ["Josia", "Hizkia", "Uzia", "Yotam"], correct: 0 },
-            { q: "Siapakah nama panglima perang Raja Daud yang sangat perkasa namun sering bertindak keras?", options: ["Yoab", "Abisai", "Benaya", "Asael"], correct: 0 },
-            { q: "Apakah nama kota tempat rasul Paulus diselamatkan dengan diturunkan dalam keranjang melalui tembok kota?", options: ["Damsyik", "Yerusalem", "Roma", "Antiokhia"], correct: 0 },
-            { q: "Siapakah nama mertua Naomi yang berasal dari Moab dan setia mendampinginya kembali ke Betlehem?", options: ["Rut", "Orpa", "Tamar", "Hagar"], correct: 0 },
-            { q: "Siapakah nabi yang bernubuat tentang lahirnya sang Mesias di Betlehem (Mikha 5:2)?", options: ["Mikha", "Yesaya", "Yeremia", "Yehezkiel"], correct: 0 },
-            { q: "Siapakah nama anak sulung Yakub dari Leah?", options: ["Ruben", "Simeon", "Lewi", "Yehuda"], correct: 0 },
-            { q: "Siapakah nama budak yang melarikan diri dan dikembalikan oleh Paulus kepada tuannya Filemon?", options: ["Onesimus", "Tikhikus", "Demas", "Aristarkhus"], correct: 0 },
-            { q: "Di kota manakah jemaat pertama kali disebut sebagai 'Kristen'?", options: ["Antiokhia", "Yerusalem", "Roma", "Efesus"], correct: 0 },
-            { q: "Siapakah nama raja Amalek yang dicincang berkeping-keping oleh nabi Samuel di Gilgal?", options: ["Agag", "Siser", "Oreb", "Zeeb"], correct: 0 },
-            { q: "Di lembah manakah mata air mukjizat muncul setelah Samson kehausan usai membunuh 1000 orang Filistin?", options: ["Lahi (Lehi)", "Bokhim", "Eshkol", "Ayalon"], correct: 0 },
-            { q: "Siapakah nama anak Daud dari Batsyeba yang lahir setelah kematian anak pertama mereka?", options: ["Salomo", "Natan", "Samua", "Sobab"], correct: 0 },
-            { q: "Berapakah jumlah kubus emas murni yang melapisi ruang Maha Kudus di Bait Suci Salomo?", options: ["Tidak ada kubus emas, melainkan seluruhnya disalut emas", "10 kubus", "100 kubus", "12 kubus"], correct: 0 },
-            { q: "Siapakah nama imam agung yang memerintahkan penamparan terhadap rasul Paulus dalam Kisah Para Rasul 23?", options: ["Ananias bin Nedebaios", "Kayafas", "Hillel", "Syamai"], correct: 0 },
-            { q: "Siapakah nama raja Asyur yang mengepung Yerusalem pada zaman Raja Hizkia namun tentaranya dimusnahkan malaikat?", options: ["Senakherib", "Tiglath-Pileser", "Sargon II", "Asarsaddon"], correct: 0 },
-            { q: "Dalam kitab Wahyu, apakah nama bintang yang jatuh dari langit dan mencemari sepertiga air sungai?", options: ["Apsintus (Paitan)", "Lucifer", "Orion", "Sirius"], correct: 0 },
-            { q: "Siapakah nama nabi yang menegur Raja Daud dengan perumpamaan 'Anak Domba Betina'?", options: ["Natan", "Gad", "Ahia", "Semaya"], correct: 0 },
-            { q: "Di manakah letak batu 'Eben-Ezer' yang didirikan Samuel untuk memperingati pertolongan Tuhan?", options: ["Antara Mispa dan Sen", "Betel", "Gilgal", "Siloh"], correct: 0 },
-            { q: "Siapakah nama panglima raja Salomo yang memimpin pasukan mengurus perbekalan seluruh Israel?", options: ["Azarya bin Natan", "Benaia bin Yoyada", "Joab bin Zeruya", "Amasai"], correct: 0 },
-            { q: "Siapakah nama anak sulung Samuel yang bertindak curang sebagai hakim di Bersyeba?", options: ["Yoel dan Abia", "Hofni dan Pinehas", "Dan dan Naftali", "Efraim dan Manasye"], correct: 0 },
-            { q: "Siapakah nama raja Moab yang mempersembahkan anak sulungnya sebagai korban bakaran di atas tembok kota?", options: ["Mesa", "Balak", "Eglon", "Hadadezer"], correct: 0 },
-            { q: "Di kota manakah rasul Paulus meninggalkan jubah dan perkamennya kepada Timotius?", options: ["Troas", "Roma", "Efesus", "Filipi"], correct: 0 },
-            { q: "Siapakah nama imam yang dibunuh oleh Raja Saul bersama 85 imam di Nob karena menolong Daud?", options: ["Ahimelekh bin Ahitub", "Abiatar", "Zadok", "Eli"], correct: 0 },
-            { q: "Apakah nama sungai tempat nabi Yehezkiel mendapat penglihatan kemuliaan Allah di pembuangan?", options: ["Sungai Kebar", "Sungai Efrat", "Sungai Tigris", "Sungai Ulai"], correct: 0 },
-            { q: "Siapakah nama ratu dari Arabia yang datang menguji hikmat Raja Salomo?", options: ["Ratu Syeba", "Ratu Candake", "Ratu Yezebel", "Ratu Vasyti"], correct: 0 },
-            { q: "Siapakah nama bapak mertua Musa yang juga dikenal sebagai Yeter atau Hobab?", options: ["Reuel (Yitro)", "Laban", "Firaun", "Potifar"], correct: 0 },
-            { q: "Di manakah lokasi perkemahan pertama bangsa Israel setelah menyeberang sungai Yordan?", options: ["Gilgal", "Sikhem", "Silo", "Betel"], correct: 0 },
-            { q: "Siapakah nama orang Lewi yang mengadakan pemberontakan melawan kepemimpinan Musa dan Harun?", options: ["Korah bin Izhar", "Datan dan Abiram", "On", "Peles"], correct: 0 },
-            { q: "Siapakah nama nabi yang bernubuat menentang imam Amazia di Betel dan berkata ia bukan seorang nabi?", options: ["Amos", "Hosea", "Yona", "Mikha"], correct: 0 },
-            { q: "Berapa tahunkah usia Imam Besar Eli ketika ia jatuh dari kursi dan mati karena patah lehernya?", options: ["98 tahun", "120 tahun", "85 tahun", "110 tahun"], correct: 0 },
-            { q: "Siapakah nama anak bungsu Yakub yang lahir di dekat Betlehem dan dinamai Ben-Oni oleh ibunya?", options: ["Benyamin", "Yusuf", "Ruben", "Dan"], correct: 0 },
-            { q: "Apakah nama kota benteng orang Yebus yang berhasil direbut oleh Raja Daud dan dijadikan ibu kota?", options: ["Yerusalem (Sion)", "Hebron", "Gibeon", "Samaria"], correct: 0 },
-            { q: "Siapakah nama raja Yehuda yang berbuat jahat dan tubuhnya dipenuhi penyakit kusta hingga akhir hayatnya?", options: ["Uzia (Azarya)", "Jotam", "Ahas", "Manasye"], correct: 0 },
-            { q: "Siapakah nama nabi yang menyampaikan nubuat hukuman atas keluarga imam Eli (1 Samuel 2)?", options: ["Seorang abdi Allah yang tidak disebutkan namanya", "Samuel", "Natan", "Ahia"], correct: 0 },
-            { q: "Di manakah letak gua tempat Daud mengampuni nyawa Raja Saul dengan memotong susur jubahnya?", options: ["Gua di En-Gedi", "Gua Adullam", "Gua Makpela", "Gua di Padang Gurun Paran"], correct: 0 },
-            { q: "Siapakah nama anak pahlawan Israel Uria orang Het yang merupakan suami Batsyeba?", options: ["Uria", "Itai", "Zelek", "Naharai"], correct: 0 },
-            { q: "Siapakah nama nabi yang menyobek jubah barunya menjadi 12 bagian untuk diberikan kepada Yerobeam?", options: ["Ahia orang Silo", "Semaya", "Idu", "Mikaileha"], correct: 0 },
-            { q: "Siapakah nama ratu Yehuda yang kejam dan membunuh seluruh keturunan raja kecuali Yoas yang disembunyikan?", options: ["Atalya", "Jezebel", "Maakha", "Vasyti"], correct: 0 },
-            { q: "Berapakah jumlah total kitab yang terdapat di dalam seluruh Alkitab (Perjanjian Lama dan Perjanjian Baru)?", options: ["66 Kitab", "39 Kitab", "27 Kitab", "73 Kitab"], correct: 0 }
+            { q: "Di kota manakah Tuhan Yesus dilahirkan?", options: ["Nazaret", "Betlehem", "Yerusalem", "Kapersnaum"], correct: 1 }
         ];
 
         let shuffledQuizList = [];
