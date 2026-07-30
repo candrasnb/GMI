@@ -62,7 +62,7 @@
                 radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
         }
 
-        /* Splash Screen / Loading Animasi (Zoom dari kecil ke besar & sangat cepat/smooth) */
+        /* Splash Screen / Loading Animasi */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #050811; z-index: 99999; display: flex; flex-direction: column;
@@ -70,31 +70,56 @@
         }
         #splash-screen.fade-out { opacity: 0; visibility: hidden; }
 
-        @keyframes logoZoomIn {
-            0% { transform: scale(0.6); opacity: 0; filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.2)); }
-            60% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.6)); }
-            100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.4)); }
+        /* Animasi Cahaya Berjalan Melingkari Logo */
+        @keyframes borderLightSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .splash-logo-wrapper {
+            position: relative; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
+        }
+
+        .splash-logo-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 60%, var(--accent-gold) 80%, var(--accent-cyan) 100%);
+            animation: borderLightSpin 1.2s linear infinite;
+            z-index: 1;
+        }
+
+        .splash-logo-inner {
+            position: absolute;
+            inset: 3px;
+            background: #050811;
+            border-radius: 50%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .splash-logo {
-            width: 110px; height: auto; object-fit: contain; margin-bottom: 25px;
-            animation: logoZoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; mix-blend-mode: screen;
+            width: 85px; height: auto; object-fit: contain; z-index: 3; mix-blend-mode: screen;
         }
 
-        @keyframes textZoomIn {
-            0% { transform: scale(0.5); opacity: 0; filter: blur(4px); }
+        /* Animasi Zoom Out untuk Tulisan */
+        @keyframes textZoomOut {
+            0% { transform: scale(1.6); opacity: 0; filter: blur(6px); }
             100% { transform: scale(1); opacity: 1; filter: blur(0); }
         }
 
         .splash-text-container {
-            height: 40px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+            height: 50px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0 15px;
         }
 
         .splash-text {
-            font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
+            font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
             background: linear-gradient(135deg, var(--accent-gold), #fef08a, var(--accent-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-align: center; letter-spacing: 1px; animation: textZoomIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            text-align: center; letter-spacing: 1px; animation: textZoomOut 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         header {
@@ -330,11 +355,15 @@
 </head>
 <body>
 
-    <!-- SPLASH SCREEN / LOADING ANIMASI (WELCOME ZOOM DARI KECIL KE BESAR) -->
+    <!-- SPLASH SCREEN / LOADING ANIMASI (CAHAYA MELINGKAR & TEKS ZOOM OUT BERGANTIAN) -->
     <div id="splash-screen">
-        <img class="splash-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
+        <div class="splash-logo-wrapper">
+            <div class="splash-logo-inner">
+                <img class="splash-logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
+            </div>
+        </div>
         <div class="splash-text-container">
-            <div class="splash-text">WELCOME</div>
+            <div id="splash-changing-text" class="splash-text">WELCOME</div>
         </div>
     </div>
 
@@ -1000,11 +1029,27 @@
     </div>
 
     <script>
-        // Logika Splash Screen: Tulisan "WELCOME" langsung zoom dari kecil ke besar dengan sangat cepat & smooth
+        // Logika Splash Screen: Menampilkan urutan teks bergantian dengan animasi zoom out dan logo bercahaya melingkar
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.classList.add('fade-out');
+            const texts = ["WELCOME", "TO WEBSITE", "GMI SUNGAI YORDAN", "GOD BLESS YOU"];
+            let index = 0;
+            const textEl = document.getElementById('splash-changing-text');
+            const totalItems = texts.length;
+
+            const interval = setInterval(() => {
+                index++;
+                if (index < totalItems) {
+                    textEl.style.animation = 'none';
+                    textEl.offsetHeight; // trigger reflow
+                    textEl.style.animation = 'textZoomOut 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+                    textEl.innerText = texts[index];
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        const splash = document.getElementById('splash-screen');
+                        splash.classList.add('fade-out');
+                    }, 400);
+                }
             }, 900);
         });
 
