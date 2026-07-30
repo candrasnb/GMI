@@ -1002,22 +1002,23 @@
     </div>
 
     <script>
-        // Logika Animasi Kalimat Bergantian pada Splash Screen
+        // Logika Animasi Kalimat Bergantian pada Splash Screen (Hanya berjalan 1 putaran penuh lalu hilang)
         window.addEventListener('DOMContentLoaded', () => {
-            const texts = ["Welcome", "To Website", "GMI SUNGAI YORDAN"];
+            const texts = ["Welcome", "To Website", "GMI SUNGAI YORDAN", "GOD BLESS YOU"];
             let index = 0;
             const textEl = document.getElementById('splash-changing-text');
+            const totalItems = texts.length;
 
             const interval = setInterval(() => {
                 index++;
-                if (index < texts.length) {
+                if (index < totalItems) {
                     textEl.style.animation = 'none';
                     textEl.offsetHeight; // trigger reflow
-                    textEl.style.animation = 'textFadeSlide 1.8s infinite ease-in-out';
+                    textEl.style.animation = 'textFadeSlide 1.8s ease-in-out';
                     textEl.innerText = texts[index];
                 } else {
                     clearInterval(interval);
-                    // Sembunyikan Splash Screen setelah selesai putaran teks
+                    // Sembunyikan Splash Screen setelah teks terakhir selesai tampil
                     setTimeout(() => {
                         const splash = document.getElementById('splash-screen');
                         splash.classList.add('fade-out');
@@ -1032,7 +1033,7 @@
         let currentFormType = '';
         let currentFilterMode = 'week';
 
-        // DATABASE 365 AYAT EMAS ALKITAB (TANPA KETERANGAN HARI KE-)
+        // DATABASE 365 AYAT EMAS ALKITAB
         const dailyVersesList = [
             { text: "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.", ref: "Filipi 4:13" },
             { text: "TUHAN adalah gembalaku, takkan kekurangan aku.", ref: "Mazmur 23:1" },
@@ -1062,7 +1063,7 @@
             });
         }
 
-        // DATABASE KUIS ALKITAB (TIDAK DITAMPILKAN 100 SOAL SEKALIGUS)
+        // DATABASE KUIS ALKITAB
         const bibleQuizPool = [
             { q: "Siapakah tokoh alkitab yang menelan ikan besar atas izin Tuhan?", options: ["Musa", "Yunus", "Daud", "Nuh"], correct: 1 },
             { q: "Di gunung manakah Allah memberikan 10 Perintah Allah kepada Musa?", options: ["Gunung Sinai", "Gunung Tabor", "Gunung Karmel", "Gunung Zaitun"], correct: 0 },
