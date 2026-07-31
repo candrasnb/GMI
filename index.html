@@ -193,7 +193,6 @@
         .carousel-title { font-size: 0.95rem; font-weight: 700; color: #fff; line-height: 1.3; }
         .carousel-date { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
 
-        /* Warta Styles Mobile Optimized with Contrast Separation */
         .warta-main-title {
             font-family: 'Playfair Display', serif; 
             font-size: 1.05rem; 
@@ -251,7 +250,6 @@
         .category-list a:hover { color: var(--accent-gold); }
         .category-list span { font-size: 0.65rem; color: var(--text-muted); background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 8px; }
         
-        /* Admin Edit Buttons Styling */
         .btn-edit-card {
             display: none !important; position: absolute; top: 10px; right: 10px; background: var(--accent-gold); color: #000;
             border: none; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; cursor: pointer; z-index: 20;
@@ -884,7 +882,7 @@
             <span class="close-modal" onclick="closeModal('formModal')">&times;</span>
             <h3 id="formModalTitle" style="color:var(--accent-gold); margin-bottom:12px; font-size:1.1rem;"><i class="fa-solid fa-file-lines"></i> Form Layanan</h3>
             <div id="formModalBody"></div>
-            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-brands fa-whatsapp"></i> SUBMIT</button>
+            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-brands fa-whatsapp"></i> KIRIM PESAN WHATSAPP</button>
         </div>
     </div>
 
@@ -948,6 +946,7 @@
         let chartKategorialInstance = null;
         let currentEditingType = '';
         let currentEditingKey = '';
+        let currentFormType = '';
 
         const dailyVersesList = [
             { text: "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.", ref: "Filipi 4:13" },
@@ -994,7 +993,6 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
-        // Helper Image Compressor to Base64 under 100KB
         function compressImageFile(fileInputId, callback) {
             const fileInput = document.getElementById(fileInputId);
             if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
@@ -1157,7 +1155,6 @@
             }
             document.getElementById('stat-total').innerText = totalJemaatCalc;
 
-            // Apply homeStore
             document.getElementById('car-title').innerText = homeDataStore.wartaTitle;
             document.getElementById('car-date').innerText = homeDataStore.wartaDate;
             if(homeDataStore.wartaImg) document.getElementById('car-img').src = homeDataStore.wartaImg;
@@ -1171,7 +1168,6 @@
             if(homeDataStore.liveUrl) document.getElementById('liveIframe').src = homeDataStore.liveUrl;
         }
 
-        // --- ADMIN EDIT LOGIC ---
         function openEditModal(type) {
             currentEditingType = type;
             let title = "", bodyHTML = "";
@@ -1330,7 +1326,26 @@
             let nama = document.getElementById('formNama').value || "Jemaat";
             let wa = document.getElementById('formWa').value || "-";
             let isi = document.getElementById('formIsi') ? document.getElementById('formIsi').value : "-";
-            let url = `https://api.whatsapp.com/send?phone=6285269607373&text=${encodeURIComponent(`Shalom, saya ${nama} (${wa}), ingin mengajukan permohonan: ${isi}`)}`;
+            let targetPhone = "";
+            let pesanTeks = "";
+
+            if (currentFormType === 'doa') {
+                targetPhone = "6285269607373"; // WhatsApp Bapak Pendeta
+                pesanTeks = `Shalom Bapak Pendeta,\n\nPerkenankan saya menyampaikan permohonan dukungan doa:\n\n*Nama:* ${nama}\n*No. WhatsApp:* ${wa}\n*Pokok Doa:* ${isi}\n\nAtas dukungan dan doa Bapak Pendeta, kami ucapkan terima kasih. Tuhan Yesus memberkati pelayanan Bapak. 🙏`;
+            } else if (currentFormType === 'konseling') {
+                targetPhone = "6285269607373"; // WhatsApp Bapak Pendeta
+                let waktu = document.getElementById('formWaktu') ? document.getElementById('formWaktu').value : "-";
+                pesanTeks = `Shalom Bapak Pendeta,\n\nSaya bermaksud untuk mengajukan permohonan jadwal konseling pastoral dengan detail berikut:\n\n*Nama:* ${nama}\n*No. WhatsApp:* ${wa}\n*Topik:* ${isi}\n*Rencana Waktu:* ${waktu}\n\nMohon perkenan waktu dari Bapak Pendeta. Terima kasih, Tuhan Yesus memberkati. ✨`;
+            } else if (currentFormType === 'bunga') {
+                targetPhone = "6281311327715"; // WhatsApp Sekretariat Gereja
+                let tgl = document.getElementById('formTanggal') ? document.getElementById('formTanggal').value : "-";
+                pesanTeks = `Shalom Tim Sekretariat GMI Sungai Yordan,\n\nBerikut saya sampaikan pendaftaran/konfirmasi pelayanan Bunga Mimbar:\n\n*Nama/Keluarga:* ${nama}\n*No. WhatsApp:* ${wa}\n*Tanggal Pelaksanaan:* ${tgl}\n*Keterangan/Ucapan Syukur:* ${isi}\n\nMohon pencatatannya. Terima kasih dan Tuhan Yesus memberkati pelayanan kita. 🌸`;
+            } else if (currentFormType === 'update_data') {
+                targetPhone = "6281311327715"; // WhatsApp Sekretariat Gereja
+                pesanTeks = `Shalom Tim Sekretariat GMI Sungai Yordan,\n\nBerikut saya sampaikan pembaruan data jemaat:\n\n*Nama Kepala Keluarga:* ${nama}\n*No. WhatsApp:* ${wa}\n*Detail Perubahan:* ${isi}\n\nMohon bantuannya untuk pembaruan data di database gereja. Terima kasih, Tuhan Yesus memberkati. 📋`;
+            }
+
+            let url = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(pesanTeks)}`;
             window.open(url, '_blank');
             closeModal('formModal');
         }
