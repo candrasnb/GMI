@@ -1022,13 +1022,21 @@
 
                     let quality = 0.7;
                     let dataUrl = canvas.toDataURL('image/jpeg', quality);
-                    while (dataUrl.length > 100000 && quality > 0.1) {
+                    while (dataUrl.length > 102400 && quality > 0.1) {
                         quality -= 0.1;
                         dataUrl = canvas.toDataURL('image/jpeg', quality);
                     }
                     callback(dataUrl);
                 };
+                img.onerror = function() {
+                    alert("Gagal memuat file gambar.");
+                    callback(null);
+                };
                 img.src = e.target.result;
+            };
+            reader.onerror = function() {
+                alert("Gagal membaca file.");
+                callback(null);
             };
             reader.readAsDataURL(file);
         }
@@ -1136,14 +1144,12 @@
         }
 
         async function saveToFirebase() {
-            try {
-                const docRef = window.doc(window.db, "portalData", "gmi_content");
-                await window.setDoc(docRef, {
-                    katStore: kategorialStore,
-                    homeStore: homeDataStore,
-                    chartStore: chartDataStore
-                });
-            } catch (e) { console.log("Save offline fallback"); }
+            const docRef = window.doc(window.db, "portalData", "gmi_content");
+            await window.setDoc(docRef, {
+                katStore: kategorialStore,
+                homeStore: homeDataStore,
+                chartStore: chartDataStore
+            });
         }
 
         function applyDataToDOM() {
@@ -1276,11 +1282,16 @@
         }
 
         async function finalizeSave() {
-            applyDataToDOM();
-            updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
-            await saveToFirebase();
-            closeModal('adminEditModal');
-            alert("Perubahan berhasil disimpan!");
+            try {
+                applyDataToDOM();
+                updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
+                await saveToFirebase();
+                closeModal('adminEditModal');
+                alert("Perubahan dan gambar berhasil disimpan ke Firebase! 🎉");
+            } catch (error) {
+                console.error("Gagal menyimpan ke Firebase:", error);
+                alert("Gagal menyimpan ke database. Ukuran data mungkin terlalu besar atau koneksi terputus.");
+            }
         }
 
         function openFormModal(type) {
