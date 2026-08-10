@@ -142,7 +142,7 @@
 
         .hero-logo-img { 
             height: 100px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 12px; 
-            background: transparent; mix-blend-mode: screen; border: none;
+            background: transparent; border: none;
             animation: leftFlameSubtle 3s infinite ease-in-out;
         }
 
@@ -390,9 +390,12 @@
 
     <section class="hero">
         <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Portal Resmi Jemaat</div>
+        
+        <!-- LOGO DIPERBAIKI (TIDAK RUSAK) -->
         <img id="main-logo-img" class="hero-logo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png" alt="Logo GMI Sungai Yordan">
+        
         <h1>GMI Sungai Yordan <br><span>Bekasi</span></h1>
-        <p id="txt-hero-desc">Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members + 17.000 MetamorfoSELF (Efesus 4:11-16).</p>
+        <p id="txt-hero-desc">Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members +17.000</p>
 
         <div style="position: relative; display: inline-block; margin-bottom: 8px;">
             <button class="btn-hero-live" onclick="openLiveModal()"><i class="fa-solid fa-circle-play"></i> Tonton Live Streaming</button>
@@ -424,6 +427,7 @@
         <main>
             <div id="sec-home" class="page-sec active">
                 
+                <!-- BANNER 1: TATA IBADAH (SESUAI WARTA 9 AGUSTUS 2026) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-tata-ibadah')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('tata_ibadah')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -432,11 +436,12 @@
                     </div>
                     <div class="card-banner-box">
                         <img id="banner-tata-img" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800" class="card-banner-img" alt="Tata Ibadah KU">
-                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> LITURGI MINGGU RESMI</span></div>
+                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> MINGGU, 9 AGUSTUS 2026 | MINGGU KESEBELAS SESUDAH PENTAKOSTA</span></div>
                     </div>
                     <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-tata">Klik untuk membaca susunan Tata Ibadah Kebaktian Umum I dan Kebaktian Umum II secara lengkap...</p>
                 </div>
 
+                <!-- BANNER 2: WARTA JEMAAT (SESUAI WARTA 9 AGUSTUS 2026) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-warta')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('warta')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -447,13 +452,14 @@
                         <img id="car-img" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800" class="carousel-img" alt="Warta Jemaat">
                         <div class="carousel-overlay">
                             <span id="car-tag" class="carousel-tag">Warta Resmi</span>
-                            <div id="car-title" class="carousel-title">Minggu Kesepuluh Sesudah Pentakosta & Bulan P2MI</div>
-                            <div id="car-date" class="carousel-date">Minggu, 2 Agustus 2026</div>
+                            <div id="car-title" class="carousel-title">Minggu Kesebelas Sesudah Pentakosta & Bulan P2MI</div>
+                            <div id="car-date" class="carousel-date">Minggu, 9 Agustus 2026 | No: 32/GMI-SY</div>
                         </div>
                     </div>
                     <p style="font-size:0.78rem; color:var(--text-muted); text-align:justify;">Klik untuk membaca ringkasan warta jemaat dan jadwal kegiatan sepekan...</p>
                 </div>
 
+                <!-- BANNER 3: JADWAL IBADAH UMUM (SESUAI WARTA 16 AGUSTUS 2026) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('sec-jadwal')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('jadwal')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -462,11 +468,12 @@
                     </div>
                     <div class="card-banner-box">
                         <img id="banner-alkitab-img" src="https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800" class="card-banner-img" alt="Tata Ibadah Minggu">
-                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-bookmark"></i> MINGGU, 9 AGUSTUS 2026</span></div>
+                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-bookmark"></i> MINGGU, 16 AGUSTUS 2026 | PELAYAN KU 1 & KU 2</span></div>
                     </div>
-                    <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-alkitab">Jadwal Pelayan Ibadah KU 1 & KU 2 serta Baptisan Kudus Anak...</p>
+                    <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-alkitab">Jadwal Pelayan Ibadah KU 1 & KU 2...</p>
                 </div>
 
+                <!-- BANNER 4: POKOK DOA SYAFAAT (SESUAI WARTA 9 AGUSTUS 2026) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-doa')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('doa')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -475,11 +482,12 @@
                     </div>
                     <div class="card-banner-box">
                         <img id="banner-doa-img" src="https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800" class="card-banner-img" alt="Pokok Doa Syafaat">
-                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-heart-pulse"></i> DUKUNGAN DOA JEMAAT</span></div>
+                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-heart-pulse"></i> MINGGU KESEBELAS SESUDAH PENTAKOSTA</span></div>
                     </div>
                     <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-doa">Mendoakan Bangsa, Negara, Program P2MI, serta jemaat yang sakit dan pemulihan...</p>
                 </div>
 
+                <!-- BANNER 5: BACAAN ALKITAB HARIAN (SESUAI PERIODE WARTA 9 - 15 AGUSTUS 2026) -->
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-renungan')">
                     <button class="btn-edit-card" onclick="event.stopPropagation(); openEditModal('renungan')"><i class="fa-solid fa-pen"></i> Edit</button>
                     <div class="section-header">
@@ -488,9 +496,9 @@
                     </div>
                     <div class="card-banner-box">
                         <img id="banner-renungan-img" src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800" class="card-banner-img" alt="Bacaan Alkitab Harian">
-                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> JADWAL BACAAN SEPEKAN</span></div>
+                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> PERIODE 9 AGUSTUS - 15 AGUSTUS 2026</span></div>
                     </div>
-                    <h3 id="ren-judul-preview" style="font-size:0.95rem; color:#fff; margin-bottom:3px;">Bacaan Alkitab 2 Agustus - 8 Agustus 2026</h3>
+                    <h3 id="ren-judul-preview" style="font-size:0.95rem; color:#fff; margin-bottom:3px;">Bacaan Alkitab 9 Agustus - 15 Agustus 2026</h3>
                     <p id="ren-ayat-preview" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; text-align:justify;">Klik untuk melihat tabel lengkap bacaan pagi dan malam</p>
                 </div>
 
@@ -533,21 +541,19 @@
                     <h2 style="font-family:'Playfair Display', serif; color:var(--accent-gold); font-size:1.15rem; margin-bottom:4px; text-align:center; background:rgba(245,158,11,0.1); padding:8px; border-radius:8px;">TATA IBADAH KEBAKTIAN UMUM I</h2>
                     <div style="margin-top: 12px; margin-bottom: 25px;">
                         <div class="warta-content-text"><span><strong>01. PRELUDIUM:</strong> Saat Teduh</span></div>
-                        <div class="warta-content-text"><span><strong>02. PANGGILAN BERBAKTI:</strong> Mazmur 9:2-3<br><em>❖ VOTUM:</em> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.</span><span class="liturgi-badge-b">(B)</span></div>
+                        <div class="warta-content-text"><span><strong>02. PANGGILAN BERBAKTI:</strong> Lukas 1:46-47<br><em>❖ VOTUM:</em> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.</span><span class="liturgi-badge-b">(B)</span></div>
                         <div class="warta-content-text"><span><strong>03. DOA PEMBUKAAN:</strong> Liturgis</span></div>
-                        <div class="warta-content-text"><span><strong>04. PUJIAN:</strong><br>• "Kudaki Jalan Mulia"<br>• "Allah Sanggup"</span></div>
+                        <div class="warta-content-text"><span><strong>04. PUJIAN:</strong><br>• "Ku Kasihi Kau Dengan Kasih Tuhan"<br>• "Bertemu Dalam KasihNya"</span></div>
                         <div class="warta-content-text"><span><strong>05. PENGAKUAN IMAN RASULI</strong></span></div>
-                        <div class="warta-content-text"><span><strong>06. PUJIAN:</strong><br>• "Bapa Engkau Sungguh Baik"<br>• "Bapa Kau Setia"</span></div>
-                        <div class="warta-content-text"><span><strong>07. DOA SYAFAAT:</strong> Pdt. David Hutagalung</span></div>
-                        <div class="warta-content-text"><span><strong>08. KHOTBAH:</strong> Pdt. David Hutagalung</span></div>
-                        <div class="warta-content-text"><span><strong>09. PERSEMBAHAN:</strong><br><em>❖ PUJIAN:</em> "Ikut Dikau Saja Tuhan"<br><em>❖ DOA PERSEMBAHAN</em></span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>10. SAKRAMEN PERJAMUAN KUDUS</strong></span></div>
-                        <div class="warta-content-text"><span><strong>11. DOA BAPA KAMI</strong></span></div>
-                        <div class="warta-content-text"><span><strong>12. DOXOLOGY</strong></span></div>
-                        <div class="warta-content-text"><span><strong>13. BERKAT</strong></span></div>
-                        <div class="warta-content-text"><span><strong>14. AMIN... AMIN... AMIN</strong></span></div>
-                        <div class="warta-content-text"><span><strong>15. POSTLUDIUM:</strong> Jemaat Dalam Saat Teduh</span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>16. WARTA JEMAAT</strong></span></div>
+                        <div class="warta-content-text"><span><strong>06. PUJIAN:</strong><br>• "Tenanglah Kini Hatiku"<br>• "Bila Ku Lihat Bintang Gemerlapan"</span></div>
+                        <div class="warta-content-text"><span><strong>07. DOA SYAFAAT:</strong> Pdt. Saut Rajagukguk</span></div>
+                        <div class="warta-content-text"><span><strong>08. KHOTBAH:</strong> Pdt. Saut Rajagukguk</span></div>
+                        <div class="warta-content-text"><span><strong>09. PERSEMBAHAN:</strong><br><em>❖ PUJIAN:</em> "KasihNya Seperti Sungai Di Hati Ku"<br><em>❖ DOA PERSEMBAHAN</em></span><span class="liturgi-badge-b">(B)</span></div>
+                        <div class="warta-content-text"><span><strong>10. DOA BAPA KAMI</strong></span></div>
+                        <div class="warta-content-text"><span><strong>11. BERKAT</strong></span></div>
+                        <div class="warta-content-text"><span><strong>12. PUJIAN:</strong> "Kami Memuji KebesaranMu"</span></div>
+                        <div class="warta-content-text"><span><strong>13. POSTLUDIUM:</strong> Jemaat Dalam Saat Teduh</span><span class="liturgi-badge-d">(D)</span></div>
+                        <div class="warta-content-text"><span><strong>14. WARTA JEMAAT</strong></span></div>
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid var(--border-gold); margin: 25px 0;">
@@ -556,27 +562,28 @@
                     <h2 style="font-family:'Playfair Display', serif; color:var(--accent-cyan); font-size:1.15rem; margin-bottom:4px; text-align:center; background:rgba(56,189,248,0.1); padding:8px; border-radius:8px;">TATA IBADAH KEBAKTIAN UMUM II</h2>
                     <div style="margin-top: 12px;">
                         <div class="warta-content-text"><span><strong>01. PRELUDIUM:</strong> Jemaat Dalam Saat Teduh</span></div>
-                        <div class="warta-content-text"><span><strong>02. BERNYANYI:</strong> NRM No. 37:1-4 "Tuhan Allah Hadir"</span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>03. PANGGILAN BERBAKTI:</strong> Mazmur 9:2-3<br><em>❖ VOTUM:</em> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.</span></div>
+                        <div class="warta-content-text"><span><strong>02. BERNYANYI:</strong> NRM No. 25: 1-3 "Sekarang Bersyukur"</span><span class="liturgi-badge-b">(B)</span></div>
+                        <div class="warta-content-text"><span><strong>03. PANGGILAN BERBAKTI:</strong> Lukas 1:46-47<br><em>❖ VOTUM:</em> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.</span></div>
                         <div class="warta-content-text"><span><strong>04. DOA PENGAKUAN DOSA:</strong> NRM Hal. C/Bagian Depan Buku</span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>05. FIRMAN PENYEGAR IMAN:</strong> 1 Yohanes 1:9</span></div>
-                        <div class="warta-content-text"><span><strong>06. BERNYANYI:</strong> NRM No. 80:1-4 "Marilah Orang Berdosa"</span></div>
-                        <div class="warta-content-text"><span><strong>07. RESPONSORIA:</strong> Mazmur 111:1-10</span><span class="liturgi-badge-b">(B)</span></div>
+                        <div class="warta-content-text"><span><strong>05. FIRMAN PENYEGAR IMAN:</strong> Amsal 28:13</span></div>
+                        <div class="warta-content-text"><span><strong>06. BERNYANYI:</strong> NRM No. 52: 1-6 "Ajaib Benar Anugerah"</span><span class="liturgi-badge-b">(B)</span></div>
+                        <div class="warta-content-text"><span><strong>07. RESPONSORIA:</strong> Mazmur 85: 8-14</span><span class="liturgi-badge-b">(B)</span></div>
                         <div class="warta-content-text"><span><strong>08. GLORIA PATRI:</strong> Mulia Bagi Bapa</span></div>
                         <div class="warta-content-text"><span><strong>09. PENGAKUAN IMAN RASULI:</strong> (Diucapkan bersama-sama)</span></div>
-                        <div class="warta-content-text"><span><strong>10. EPISTEL:</strong> 2 Korintus 6:1-10<br><em>❖ "Yang Berbahagia adalah mereka yang mendengarkan serta memelihara dan melaksanakan Firman Allah. Amin"</em></span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>11. WARTA JEMAAT:</strong> Liturgis</span></div>
-                        <div class="warta-content-text"><span><strong>12. PERSEMBAHAN PUJIAN:</strong> P2MI</span></div>
-                        <div class="warta-content-text"><span><strong>13. PERSEMBAHAN:</strong><br><em>❖ Nas Pembimbing:</em> Maleakhi 3:10-11<br><em>❖ Bernyanyi:</em> NRM No. 196:1-4 "Intan dan Permata"<br><em>❖ Doa Persembahan:</em> Pdt. David Hutagalung</span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>14. BERNYANYI:</strong> NRM No. 90:1-3 "Indahnya Saat Yang Teduh"</span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>15. DOA SYAFAAT:</strong> LS. Edy J. Napitupulu</span></div>
-                        <div class="warta-content-text"><span><strong>16. BERNYANYI:</strong> "Ujilah Aku Tuhan"</span></div>
-                        <div class="warta-content-text"><span><strong>17. KHOTBAH:</strong> Pdt. David Hutagalung</span></div>
-                        <div class="warta-content-text"><span><strong>18. BERNYANYI:</strong> NRM No. 16:1-2 "Suci, Suci, Suci"</span></div>
-                        <div class="warta-content-text"><span><strong>19. PERJAMUAN KUDUS</strong></span></div>
-                        <div class="warta-content-text"><span><strong>20. DOA BAPA KAMI + DOXOLOGY</strong></span></div>
-                        <div class="warta-content-text"><span><strong>21. BERKAT + AMIN, AMIN, AMIN</strong></span></div>
-                        <div class="warta-content-text"><span><strong>22. POSTLUDIUM:</strong> Jemaat Dalam Saat Teduh</span><span class="liturgi-badge-d">(D)</span></div>
+                        <div class="warta-content-text"><span><strong>10. EPISTEL:</strong> Titus 2: 9-10<br><em>❖ "Yang Berbahagia adalah mereka yang mendengarkan serta memelihara dan melaksanakan Firman Allah. Amin"</em></span><span class="liturgi-badge-d">(D)</span></div>
+                        <div class="warta-content-text"><span><strong>11. PERSEMBAHAN PUJIAN:</strong> Sekolah Minggu</span></div>
+                        <div class="warta-content-text"><span><strong>12. WARTA JEMAAT:</strong> Liturgis</span></div>
+                        <div class="warta-content-text"><span><strong>13. PERSEMBAHAN PUJIAN:</strong> P2MI</span></div>
+                        <div class="warta-content-text"><span><strong>14. PERSEMBAHAN:</strong><br><em>❖ Nas Pembimbing:</em> Mazmur 50: 23<br><em>❖ Bernyanyi:</em> NRM No. 117: 1-4 "Tuhan KasihMu Bri Kepadaku"<br><em>❖ Mohon Tuhan Memberkati</em><br><em>❖ Doa Persembahan:</em> Pdt. Saut Rajagukguk</span><span class="liturgi-badge-b">(B)</span></div>
+                        <div class="warta-content-text"><span><strong>15. BERNYANYI:</strong> NRM No. 100: 1-4 "Yesus Engkau Juruselamat"</span><span class="liturgi-badge-d">(D)</span></div>
+                        <div class="warta-content-text"><span><strong>16. DOA SYAFAAT:</strong> LS. Elvis Pandiangan</span></div>
+                        <div class="warta-content-text"><span><strong>17. BAPTISAN KUDUS ANAK</strong></span></div>
+                        <div class="warta-content-text"><span><strong>18. BERNYANYI:</strong> "Kurindu SabdaMu"</span></div>
+                        <div class="warta-content-text"><span><strong>19. KHOTBAH:</strong> Pdt. Saut Rajagukguk</span></div>
+                        <div class="warta-content-text"><span><strong>20. BERNYANYI:</strong> NRM No. 193:1-4 "Kita Harus Membawa Berita"</span></div>
+                        <div class="warta-content-text"><span><strong>21. DOA BAPA KAMI + DOXOLOGY</strong></span></div>
+                        <div class="warta-content-text"><span><strong>22. BERKAT + AMIN, AMIN, AMIN</strong></span></div>
+                        <div class="warta-content-text"><span><strong>23. POSTLUDIUM:</strong> Jemaat dalam saat teduh</span><span class="liturgi-badge-d">(D)</span></div>
                     </div>
                 </div>
             </div>
@@ -587,117 +594,115 @@
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">WARTA JEMAAT RESMI</span>
                     </div>
-                    <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Kesepuluh Sesudah Pentakosta & Bulan P2MI</h2>
-                    <p id="warta-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 2 Agustus 2026 | No: 31/GMI-SY/D.3-II/VIII/2026</p>
+                    <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Kesebelas Sesudah Pentakosta & Bulan P2MI</h2>
+                    <p id="warta-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 9 Agustus 2026 | No: 32/GMI-SY</p>
                     
                     <div class="archive-btn-wrap">
                         <button class="btn-archive-list" onclick="openArchiveModal()"><i class="fa-solid fa-calendar-days"></i> Pilih Kalender Arsip Warta</button>
                     </div>
 
                     <div id="warta-body-content">
-                        <p class="warta-content-text"><span>• Minggu ini adalah Minggu Kesepuluh Sesudah Pentakosta dan Bulan P2MI (Hijau).</span></p>
+                        <p class="warta-content-text"><span>• Minggu ini adalah Minggu Kesebelas Sesudah Pentakosta dan Bulan P2MI (Hijau).</span></p>
 
                         <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. KOMISI KEANGGOTAAN DAN EVANGELISASI</div>
                         
                         <div class="warta-sub-heading">Jemaat yang Berulang Tahun Kelahiran Minggu Ini:</div>
-                        <p class="warta-content-text"><span>Bp. Hisar Pangaribuan (27/7), Sdri. Jojor Hutapea (27/7), Sdr. Marvic Davis Logan Siagan (28/7), Axel Gabriel Lumbantobing (28/7), Sdr. Chevin Jonathan Simbolon (29/7), Sdr. Ramli Manalu (30/7), Sdri. Juliani Alberta Liauwani (30/7), Sdr. Rico Felix Adrian Sianturi (31/7), Mikon Putra Hasiholan Sitorus (31/7), Sdri. Devani Grace Maria Sihombing (1/8), Sdr. Alexander Jose Hutasoit (1/8), Ibu Valerie Angelica Napitupulu (2/8), Ibu Sarah Agustini Pandiangan (2/8) dan Tabitha Nathania Pangaribuan (2/8). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.</span></p>
+                        <p class="warta-content-text"><span>Sdr. Oscar Leonard Josua Mangaraja Manaloe (3/8), Sdri. Sesilia Angelica Simanjuntak (4/8), Bp. Sahat Toni Gofrid Tampubolon (4/8), Bonaventura Moses Sean Panjaitan (5/8), Reynard Adidayanto K. Sihombing (5/8), Ibu Artha Uli Tut Wuri Handayani Marpaung (5/8), Sdri. Cipta Uli Mediana Sidabutar (6/8), Sdr. Teddy Agung Purnama (6/8), Sdr. Nirwand Marcelliano Tampubolon (6/8), Ibu Devy Riana Manurung (7/8), Bp. Pdt. David Leo Adi Hutagalung (7/8), Ibu Siti Nurkhasanah (8/8), Ibu Mila Karmila (8/8), Bp. Reinhard Reinaldy Naibaho (9/8), Bernadetha Helsa Caroline Sinambela (9/8) dan Sdri. Sarah Nadya Agustina Sihombing (9/8). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.</span></p>
                         
                         <div class="warta-sub-heading">Baptisan Kudus Anak:</div>
-                        <p class="warta-content-text"><span>Minggu, 9 Agustus 2026 di KU 2 akan diadakan Baptisan Kudus anak. Kepada Bp/Ibu yang anaknya akan dibaptis dapat mendaftar sampai Jumat, 7 Agustus 2026 kepada Komisi Keanggotaan & Evangelisasi (Bp. Mangasa L. Tobing) dengan melengkapi photocopy Kartu Keluarga & photocopy Akte Lahir masing-masing 1 lembar.<br>Berikut nama yang sudah mendaftar:<br>- Nathaniel Nagatama Vela (anak dari Bp. Rendy Yohanes Tafu dan Ibu Hanna Dwila Mayasati Saragih)<br>- Keenan Elvano Halomoan Purba (anak dari Bp. Sanggam Reinhart Purba dan Ibu Fenisia Tafu)<br>- Claudion John Fabio (anak Bp. Athan Marino Sembiring dan Ibu Beatrix Elisabeth Miani).</span></p>
+                        <p class="warta-content-text"><span>Hari ini Minggu, 9 Agustus 2026 di KU 2 diadakan Baptisan Berikut nama anak yang dibaptis:<br>- Nathaniel Nagatama Vela (anak dari Bp. Rendy Yohanes Tafu dan Ibu Hanna Dwila Mayasati Saragih)<br>- Keenan Elvano Halomoan Purba (anak dari Bp. Sanggam Reinhart Purba dan Ibu Fenisia Tafu)<br>- Claudion John Fabio (anak Bp. Athan Marino Sembiring dan Ibu Beatrix Elisabeth Miani).</span></p>
 
-                        <div class="warta-sub-heading">Jadwal Class Meeting Kamis, 6 Agustus 2026:</div>
+                        <div class="warta-sub-heading">Laporan Class Meeting Kamis, 6 Agustus 2026:</div>
                         <div class="table-responsive">
                             <table class="church-table">
-                                <tr><th>NAMA CLASS MEETING</th><th>TEMPAT</th></tr>
-                                <tr><td>CM Bethesda</td><td>Kel. Bp. Volkano Pangaribuan</td></tr>
-                                <tr><td>CM Kapernaum</td><td>Kel. Bp. Jhonson Simanjuntak</td></tr>
-                                <tr><td>CM Yerikho, Yudea, Kanaan</td><td>Kel. Ibu Yulia Hutapea</td></tr>
-                                <tr><td>CM Galilea, Yerusalem</td><td>Kel. Bp. Ivan Manik</td></tr>
-                                <tr><td>CM Efrata & Sion</td><td>Kel. Bp. G. Sitorus</td></tr>
-                                <tr><td>CM Korintus</td><td>Kel. Bp. Jackwin Simbolon</td></tr>
-                                <tr><td>CM Usindah (5 Agustus 2026)</td><td>Gereja, Pukul 16.00 WIB</td></tr>
+                                <tr><th>NAMA CLASS MEETING</th><th>KEHADIRAN</th><th>BACAAN ALKITAB</th></tr>
+                                <tr><td>CM Bethesda</td><td>10 Jiwa</td><td>82 Pasal</td></tr>
+                                <tr><td>CM Kapernaum</td><td>8 Jiwa</td><td>175 Pasal</td></tr>
+                                <tr><td>CM Yerikho, Yudea, Kanaan</td><td>17 Jiwa</td><td>440 Pasal</td></tr>
+                                <tr><td>CM Galilea, Yerusalem</td><td>11 Jiwa</td><td>287 Pasal</td></tr>
+                                <tr><td>CM Efrata & Sion</td><td>8 Jiwa</td><td>288 Pasal</td></tr>
+                                <tr><td>CM Korintus</td><td>12 Jiwa</td><td>165 Pasal</td></tr>
+                                <tr><td>CM Usindah</td><td>25 Jiwa</td><td>-</td></tr>
                             </table>
                         </div>
-
-                        <div class="warta-sub-heading">Sermon Ketua & Pemimpin Class Meeting:</div>
-                        <p class="warta-content-text"><span>Minggu, 2 Agustus 2026 akan diadakan sermon Ketua & Pemimpin Class Meeting secara daring pukul 20.00 WIB. Link zoom akan dibagikan di WAG Ketua & Pemimpin Class Meeting.</span></p>
 
                         <div class="warta-sub-heading">Jadwal Kegiatan Jaringan Doa:</div>
                         <div class="table-responsive">
                             <table class="church-table">
                                 <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>PUKUL</th><th>PELAYAN</th></tr>
-                                <tr><td>Senin, 3/8/2026</td><td>Tim Doa</td><td>19.00 WIB</td><td>Pdt. Saut Rajagukguk</td></tr>
-                                <tr><td>Rabu, 5/8/2026</td><td>MPD</td><td>20.00 WIB</td><td>LS. DF. Sipahutar</td></tr>
-                                <tr><td>Sabtu, 8/8/2026</td><td>Doa Pagi</td><td>05.30 WIB</td><td>LS. Elvis Pandiangan</td></tr>
+                                <tr><td>Senin, 10/8/2026</td><td>Tim Doa</td><td>-</td><td>Retreat</td></tr>
+                                <tr><td>Rabu, 12/8/2026</td><td>MPD</td><td>20.00 WIB</td><td>LS. GAJ Simamora</td></tr>
+                                <tr><td>Sabtu, 15/8/2026</td><td>Doa Pagi</td><td>05.30 WIB</td><td>LS. CH. Suwarsono S.</td></tr>
                             </table>
                         </div>
 
                         <div class="warta-main-title"><i class="fa-solid fa-hand-holding-heart"></i> 2. KOMISI DIAKONIA SOSIAL</div>
                         <div class="warta-sub-heading">Sosial Kedukaan:</div>
-                        <p class="warta-content-text"><span>Bagi jemaat yang belum membayar dapat ditransfer ke rekening bendahara Dana Sosial Kedukaan: <strong>BCA 5726168861 an. Luci Nasa Roni</strong>. Bukti transfer dapat dikirim kepada bendahara. Saldo Kas Sosial Kedukaan sampai Jumat, 31 Juli 2026 sebesar Rp. 42.286.794,-.</span></p>
+                        <p class="warta-content-text"><span>Bagi jemaat yang belum membayar dapat ditransfer ke rekening bendahara Dana Sosial Kedukaan: <strong>BCA 5726168861 an. Luci Nasa Roni</strong>. Bukti transfer dapat dikirim kepada bendahara. Saldo Kas Sosial Kedukaan sampai Jumat, 7 Agustus 2026 sebesar Rp. 42.286.794,-.</span></p>
 
                         <div class="warta-main-title"><i class="fa-solid fa-graduation-cap"></i> 3. KOMISI PENDIDIKAN AGAMA KRISTEN (PAK)</div>
                         <div class="warta-sub-heading">Ibadah Kategorial:</div>
                         <div class="table-responsive">
                             <table class="church-table">
-                                <tr><th>Pelayan</th><th>PWMI (Selasa, 4/8 Pkl 18.00)</th><th>PRMI (Sabtu, 8/8 Pkl 18.00)</th><th>P3MI (Sabtu, 8/8 Pkl 17.00)</th><th>P2MI (Sabtu, 8/8 Pkl 20.00)</th></tr>
-                                <tr><td>Pengkhotbah</td><td>LS. Yos MS. Hutapea</td><td>LS. GAJ. Simamora</td><td>Sports Day</td><td>LS. Edy J. N</td></tr>
-                                <tr><td>Liturgis</td><td>Ibu Nora Manalu</td><td>Brian Simamora</td><td>-</td><td>Bp. Joseph Sitepu</td></tr>
-                                <tr><td>Doa Syafaat</td><td>Ibu Luci Simamora</td><td>Mattew Siagiah</td><td>-</td><td>LS. Suwarsono S.</td></tr>
-                                <tr><td>Pemusik</td><td>Ibu Rosyda Hutasoit</td><td>Noel Pandiangan</td><td>-</td><td>Bp. Odi Siahaan</td></tr>
+                                <tr><th>Pelayan</th><th>USINDAH (Rabu, 12/8/2026 Pkl 16.00 WIB)</th><th>PRMI (Sabtu, 15/8/2026 Pkl 18.00 WIB)</th><th>P3MI (Sabtu, 15/8/2026 Pkl 19.00 WIB)</th></tr>
+                                <tr><td>Pengkhotbah</td><td>LS. DPB. Siallagan</td><td>Pdt. Saut Rajagukguk</td><td>Pdt. David Hutagalung</td></tr>
+                                <tr><td>Liturgis</td><td>Ibu Anita E. Sihombing</td><td>Boris Batubara</td><td>Sdri. Mauri Situmorang</td></tr>
+                                <tr><td>Doa Syafaat</td><td>Ibu Lily Rajinto</td><td>Raja Nadeak</td><td>Sdri. Hoshi Sinambela</td></tr>
+                                <tr><td>Pemusik</td><td>Gr. Weslly C. Tedju</td><td>Noel Pandiangan</td><td>Sdr. Jose Hutasoit</td></tr>
                             </table>
                         </div>
 
-                        <div class="warta-sub-heading">Ibadah Hari Wanita Methodist Sedunia:</div>
-                        <p class="warta-content-text"><span>Sabtu, 8 Agustus 2026 pukul 10.00 WIB, tempat GMI Bukit Zaitun BSD, PWMI Distrik 3/II akan mengadakan Ibadah Hari Wanita Methodist Sedunia. PWMI gereja kita diundang hadir. Dress Code Hijau atau Merah. Berangkat dari gereja pukul 08.00 WIB.</span></p>
-
-                        <div class="warta-sub-heading">Persekutuan Pria Methodist Indonesia (P2MI) - Bulan P2MI Agustus:</div>
-                        <p class="warta-content-text"><span>Bulan Agustus merupakan bulan P2MI dengan berbagai kegiatan rohani, kebersamaan, olah raga, hingga kunjungan kasih dan puncaknya pada Minggu, 30 Agustus 2026.</span></p>
-
-                        <div class="warta-sub-heading">Sekolah Minggu:</div>
-                        <p class="warta-content-text"><span>Hari ini Minggu, 2 Agustus 2026 mulai diadakan ibadah Sekolah Minggu sesi pagi, pukul 08.00 WIB dan siang pukul 10.00 WIB.</span></p>
+                        <div class="warta-sub-heading">Persekutuan Pria Methodist Indonesia (P2MI) - Bulan P2MI:</div>
+                        <div class="table-responsive">
+                            <table class="church-table">
+                                <tr><th>No</th><th>Kegiatan</th><th>Tanggal</th><th>Waktu</th><th>Penanggung Jawab</th></tr>
+                                <tr><td>1</td><td>Latihan Koor/Vocal Group</td><td>Setiap Jumat & Sabtu bulan Agustus 2026</td><td>19.00 - 21.00</td><td>Koord. Koor/Pujian, Koord. Kerohanian</td></tr>
+                                <tr><td>2</td><td>Persembahan Pujian</td><td>Setiap Hari Minggu di bulan Agustus 2026</td><td>Ibadah Gereja</td><td>Koord. Koor/Pujian, Koord. Kerohanian</td></tr>
+                                <tr><td>3</td><td>Acara Kebersamaan</td><td>Minggu, 16 Agustus 2026</td><td>18.00 - selesai</td><td>Koord. Olah Raga</td></tr>
+                                <tr><td>4</td><td>Mancing Mania</td><td>Sabtu, 22 Agustus 2026</td><td>09.00 - selesai</td><td>Koord. Olah Raga</td></tr>
+                                <tr><td>5</td><td>Jalan Santai bersama Keluarga</td><td>Sabtu, 29 Agustus 2026</td><td>07.00 - selesai</td><td>Koord. Olah Raga</td></tr>
+                                <tr><td>6</td><td>Gotong royong di gereja</td><td>Sabtu, 29 Agustus 2026</td><td>10.00 - selesai</td><td>Pengurus P2MI</td></tr>
+                                <tr><td>7</td><td>Olahraga tenis meja</td><td>Setiap Jumat & Sabtu</td><td>-</td><td>Koord. Olah Raga</td></tr>
+                                <tr><td>8</td><td>Kunjungan Kasih</td><td>4 kali kunjungan di bulan Agustus 2026</td><td>16.00 - selesai</td><td>Koord. Sosial Keanggotaan, Koord Pendidikan</td></tr>
+                                <tr><td>9</td><td>Ibadah Puncak Bulan P2MI</td><td>Minggu, 30 Agustus 2026</td><td>10.00 - selesai</td><td>Pengurus P2MI</td></tr>
+                            </table>
+                        </div>
 
                         <div class="warta-main-title"><i class="fa-solid fa-bullhorn"></i> 4. PANITIA KEBAKTIAN</div>
                         <div class="warta-sub-heading">Persembahan Bunga Mimbar:</div>
-                        <p class="warta-content-text"><span>Hari ini Minggu, 2 Agustus 2026 dipersembahkan oleh Ibu Sarah Pandiangan & Devani Grace Sihombing. Minggu, 9 Agustus 2026 dipersembahkan oleh Sarah Sihombing.</span></p>
-                        
-                        <div class="warta-sub-heading">Sakramen Perjamuan Kudus:</div>
-                        <p class="warta-content-text"><span>Hari ini Minggu, 2 Agustus 2026 kita menerima unsur-unsur Perjamuan Kudus. Mari kita mempersiapkan diri dengan baik.</span></p>
+                        <p class="warta-content-text"><span>Hari ini Minggu, 9 Agustus 2026 dipersembahkan oleh Sdri. Sarah Sihombing. Minggu, 16 Agustus 2026 dipersembahkan oleh Sdri. Brena Sio Artha.</span></p>
 
                         <div class="warta-sub-heading">Laporan Kegiatan Gereja Minggu Lalu:</div>
                         <div class="table-responsive">
                             <table class="church-table">
                                 <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>HADIR</th><th>HARI/TGL</th><th>KEGIATAN</th><th>HADIR</th></tr>
-                                <tr><td>Minggu, 26/7/2026</td><td>KU I<br>KU II<br>ASM<br>OT<br>GSM<br>CM Cikalong</td><td>92 Orang<br>163 Orang<br>44 Orang<br>9 Orang<br>13 Orang<br>21 Orang</td><td>Kamis, 30/7/2026<br>Jumat, 31/7/2026<br>Sabtu, 1/8/2026</td><td>CM Gabungan / Cikalong<br>Sermon<br>Doa Pagi</td><td>40 Orang<br>16 Orang<br>13 Orang</td></tr>
-                                <tr><td>Rabu, 29/7/2026</td><td>MPD</td><td>23 Orang</td><td></td><td></td><td></td></tr>
+                                <tr><td>Sabtu, 1/8/2026</td><td>PRMI & P3MI</td><td>34 Orang</td><td>Rabu, 5/8/2026</td><td>CM Usindah / MPD</td><td>24 / 19 Orang</td></tr>
+                                <tr><td>Minggu, 2/8/2026</td><td>KU I / KU II<br>ASM / OT / GSM<br>CM Cikalong<br>PWMI</td><td>77 / 131 Orang<br>68 / 12 / 16 Orang<br>19 Orang<br>25 Orang</td><td>Kamis, 6/8/2026<br>Jumat, 7/8/2026<br>Sabtu, 8/8/2026</td><td>CM<br>Sermon<br>Doa Pagi</td><td>66 / 17 Orang<br>11 Orang<br>13 Orang</td></tr>
                             </table>
                         </div>
 
                         <div class="warta-main-title"><i class="fa-solid fa-file-lines"></i> 5. PENATALAYANAN DAN KEUANGAN</div>
-                        <div class="warta-sub-heading">Laporan Persembahan & Janji Iman:</div>
-                        <p class="warta-content-text"><span>Seluruh rincian nominal laporan persembahan mingguan dan pengembalian formulir janji iman diproteksi demi privasi jemaat. Silakan masukkan password khusus di bawah ini untuk melihat laporannya.</span></p>
+                        <div class="warta-sub-heading">Laporan Persembahan Minggu, 2 Agustus 2026:</div>
+                        <p class="warta-content-text"><span>Rincian selengkapnya dapat dibuka melalui tombol verifikasi password di bawah.</span></p>
 
                         <div class="warta-main-title"><i class="fa-solid fa-file-lines"></i> 6. LAIN - LAIN</div>
-                        <div class="warta-sub-heading">Persembahan Ke depan:</div>
-                        <p class="warta-content-text"><span>Hari ini kita akan mengumpulkan persembahan ke depan untuk mendukung kegiatan misi gereja (CM Cikalong).</span></p>
-                        
-                        <div class="warta-sub-heading">Pameran Buku Rohani:</div>
-                        <p class="warta-content-text"><span>Minggu, 2 Agustus 2026 untuk meningkatkan minat membaca warga jemaat, BPK Gunung Mulia akan mengadakan pameran buku rohani di KU 1 dan KU 2.</span></p>
-
                         <div class="warta-sub-heading">Rapat Majelis:</div>
-                        <p class="warta-content-text"><span>Minggu, 9 Agustus 2026 akan diadakan rapat majelis setelah KU2 di R. Sermon Lt.2. Diharapkan semua majelis menghadirinya.</span></p>
+                        <p class="warta-content-text"><span>Hari ini Minggu, 9 Agustus 2026 diadakan rapat majelis setelah KU2 di R. Sermon Lt.2. Diharapkan semua majelis menghadirinya.</span></p>
+                        
+                        <div class="warta-sub-heading">Retreat Tim Doa:</div>
+                        <p class="warta-content-text"><span>Minggu - Selasa, 9-11 Agustus 2026 Tim doa akan mengadakan Retreat di Sentul.</span></p>
 
                         <div class="warta-sub-heading" style="text-align:center; margin-top:15px; color:var(--accent-gold);">BACAAN ALKITAB DALAM MINGGU INI</div>
                         <div class="table-responsive">
                             <table class="church-table">
                                 <tr><th>HARI/TANGGAL</th><th>PAGI</th><th>MALAM</th></tr>
-                                <tr><td>Minggu, 2-8-2026</td><td>Mazmur 50:1-15</td><td>Efesus 4:17-24</td></tr>
-                                <tr><td>Senin, 3-8-2026</td><td>Mazmur 50:16-23</td><td>Roma 1:8-15</td></tr>
-                                <tr><td>Selasa, 4-8-2026</td><td>Ulangan 26:1-15</td><td>Kisah Para Rasul 2:37-47</td></tr>
-                                <tr><td>Rabu, 5-8-2026</td><td>Keluaran 16:2-15, 31-35</td><td>Matius 15:32-39</td></tr>
-                                <tr><td>Kamis, 6-8-2026</td><td>1 Raja-Raja 18:1-16</td><td>Kisah Para Rasul 17:10-15</td></tr>
-                                <tr><td>Jumat, 7-8-2026</td><td>1 Raja-Raja 18:17-19, 30-40</td><td>Kisah Para Rasul 18:24-28</td></tr>
-                                <tr><td>Sabtu, 8-8-2026</td><td>1 Raja-Raja 18:41-46</td><td>Matius 16:1-4</td></tr>
+                                <tr><td>Minggu, 9-8-2026</td><td>2 Samuel 15:13-31</td><td>Efesus 5:1-14</td></tr>
+                                <tr><td>Senin, 10-8-2026</td><td>Kejadian 7:11-8:5</td><td>2 Petrus 2:4-10</td></tr>
+                                <tr><td>Selasa, 11-8-2026</td><td>Kejadian 19:1-29</td><td>Roma 9:14-29</td></tr>
+                                <tr><td>Rabu, 12-8-2026</td><td>Ayub 36:24-33; 37:14-24</td><td>Matius 8:23-27</td></tr>
+                                <tr><td>Kamis, 13-8-2026</td><td>Yesaya 45:20-25</td><td>Wahyu 15:1-4</td></tr>
+                                <tr><td>Jumat, 14-8-2026</td><td>Yesaya 63:15-19</td><td>Kisah Para Rasul 14:19-28</td></tr>
+                                <tr><td>Sabtu, 15-8-2026</td><td>Yesaya 56:1-5</td><td>Matius 14:34-36</td></tr>
                             </table>
                         </div>
                         <p style="text-align:center; font-style:italic; font-size:0.78rem; margin-top:8px; color:var(--text-muted);">Demikianlah Warta Jemaat kita Minggu Ini, Tuhan Yesus Memberkati.</p>
@@ -727,33 +732,20 @@
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">ARSIP WARTA JEMAAT</span>
                     </div>
-                    <h2 id="arsip-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Kesembilan Sesudah Pentakosta & Bulan P3MI/PRMI</h2>
-                    <p id="arsip-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 26 Juli 2026 | No: 30/GMI-SY/D.3-II/VII/2026</p>
+                    <h2 id="arsip-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Kesepuluh Sesudah Pentakosta & Bulan P2MI</h2>
+                    <p id="arsip-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 2 Agustus 2026 | No: 31/GMI-SY/D.3-II/VIII/2026</p>
                     
                     <div class="archive-btn-wrap">
                         <button class="btn-archive-list" onclick="openArchiveModal()"><i class="fa-solid fa-calendar-days"></i> Pilih Kalender Arsip Warta</button>
                     </div>
 
                     <div id="arsip-content-body">
-                        <p class="warta-content-text"><span>• Minggu lalu adalah Minggu Kesembilan Sesudah Pentakosta dan Bulan P3MI dan PRMI (Hijau).</span></p>
+                        <p class="warta-content-text"><span>• Minggu lalu adalah Minggu Kesepuluh Sesudah Pentakosta dan Bulan P2MI (Hijau).</span></p>
 
-                        <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. KOMISI KEANGGOTAAN & EVANGELISASI</div>
+                        <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. KOMISI KEANGGOTAAN DAN EVANGELISASI</div>
                         
-                        <div class="warta-sub-heading">Jemaat yang Berulang Tahun Kelahiran (Arsip 26 Juli):</div>
-                        <p class="warta-content-text"><span>Daren Marbun (20/7), Ibu Tionerlis Anastasia Marpaung (20/7), Bp. Willian Doktrian Julius Sihombing (20/7), Sdr. Christover Roggo Vanichael Simanjuntak (21/7), Ibu Juli Dwi Lestari Simorangkir (21/7), Elson Michael Pangaribuan (22/7), Ibu Siti Girsang (23/7), Bp. Wilmar Hutauruk (23/7), Brooklyn Marcello Hasiholanta Girsang (24/7), Bp. Timbul Parningotan Siagian (24/7), Sdr. Albert Julius Liauwani (25/7), Bp. Alfredo Panjaitan (26/7), Sdri. Nathasya Cristio Gabriella Samosir (26/7), dan Bp. Parlindungan Simanjuntak (26/7). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.</span></p>
-                        
-                        <div class="warta-sub-heading">Jemaat yang Berulang Tahun Pernikahan:</div>
-                        <p class="warta-content-text"><span>Bp. Desman Fiberto Sipahutar/Ibu Ernilawati (1/7), Bp. Toni Tampubolon/Ibu Roida Panjaitan (4/7), Bp. Ricky Brown Hill Pangaribuan/Ibu Yuni Damayanti Tampubolon (6/7), Bp. Ivan Tobing/Ibu Omega Cyndy Lianza Mantiri (6/7), Bp. Milton Tobing/Ibu Anita Emma L. Sihombing (7/7), Bp. Sanggam Reinhart Purba/Ibu Fenisia Tafu (8/7), Bp. Rafael Falcon Sihombing/Ibu Rina Sianipar (10/7), Bp. Odi Oktovian Yuda Melanthon Siahaan/Ibu Nanci Manurung (11/7), Bp. Usdek Simanjuntak/Ibu Flora Napitupulu (13/7), Bp. Gok Ari Joso Simamora/Ibu Elvri Manurung (14/7), Bp. Rimhotnar Hutasoit/Ibu Magdayanta Sembiring (20/7) dan Bp. Anton Tobing/Ibu Melva Siahaan (24/7).</span></p>
-
-                        <div class="warta-sub-heading">Berita Dukacita:</div>
-                        <p class="warta-content-text"><span>1. Pada hari Senin, 20 Juli 2026 telah meninggal dunia Ibu Delmina Aritonang (Op. Abednego Simamora) tutup usia 88 tahun, telah dimakamkan pada hari Rabu, 22 Juli 2026 di TPU Pondok Ranggon.<br><br>2. Pada hari Senin, 20 Juli 2026 telah meninggal dunia Bp. Mula Saut Halomoan Siallagan tutup usia 79 tahun telah dimakamkan hari Rabu, 22 Juli 2026 di TPU Pondok Kelapa. Majelis dan Jemaat turut berdukacita.</span></p>
-
-                        <div class="warta-sub-heading">Class Meeting Gabungan Kamis, 30 Juli 2026:</div>
-                        <p class="warta-content-text"><span>Kamis, 30 Juli 2026 pukul 20.00 WIB, tempat gereja akan diadakan Class Meeting Gabungan. Liturgis LS. Mangasa L.Tobing, Pemusik Shinta K. Manurung, Singer: Ibu Elviera Oppusunggu dan Ibu Moralita Simanjuntak, Firman Tuhan Pdt. David Hutagalung.</span></p>
-
-                        <div class="warta-main-title"><i class="fa-solid fa-graduation-cap"></i> 2. KOMISI PENDIDIKAN AGAMA KRISTEN (PAK)</div>
-                        <div class="warta-sub-heading">Persekutuan Pemuda Pemudi Methodist Indonesia (P3MI):</div>
-                        <p class="warta-content-text"><span>Pada Minggu, 26 Juli 2026 adalah puncak bulan P3MI. Pelayan Ibadah KU 1 & KU 2 dilayani oleh P3MI. P3MI juga mengadakan bazar untuk mendukung program P3MI. Selesai ibadah menikmati perjamuan kasih bersama.</span></p>
+                        <div class="warta-sub-heading">Jemaat yang Berulang Tahun Kelahiran Minggu Lalu:</div>
+                        <p class="warta-content-text"><span>Bp. Hisar Pangaribuan (27/7), Sdri. Jojor Hutapea (27/7), Sdr. Marvic Davis Logan Siagan (28/7), Axel Gabriel Lumbantobing (28/7), Sdr. Chevin Jonathan Simbolon (29/7), Sdr. Ramli Manalu (30/7), Sdri. Juliani Alberta Liauwani (30/7), Sdr. Rico Felix Adrian Sianturi (31/7), Mikon Putra Hasiholan Sitorus (31/7), Sdri. Devani Grace Maria Sihombing (1/8), Sdr. Alexander Jose Hutasoit (1/8), Ibu Valerie Angelica Napitupulu (2/8), Ibu Sarah Agustini Pandiangan (2/8) dan Tabitha Nathania Pangaribuan (2/8).</span></p>
                     </div>
                 </div>
             </div>
@@ -765,21 +757,21 @@
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">JADWAL IBADAH & PELAYAN</span>
                     </div>
                     <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-church"></i> Jadwal Ibadah Umum Sesi 1 & 2</div>
-                    <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 9 Agustus 2026 (Disertai Baptisan Kudus Anak)</p>
+                    <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 16 Agustus 2026</p>
                     
                     <div class="table-responsive">
                         <table class="church-table">
                             <tr><th>PELAYAN</th><th>KU I (08.00 WIB)</th><th>KU II (10.00 WIB)</th></tr>
-                            <tr><td>Pengkhotbah</td><td>Pdt. Saut Rajagukguk</td><td>Pdt. Saut Rajagukguk</td></tr>
-                            <tr><td>Liturgis</td><td>Sdri. Karen Nadeak</td><td>Bp. Jackwin Simbolon</td></tr>
-                            <tr><td>Doa Syafaat</td><td>Pdt. Saut Rajagukguk</td><td>LS. Elvis Pandiangan</td></tr>
-                            <tr><td>Operator LCD</td><td>Sdri. Mauri Situmorang</td><td>Sdr. Keandree Pasaribu</td></tr>
-                            <tr><td>Multimedia</td><td>Sdr. Abram Nadeak</td><td>Gilbert Sihombing</td></tr>
-                            <tr><td>Pemusik</td><td>Sdri. Nathasya Samosir<br>Sdr. Dwitara Rajagukguk<br>Sdr. Febrian Sinambela<br>Sdr. David Marcel</td><td>Sdr. Ariel Siallagan</td></tr>
-                            <tr><td>Singer</td><td>Sdri. Sherly A. Manurung<br>Sdri. Moza Siagian</td><td>Bp. Messach Samosir<br>Bp. Ali Jekson Girsang</td></tr>
-                            <tr><td>Kolektan</td><td>Bp. Lamhot P. Manalu<br>Ibu Irma H. Siahaan</td><td>Bp. Saorman Naibaho<br>Ibu Novijanti P. Sitanggang</td></tr>
-                            <tr><td>P. Lonceng</td><td>Sdr. Satrio Simbolon</td><td>Bp. Hendri Sinambela</td></tr>
-                            <tr><td>Penyambut/Pemerhati</td><td>LS. Koster Pangaribuan<br>LS. Simon Yusuf</td><td>LS. Mangasa Lumbantobing<br>Bp. Binsar Silaen</td></tr>
+                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td><td>Pdt. David Hutagalung</td></tr>
+                            <tr><td>Liturgis</td><td>Sdri. Rosa Siallagan</td><td>Bp. Ade Gusman Situmeang</td></tr>
+                            <tr><td>Doa Syafaat</td><td>Pdt. David Hutagalung</td><td>LS. Mangasa Lumbantobing</td></tr>
+                            <tr><td>Operator LCD</td><td>Sdri. Ivana Batubara</td><td>Queen Sihombing</td></tr>
+                            <tr><td>Multimedia</td><td>Sdr. Nirwand Marceliano T.</td><td>Sdr. Abram Simatupang</td></tr>
+                            <tr><td>Pemusik</td><td>Sdr. Ariel Siallagan<br>Sdr. Abram Simatupang<br>Sdr. Abram Nadeak<br>Sdr. Mangihut</td><td>Sdri. Nathasya Samosir</td></tr>
+                            <tr><td>Singer</td><td>Sdri. Emillie Pangaribuan<br>Sdri. Stephanie Manurung</td><td>Ibu Venny Rose Pardede<br>Ibu Nurmala Pardede</td></tr>
+                            <tr><td>Kolektan</td><td>Ibu Rohani Sinaga<br>Sdr. Bill Guntar Batubara</td><td>Bp. Mustafa Sihombing<br>Ibu Nora Manalu</td></tr>
+                            <tr><td>P. Lonceng</td><td>Bp. Martin Siagian</td><td>LS. Simon Yusuf</td></tr>
+                            <tr><td>Penyambut/Pemerhati</td><td>Bp. Ricky Pasaribu<br>Ibu Paulina Tungga</td><td>Ibu Marina Marli Siahaan<br>Ibu Luna Pasaribu</td></tr>
                         </table>
                     </div>
 
@@ -787,9 +779,9 @@
                     <div class="table-responsive">
                         <table class="church-table">
                             <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>PUKUL</th><th>PELAYAN</th></tr>
-                            <tr><td>Senin, 3/8/2026</td><td>Tim Doa</td><td>19.00 WIB</td><td>Pdt. Saut Rajagukguk</td></tr>
-                            <tr><td>Rabu, 5/8/2026</td><td>MPD</td><td>20.00 WIB</td><td>LS. DF. Sipahutar</td></tr>
-                            <tr><td>Sabtu, 8/8/2026</td><td>Doa Pagi</td><td>05.30 WIB</td><td>LS. Elvis Pandiangan</td></tr>
+                            <tr><td>Senin, 10/8/2026</td><td>Tim Doa</td><td>-</td><td>Retreat</td></tr>
+                            <tr><td>Rabu, 12/8/2026</td><td>MPD</td><td>20.00 WIB</td><td>LS. GAJ Simamora</td></tr>
+                            <tr><td>Sabtu, 15/8/2026</td><td>Doa Pagi</td><td>05.30 WIB</td><td>LS. CH. Suwarsono S.</td></tr>
                         </table>
                     </div>
                 </div>
@@ -805,12 +797,12 @@
                     <div>
                         <div class="warta-main-title">1. BANGSA DAN NEGARA</div>
                         <p class="warta-content-text"><span>• Keamanan Bangsa dan Negara di Dunia.</span></p>
-                        <p class="warta-content-text"><span>• Kementerian Pendidikan Tinggi, Sains dan Teknologi.</span></p>
+                        <p class="warta-content-text"><span>• Kementerian Koordinator Bidang Politik dan Keamanan.</span></p>
 
                         <div class="warta-main-title">2. GMI DAN JEMAAT SUNGAI YORDAN</div>
                         <p class="warta-content-text"><span>a. P2MI dan kegiatan bulan P2MI.</span></p>
-                        <p class="warta-content-text"><span>b. Anak-anak yang akan memulai perkuliahan.</span></p>
-                        <p class="warta-content-text"><span>c. Pos Pelayanan GMI Sungai Yordan.</span></p>
+                        <p class="warta-content-text"><span>b. Jemaat yang merindukan pasangan hidup dan keturunan.</span></p>
+                        <p class="warta-content-text"><span>c. Para Misionaris dan keluarganya.</span></p>
                         <p class="warta-content-text"><span>d. Jemaat dan keluarga jemaat yang sakit:<br>Bp. W. Simanjuntak, Ibu Rona Gabe Sinaga, Ibu Linaria Saragih (Mertua Bp. Julianto Sinaga), dan Ibu Asna Girsang.</span></p>
                         <p class="warta-content-text"><span>e. Jemaat dan keluarga jemaat dalam pemulihan:<br>Jeremy Napitupulu, Bp. Jamaludin Sinaga, Ibu Ruliana Siahaan, Sdri. Jojor Hutapea, Ibu Anita Emma Sihombing, Bp. Milton Tobing, Bp. Pananggangan Sinaga, Bp. Jhonson Simanjuntak dan Sdr. Samuel Simamora.</span></p>
                     </div>
@@ -824,18 +816,18 @@
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">BACAAN ALKITAB</span>
                     </div>
                     <h2 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:5px; text-align:left;">Jadwal Bacaan Alkitab Sepekan</h2>
-                    <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Periode 2 Agustus - 8 Agustus 2026</p>
+                    <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Periode 9 Agustus - 15 Agustus 2026</p>
                     
                     <div class="table-responsive">
                         <table class="church-table">
                             <tr><th>HARI/TANGGAL</th><th>PAGI</th><th>MALAM</th></tr>
-                            <tr><td>Minggu, 2-8-2026</td><td>Mazmur 50:1-15</td><td>Efesus 4:17-24</td></tr>
-                            <tr><td>Senin, 3-8-2026</td><td>Mazmur 50:16-23</td><td>Roma 1:8-15</td></tr>
-                            <tr><td>Selasa, 4-8-2026</td><td>Ulangan 26:1-15</td><td>Kisah Para Rasul 2:37-47</td></tr>
-                            <tr><td>Rabu, 5-8-2026</td><td>Keluaran 16:2-15, 31-35</td><td>Matius 15:32-39</td></tr>
-                            <tr><td>Kamis, 6-8-2026</td><td>1 Raja-Raja 18:1-16</td><td>Kisah Para Rasul 17:10-15</td></tr>
-                            <tr><td>Jumat, 7-8-2026</td><td>1 Raja-Raja 18:17-19, 30-40</td><td>Kisah Para Rasul 18:24-28</td></tr>
-                            <tr><td>Sabtu, 8-8-2026</td><td>1 Raja-Raja 18:41-46</td><td>Matius 16:1-4</td></tr>
+                            <tr><td>Minggu, 9-8-2026</td><td>2 Samuel 15:13-31</td><td>Efesus 5:1-14</td></tr>
+                            <tr><td>Senin, 10-8-2026</td><td>Kejadian 7:11-8:5</td><td>2 Petrus 2:4-10</td></tr>
+                            <tr><td>Selasa, 11-8-2026</td><td>Kejadian 19:1-29</td><td>Roma 9:14-29</td></tr>
+                            <tr><td>Rabu, 12-8-2026</td><td>Ayub 36:24-33; 37:14-24</td><td>Matius 8:23-27</td></tr>
+                            <tr><td>Kamis, 13-8-2026</td><td>Yesaya 45:20-25</td><td>Wahyu 15:1-4</td></tr>
+                            <tr><td>Jumat, 14-8-2026</td><td>Yesaya 63:15-19</td><td>Kisah Para Rasul 14:19-28</td></tr>
+                            <tr><td>Sabtu, 15-8-2026</td><td>Yesaya 56:1-5</td><td>Matius 14:34-36</td></tr>
                         </table>
                     </div>
                 </div>
@@ -860,7 +852,7 @@
                     <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-church"></i> Tentang GMI Sungai Yordan & Majelis</div>
                     <div style="color:var(--text-muted); line-height:1.7; font-size:0.82rem; margin-bottom:15px;">
                         <p style="margin-bottom:10px; text-align:justify;"><strong>Gereja Methodist Indonesia (GMI) Jemaat "Sungai Yordan" Bekasi</strong> adalah bagian dari tubuh Kristus yang terpanggil untuk memberitakan Injil keselamatan dan melakukan pemuridan.</p>
-                        <p style="margin-bottom:10px; text-align:justify;"><strong>Visi Gereja:</strong><br>Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members + 17.000 MetamorfoSELF (Efesus 4:11-16).</p>
+                        <p style="margin-bottom:10px; text-align:justify;"><strong>Visi Gereja:</strong><br>Menjadi Gereja yang Memuridkan / Berperan Aktif dalam Mewujudkan Methodist Members +17.000</p>
                     </div>
 
                     <div class="warta-main-title"><i class="fa-solid fa-user-tie"></i> Susunan Pimpinan & Majelis Jemaat</div>
@@ -955,12 +947,14 @@
             <div class="table-responsive">
                 <table class="church-table">
                     <tr><th>NO</th><th>URAIAN</th><th>JUMLAH/RP</th></tr>
-                    <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td>4.208.000</td></tr>
-                    <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td>760.000</td></tr>
-                    <tr><td>3</td><td>Persembahan Persepuluhan</td><td>3.790.000</td></tr>
-                    <tr><td>4</td><td>Persembahan Ucapan Syukur</td><td>5.900.000</td></tr>
-                    <tr><td>5</td><td>Persembahan Ke Depan untuk Kas P3MI</td><td>3.906.000</td></tr>
-                    <tr style="font-weight:700; background:rgba(245,158,11,0.15);"><td>TOTAL</td><td></td><td>18.564.000</td></tr>
+                    <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td>3.200.000</td></tr>
+                    <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td>959.000</td></tr>
+                    <tr><td>3</td><td>Persembahan Persepuluhan</td><td>31.451.000</td></tr>
+                    <tr><td>4</td><td>Persembahan Ucapan Syukur</td><td>10.550.000</td></tr>
+                    <tr><td>5</td><td>Persembahan Dana Sosial</td><td>250.000</td></tr>
+                    <tr><td>6</td><td>Persembahan Dana Misi</td><td>250.000</td></tr>
+                    <tr><td>7</td><td>Persembahan Cicilan Mobil Gereja</td><td>5.000.000</td></tr>
+                    <tr><td>8</td><td>Persembahan Ke Depan Untuk Misi CM Cikalong</td><td>2.789.000</td></tr>
                 </table>
             </div>
 
@@ -980,9 +974,9 @@
                     <tr><td>10</td><td>Kel. Odi Siahaan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
                     <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
                     <tr><td>12</td><td>Kel. M. Manullang</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>13</td><td>Kel. Daniel Sinambela</td><td>5.120.000</td><td>2.000.000</td><td>Cicil 2</td></tr>
+                    <tr><td>13</td><td>Kel. Daniel Sinambela</td><td>5.120.000</td><td>2.000.000</td><td>Cicilan 2</td></tr>
                     <tr><td>14</td><td>Kel. Volkano Pangaribuan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
-                    <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td>5.120.000</td><td>2.500.000</td><td>Cicil 1</td></tr>
+                    <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td>5.120.000</td><td>2.500.000</td><td>Cicilan 1</td></tr>
                     <tr><td>16</td><td>Kel. Pdt. Karno Sirtoitet</td><td>1.500.000</td><td>1.500.000</td><td>Lunas</td></tr>
                     <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
                     <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td>1.000.000</td><td>1.000.000</td><td>Lunas</td></tr>
@@ -990,7 +984,7 @@
                     <tr><td>20</td><td>Kel. Sahat Nadeak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr>
                     <tr><td>21</td><td>Kel. FH. Panggabean</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
                     <tr><td>22</td><td>Kel. SBA</td><td>3.600.000</td><td>3.600.000</td><td>Lunas</td></tr>
-                    <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td>18.000.000</td><td>8.500.000</td><td>Cicil 10</td></tr>
+                    <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td>18.000.000</td><td>13.500.000</td><td>Cicilan 10</td></tr>
                     <tr><td>24</td><td>Bram, Messach, Nathasya</td><td>2.000.000</td><td>2.000.000</td><td>Lunas</td></tr>
                     <tr><td>25</td><td>Ibu Salonta Situmorang</td><td>500.000</td><td>500.000</td><td>Lunas</td></tr>
                     <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td>400.000</td><td>400.000</td><td>Tunai</td></tr>
@@ -1006,7 +1000,6 @@
                     <tr><td>36</td><td>Hertina Sitorus</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
                     <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
                     <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td>3.000.000</td><td>3.000.000</td><td>Tunai</td></tr>
-                    <tr style="font-weight:700; background:rgba(245,158,11,0.15);"><td>TOTAL</td><td></td><td>153.517.000</td><td>134.477.000</td><td></td></tr>
                 </table>
             </div>
 
@@ -1122,7 +1115,7 @@
             
             <div class="form-group">
                 <label>Pilih Tanggal Warta:</label>
-                <input type="date" id="archiveDateInput" value="2026-07-26">
+                <input type="date" id="archiveDateInput" value="2026-08-09">
             </div>
 
             <button class="btn-save" onclick="loadArchiveByDate()"><i class="fa-solid fa-folder-open"></i> Buka Arsip Warta</button>
@@ -1304,11 +1297,11 @@
         let userQuizScore = 0;
 
         let kategorialStore = {
-            'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Mulai Minggu, 2 Agustus 2026 diadakan ibadah Sekolah Minggu sesi pagi pukul 08.00 WIB & siang pukul 10.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800', count: 65 },
-            'prmi': { title: 'P3MI / PRMI (Pemuda & Remaja)', desc: 'Persekutuan Sabtu, 8/8/2026 Pkl. 17.00/18.00 WIB.', img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800', count: 50 },
+            'sekming': { title: 'Sekolah Minggu (Sekming)', desc: 'Ibadah Sekolah Minggu sesi pagi pukul 08.00 WIB & siang pukul 10.00 WIB.', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800', count: 65 },
+            'prmi': { title: 'P3MI / PRMI (Pemuda & Remaja)', desc: 'Persekutuan PRMI Sabtu, 15/8/2026 Pkl. 18.00 WIB & P3MI Pkl. 19.00 WIB.', img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800', count: 50 },
             'p2mi': { title: 'Persekutuan Kaum Pria (P2MI)', desc: 'Bulan Agustus merupakan bulan P2MI dengan berbagai kegiatan rohani & kebersamaan.', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800', count: 80 },
-            'pwmi': { title: 'Persekutuan Kaum Wanita (PWMI)', desc: 'Persekutuan ibu-ibu Selasa, 4/8/2026 Pkl. 18.00 WIB & Hari Wanita Methodist Sedunia.', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800', count: 95 },
-            'usindah': { title: 'Usia Indah (Usindah)', desc: 'Class Meeting Usindah Rabu, 5 Agustus 2026 Pukul 16.00 WIB di Gereja.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
+            'pwmi': { title: 'Persekutuan Kaum Wanita (PWMI)', desc: 'Persekutuan ibu-ibu dan kegiatan pelayanan wanita.', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800', count: 95 },
+            'usindah': { title: 'Usia Indah (Usindah)', desc: 'Class Meeting Usindah Rabu, 12 Agustus 2026 Pukul 16.00 WIB.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
         };
 
         let chartDataStore = {
@@ -1321,14 +1314,14 @@
             tataTitle: "Tata Ibadah Kebaktian Umum I & II",
             tataText: "Klik untuk membaca susunan Tata Ibadah Kebaktian Umum I dan Kebaktian Umum II secara lengkap...",
             tataImg: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800",
-            wartaTitle: "Minggu Kesepuluh Sesudah Pentakosta & Bulan P2MI",
-            wartaDate: "Minggu, 2 Agustus 2026 | No: 31/GMI-SY",
+            wartaTitle: "Minggu Kesebelas Sesudah Pentakosta & Bulan P2MI",
+            wartaDate: "Minggu, 9 Agustus 2026 | No: 32/GMI-SY",
             wartaImg: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800",
             doaText: "Mendoakan Bangsa, Negara, Program P2MI, serta jemaat yang sakit dan pemulihan...",
             doaImg: "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800",
-            renJudul: "Bacaan Alkitab 2 Agustus - 8 Agustus 2026",
+            renJudul: "Bacaan Alkitab 9 Agustus - 15 Agustus 2026",
             renImg: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800",
-            alkitabText: "Jadwal Pelayan Ibadah KU 1 & KU 2 serta Baptisan Kudus Anak...",
+            alkitabText: "Jadwal Pelayan Ibadah KU 1 & KU 2...",
             alkitabImg: "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800",
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
@@ -1488,17 +1481,7 @@
                     if(data.katStore) kategorialStore = data.katStore;
                     if(data.chartStore) chartDataStore = data.chartStore;
                     if(data.bankStore) bankInfoStore = data.bankStore;
-                    
-                    if(data.homeStore) {
-                        homeDataStore = data.homeStore;
-                        if(homeDataStore.wartaTitle && homeDataStore.wartaTitle.includes("Kesembilan")) {
-                            homeDataStore.wartaTitle = "Minggu Kesepuluh Sesudah Pentakosta & Bulan P2MI";
-                            homeDataStore.wartaDate = "Minggu, 2 Agustus 2026 | No: 31/GMI-SY";
-                            homeDataStore.doaText = "Mendoakan Bangsa, Negara, Program P2MI, serta jemaat yang sakit dan pemulihan...";
-                            homeDataStore.alkitabText = "Jadwal Pelayan Ibadah KU 1 & KU 2 serta Baptisan Kudus Anak...";
-                            homeDataStore.renJudul = "Bacaan Alkitab 2 Agustus - 8 Agustus 2026";
-                        }
-                    }
+                    if(data.homeStore) homeDataStore = data.homeStore;
                 }
             } catch (e) { console.log("Offline mode, using default data."); }
             applyDataToDOM();
@@ -1825,7 +1808,36 @@
             let selectedDate = document.getElementById('archiveDateInput').value;
             closeModal('archiveModal');
 
-            if (selectedDate === "2026-07-26") {
+            if (selectedDate === "2026-08-02") {
+                document.getElementById('arsip-page-title').innerText = "Minggu Kesepuluh Sesudah Pentakosta & Bulan P2MI";
+                document.getElementById('arsip-page-date').innerText = "Minggu, 2 Agustus 2026 | No: 31/GMI-SY/D.3-II/VIII/2026";
+                document.getElementById('arsip-content-body').innerHTML = `
+                    <p class="warta-content-text"><span>• Minggu lalu adalah Minggu Kesepuluh Sesudah Pentakosta dan Bulan P2MI (Hijau).</span></p>
+
+                    <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. KOMISI KEANGGOTAAN DAN EVANGELISASI</div>
+                    
+                    <div class="warta-sub-heading">Jemaat yang Berulang Tahun Kelahiran Minggu Lalu:</div>
+                    <p class="warta-content-text"><span>Bp. Hisar Pangaribuan (27/7), Sdri. Jojor Hutapea (27/7), Sdr. Marvic Davis Logan Siagan (28/7), Axel Gabriel Lumbantobing (28/7), Sdr. Chevin Jonathan Simbolon (29/7), Sdr. Ramli Manalu (30/7), Sdri. Juliani Alberta Liauwani (30/7), Sdr. Rico Felix Adrian Sianturi (31/7), Mikon Putra Hasiholan Sitorus (31/7), Sdri. Devani Grace Maria Sihombing (1/8), Sdr. Alexander Jose Hutasoit (1/8), Ibu Valerie Angelica Napitupulu (2/8), Ibu Sarah Agustini Pandiangan (2/8) dan Tabitha Nathania Pangaribuan (2/8). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.</span></p>
+                    
+                    <div class="warta-sub-heading">Baptisan Kudus Anak:</div>
+                    <p class="warta-content-text"><span>Minggu, 9 Agustus 2026 di KU 2 akan diadakan Baptisan Kudus anak. Kepada Bp/Ibu yang anaknya akan dibaptis dapat mendaftar sampai Jumat, 7 Agustus 2026 kepada Komisi Keanggotaan & Evangelisasi (Bp. Mangasa L. Tobing) dengan melengkapi photocopy Kartu Keluarga & photocopy Akte Lahir masing-masing 1 lembar.<br>Berikut nama yang sudah mendaftar:<br>- Nathaniel Nagatama Vela (anak dari Bp. Rendy Yohanes Tafu dan Ibu Hanna Dwila Mayasati Saragih)<br>- Keenan Elvano Halomoan Purba (anak dari Bp. Sanggam Reinhart Purba dan Ibu Fenisia Tafu)<br>- Claudion John Fabio (anak Bp. Athan Marino Sembiring dan Ibu Beatrix Elisabeth Miani).</span></p>
+
+                    <div class="warta-sub-heading">Jadwal Class Meeting Kamis, 6 Agustus 2026:</div>
+                    <div class="table-responsive">
+                        <table class="church-table">
+                            <tr><th>NAMA CLASS MEETING</th><th>TEMPAT</th></tr>
+                            <tr><td>CM Bethesda</td><td>Kel. Bp. Volkano Pangaribuan</td></tr>
+                            <tr><td>CM Kapernaum</td><td>Kel. Bp. Jhonson Simanjuntak</td></tr>
+                            <tr><td>CM Yerikho, Yudea, Kanaan</td><td>Kel. Ibu Yulia Hutapea</td></tr>
+                            <tr><td>CM Galilea, Yerusalem</td><td>Kel. Bp. Ivan Manik</td></tr>
+                            <tr><td>CM Efrata & Sion</td><td>Kel. Bp. G. Sitorus</td></tr>
+                            <tr><td>CM Korintus</td><td>Kel. Bp. Jackwin Simbolon</td></tr>
+                            <tr><td>CM Usindah (5 Agustus 2026)</td><td>Gereja, Pukul 16.00 WIB</td></tr>
+                        </table>
+                    </div>
+                `;
+                openPageView('page-arsip-warta');
+            } else if (selectedDate === "2026-07-26") {
                 document.getElementById('arsip-page-title').innerText = "Minggu Kesembilan Sesudah Pentakosta & Bulan P3MI/PRMI";
                 document.getElementById('arsip-page-date').innerText = "Minggu, 26 Juli 2026 | No: 30/GMI-SY/D.3-II/VII/2026";
                 document.getElementById('arsip-content-body').innerHTML = `
@@ -1835,29 +1847,16 @@
                     
                     <div class="warta-sub-heading">Jemaat yang Berulang Tahun Kelahiran (Arsip 26 Juli):</div>
                     <p class="warta-content-text"><span>Daren Marbun (20/7), Ibu Tionerlis Anastasia Marpaung (20/7), Bp. Willian Doktrian Julius Sihombing (20/7), Sdr. Christover Roggo Vanichael Simanjuntak (21/7), Ibu Juli Dwi Lestari Simorangkir (21/7), Elson Michael Pangaribuan (22/7), Ibu Siti Girsang (23/7), Bp. Wilmar Hutauruk (23/7), Brooklyn Marcello Hasiholanta Girsang (24/7), Bp. Timbul Parningotan Siagian (24/7), Sdr. Albert Julius Liauwani (25/7), Bp. Alfredo Panjaitan (26/7), Sdri. Nathasya Cristio Gabriella Samosir (26/7), dan Bp. Parlindungan Simanjuntak (26/7). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.</span></p>
-                    
-                    <div class="warta-sub-heading">Jemaat yang Berulang Tahun Pernikahan:</div>
-                    <p class="warta-content-text"><span>Bp. Desman Fiberto Sipahutar/Ibu Ernilawati (1/7), Bp. Toni Tampubolon/Ibu Roida Panjaitan (4/7), Bp. Ricky Brown Hill Pangaribuan/Ibu Yuni Damayanti Tampubolon (6/7), Bp. Ivan Tobing/Ibu Omega Cyndy Lianza Mantiri (6/7), Bp. Milton Tobing/Ibu Anita Emma L. Sihombing (7/7), Bp. Sanggam Reinhart Purba/Ibu Fenisia Tafu (8/7), Bp. Rafael Falcon Sihombing/Ibu Rina Sianipar (10/7), Bp. Odi Oktovian Yuda Melanthon Siahaan/Ibu Nanci Manurung (11/7), Bp. Usdek Simanjuntak/Ibu Flora Napitupulu (13/7), Bp. Gok Ari Joso Simamora/Ibu Elvri Manurung (14/7), Bp. Rimhotnar Hutasoit/Ibu Magdayanta Sembiring (20/7) dan Bp. Anton Tobing/Ibu Melva Siahaan (24/7).</span></p>
-
-                    <div class="warta-sub-heading">Berita Dukacita:</div>
-                    <p class="warta-content-text"><span>1. Pada hari Senin, 20 Juli 2026 telah meninggal dunia Ibu Delmina Aritonang (Op. Abednego Simamora) tutup usia 88 tahun, telah dimakamkan pada hari Rabu, 22 Juli 2026 di TPU Pondok Ranggon.<br><br>2. Pada hari Senin, 20 Juli 2026 telah meninggal dunia Bp. Mula Saut Halomoan Siallagan tutup usia 79 tahun telah dimakamkan hari Rabu, 22 Juli 2026 di TPU Pondok Kelapa. Majelis dan Jemaat turut berdukacita.</span></p>
-
-                    <div class="warta-sub-heading">Class Meeting Gabungan Kamis, 30 Juli 2026:</div>
-                    <p class="warta-content-text"><span>Kamis, 30 Juli 2026 pukul 20.00 WIB, tempat gereja akan diadakan Class Meeting Gabungan. Liturgis LS. Mangasa L.Tobing, Pemusik Shinta K. Manurung, Singer: Ibu Elviera Oppusunggu dan Ibu Moralita Simanjuntak, Firman Tuhan Pdt. David Hutagalung.</span></p>
-
-                    <div class="warta-main-title"><i class="fa-solid fa-graduation-cap"></i> 2. KOMISI PENDIDIKAN AGAMA KRISTEN (PAK)</div>
-                    <div class="warta-sub-heading">Persekutuan Pemuda Pemudi Methodist Indonesia (P3MI):</div>
-                    <p class="warta-content-text"><span>Pada Minggu, 26 Juli 2026 adalah puncak bulan P3MI. Pelayan Ibadah KU 1 & KU 2 dilayani oleh P3MI. P3MI juga mengadakan bazar untuk mendukung program P3MI. Selesai ibadah menikmati perjamuan kasih bersama.</span></p>
                 `;
                 openPageView('page-arsip-warta');
-            } else if (selectedDate === "2026-08-02") {
+            } else if (selectedDate === "2026-08-09") {
                 openPageView('page-warta');
             } else {
                 document.getElementById('arsip-page-title').innerText = `Arsip Warta Jemaat (${selectedDate})`;
                 document.getElementById('arsip-page-date').innerText = `Tanggal Terpilih: ${selectedDate}`;
                 document.getElementById('arsip-content-body').innerHTML = `
                     <div class="warta-main-title"><i class="fa-solid fa-circle-info"></i> Informasi Arsip</div>
-                    <p class="warta-content-text"><span>Arsip warta untuk tanggal ${selectedDate} belum diunggah atau belum tersedia di sistem database. Silakan pilih tanggal Minggu lainnya (contoh: 26-07-2026).</span></p>
+                    <p class="warta-content-text"><span>Arsip warta untuk tanggal ${selectedDate} belum diunggah atau belum tersedia di sistem database. Silakan pilih tanggal Minggu lainnya (contoh: 02-08-2026 atau 26-07-2026).</span></p>
                 `;
                 openPageView('page-arsip-warta');
             }
