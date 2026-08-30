@@ -1119,7 +1119,7 @@
             }
         }
 
-        // VERIFIKASI PASSWORD LAPORAN KEUANGAN AMAN DARI DATABASE FIREBASE
+        // VERIFIKASI PASSWORD LAPORAN KEUANGAN BERSIH DARI TEKS CADANGAN
         async function unlockPersembahanTable() {
             let pass = document.getElementById('inputPersembahanPass').value.trim();
             if (!pass) {
@@ -1127,11 +1127,11 @@
                 return;
             }
             try {
-                const docRef = window.doc(window.db, "portal_data", "portal_data");
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
-                    let correctPass = docSnap.data().laporan_pass || "gmi2026syordan";
-                    if (pass === correctPass) {
+                    let correctPass = docSnap.data().laporan_pass;
+                    if (pass === correctPass && correctPass) {
                         document.getElementById('persembahanLockedBox').style.display = 'none';
                         document.getElementById('persembahanUnlockedInfo').style.display = 'block';
                     } else {
@@ -1145,7 +1145,7 @@
             }
         }
 
-        // VERIFIKASI PASSWORD ADMIN AMAN DARI DATABASE FIREBASE
+        // VERIFIKASI PASSWORD ADMIN BERSIH DARI TEKS CADANGAN
         async function verifyAdmin() {
             let pass = document.getElementById('adminPass').value.trim();
             if (!pass) {
@@ -1156,8 +1156,8 @@
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
-                    let correctAdminPass = docSnap.data().admin_pass || "gmi01012026admin";
-                    if (pass === correctAdminPass) {
+                    let correctAdminPass = docSnap.data().admin_pass;
+                    if (pass === correctAdminPass && correctAdminPass) {
                         closeModal('loginModal');
                         document.getElementById('adminPass').value = "";
                         document.body.classList.add('admin-logged-in');
@@ -1252,7 +1252,6 @@
             document.getElementById('verseModal').style.display = 'flex';
         }
 
-        // MENARIK LAPORAN KEUANGAN AMAN LANGSUNG DARI FIRESTORE DATABASE
         async function openPersembahanModal() {
             document.getElementById('persembahanModal').style.display = 'flex';
             let container = document.getElementById('dynamicFinancialContentContainer');
