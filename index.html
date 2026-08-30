@@ -873,13 +873,13 @@
         </div>
     </div>
 
-    <!-- MODAL LAPORAN KEUANGAN AMAN -->
+    <!-- MODAL LAPORAN KEUANGAN AMAN DARI DATABASE -->
     <div class="modal" id="persembahanModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('persembahanModal')">&times;</span>
             <div class="section-title" style="margin-bottom: 12px; font-size:1rem;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Persembahan & Keuangan</div>
             <div id="dynamicFinancialContentContainer">
-                <p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; padding: 20px;">Memuat data laporan keuangan secara aman...</p>
+                <p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; padding: 20px;">Memuat data laporan keuangan secara aman dari server...</p>
             </div>
             <button class="btn-save" onclick="closeModal('persembahanModal')" style="margin-top:15px;"><i class="fa-solid fa-xmark"></i> Tutup & Lanjutkan</button>
         </div>
@@ -1106,9 +1106,6 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
-        // DATA KEUANGAN AMAN DAN BERSIH DARI KODE MENTAH
-        let encryptedFinancialReport = "<h3 style='color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 8px;'>Laporan Persembahan Minggu, 23 Agustus 2026</h3><div class='table-responsive'><table class='church-table'><tr><th>NO</th><th>URAIAN</th><th>JUMLAH/RP</th></tr><tr><td>1</td><td>Persembahan Kebaktian Umum</td><td>3.672.000</td></tr><tr><td>2</td><td>Persembahan Sekolah Minggu</td><td>820.000</td></tr><tr><td>3</td><td>Persembahan Persepuluhan: Godwin Simanjuntak, Tetty Sihombing br. Hasibuan, Devani, Calista, Raquel, Kel. Alpeus Sianturi/br. Berutu</td><td>2.400.000</td></tr><tr><td>4</td><td>Persembahan Ucapan Syukur: Elgio, NN Bekasi</td><td>750.000</td></tr><tr><td>5</td><td>Persembahan Dana Sosial: Kel. Usdek Simanjuntak</td><td>350.000</td></tr><tr><td>6</td><td>Persembahan Dana Misi: Kel. Usdek Simanjuntak</td><td>350.000</td></tr><tr><td>7</td><td>Persembahan Class Meeting</td><td>1.045.000</td></tr><tr><td>8</td><td>Persembahan Ke Depan untuk NTT</td><td>3.896.000</td></tr><tr><td><strong>-</strong></td><td><strong>T O T A L</strong></td><td><strong>13.283.000</strong></td></tr></table></div><h3 style='color: var(--accent-cyan); font-size: 0.95rem; margin-top:15px; margin-bottom: 8px;'>Nama-Nama Jemaat Yang Sudah Mengembalikan Formulir Janji Iman:</h3><div class='table-responsive'><table class='church-table'><tr><th>NO</th><th>NAMA</th><th>JANJI IMAN (Rp)</th><th>PEMBAYARAN</th><th>KET.</th></tr><tr><td>1</td><td>NN</td><td>10.000.000</td><td>10.000.000</td><td>Lunas</td></tr><tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr><tr><td>3</td><td>Kel. Ricky Pasaribu</td><td>7.500.000</td><td>7.500.000</td><td>Lunas</td></tr><tr><td>4</td><td>Kel. DF Sipahutar</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr><tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr><tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr><tr><td>7</td><td>Sdri. Elsa SLA. Simatupang</td><td>7.000.000</td><td>7.000.000</td><td>Lunas</td></tr><tr><td>8</td><td>Kel. GAJ. Simamora</td><td>20.000.000</td><td>20.000.000</td><td>Lunas</td></tr><tr><td>9</td><td>Ibu Luci Simamora</td><td>10.240.000</td><td>10.240.000</td><td>Lunas</td></tr><tr><td>10</td><td>Kel. Odi Siahaan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr><tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr><tr><td>12</td><td>Kel. M. Manullang</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr><tr><td>13</td><td>Kel. Daniel Sinambela</td><td>5.120.000</td><td>2.000.000</td><td>Cicilan 2</td></tr><tr><td>14</td><td>Kel. Volkano Pangaribuan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr><tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td>5.120.000</td><td>2.500.000</td><td>Cicilan 1</td></tr><tr><td>16</td><td>Kel. Pdt. Karno Siritoitet</td><td>1.500.000</td><td>1.500.000</td><td>Lunas</td></tr><tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr><tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td>1.000.000</td><td>1.000.000</td><td>Lunas</td></tr><tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr><tr><td>20</td><td>Kel. Sahat Nadeak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr><tr><td>21</td><td>Kel. FH. Panggabean</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr><tr><td>22</td><td>Kel. SBA</td><td>3.600.000</td><td>3.600.000</td><td>Lunas</td></tr><tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td>18.000.000</td><td>13.500.000</td><td>Cicilan 10</td></tr><tr><td>24</td><td>Bram, Messach, Nathasya</td><td>2.000.000</td><td>2.000.000</td><td>Lunas</td></tr><tr><td>25</td><td>Ibu Salonta Situmorang</td><td>500.000</td><td>500.000</td><td>Lunas</td></tr><tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td>400.000</td><td>400.000</td><td>Tunai</td></tr><tr><td>27</td><td>NN Bekasi</td><td>5.120.000</td><td>5.120.000</td><td>Tunai</td></tr><tr><td>28</td><td>Kel. Mustafa Sihombing</td><td>2.000.000</td><td>2.000.000</td><td>Tunai</td></tr><tr><td>29</td><td>Nathasya Suwarsono</td><td>5.120.000</td><td>5.120.000</td><td>Tunai</td></tr><tr><td>30</td><td>Kel. HS. Hutajulu</td><td>777.000</td><td>777.000</td><td>Tunai</td></tr><tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr><tr><td>32</td><td>Kel. Koster Pangaribuan</td><td>200.000</td><td>200.000</td><td>Tunai</td></tr><tr><td>33</td><td>Irma Siagian</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr><tr><td>34</td><td>NN</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr><tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td>600.000</td><td>600.000</td><td>Tunai</td></tr><tr><td>36</td><td>Hertina Sitorus</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr><tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr><tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td>3.000.000</td><td>3.000.000</td><td>Tunai</td></tr><tr><td><strong>-</strong></td><td><strong>T O T A L</strong></td><td><strong>153.517.000</strong></td><td><strong>142.777.000</strong></td><td><strong>-</strong></td></tr></table></div>";
-
         function togglePasswordVisibility(fieldId, iconEl) {
             let field = document.getElementById(fieldId);
             if (field.type === "password") {
@@ -1122,26 +1119,58 @@
             }
         }
 
-        function unlockPersembahanTable() {
+        // VERIFIKASI PASSWORD LAPORAN KEUANGAN AMAN DARI DATABASE FIREBASE
+        async function unlockPersembahanTable() {
             let pass = document.getElementById('inputPersembahanPass').value.trim();
-            if (pass === "gmi2026syordan") {
-                document.getElementById('persembahanLockedBox').style.display = 'none';
-                document.getElementById('persembahanUnlockedInfo').style.display = 'block';
-            } else {
-                alert("Password laporan persembahan salah!");
+            if (!pass) {
+                alert("Masukkan password terlebih dahulu!");
+                return;
+            }
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                const docSnap = await window.getDoc(docRef);
+                if (docSnap.exists()) {
+                    let correctPass = docSnap.data().laporan_pass || "gmi2026syordan";
+                    if (pass === correctPass) {
+                        document.getElementById('persembahanLockedBox').style.display = 'none';
+                        document.getElementById('persembahanUnlockedInfo').style.display = 'block';
+                    } else {
+                        alert("Password laporan persembahan salah!");
+                    }
+                } else {
+                    alert("Gagal memverifikasi ke server.");
+                }
+            } catch (e) {
+                alert("Terjadi kesalahan koneksi database.");
             }
         }
 
-        function verifyAdmin() {
+        // VERIFIKASI PASSWORD ADMIN AMAN DARI DATABASE FIREBASE
+        async function verifyAdmin() {
             let pass = document.getElementById('adminPass').value.trim();
-            if (pass === "gmi01012026admin") {
-                closeModal('loginModal');
-                document.getElementById('adminPass').value = "";
-                document.body.classList.add('admin-logged-in');
-                document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
-                alert("Login Admin Berhasil!");
-            } else { 
-                alert("Password Admin Salah!"); 
+            if (!pass) {
+                alert("Masukkan password admin terlebih dahulu!");
+                return;
+            }
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                const docSnap = await window.getDoc(docRef);
+                if (docSnap.exists()) {
+                    let correctAdminPass = docSnap.data().admin_pass || "gmi01012026admin";
+                    if (pass === correctAdminPass) {
+                        closeModal('loginModal');
+                        document.getElementById('adminPass').value = "";
+                        document.body.classList.add('admin-logged-in');
+                        document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
+                        alert("Login Admin Berhasil!");
+                    } else {
+                        alert("Password Admin Salah!");
+                    }
+                } else {
+                    alert("Gagal memverifikasi ke server.");
+                }
+            } catch (e) {
+                alert("Terjadi kesalahan koneksi database.");
             }
         }
 
@@ -1223,14 +1252,22 @@
             document.getElementById('verseModal').style.display = 'flex';
         }
 
+        // MENARIK LAPORAN KEUANGAN AMAN LANGSUNG DARI FIRESTORE DATABASE
         async function openPersembahanModal() {
             document.getElementById('persembahanModal').style.display = 'flex';
             let container = document.getElementById('dynamicFinancialContentContainer');
+            container.innerHTML = `<p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; padding: 20px;"><i class="fa-solid fa-spinner fa-spin"></i> Mengambil data laporan keuangan dari server...</p>`;
             
             try {
-                container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${encryptedFinancialReport}</div>`;
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                const docSnap = await window.getDoc(docRef);
+                if (docSnap.exists() && docSnap.data().laporan_keuangan) {
+                    container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${docSnap.data().laporan_keuangan}</div>`;
+                } else {
+                    container.innerHTML = `<p style="font-size: 0.82rem; color: var(--accent-red); text-align: center; padding: 20px;">Data laporan keuangan belum ditemukan di database.</p>`;
+                }
             } catch (e) {
-                container.innerHTML = `<p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; padding: 20px;">Gagal memuat data laporan keuangan.</p>`;
+                container.innerHTML = `<p style="font-size: 0.82rem; color: var(--accent-red); text-align: center; padding: 20px;">Gagal memuat data dari database.</p>`;
             }
         }
 
