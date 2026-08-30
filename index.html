@@ -17,6 +17,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyC3EBnDn0tI_VYZNc7oyetucFmWmtLnOw0",
@@ -30,11 +31,14 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
 
         window.db = db;
+        window.auth = auth;
         window.doc = doc;
         window.getDoc = getDoc;
         window.setDoc = setDoc;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 
         window.loadFromFirebase();
     </script>
@@ -1007,11 +1011,17 @@
         </div>
     </div>
 
-    <!-- MODAL LOGIN ADMIN -->
+    <!-- MODAL LOGIN ADMIN DENGAN EMAIL & PASSWORD MANUAL -->
     <div class="modal" id="loginModal">
         <div class="modal-card" style="max-width: 360px;">
             <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
             <h3 style="color:var(--accent-gold); text-align:center; margin-bottom:10px; font-size:1.1rem;"><i class="fa-solid fa-shield-halved"></i> Login Admin</h3>
+            
+            <div class="form-group">
+                <label>Email Admin:</label>
+                <input type="email" id="adminEmail" placeholder="Masukkan email admin...">
+            </div>
+
             <div class="form-group">
                 <label>Password Admin:</label>
                 <div class="password-input-wrap">
@@ -1019,6 +1029,7 @@
                     <i class="fa-solid fa-eye toggle-password" onclick="togglePasswordVisibility('adminPass', this)"></i>
                 </div>
             </div>
+
             <button class="btn-save" onclick="verifyAdmin()">Masuk Panel</button>
         </div>
     </div>
@@ -1145,30 +1156,28 @@
         }
 
         async function verifyAdmin() {
+            let email = document.getElementById('adminEmail').value.trim();
             let pass = document.getElementById('adminPass').value.trim();
-            if (!pass) {
-                alert("Masukkan password admin terlebih dahulu!");
+
+            if (!email || !pass) {
+                alert("Masukkan email dan password admin terlebih dahulu!");
                 return;
             }
+
             try {
-                const docRef = window.doc(window.db, "portalData", "gmi_content");
-                const docSnap = await window.getDoc(docRef);
-                if (docSnap.exists()) {
-                    let correctAdminPass = docSnap.data().admin_pass;
-                    if (pass === correctAdminPass && correctAdminPass) {
-                        closeModal('loginModal');
-                        document.getElementById('adminPass').value = "";
-                        document.body.classList.add('admin-logged-in');
-                        document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
-                        alert("Login Admin Berhasil!");
-                    } else {
-                        alert("Password Admin Salah!");
-                    }
-                } else {
-                    alert("Gagal memverifikasi ke server.");
-                }
-            } catch (e) {
-                alert("Terjadi kesalahan koneksi database.");
+                // Verifikasi aman langsung ke server Google Firebase Auth
+                await window.signInWithEmailAndPassword(window.auth, email, pass);
+                
+                closeModal('loginModal');
+                document.getElementById('adminEmail').value = "";
+                document.getElementById('adminPass').value = "";
+                document.body.classList.add('admin-logged-in');
+                document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
+                alert("Login Admin Berhasil! 🎉");
+
+            } catch (error) {
+                alert("Email atau Password Admin Salah! Silakan coba lagi.");
+                console.error("Auth error:", error.code);
             }
         }
 
@@ -1472,7 +1481,7 @@
                 closeModal('adminEditModal');
                 alert("Perubahan berhasil disimpan! 🎉");
             } catch (error) {
-                alert("Gagal menyimpan ke database.");
+                alert("Gagal menyimpan ke database (pastikan Anda sudah login admin).");
             }
         }
 
