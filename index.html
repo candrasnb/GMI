@@ -456,7 +456,7 @@
                             <span class="copy-text" id="txtAccountNumber">0282569508</span>
                             <button class="btn-copy" onclick="copyAccountNumber()"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
-                        <button class="btn-giving-confirm" onclick="openFormModal('konfirmasi_persembahan')"><i class="fa-brands fa-whatsapp"></i> Konfirmasi Persembahan</button>
+                        <button class="btn-giving-confirm" onclick="openFormModal('konfirmasi_persembahan')"><i class="fa-solid fa-paper-plane"></i> Konfirmasi Persembahan</button>
                     </div>
                 </div>
             </div>
@@ -978,7 +978,7 @@
             <span class="close-modal" onclick="closeModal('formModal')">&times;</span>
             <h3 id="formModalTitle" style="color:var(--accent-gold); margin-bottom:12px; font-size:1.1rem;"><i class="fa-solid fa-file-lines"></i> Form Layanan</h3>
             <div id="formModalBody"></div>
-            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-brands fa-whatsapp"></i> KIRIM PESAN WHATSAPP</button>
+            <button class="btn-save" onclick="submitJemaatForm()"><i class="fa-solid fa-paper-plane"></i> Kirim</button>
         </div>
     </div>
 
@@ -1119,7 +1119,6 @@
             }
         }
 
-        // VERIFIKASI PASSWORD LAPORAN KEUANGAN - BERSIH TOTAL TANPA FALLBACK
         async function unlockPersembahanTable() {
             let pass = document.getElementById('inputPersembahanPass').value.trim();
             if (!pass) {
@@ -1145,7 +1144,6 @@
             }
         }
 
-        // VERIFIKASI PASSWORD ADMIN - BERSIH TOTAL TANPA FALLBACK
         async function verifyAdmin() {
             let pass = document.getElementById('adminPass').value.trim();
             if (!pass) {
@@ -1558,12 +1556,45 @@
             let nama = document.getElementById('formNama') ? document.getElementById('formNama').value : "Jemaat";
             let wa = document.getElementById('formWa') ? document.getElementById('formWa').value : "-";
             let isi = document.getElementById('formIsi') ? document.getElementById('formIsi').value : "-";
+            
             let targetPhone = "6281311327715";
-            let pesanTeks = `Shalom, saya ${nama} (${wa}). Pesan: ${isi}`;
+            let pengantar = "";
+            let penutup = "";
 
-            if (currentFormType === 'doa' || currentFormType === 'konseling') {
+            if (currentFormType === 'doa') {
                 targetPhone = "6285269607373";
+                pengantar = "Shalom Bapak Pendeta,\n\nMelalui pesan ini, saya yang terkasih dalam Tuhan memohon dukungan doa syafaat untuk pergumulan hidup saya sebagai berikut:";
+                penutup = "Demikian permohonan doa ini saya sampaikan. Kiranya Tuhan Yesus memberkati pelayanan Bapak Pendeta. Amin.";
+            } else if (currentFormType === 'konseling') {
+                targetPhone = "6285269607373";
+                pengantar = "Shalom Bapak Pendeta,\n\nKiranya kasih karunia dan damai sejahtera Tuhan menyertai pelayanan Bapak. Saya bermaksud untuk mengajukan permohonan waktu konseling pastoral dengan detail berikut:";
+                penutup = "Demikian permohonan ini saya sampaikan. Terima kasih atas waktu dan bimbingan rohaninya. Tuhan Yesus memberkati.";
+            } else if (currentFormType === 'bunga') {
+                let tgl = document.getElementById('formTanggal') ? document.getElementById('formTanggal').value : "-";
+                pengantar = `Shalom Tim Sekretariat,\n\nKiranya sukacita Tuhan senantiasa menyertai pelayanan kita. Bersama pesan ini, saya bermaksud mengonfirmasikan persembahan Bunga Mimbar untuk tanggal ${tgl} dengan keterangan berikut:`;
+                penutup = "Demikian konfirmasi ini saya sampaikan. Terima kasih dan Tuhan Yesus memberkati pelayanan gereja kita.";
+                isi = `Tanggal: ${tgl}\nKeterangan: ${isi}`;
+            } else if (currentFormType === 'update_data') {
+                pengantar = "Shalom Tim Sekretariat,\n\nKiranya damai sejahtera Kristus menyertai tugas pelayanan di gereja kita. Melalui pesan ini, saya ingin menyampaikan pembaruan data jemaat/keluarga kami sebagai berikut:";
+                penutup = "Demikian pembaruan data ini saya sampaikan. Terima kasih atas perhatiannya, Tuhan Yesus memberkati.";
+            } else if (currentFormType === 'konfirmasi_persembahan') {
+                let jenis = document.getElementById('formJenisPersembahan') ? document.getElementById('formJenisPersembahan').value : "-";
+                let nominal = document.getElementById('formNominal') ? document.getElementById('formNominal').value : "-";
+                let detailSyukur = document.getElementById('formDetailSyukur') ? document.getElementById('formDetailSyukur').value : "";
+                let detailLainnya = document.getElementById('formDetailLainnya') ? document.getElementById('formDetailLainnya').value : "";
+
+                let jenisFinal = jenis;
+                if(jenis === 'Ucapan Syukur' && detailSyukur) jenisFinal = `Ucapan Syukur (${detailSyukur})`;
+                if(jenis === 'Persembahan Lainnya' && detailLainnya) jenisFinal = detailLainnya;
+
+                pengantar = "Shalom Tim Sekretariat,\n\nPuji Tuhan atas berkat dan kasih karunia-Nya dalam hidup kami. Bersama pesan ini, saya ingin mengonfirmasikan persembahan digital GMI Sungai Yordan dengan rincian berikut:";
+                penutup = "Demikian konfirmasi persembahan ini saya sampaikan. Kiranya persembahan ini berkenan di hadapan Tuhan dan memberkati pelayanan gereja-Nya. Soli Deo Gloria.";
+                
+                isi = `Jenis Persembahan: ${jenisFinal}\nJumlah Nominal: Rp ${nominal}`;
             }
+
+            let pesanTeks = `${pengantar}\n\nNama: ${nama}\nKontak WhatsApp: ${wa}\n${isi}\n\n${penutup}`;
+
             window.open(`https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(pesanTeks)}`, '_blank');
             closeModal('formModal');
         }
