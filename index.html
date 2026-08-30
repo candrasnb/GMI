@@ -1119,7 +1119,7 @@
             }
         }
 
-        // VERIFIKASI PASSWORD LAPORAN KEUANGAN - BERSIH TANPA TEKS CADANGAN
+        // VERIFIKASI PASSWORD LAPORAN KEUANGAN - BERSIH TOTAL TANPA FALLBACK
         async function unlockPersembahanTable() {
             let pass = document.getElementById('inputPersembahanPass').value.trim();
             if (!pass) {
@@ -1145,7 +1145,7 @@
             }
         }
 
-        // VERIFIKASI PASSWORD ADMIN - BERSIH TANPA TEKS CADANGAN
+        // VERIFIKASI PASSWORD ADMIN - BERSIH TOTAL TANPA FALLBACK
         async function verifyAdmin() {
             let pass = document.getElementById('adminPass').value.trim();
             if (!pass) {
