@@ -637,7 +637,7 @@
 
                         <div class="warta-main-title"><i class="fa-solid fa-file-lines"></i> 5. PENATALAYANAN DAN KEUANGAN</div>
                         <div class="warta-sub-heading">Laporan Persembahan & Keuangan:</div>
-                        <p class="warta-content-text"><span>Rincian selengkapnya dapat dibuka melalui verifikasi password di bawah.</span></p>
+                        <p class="warta-content-text"><span>Rincian selengkapnya dapat dibuka dengan memasukkan password di bawah.</span></p>
 
                         <div class="warta-main-title"><i class="fa-solid fa-file-lines"></i> 6. LAIN - LAIN</div>
                         <div class="warta-sub-heading">Pelayan Firman Tuhan:</div>
@@ -665,13 +665,14 @@
                         <p style="text-align:center; font-style:italic; font-size:0.78rem; margin-top:8px; color:var(--text-muted);">Demikianlah Warta Jemaat kita Minggu Ini, Tuhan Yesus Memberkati.</p>
                     </div>
 
+                    <!-- BAGIAN KHUSUS PASSWORD JEMAAT (INPUT PASSWORD SAJA) -->
                     <div style="margin-top: 20px; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-gold); border-radius: 10px;">
                         <h4 style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 8px; font-family: 'Playfair Display', serif;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Keuangan, Persembahan & Janji Iman</h4>
                         <div id="persembahanLockedBox">
-                            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px;">Bagian ini dikunci. Masukkan password yang valid untuk membuka tabel laporan keuangan.</p>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px;">Masukkan password jemaat untuk membuka tabel laporan keuangan.</p>
                             <div style="display: flex; gap: 6px; max-width: 100%; align-items: center;">
                                 <div class="password-input-wrap" style="flex-grow: 1;">
-                                    <input type="password" id="inputPersembahanPass" placeholder="Password..." style="padding: 7px; font-size: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 6px; color: #fff; width: 100%; padding-right: 30px;">
+                                    <input type="password" id="inputPersembahanPass" placeholder="Masukkan password..." style="padding: 7px; font-size: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: 6px; color: #fff; width: 100%; padding-right: 30px;">
                                     <i class="fa-solid fa-eye toggle-password" style="right: 8px;" onclick="togglePasswordVisibility('inputPersembahanPass', this)"></i>
                                 </div>
                                 <button onclick="unlockPersembahanTable()" style="padding: 7px 12px; background: var(--accent-gold); border: none; border-radius: 6px; font-weight: 700; font-size: 0.75rem; cursor: pointer; white-space: nowrap;">Buka</button>
@@ -782,6 +783,19 @@
                     <div class="card-banner-box" style="height: 160px;">
                         <img id="kat-page-img" src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800" class="card-banner-img" alt="Kategorial">
                     </div>
+                </div>
+            </div>
+
+            <!-- ARSIP WARTA -->
+            <div id="page-arsip-warta" class="page-sec">
+                <div class="glass-card">
+                    <div class="page-view-header">
+                        <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
+                        <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">ARSIP WARTA</span>
+                    </div>
+                    <h2 id="arsip-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Arsip Warta Jemaat</h2>
+                    <p id="arsip-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;"></p>
+                    <div id="arsip-content-body"></div>
                 </div>
             </div>
 
@@ -1165,7 +1179,6 @@
             }
 
             try {
-                // Verifikasi aman langsung ke server Google Firebase Auth
                 await window.signInWithEmailAndPassword(window.auth, email, pass);
                 
                 closeModal('loginModal');
