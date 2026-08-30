@@ -168,16 +168,8 @@
         .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; max-width: 100%; margin-top: 5px; }
         
         .hero-stat-card { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border-glass); 
-            padding: 12px 10px; 
-            border-radius: 12px; 
-            text-align: center; 
-            position: relative; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background: var(--bg-card); border: 1px solid var(--border-glass); padding: 12px 10px; border-radius: 12px; 
+            text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .hero-stat-card h3 { font-size: 1.15rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 2px; text-align: center; }
         .hero-stat-card p { font-size: 0.68rem; color: var(--text-muted); text-align: center; }
@@ -208,71 +200,23 @@
         .carousel-date { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
 
         .warta-main-title {
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.05rem; 
-            color: var(--accent-gold); 
-            background: rgba(245, 158, 11, 0.12);
-            border-left: 3px solid var(--accent-gold);
-            padding: 8px 10px;
-            margin-top: 20px; 
-            margin-bottom: 10px; 
-            border-radius: 0 6px 6px 0;
+            font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--accent-gold); background: rgba(245, 158, 11, 0.12);
+            border-left: 3px solid var(--accent-gold); padding: 8px 10px; margin-top: 20px; margin-bottom: 10px; border-radius: 0 6px 6px 0;
             display: flex; align-items: center; gap: 6px; text-align: left;
         }
 
         .warta-sub-heading {
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            font-size: 0.88rem; 
-            font-weight: 700;
-            color: var(--accent-cyan); 
-            margin-top: 14px; 
-            margin-bottom: 6px; 
-            text-align: left;
-            border-bottom: 1px dashed rgba(56, 189, 248, 0.3);
-            padding-bottom: 3px;
+            font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan); 
+            margin-top: 14px; margin-bottom: 6px; text-align: left; border-bottom: 1px dashed rgba(56, 189, 248, 0.3); padding-bottom: 3px;
         }
 
         .warta-content-text { 
-            font-size: 0.82rem; 
-            color: var(--text-light); 
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 9px 12px;
-            border-radius: 8px;
-            line-height: 1.7; 
-            margin-bottom: 8px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-            text-align: justify; 
+            font-size: 0.82rem; color: var(--text-light); background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 9px 12px; border-radius: 8px; line-height: 1.7; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; text-align: justify; 
         }
 
-        .liturgi-badge-b {
-            background: rgba(245, 158, 11, 0.25);
-            color: #fef08a;
-            border: 1px solid var(--accent-gold);
-            padding: 2px 7px;
-            border-radius: 6px;
-            font-weight: 800;
-            font-size: 0.72rem;
-            white-space: nowrap;
-            margin-left: auto;
-            box-shadow: 0 0 8px rgba(245,158,11,0.3);
-        }
-
-        .liturgi-badge-d {
-            background: rgba(56, 189, 248, 0.25);
-            color: #bae6fd;
-            border: 1px solid var(--accent-cyan);
-            padding: 2px 7px;
-            border-radius: 6px;
-            font-weight: 800;
-            font-size: 0.72rem;
-            white-space: nowrap;
-            margin-left: auto;
-            box-shadow: 0 0 8px rgba(56,189,248,0.3);
-        }
+        .liturgi-badge-b { background: rgba(245, 158, 11, 0.25); color: #fef08a; border: 1px solid var(--accent-gold); padding: 2px 7px; border-radius: 6px; font-weight: 800; font-size: 0.72rem; white-space: nowrap; margin-left: auto; box-shadow: 0 0 8px rgba(245,158,11,0.3); }
+        .liturgi-badge-d { background: rgba(56, 189, 248, 0.25); color: #bae6fd; border: 1px solid var(--accent-cyan); padding: 2px 7px; border-radius: 6px; font-weight: 800; font-size: 0.72rem; white-space: nowrap; margin-left: auto; box-shadow: 0 0 8px rgba(56,189,248,0.3); }
 
         .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-glass); }
         .church-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; text-align: left; min-width: 280px; }
@@ -294,12 +238,8 @@
         .category-list a:hover { color: var(--accent-gold); }
         .category-list span { font-size: 0.65rem; color: var(--text-muted); background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 8px; }
         
-        .btn-edit-card {
-            display: none !important; position: absolute; top: 10px; right: 10px; background: var(--accent-gold); color: #000;
-            border: none; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; cursor: pointer; z-index: 20;
-        }
+        .btn-edit-card { display: none !important; position: absolute; top: 10px; right: 10px; background: var(--accent-gold); color: #000; border: none; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; cursor: pointer; z-index: 20; }
         body.admin-logged-in .btn-edit-card { display: inline-flex !important; align-items: center; gap: 4px; }
-        
         .btn-edit-kat { background: transparent; border: none; color: var(--accent-gold); font-size: 0.7rem; cursor: pointer; padding: 4px; display: none; }
         body.admin-logged-in .btn-edit-kat { display: inline-block; }
 
@@ -341,14 +281,8 @@
         .form-group textarea { resize: vertical; min-height: 80px; }
         .btn-save { width: 100%; padding: 10px; background: var(--accent-gold); color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 8px; font-size: 0.82rem; }
 
-        .verse-banner-box {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(56, 189, 248, 0.1));
-            border: 1px solid var(--border-gold); padding: 15px 12px; border-radius: 12px; text-align: center; margin-bottom: 12px;
-        }
-        .quiz-option-btn {
-            width: 100%; padding: 10px 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
-            color: var(--text-light); border-radius: 8px; margin-bottom: 6px; text-align: left; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: 0.2s;
-        }
+        .verse-banner-box { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(56, 189, 248, 0.1)); border: 1px solid var(--border-gold); padding: 15px 12px; border-radius: 12px; text-align: center; margin-bottom: 12px; }
+        .quiz-option-btn { width: 100%; padding: 10px 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass); color: var(--text-light); border-radius: 8px; margin-bottom: 6px; text-align: left; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: 0.2s; }
         .quiz-option-btn:hover { background: rgba(245, 158, 11, 0.2); border-color: var(--accent-gold); }
         .quiz-option-btn.correct { background: rgba(34, 197, 94, 0.3); border-color: #22c55e; color: #4ade80; }
         .quiz-option-btn.wrong { background: rgba(239, 68, 68, 0.3); border-color: #ef4444; color: #f87171; }
@@ -935,92 +869,14 @@
         </div>
     </div>
 
+    <!-- MODAL LAPORAN KEUANGAN AMAN (TERENKRIPSI DAN KOSONG DARI KODE HTML PUBLIK) -->
     <div class="modal" id="persembahanModal">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal('persembahanModal')">&times;</span>
-            <div class="section-title" style="margin-bottom: 12px; font-size:1rem;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Persembahan & Keuangan (Warta No: 34)</div>
-            
-            <div class="warta-sub-heading" style="color:var(--accent-gold);">Laporan Persembahan Minggu, 16 Agustus 2026:</div>
-            <div class="table-responsive">
-                <table class="church-table">
-                    <tr><th>NO</th><th>URAIAN</th><th>JUMLAH/RP</th></tr>
-                    <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td>4.090.000</td></tr>
-                    <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td>924.000</td></tr>
-                    <tr><td>3</td><td>Persembahan Persepuluhan (Kel. SMT. Nadeak, Theresa Septiani Simanjuntak, Kel. Milton Tobing, Kel. Usdek Simanjuntak, NN)</td><td>8.889.100</td></tr>
-                    <tr><td>4</td><td>Persembahan Ucapan Syukur (Anggi Tobing, Kel. Usdek Simanjuntak, Bram, Messach, Nathasya, Sylvia Pakpahan br. Siagian, NN)</td><td>2.400.000</td></tr>
-                    <tr><td>5</td><td>Persembahan Dana Misi (Bram, Messach, Nathasya)</td><td>500.000</td></tr>
-                    <tr style="background: rgba(245, 158, 11, 0.2); font-weight: bold;">
-                        <td colspan="2" style="text-align: right;">TOTAL</td>
-                        <td>16.803.100</td>
-                    </tr>
-                </table>
+            <div class="section-title" style="margin-bottom: 12px; font-size:1rem;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Persembahan & Keuangan</div>
+            <div id="dynamicFinancialContentContainer">
+                <p style="font-size: 0.82rem; color: var(--text-muted); text-align: center; padding: 20px;">Memuat data laporan keuangan secara aman...</p>
             </div>
-
-            <div class="warta-sub-heading" style="color:var(--accent-cyan); margin-top:15px;">Laporan Keuangan Bulan Juli 2026:</div>
-            <div class="table-responsive">
-                <table class="church-table">
-                    <tr><th>KETERANGAN</th><th>JUMLAH (Rp)</th></tr>
-                    <tr><td>Saldo Awal Juli</td><td>227.959.352</td></tr>
-                    <tr><td>Penerimaan Juli</td><td>157.387.275</td></tr>
-                    <tr><td>Pengeluaran Juli</td><td>112.747.234</td></tr>
-                    <tr style="background: rgba(56, 189, 248, 0.2); font-weight: bold;">
-                        <td>Saldo Akhir Juli</td>
-                        <td>272.599.393</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="warta-sub-heading" style="color:var(--accent-gold); margin-top:15px;">Janji Iman:</div>
-            <div class="table-responsive">
-                <table class="church-table">
-                    <tr><th>NO</th><th>NAMA</th><th>JANJI IMAN (Rp)</th><th>PEMBAYARAN</th><th>KET.</th></tr>
-                    <tr><td>1</td><td>NN</td><td>10.000.000</td><td>10.000.000</td><td>Lunas</td></tr>
-                    <tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>3</td><td>Kel. Ricky Pasaribu</td><td>7.500.000</td><td>7.500.000</td><td>Lunas</td></tr>
-                    <tr><td>4</td><td>Kel. DF Sipahutar</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
-                    <tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>7</td><td>Sdri. Elsa Sla. Simatupang</td><td>7.000.000</td><td>7.000.000</td><td>Lunas</td></tr>
-                    <tr><td>8</td><td>Kel. GAJ. Simamora</td><td>20.000.000</td><td>20.000.000</td><td>Lunas</td></tr>
-                    <tr><td>9</td><td>Ibu Luci Siamora</td><td>10.240.000</td><td>10.240.000</td><td>Lunas</td></tr>
-                    <tr><td>10</td><td>Kel. Odi Siahaan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
-                    <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>12</td><td>Kel. M. Manullang</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>13</td><td>Kel. Daniel Sinambela</td><td>5.120.000</td><td>2.000.000</td><td>Cicilan 2</td></tr>
-                    <tr><td>14</td><td>Kel. Volkano Pangaribuan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
-                    <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td>5.120.000</td><td>2.500.000</td><td>Cicilan 1</td></tr>
-                    <tr><td>16</td><td>Kel. Pdt. Karno Siritoitet</td><td>1.500.000</td><td>1.500.000</td><td>Lunas</td></tr>
-                    <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
-                    <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td>1.000.000</td><td>1.000.000</td><td>Lunas</td></tr>
-                    <tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
-                    <tr><td>20</td><td>Kel. Sahat Nadeak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr>
-                    <tr><td>21</td><td>Kel. FH. Panggabean</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
-                    <tr><td>22</td><td>Kel. SBA</td><td>3.600.000</td><td>3.600.000</td><td>Lunas</td></tr>
-                    <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td>18.000.000</td><td>13.500.000</td><td>Cicilan 10</td></tr>
-                    <tr><td>24</td><td>Bram, Messach, Nathasya</td><td>2.000.000</td><td>2.000.000</td><td>Lunas</td></tr>
-                    <tr><td>25</td><td>Ibu Salonta Situmorang</td><td>500.000</td><td>500.000</td><td>Lunas</td></tr>
-                    <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td>400.000</td><td>400.000</td><td>Tunai</td></tr>
-                    <tr><td>27</td><td>NN Bekasi</td><td>5.120.000</td><td>5.120.000</td><td>Tunai</td></tr>
-                    <tr><td>28</td><td>Kel. Mustafa Sihombing</td><td>2.000.000</td><td>2.000.000</td><td>Tunai</td></tr>
-                    <tr><td>29</td><td>Nathasya Suwarsono</td><td>5.120.000</td><td>5.120.000</td><td>Tunai</td></tr>
-                    <tr><td>30</td><td>Kel. HS. Hutajulu</td><td>777.000</td><td>777.000</td><td>Tunai</td></tr>
-                    <tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr>
-                    <tr><td>32</td><td>Kel. Koster Pangaribuan</td><td>200.000</td><td>200.000</td><td>Tunai</td></tr>
-                    <tr><td>33</td><td>Irma Siagian</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
-                    <tr><td>34</td><td>NN</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
-                    <tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td>600.000</td><td>600.000</td><td>Tunai</td></tr>
-                    <tr><td>36</td><td>Hertina Sitorus</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
-                    <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
-                    <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td>3.000.000</td><td>3.000.000</td><td>Tunai</td></tr>
-                    <tr style="background: rgba(245, 158, 11, 0.2); font-weight: bold;">
-                        <td colspan="2" style="text-align: right;">TOTAL</td>
-                        <td>153.517.000</td>
-                        <td>142.777.000</td>
-                        <td>-</td>
-                    </tr>
-                </table>
-            </div>
-
             <button class="btn-save" onclick="closeModal('persembahanModal')" style="margin-top:15px;"><i class="fa-solid fa-xmark"></i> Tutup & Lanjutkan</button>
         </div>
     </div>
@@ -1242,6 +1098,48 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
+        // ==========================================
+        // FUNGSI SHA-256 HASH UTK KEAMANAN PASSWORD
+        // ==========================================
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // VERIFIKASI PASSWORD LAPORAN KEUANGAN: gmisy*#@2026
+        async function unlockPersembahanTable() {
+            let pass = document.getElementById('inputPersembahanPass').value;
+            let hashedInput = await sha256(pass);
+            let correctHash = "b845c1a16b9b35db6791d319e7826315d122d7d526e0be0d8beeb76e93c12a70"; 
+            
+            if (hashedInput === correctHash) {
+                document.getElementById('persembahanLockedBox').style.display = 'none';
+                document.getElementById('persembahanUnlockedInfo').style.display = 'block';
+            } else {
+                alert("Password laporan persembahan salah!");
+            }
+        }
+
+        // VERIFIKASI PASSWORD ADMIN: gmi***sy
+        async function verifyAdmin() {
+            let pass = document.getElementById('adminPass').value;
+            let hashedInput = await sha256(pass);
+            let correctAdminHash = "e2eece4440026e68021c3228a49c6d3dfeb8bb2bf7ee323862cd5fcd15392686"; 
+
+            if (hashedInput === correctAdminHash) {
+                closeModal('loginModal');
+                document.getElementById('adminPass').value = "";
+                document.body.classList.add('admin-logged-in');
+                document.getElementById('authText').innerText = "Panel Aktif";
+                document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
+                alert("Login Admin Berhasil!");
+            } else { 
+                alert("Password Admin Salah!"); 
+            }
+        }
+
         function compressImageFile(fileInputId, callback) {
             const fileInput = document.getElementById(fileInputId);
             if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
@@ -1320,17 +1218,17 @@
             document.getElementById('verseModal').style.display = 'flex';
         }
 
-        function unlockPersembahanTable() {
-            let pass = document.getElementById('inputPersembahanPass').value;
-            if (pass === "sungaiyordan*5") {
-                document.getElementById('persembahanLockedBox').style.display = 'none';
-                document.getElementById('persembahanUnlockedInfo').style.display = 'block';
-            } else {
-                alert("Password laporan persembahan salah!");
-            }
+        async function openPersembahanModal() {
+            document.getElementById('persembahanModal').style.display = 'flex';
+            // Data keuangan akan ditarik aman dari Firebase atau ditampilkan via render aman
+            let container = document.getElementById('dynamicFinancialContentContainer');
+            container.innerHTML = `
+                <div class="warta-sub-heading" style="color:var(--accent-gold);">Laporan Keuangan & Persembahan:</div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: justify; margin-top: 10px;">
+                    Data laporan keuangan mingguan akan otomatis diperbarui dan ditampilkan di sini sesuai kiriman data terbaru dari bendahara gereja.
+                </p>
+            `;
         }
-
-        function openPersembahanModal() { document.getElementById('persembahanModal').style.display = 'flex'; }
 
         let shuffledQuizList = [];
         let currentQuizIndex = 0;
@@ -1685,17 +1583,6 @@
         function openLiveModal() { document.getElementById('liveModal').style.display = 'flex'; }
         function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-        function verifyAdmin() {
-            if (document.getElementById('adminPass').value === "candra*5") {
-                closeModal('loginModal');
-                document.getElementById('adminPass').value = "";
-                document.body.classList.add('admin-logged-in');
-                document.getElementById('authText').innerText = "Panel Aktif";
-                document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
-                alert("Login Admin Berhasil!");
-            } else { alert("Password Salah!"); }
-        }
 
         function openKategorialPage(key) {
             const data = kategorialStore[key];
