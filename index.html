@@ -1127,7 +1127,7 @@
                 return;
             }
             try {
-                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                const docRef = window.doc(window.db, "portal_data", "portal_data");
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
                     let correctPass = docSnap.data().laporan_pass || "gmi2026syordan";
