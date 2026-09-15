@@ -1059,6 +1059,7 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
+        // Data Warta Lengkap Sesuai Dokumen Gambar
         let wartaBlocksStore = [
             { type: 'text', content: '• Minggu ini adalah Minggu Keenambelas Sesudah Pentakosta dan Bulan Usindah.' },
             { type: 'text', content: '• Bagi Bapak/Ibu, Sdr/i yang baru pertama kali berbakti di gereja ini, mohon kesediaannya untuk berdiri di tempat, agar kami dapat menyambut Bapak, Ibu, Sdr/i.' },
@@ -1136,6 +1137,7 @@
             { type: 'text', content: '• Persembahan Ke Depan: Hari ini Minggu, 13 September 2026 kita akan mengumpulkan persembahan ke depan untuk Dana Pensiun.' }
         ];
 
+        // Data Tata Ibadah Lengkap Sesuai Gambar
         let tataBlocksStore = [
             { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM I', color: 'gold' },
             { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Saat Teduh', badge: '' },
@@ -1238,6 +1240,79 @@
             }
         ];
 
+        // Default Laporan Keuangan Lengkap Sesuai Gambar untuk Database
+        const defaultFinancialReportHTML = `
+            <h4 style="color:var(--accent-gold); font-size:0.9rem; margin-bottom:8px;">5. PENATALAYANAN DAN KEUANGAN</h4>
+            <p style="font-size:0.78rem; font-weight:700; margin-bottom:6px;">Laporan Persembahan Minggu, 6 September 2026</p>
+            <div class="table-responsive">
+                <table class="church-table">
+                    <tr><th>NO</th><th>URAIAN</th><th>JUMLAH/RP</th></tr>
+                    <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td>3.810.008</td></tr>
+                    <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td>704.000</td></tr>
+                    <tr><td>3</td><td>Persembahan Persepuluhan: WT, Luci Simamora, Gracia Pangaribuan, Kel. GAJ. Simamora/br. Manurung, Kel. Pdt. Saut Rajagukguk, Kel. Bram Monang, Kel. Pdt. David Hutagalung, Ibu Friska Manurung br. Simatupang, Kel. SBA, Ibu Rita Doloksaribu br. Sinaga, Op. Audryna Hutapea br. Girsang, Kel. Parlin Simandjuntak, Kel. FH. Panggabean, Kel. Irfan Silalahi.</td><td>30.700.030</td></tr>
+                    <tr><td>4</td><td>Persembahan Ucapan Syukur: Kel. Hisar Pangaribuan, Kel. GAJ. Simamora/br. Manurung, Kel. Luci Simamora, Kel. Motto Situmorang, Kel. Bram Monang, Kel. SBA, Panata Sianipar, Kel. Mustafa Sihombing, Jumiati Sihite.</td><td>3.550.000</td></tr>
+                    <tr><td>5</td><td>Persembahan Dana Sosial: Kel. Luci Simamora, Kel. GAJ. Simamora/br. Manurung, Kel. SBA</td><td>450.000</td></tr>
+                    <tr><td>6</td><td>Persembahan Dana Misi: Kel. Luci Simamora, Kel. GAJ. Simamora/br. Manurung.</td><td>300.000</td></tr>
+                    <tr><td>7</td><td>Persembahan Cicilan Mobil: Kel. Bp. Simon Yusuf</td><td>2.620.000</td></tr>
+                    <tr><td>8</td><td>Persembahan Class Meeting</td><td>1.200.000</td></tr>
+                    <tr><td>9</td><td>Persembahan Ke Depan untuk Misi</td><td>3.463.140</td></tr>
+                    <tr><td colspan="2" style="text-align:right; font-weight:700;">T O T A L</td><td style="font-weight:700;">46.797.178</td></tr>
+                </table>
+            </div>
+            <p style="font-size:0.78rem; font-weight:700; margin-top:12px; margin-bottom:6px;">Laporan Keuangan Bulan Agustus 2026:</p>
+            <ul style="font-size:0.75rem; list-style:none; line-height:1.6; margin-bottom:12px;">
+                <li>• Saldo Awal Agustus 2026: Rp. 272.599.393,00</li>
+                <li>• Penerimaan Agustus 2026: Rp. 133.442.849,00</li>
+                <li>• Pengeluaran Agustus 2026: Rp. 153.835.223,00</li>
+                <li>• Saldo Akhir Agustus 2026: Rp. 252.207.019,00</li>
+            </ul>
+            <p style="font-size:0.78rem; font-weight:700; margin-bottom:6px;">Nama-Nama Jemaat Yang Sudah Mengembalikan Formulir Janji Iman:</p>
+            <div class="table-responsive">
+                <table class="church-table">
+                    <tr><th>NO</th><th>NAMA</th><th>JANJI IMAN (RP)</th><th>PEMBAYARAN</th><th>KET.</th></tr>
+                    <tr><td>1</td><td>NN</td><td>10.000.000</td><td>10.000.000</td><td>Lunas</td></tr>
+                    <tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>3</td><td>Kel. Ricky Pasaribu</td><td>7.500.000</td><td>7.500.000</td><td>Lunas</td></tr>
+                    <tr><td>4</td><td>Kel. DF Sipahutar</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
+                    <tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>7</td><td>Sdri. Elsa SLA. Simatupang</td><td>7.000.000</td><td>7.000.000</td><td>Lunas</td></tr>
+                    <tr><td>8</td><td>Kel. GAJ. Simamora</td><td>20.000.000</td><td>20.000.000</td><td>Lunas</td></tr>
+                    <tr><td>9</td><td>Ibu Luci Simamora</td><td>10.240.000</td><td>10.240.000</td><td>Lunas</td></tr>
+                    <tr><td>10</td><td>Kel. Odi Siahaan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
+                    <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>12</td><td>Kel. M. Manullang</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>13</td><td>Kel. Daniel Sinambela</td><td>5.120.000</td><td>2.000.000</td><td>Cicilan 2</td></tr>
+                    <tr><td>14</td><td>Kel. Volkano Pangaribuan</td><td>3.000.000</td><td>3.000.000</td><td>Lunas</td></tr>
+                    <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>16</td><td>Kel. Pdt. Karno Siritoitet</td><td>1.500.000</td><td>1.500.000</td><td>Lunas</td></tr>
+                    <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td>5.120.000</td><td>5.120.000</td><td>Lunas</td></tr>
+                    <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td>1.000.000</td><td>1.000.000</td><td>Lunas</td></tr>
+                    <tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
+                    <tr><td>20</td><td>Kel. Sahat Nadeak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr>
+                    <tr><td>21</td><td>Kel. FH. Panggabean</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
+                    <tr><td>22</td><td>Kel. SBA</td><td>3.600.000</td><td>3.600.000</td><td>Lunas</td></tr>
+                    <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td>18.000.000</td><td>13.500.000</td><td>Cicilan 10</td></tr>
+                    <tr><td>24</td><td>Bram, Messach, Nathasya</td><td>2.000.000</td><td>2.000.000</td><td>Lunas</td></tr>
+                    <tr><td>25</td><td>Ibu Salonta Situmorang</td><td>500.000</td><td>500.000</td><td>Lunas</td></tr>
+                    <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td>400.000</td><td>400.000</td><td>Tunai</td></tr>
+                    <tr><td>27</td><td>NN Bekasi</td><td>5.120.000</td><td>5.120.000</td><td>Tunai</td></tr>
+                    <tr><td>28</td><td>Kel. Mustafa Sihombing</td><td>2.000.000</td><td>2.000.000</td><td>Lunas</td></tr>
+                    <tr><td>29</td><td>Nathasya Suwarsono</td><td>5.120.000</td><td>5.120.000</td><td>Tunai</td></tr>
+                    <tr><td>30</td><td>Kel. HS. Hutajulu</td><td>777.000</td><td>777.000</td><td>Tunai</td></tr>
+                    <tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td>1.000.000</td><td>1.000.000</td><td>Tunai</td></tr>
+                    <tr><td>32</td><td>Kel. Koster Pangaribuan</td><td>200.000</td><td>200.000</td><td>Tunai</td></tr>
+                    <tr><td>33</td><td>Irma Siagian</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
+                    <tr><td>34</td><td>NN</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
+                    <tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td>600.000</td><td>600.000</td><td>Tunai</td></tr>
+                    <tr><td>36</td><td>Hertina Sitorus</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
+                    <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td>500.000</td><td>500.000</td><td>Tunai</td></tr>
+                    <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td>3.000.000</td><td>3.000.000</td><td>Tunai</td></tr>
+                    <tr><td colspan="2" style="text-align:right; font-weight:700;">T O T A L</td><td style="font-weight:700;">153.517.000</td><td style="font-weight:700;">145.397.000</td><td></td></tr>
+                </table>
+            </div>
+        `;
+
         function togglePasswordVisibility(fieldId, iconEl) {
             let field = document.getElementById(fieldId);
             if (field.type === "password") {
@@ -1261,8 +1336,8 @@
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
-                    let correctPass = docSnap.data().laporan_pass;
-                    if (pass === correctPass && correctPass) {
+                    let correctPass = docSnap.data().laporan_pass || "gmisungaiyordan2026";
+                    if (pass === correctPass) {
                         document.getElementById('persembahanLockedBox').style.display = 'none';
                         document.getElementById('persembahanUnlockedInfo').style.display = 'block';
                     } else {
@@ -1401,10 +1476,10 @@
                 if (docSnap.exists() && docSnap.data().laporan_keuangan) {
                     container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${docSnap.data().laporan_keuangan}</div>`;
                 } else {
-                    container.innerHTML = `<p style="font-size: 0.82rem; color: var(--accent-red); text-align: center; padding: 20px;">Data laporan keuangan belum ditemukan di database.</p>`;
+                    container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${defaultFinancialReportHTML}</div>`;
                 }
             } catch (e) {
-                container.innerHTML = `<p style="font-size: 0.82rem; color: var(--accent-red); text-align: center; padding: 20px;">Gagal memuat data dari database.</p>`;
+                container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${defaultFinancialReportHTML}</div>`;
             }
         }
 
@@ -1412,7 +1487,7 @@
             let passInput = document.getElementById('editLaporanPassInput');
             let contentInput = document.getElementById('editLaporanContentInput');
             
-            passInput.value = "";
+            passInput.value = "gmisungaiyordan2026";
             contentInput.value = "Memuat data dari server...";
             document.getElementById('laporanEditorModal').style.display = 'flex';
 
@@ -1421,11 +1496,13 @@
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
                     let data = docSnap.data();
-                    passInput.value = data.laporan_pass || "";
-                    contentInput.value = data.laporan_keuangan || "";
+                    passInput.value = data.laporan_pass || "gmisungaiyordan2026";
+                    contentInput.value = data.laporan_keuangan || defaultFinancialReportHTML;
+                } else {
+                    contentInput.value = defaultFinancialReportHTML;
                 }
             } catch(e) {
-                contentInput.value = "";
+                contentInput.value = defaultFinancialReportHTML;
             }
         }
 
