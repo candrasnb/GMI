@@ -247,6 +247,10 @@
         .btn-edit-kat { background: transparent; border: none; color: var(--accent-gold); font-size: 0.7rem; cursor: pointer; padding: 4px; display: none; }
         body.admin-logged-in .btn-edit-kat { display: inline-block; }
 
+        /* Tombol Edit Khusus Halaman Dinamis */
+        .btn-edit-page-admin { display: none !important; margin-bottom: 12px; background: var(--accent-gold); color: #000; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; align-items: center; gap: 6px; }
+        body.admin-logged-in .btn-edit-page-admin { display: inline-flex !important; }
+
         .archive-btn-wrap { margin-top: 12px; text-align: right; }
         .btn-archive-list { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 20px; font-size: 0.72rem; font-weight: 700; cursor: pointer; }
         .btn-archive-list:hover { background: rgba(56, 189, 248, 1); color: #000; }
@@ -461,7 +465,6 @@
                             <button class="btn-copy" onclick="copyAccountNumber()"><i class="fa-regular fa-copy"></i> Salin</button>
                         </div>
 
-                        <!-- KODE QRIS & PETUNJUK PENGGUNAAN LENGKAP -->
                         <div style="margin-top: 15px; border-top: 1px dashed var(--border-gold); padding-top: 14px;">
                             <h5 style="color: var(--accent-gold); font-size: 0.85rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; text-align: center;"><i class="fa-solid fa-qrcode"></i> Persembahan Via QRIS GMI Sungai Yordan</h5>
                             <div style="text-align: center; margin-bottom: 10px;">
@@ -480,7 +483,6 @@
                                 6. Cek nama penerima (<strong>GMI SUNGAI YORDAN</strong>) dan nominal, lalu selesaikan pembayaran.
                             </div>
 
-                            <!-- KETERANGAN LENGKAP KODE TUJUAN PERSEMBAHAN -->
                             <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid var(--border-gold); padding: 10px; border-radius: 8px; margin-top: 10px;">
                                 <strong style="color: var(--accent-gold); font-size: 0.78rem; display: block; margin-bottom: 6px;"><i class="fa-solid fa-tags"></i> Keterangan Lengkap Kode Unik Persembahan:</strong>
                                 <div style="font-size: 0.72rem; color: var(--text-light); display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; line-height: 1.5;">
@@ -503,7 +505,7 @@
                 </div>
             </div>
 
-            <!-- TATA IBADAH HALAMAN -->
+            <!-- TATA IBADAH HALAMAN (DINAMIS DENGAN FITUR EDIT ADMIN) -->
             <div id="page-tata-ibadah" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -511,64 +513,24 @@
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">TATA IBADAH KU 1 & KU 2</span>
                     </div>
 
-                    <h2 style="font-family:'Playfair Display', serif; color:var(--accent-gold); font-size:1.15rem; margin-bottom:4px; text-align:center; background:rgba(245,158,11,0.1); padding:8px; border-radius:8px;">TATA IBADAH KEBAKTIAN UMUM I</h2>
-                    <div style="margin-top: 12px; margin-bottom: 25px;">
-                        <div class="warta-content-text"><span><strong>01. PRELUDIUM:</strong> Saat Teduh</span></div>
-                        <div class="warta-content-text"><span><strong>02. PANGGILAN BERBAKTI:</strong> Mazmur 24: 3-4</span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>❖ VOTUM:</strong> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.</span></div>
-                        <div class="warta-content-text"><span><strong>03. DOA PEMBUKAAN:</strong> Liturgis</span></div>
-                        <div class="warta-content-text"><span><strong>04. PUJIAN:</strong><br>• "Ajarku Berdiam"<br>• "Trima Sukacita Surga"</span></div>
-                        <div class="warta-content-text"><span><strong>05. PENGAKUAN IMAN RASULI</strong></span></div>
-                        <div class="warta-content-text"><span><strong>06. PUJIAN:</strong><br>• "Sungguh Indah"<br>• "Sedekat Itu"</span></div>
-                        <div class="warta-content-text"><span><strong>07. DOA SYAFAAT:</strong> Pdt. Saut Rajagukguk</span></div>
-                        <div class="warta-content-text"><span><strong>08. KHOTBAH:</strong> Pdt. Saut Rajagukguk</span></div>
-                        <div class="warta-content-text"><span><strong>09. PERSEMBAHAN:</strong><br><em>❖ PUJIAN:</em> NRM No. 143: 1-3 "Bila Topan Trus"<br><em>❖ DOA PERSEMBAHAN</em></span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>10. DOA BAPA KAMI</strong></span></div>
-                        <div class="warta-content-text"><span><strong>11. BERKAT</strong></span></div>
-                        <div class="warta-content-text"><span><strong>12. PUJIAN:</strong> "Kami Memuji KebesaranMu"</span></div>
-                        <div class="warta-content-text"><span><strong>13. POSTLUDIUM:</strong> Jemaat Dalam Saat Teduh</span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>14. WARTA JEMAAT</strong></span></div>
-                    </div>
+                    <button class="btn-edit-page-admin" onclick="openTataEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Tata Ibadah (Tambah/Ubah/Hapus)</button>
 
-                    <hr style="border: 0; border-top: 1px solid var(--border-gold); margin: 25px 0;">
-
-                    <h2 style="font-family:'Playfair Display', serif; color:var(--accent-cyan); font-size:1.15rem; margin-bottom:4px; text-align:center; background:rgba(56,189,248,0.1); padding:8px; border-radius:8px;">TATA IBADAH KEBAKTIAN UMUM II</h2>
-                    <div style="margin-top: 12px;">
-                        <div class="warta-content-text"><span><strong>01. PRELUDIUM:</strong> Jemaat Dalam Saat Teduh</span></div>
-                        <div class="warta-content-text"><span><strong>02. BERNYANYI:</strong> NRM No. 9: 1-4 "Tuhan Yang Bri Kesukaan"</span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>03. PANGGILAN BERBAKTI:</strong> Mazmur 24: 3-4</span></div>
-                        <div class="warta-content-text"><span><strong>❖ VOTUM:</strong> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.</span></div>
-                        <div class="warta-content-text"><span><strong>04. DOA PENGAKUAN DOSA:</strong> NRM Hal. C/Bagian Depan Buku</span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>05. FIRMAN PENYEGAR IMAN:</strong> Roma 10: 9</span></div>
-                        <div class="warta-content-text"><span><strong>06. BERNYANYI:</strong> NRM No. 51: 1-3 "Tolong HambaMu Ya Allah"</span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>07. RESPONSORIA:</strong> Mazmur 98: 1-5</span><span class="liturgi-badge-b">(B)</span></div>
-                        <div class="warta-content-text"><span><strong>08. GLORIA PATRI:</strong> Mulia Bagi Bapa</span></div>
-                        <div class="warta-content-text"><span><strong>09. PENGAKUAN IMAN RASULI:</strong> (Diucapkan bersama-sama)</span></div>
-                        <div class="warta-content-text"><span><strong>10. EPISTEL:</strong> 1 Petrus 5: 6-9</span><span class="liturgi-badge-d">(D)</span><br><em>❖ "Yang Berbahagia adalah mereka yang mendengarkan serta memelihara dan melaksanakan Firman Allah. Amin"</em></div>
-                        <div class="warta-content-text"><span><strong>11. PERSEMBAHAN PUJIAN:</strong> Sekolah Minggu</span></div>
-                        <div class="warta-content-text"><span><strong>12. WARTA JEMAAT:</strong> Liturgis</span></div>
-                        <div class="warta-content-text"><span><strong>13. PERSEMBAHAN PUJIAN:</strong> USINDAH</span></div>
-                        <div class="warta-content-text"><span><strong>14. PERSEMBAHAN:</strong><br><em>❖ Nas Pembimbing:</em> Mazmur 54: 8<br><em>❖ Bernyanyi:</em> NRM. 184: 1-5 "Kuserahkan Hidupku"<br><em>❖ Mohon Tuhan Memberkati</em><span class="liturgi-badge-b">(B)</span><br><em>❖ Doa Persembahan:</em> Pdt. Saut Rajagukguk</span></div>
-                        <div class="warta-content-text"><span><strong>15. PENERIMAAN KELAS KATEKISASI SIDI</strong></span></div>
-                        <div class="warta-content-text"><span><strong>16. BERNYANYI:</strong> NRM. 171: 1-4 "Kurasa Damai Hatiku"</span><span class="liturgi-badge-d">(D)</span></div>
-                        <div class="warta-content-text"><span><strong>17. DOA SYAFAAT:</strong> LS. Elvis Pandiangan</span></div>
-                        <div class="warta-content-text"><span><strong>18. BERNYANYI:</strong> "El Shaddai"</span></div>
-                        <div class="warta-content-text"><span><strong>19. KHOTBAH:</strong> Pdt. Saut Rajagukguk</span></div>
-                        <div class="warta-content-text"><span><strong>20. BERNYANYI:</strong> NRM 193: 1-4 "Kita Harus Membawa Berita"</span></div>
-                        <div class="warta-content-text"><span><strong>21. DOA BAPA KAMI + DOXOLOGY</strong></span></div>
-                        <div class="warta-content-text"><span><strong>22. BERKAT + AMIN, AMIN, AMIN</strong></span></div>
-                        <div class="warta-content-text"><span><strong>23. POSTLUDIUM:</strong> Jemaat dalam saat teduh</span><span class="liturgi-badge-d">(D)</span></div>
+                    <div id="tata-dynamic-container">
+                        <!-- Konten tata ibadah dirender secara dinamis -->
                     </div>
                 </div>
             </div>
 
-            <!-- WARTA JEMAAT HALAMAN -->
+            <!-- WARTA JEMAAT HALAMAN (DINAMIS DENGAN KEMAMPUAN EDIT ADMIN) -->
             <div id="page-warta" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">WARTA JEMAAT RESMI</span>
                     </div>
+
+                    <button class="btn-edit-page-admin" onclick="openWartaEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Warta Jemaat (Tambah/Ubah/Hapus)</button>
+
                     <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Keenambelas Sesudah Pentakosta & Bulan Usindah</h2>
                     <p id="warta-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 13 September 2026 | No: 36/GMI-SY</p>
                     
@@ -576,116 +538,8 @@
                         <button class="btn-archive-list" onclick="openArchiveModal()"><i class="fa-solid fa-calendar-days"></i> Pilih Kalender Arsip Warta</button>
                     </div>
 
-                    <div id="warta-body-content">
-                        <p class="warta-content-text"><span>• Minggu ini adalah Minggu Keenambelas Sesudah Pentakosta dan Bulan Usindah (Hijau).</span></p>
-                        <p class="warta-content-text"><span>• Bagi Bapak/Ibu, Sdr/i yang baru pertama kali berbakti di gereja ini, mohon kesediaannya untuk berdiri di tempat, agar kami dapat menyambut Bapak, Ibu, Sdr/i.</span></p>
+                    <div id="warta-dynamic-container"></div>
 
-                        <div class="warta-main-title"><i class="fa-solid fa-users-rectangle"></i> 1. KOMISI KEANGGOTAAN DAN EVANGELISASI</div>
-                        
-                        <div class="warta-sub-heading">Jemaat yang Berulang Tahun Kelahiran Minggu Ini:</div>
-                        <p class="warta-content-text"><span>Bp. Rajanami H. Saron Purba (7/9), Yeri Hilkia Wicaksono Sormin (9/9), Sdri. Claudya Renata Lammora Siallagan (9/9), Ivander Gamaliel Sitorus (9/9), Sdr. Robintang Oldo Samuel Simbolon (10/9), Ibu Luna Margareta Pasaribu (11/9), Sdr. Josua Jaka Iman Simbolon (11/9), Bp. Messach Togu Ebenz Wicaksono Samosir (11/9), Gr. Weslly C, Tedju (11/9), Bp. Kinon Septon Pradika Sihombing (12/9), Ibu Maria Berliana Sirait (12/9), Bp. Jefri Lamhot Pangaribuan (12/9), Rendy Renaldy (13/9), Sdr. Rai Moses Ula Andar Simamora (13/9) dan Ibu Salonta Situmorang (13/9). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.</span></p>
-                        
-                        <div class="warta-sub-heading">Jadwal Class Meeting Kamis, 17 September 2026:</div>
-                        <div class="table-responsive">
-                            <table class="church-table">
-                                <tr><th>NAMA CLASS MEETING</th><th>TEMPAT</th></tr>
-                                <tr><td>CM Bethesda</td><td>Kel. Bp. Hisar Pangaribuan</td></tr>
-                                <tr><td>CM Kapernaum</td><td>Kel. Bp. Saorman Naibaho</td></tr>
-                                <tr><td>CM Yerikho, Yudea, Kanaan</td><td>Kel. Ibu Marina Marli Siahaan</td></tr>
-                                <tr><td>CM Galilea, Jerusalem</td><td>Kel. Bp. Jackwin Simbolon</td></tr>
-                                <tr><td>CM Efrata & Sion</td><td>Kel. Bp. Ricky Pasaribu</td></tr>
-                                <tr><td>CM Korintus</td><td>Kel. MP. Silalahi</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="warta-sub-heading">Jadwal Kegiatan Jaringan Doa:</div>
-                        <div class="table-responsive">
-                            <table class="church-table">
-                                <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>PUKUL</th><th>PENGKHOTBAH</th></tr>
-                                <tr><td>Senin, 14/9/2026</td><td>TIM DOA</td><td>19.00 WIB</td><td>Pdt. David Hutagalung</td></tr>
-                                <tr><td>Rabu, 16/9/2026</td><td>MPD</td><td>20.00 WIB</td><td>LS. Simon Yusuf</td></tr>
-                                <tr><td>Sabtu, 19/9/2026</td><td>Doa Pagi</td><td>05.30 WIB</td><td>LS. Edy J. Napitupulu</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="warta-main-title"><i class="fa-solid fa-hand-holding-heart"></i> 2. KOMISI DIAKONIA SOSIAL</div>
-                        <div class="warta-sub-heading">Sosial Kedukaan:</div>
-                        <p class="warta-content-text"><span>Bagi jemaat yang belum membayar dapat ditransfer ke rekening bendahara Dana Sosial Kedukaan: <strong>BCA 5726168861 an. Luci Nasa Roni</strong>. Bukti transfer dapat dikirim kepada bendahara. Saldo Kas Sosial Kedukaan sampai Jumat, 11 September 2026 sebesar Rp. 43.606.794,-.</span></p>
-
-                        <div class="warta-main-title"><i class="fa-solid fa-graduation-cap"></i> 3. KOMISI PENDIDIKAN AGAMA KRISTEN (PAK)</div>
-                        <div class="warta-sub-heading">Ibadah Kategorial:</div>
-                        <div class="table-responsive">
-                            <table class="church-table">
-                                <tr><th>Pelayan</th><th>PWMI<br>Selasa, 15/9/2026 Pkl. 18.00 WIB</th><th>USINDAH<br>Rabu, 16/9/2026 Pkl. 16.00 WIB</th><th>PRMI<br>Sabtu, 19/9/2026 Pkl. 18.00 WIB</th><th>P3MI<br>Sabtu, 19/9/2026 Pkl. 15.00 WIB</th></tr>
-                                <tr><td>Pengkhotbah</td><td>LS. Mangasa Tobing</td><td>Pdt. Saut R</td><td>LS. Yos MS. Hutapea</td><td rowspan="4">Sports Day</td></tr>
-                                <tr><td>Liturgis</td><td>Ibu Renova P.</td><td>Ibu Mega A. Lango</td><td>Raja Nadeak</td></tr>
-                                <tr><td>Doa Syafaat</td><td>Ibu Rusti Siahaan</td><td>Ibu Siti Girsang</td><td>Brian Simamora</td></tr>
-                                <tr><td>Pemusik</td><td>Ibu Moralita S</td><td>Gr. Weslly C. T</td><td>Kaydee Pasaribu</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="warta-sub-heading">Persekutuan USINDAH (Bulan September):</div>
-                        <p class="warta-content-text"><span>Bulan September bulan Usindah. Kegiatan yang dilakukan selama bulan Usindah:</span></p>
-                        <div class="table-responsive">
-                            <table class="church-table">
-                                <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>TEMPAT</th><th>KET</th></tr>
-                                <tr><td>Minggu, 13/9/2026</td><td>Per. Pujan KU 2</td><td>Gereja</td><td></td></tr>
-                                <tr><td>Rabu, 16/9/2027</td><td>Ibadah Usindah</td><td>Kel. GAJ. Simamora</td><td></td></tr>
-                                <tr><td>Minggu, 20/9/2026</td><td>Per. Pujian KU 2</td><td>Gereja</td><td></td></tr>
-                                <tr><td>Rabu, 23/9/2026</td><td>Ibadah Usindah</td><td>Ibu Salonta Situmorang</td><td></td></tr>
-                                <tr><td>Sabtu, 26/9/2026</td><td>Baksos Ke Panti Werda</td><td>-</td><td></td></tr>
-                                <tr><td>Minggu, 27/9/2026</td><td>Puncak Bulan Usindah</td><td>Gereja (Minggu Usindah)</td><td>Perjamuan Kasih</td></tr>
-                                <tr><td>Rabu, 30/9/2026</td><td>Ibadah Usindah</td><td>Ibu Rita Sinaga</td><td></td></tr>
-                            </table>
-                        </div>
-
-                        <div class="warta-sub-heading">Kebaktian Usindah:</div>
-                        <p class="warta-content-text"><span>Rabu, 16 September 2026 Ibadah Usindah akan diadakan di rumah Kel. LS. GAJ. Simamora. Berangkat dari gereja pukul 15.00 WIB.</span></p>
-
-                        <div class="warta-sub-heading">Kelas Katekisasi Sidi TA. 2026/2027:</div>
-                        <p class="warta-content-text"><span>Nama-nama anak Kelas Katekisasi Sidi 2026:</span></p>
-                        <p class="warta-content-text"><span>1. Benedicta Audreyna Hasiana Hutapea (anak Bp. Harry Harama Hutapea/Ibu Bertha Widanianingtyas).<br>2. Carla Syalomita Ivenna Siagan (anak Bp. Timbul Siagan/Ibu Mardiana Tambunan).<br>3. Darell Gilbert Timotius Sihombing (anak Bp. Yuniver Reinhard Lasarus Sihombing (+)/Ibu Tetty Rohani Hasibuan).<br>4. Mercy Graciella Mutiha Mawuntu (anak Bp. Moniaga Mario Mawuntu/Ibu Margrie Parpaung).<br>5. Pricilia Aurel Larasati Hutapea (anak Bp. Harry Harama Hutapea/Ibu Bertha Widanianingtyas).<br>6. Raja Maos Navistar (anak Bp. Sahat Maruli Tua Nadeak/Ibu Pinda Naomi Situmorang).<br>7. Samuel Adian Mathew Siagan (anak Bp. Timbul Siagan/Ibu Mardiana Tambunan).<br>8. Son Evander Imanuel Pandiangan (anak Bp. LS. Elvis Pandiangan/Ibu Erlinawati S. Depari).</span></p>
-
-                        <div class="warta-main-title"><i class="fa-solid fa-bullhorn"></i> 4. PANITIA KEBAKTIAN</div>
-                        <div class="warta-sub-heading">Persembahan Bunga Mimbar:</div>
-                        <p class="warta-content-text"><span>Hari ini, Minggu, 13 September 2026 dipersembahkan oleh Sdri. Claudya L. Siallagan dan Sdr. Moses Simamora. Minggu, 20 September 2026 dipersembahkan oleh Kel. Ricky Pasaribu & Darell Gilbert Sihombing.</span></p>
-
-                        <div class="warta-sub-heading">Laporan Kegiatan Gereja Minggu Lalu:</div>
-                        <div class="table-responsive">
-                            <table class="church-table">
-                                <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>HADIR</th><th>HARI/TGL</th><th>KEGIATAN</th><th>HADIR</th></tr>
-                                <tr><td>Sabtu, 5/9/2026</td><td>PRMI<br>P3MI</td><td>16 Orang<br>22 Orang</td><td>Rabu, 9/9/2026</td><td>Usindah<br>MPD</td><td>41 Orang<br>18 Orang</td></tr>
-                                <tr><td>Minggu, 6/9/2026</td><td>KU I<br>KU II<br>ASM<br>OT / GSM</td><td>78 Orang<br>152 Orang<br>51 Orang<br>13 / 13 Orang</td><td>Jumat, 11/9/2026<br>Sabtu, 13/9/2026</td><td>Sermon<br>Doa Pagi</td><td>9 Orang<br>Orang</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="warta-main-title"><i class="fa-solid fa-file-lines"></i> 5. PENATALAYANAN DAN KEUANGAN</div>
-                        <div class="warta-sub-heading">Laporan Persembahan & Keuangan:</div>
-                        <p class="warta-content-text"><span>Rincian selengkapnya dapat dibuka dengan memasukkan password di bawah.</span></p>
-
-                        <div class="warta-main-title"><i class="fa-solid fa-file-lines"></i> 6. LAIN - LAIN</div>
-                        <div class="warta-sub-heading">Konferensi Resor (Konres):</div>
-                        <p class="warta-content-text"><span>Sabtu, 19 September 2026 pukul 10.00 WIB akan dilaksanakan Konferensi Resor GMI Sungai Yordan. Semua majelis diundang untuk hadir.</span></p>
-                        <div class="warta-sub-heading">Persembahan Ke Depan:</div>
-                        <p class="warta-content-text"><span>Hari ini Minggu, 13 September 2026 kita akan mengumpulkan persembahan ke depan untuk Dana Pensiun.</span></p>
-
-                        <div class="warta-sub-heading" style="text-align:center; margin-top:15px; color:var(--accent-gold);">BACAAN ALKITAB DALAM MINGGU INI</div>
-                        <div class="table-responsive">
-                            <table class="church-table">
-                                <tr><th>HARI/TANGGAL</th><th>PAGI</th><th>MALAM</th></tr>
-                                <tr><td>Minggu, 13-9-2026</td><td>1 Raja-Raja 13:1-10</td><td>Roma 3:9-20</td></tr>
-                                <tr><td>Senin, 14-9-2026</td><td>Kejadian 48:8-22</td><td>Ibarani 11:23-29</td></tr>
-                                <tr><td>Selasa, 15-9-2026</td><td>Kejadian 49:29-50:14</td><td>Roma 14:13-15:2</td></tr>
-                                <tr><td>Rabu, 16-9-2026</td><td>Kejadian 50:22-26</td><td>Markus 11:20-25</td></tr>
-                                <tr><td>Kamis, 17-9-2026</td><td>Nahum 1:1, 14-2:2</td><td>2 Korintus 13:1-4</td></tr>
-                                <tr><td>Jumat, 18-9-2026</td><td>Nahum 2:3-13</td><td>2 Korintus 13:5-10</td></tr>
-                                <tr><td>Sabtu, 19-9-2026</td><td>Zefanya 2:13-15</td><td>Matius 19:23-30</td></tr>
-                            </table>
-                        </div>
-                        <p style="text-align:center; font-style:italic; font-size:0.78rem; margin-top:8px; color:var(--text-muted);">Demikianlah Warta Jemaat kita Minggu Ini, Tuhan Yesus Memberkati.</p>
-                    </div>
-
-                    <!-- BAGIAN KHUSUS PASSWORD JEMAAT (INPUT PASSWORD SAJA) -->
                     <div style="margin-top: 20px; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-gold); border-radius: 10px;">
                         <h4 style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 8px; font-family: 'Playfair Display', serif;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Keuangan, Persembahan & Janji Iman</h4>
                         <div id="persembahanLockedBox">
@@ -706,88 +560,54 @@
                 </div>
             </div>
 
-            <!-- JADWAL IBADAH MINGGU 20 SEPTEMBER -->
+            <!-- JADWAL IBADAH MINGGU (DINAMIS DENGAN FITUR EDIT ADMIN) -->
             <div id="sec-jadwal" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">JADWAL IBADAH & PELAYAN</span>
                     </div>
-                    <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-church"></i> Jadwal Ibadah Umum Sesi 1 & 2</div>
-                    <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 20 September 2026</p>
-                    
-                    <div class="table-responsive">
-                        <table class="church-table">
-                            <tr><th>PELAYAN</th><th>KU I (08.00 WIB)</th><th>KU II (10.00 WIB)</th></tr>
-                            <tr><td>Pengkhotbah</td><td>Pdt. David Hutagalung</td><td>Pdt. David Hutagalung</td></tr>
-                            <tr><td>Liturgis</td><td>Sdri. Dea Karen Nadeak</td><td>Ibu Marina Marli Siahaan</td></tr>
-                            <tr><td>Doa Syafaat</td><td>Pdt. David Hutagalung</td><td>LS. Koster Pangaribuan</td></tr>
-                            <tr><td>Operator LCD</td><td>Sdri. Maura Situmorang</td><td>Sdri. Mauri Situmorang</td></tr>
-                            <tr><td>Multimedia</td><td>Sdr. Marcelliano Tampubolon</td><td>Sdr. Abram Nadeak</td></tr>
-                            <tr><td>Pemusik</td><td>Sdri. Nathasya Samosir<br>Sdri. Dwitara Rajagukguk<br>Sdr. Febrian Sinambela<br>Sdr. David Marcel</td><td>Sdr. Robintang Simbolon</td></tr>
-                            <tr><td>Singer</td><td>Sdri. Sherly A. Manurung<br>Sdri. Moza Siagian</td><td>Bp. Ali Jekson Girsang<br>Bp. Joseph Sitepu</td></tr>
-                            <tr><td>Kolektan</td><td>Bp. Timbul Pandiangan<br>Ibu Debora Sihombing</td><td>Bp. Milton Tobing<br>Ibu Anita Emma Sihombing</td></tr>
-                            <tr><td>P. Lonceng</td><td>Bp. Martin Siagian</td><td>LS. Simon Yusuf</td></tr>
-                            <tr><td>Penyambut/Pemerhati</td><td>Ibu Tetty Rohani Hasibuan<br>Sdri. Calista Sihombing</td><td>Ibu Lis Sintha Oppusunggu<br>Ibu Mianda Simangunsong</td></tr>
-                        </table>
-                    </div>
 
-                    <div class="section-title" style="margin-top:22px; margin-bottom:10px;"><i class="fa-solid fa-calendar-days"></i> Jadwal Jaringan Doa Sepekan</div>
-                    <div class="table-responsive">
-                        <table class="church-table">
-                            <tr><th>HARI/TGL</th><th>KEGIATAN</th><th>PUKUL</th><th>PENGKHOTBAH</th></tr>
-                            <tr><td>Senin, 14/9/2026</td><td>TIM DOA</td><td>19.00 WIB</td><td>Pdt. David Hutagalung</td></tr>
-                            <tr><td>Rabu, 16/9/2026</td><td>MPD</td><td>20.00 WIB</td><td>LS. Simon Yusuf</td></tr>
-                            <tr><td>Sabtu, 19/9/2026</td><td>Doa Pagi</td><td>05.30 WIB</td><td>LS. Edy J. Napitupulu</td></tr>
-                        </table>
+                    <button class="btn-edit-page-admin" onclick="openJadwalEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Jadwal Ibadah (Tambah/Ubah/Hapus)</button>
+
+                    <div id="jadwal-dynamic-container">
+                        <!-- Konten jadwal dirender secara dinamis -->
                     </div>
                 </div>
             </div>
 
-            <!-- POKOK DOA SYAFAAT -->
+            <!-- POKOK DOA SYAFAAT (DINAMIS DENGAN FITUR EDIT ADMIN) -->
             <div id="page-doa" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">POKOK DOA</span>
                     </div>
-                    <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-hands-praying"></i> Pokok Doa Syafaat Pekan Ini</div>
-                    <div>
-                        <div class="warta-main-title">1. BANGSA DAN NEGARA</div>
-                        <p class="warta-content-text"><span>a. Penanggulangan Bencana Kebakaran dan Gunung Meletus.</span></p>
-                        <p class="warta-content-text"><span>b. Kementrian Kehutanan.</span></p>
 
-                        <div class="warta-main-title">2. GMI DAN JEMAAT SUNGAI YORDAN</div>
-                        <p class="warta-content-text"><span>a. Usindah dan kegiatan bulan USINDAH.</span></p>
-                        <p class="warta-content-text"><span>b. Jemaat yang mencari pekerjaan dan merindukan keturunan dan pasangan hidup.</span></p>
-                        <p class="warta-content-text"><span>c. PRMI dan Kelas Katekisasi Sidi.</span></p>
-                        <p class="warta-content-text"><span>d. Jemaat dan keluarga jemaat yang sakit:<br>Bp. W. Simanjuntak, Ibu Rona Gabe Sinaga, Ibu Linaria Saragih (Mertua Bp. Julianto Sinaga), dan Ibu Asna Girsang.</span></p>
-                        <p class="warta-content-text"><span>e. Jemaat dan keluarga jemaat dalam pemulihan:<br>Ibu Poebe, Ibu Hentry Via Dolorosa Hutabarat, Bp. Jamaludin Sinaga, Ibu Ruliana Siahaan, Sdri. Jojor Hutapea, Ibu Anita Emma Sihombing, Bp. Milton Tobing, Bp. Pananggangan Sinaga, Bp. Jhonson Simanjuntak dan Sdr. Samuel Simamora.</span></p>
+                    <button class="btn-edit-page-admin" onclick="openDoaEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Pokok Doa (Tambah/Ubah/Hapus)</button>
+
+                    <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-hands-praying"></i> Pokok Doa Syafaat Pekan Ini</div>
+                    <div id="doa-dynamic-container">
+                        <!-- Konten pokok doa dirender secara dinamis -->
                     </div>
                 </div>
             </div>
 
-            <!-- BACAAN ALKITAB -->
+            <!-- BACAAN ALKITAB HARIAN (DINAMIS DENGAN FITUR EDIT ADMIN) -->
             <div id="page-renungan" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">BACAAN ALKITAB</span>
                     </div>
+
+                    <button class="btn-edit-page-admin" onclick="openRenunganEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Bacaan Alkitab (Tambah/Ubah/Hapus)</button>
+
                     <h2 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:5px; text-align:left;">Jadwal Bacaan Alkitab Sepekan</h2>
                     <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Periode 13 - 19 September 2026</p>
                     
-                    <div class="table-responsive">
-                        <table class="church-table">
-                            <tr><th>HARI/TANGGAL</th><th>PAGI</th><th>MALAM</th></tr>
-                            <tr><td>Minggu, 13-9-2026</td><td>1 Raja-Raja 13:1-10</td><td>Roma 3:9-20</td></tr>
-                            <tr><td>Senin, 14-9-2026</td><td>Kejadian 48:8-22</td><td>Ibarani 11:23-29</td></tr>
-                            <tr><td>Selasa, 15-9-2026</td><td>Kejadian 49:29-50:14</td><td>Roma 14:13-15:2</td></tr>
-                            <tr><td>Rabu, 16-9-2026</td><td>Kejadian 50:22-26</td><td>Markus 11:20-25</td></tr>
-                            <tr><td>Kamis, 17-9-2026</td><td>Nahum 1:1, 14-2:2</td><td>2 Korintus 13:1-4</td></tr>
-                            <tr><td>Jumat, 18-9-2026</td><td>Nahum 2:3-13</td><td>2 Korintus 13:5-10</td></tr>
-                            <tr><td>Sabtu, 19-9-2026</td><td>Zefanya 2:13-15</td><td>Matius 19:23-30</td></tr>
-                        </table>
+                    <div id="renungan-dynamic-container">
+                        <!-- Konten bacaan alkitab dirender secara dinamis -->
                     </div>
                 </div>
             </div>
@@ -908,6 +728,81 @@
             <h3 id="editModalTitle" style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-pen-to-square"></i> Panel Edit Admin</h3>
             <div id="editModalBody"></div>
             <button class="btn-save" onclick="saveAdminData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR WARTA DINAMIS -->
+    <div class="modal" id="wartaEditorModal">
+        <div class="modal-card" style="max-width: 900px;">
+            <span class="close-modal" onclick="closeModal('wartaEditorModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-newspaper"></i> Editor Warta Jemaat Dinamis</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Tambah, ubah, atau hapus blok warta sesuai kebutuhan.</p>
+            <div id="wartaBuilderList" style="display:flex; flex-direction:column; gap:12px; margin-bottom:15px;"></div>
+            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap:wrap;">
+                <button class="btn-save" onclick="addWartaBlock('title')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Judul Utama</button>
+                <button class="btn-save" onclick="addWartaBlock('subtitle')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Sub Judul</button>
+                <button class="btn-save" onclick="addWartaBlock('text')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Paragraf</button>
+                <button class="btn-save" onclick="addWartaBlock('table')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Tabel</button>
+            </div>
+            <button class="btn-save" onclick="saveWartaDynamicData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Warta</button>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR TATA IBADAH -->
+    <div class="modal" id="tataEditorModal">
+        <div class="modal-card" style="max-width: 900px;">
+            <span class="close-modal" onclick="closeModal('tataEditorModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-book-open"></i> Editor Tata Ibadah Dinamis</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Tambah, ubah, atau hapus bagian susunan ibadah KU 1 & KU 2.</p>
+            <div id="tataBuilderList" style="display:flex; flex-direction:column; gap:12px; margin-bottom:15px;"></div>
+            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap:wrap;">
+                <button class="btn-save" onclick="addTataBlock('section')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Judul Bagian</button>
+                <button class="btn-save" onclick="addTataBlock('item')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Poin Ibadah</button>
+            </div>
+            <button class="btn-save" onclick="saveTataDynamicData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Tata Ibadah</button>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR JADWAL IBADAH -->
+    <div class="modal" id="jadwalEditorModal">
+        <div class="modal-card" style="max-width: 900px;">
+            <span class="close-modal" onclick="closeModal('jadwalEditorModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-church"></i> Editor Jadwal Ibadah Dinamis</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Atur tabel pelayan dan jadwal kegiatan sepekan.</p>
+            <div id="jadwalBuilderList" style="display:flex; flex-direction:column; gap:12px; margin-bottom:15px;"></div>
+            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap:wrap;">
+                <button class="btn-save" onclick="addJadwalBlock('table')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Tambah Tabel Jadwal</button>
+            </div>
+            <button class="btn-save" onclick="saveJadwalDynamicData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Jadwal</button>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR POKOK DOA -->
+    <div class="modal" id="doaEditorModal">
+        <div class="modal-card" style="max-width: 900px;">
+            <span class="close-modal" onclick="closeModal('doaEditorModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-hands-praying"></i> Editor Pokok Doa Dinamis</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Atur judul kategori dan poin-poin pokok doa syafaat.</p>
+            <div id="doaBuilderList" style="display:flex; flex-direction:column; gap:12px; margin-bottom:15px;"></div>
+            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap:wrap;">
+                <button class="btn-save" onclick="addDoaBlock('title')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Kategori Doa</button>
+                <button class="btn-save" onclick="addDoaBlock('text')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Poin Doa</button>
+            </div>
+            <button class="btn-save" onclick="saveDoaDynamicData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Pokok Doa</button>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR BACAAN ALKITAB -->
+    <div class="modal" id="renunganEditorModal">
+        <div class="modal-card" style="max-width: 900px;">
+            <span class="close-modal" onclick="closeModal('renunganEditorModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:15px;"><i class="fa-solid fa-book-bible"></i> Editor Bacaan Alkitab Dinamis</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Atur tabel jadwal bacaan Alkitab harian.</p>
+            <div id="renunganBuilderList" style="display:flex; flex-direction:column; gap:12px; margin-bottom:15px;"></div>
+            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap:wrap;">
+                <button class="btn-save" onclick="addRenunganBlock('table')" style="background:var(--accent-cyan); color:#000;"><i class="fa-solid fa-plus"></i> Tambah Tabel Bacaan</button>
+            </div>
+            <button class="btn-save" onclick="saveRenunganDynamicData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Bacaan Alkitab</button>
         </div>
     </div>
 
@@ -1151,6 +1046,145 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
+        // DEFAULT STRUKTUR WARTA DINAMIS
+        let wartaBlocksStore = [
+            { type: 'text', content: '• Minggu ini adalah Minggu Keenambelas Sesudah Pentakosta dan Bulan Usindah (Hijau).' },
+            { type: 'text', content: '• Bagi Bapak/Ibu, Sdr/i yang baru pertama kali berbakti di gereja ini, mohon kesediaannya untuk berdiri di tempat, agar kami dapat menyambut Bapak, Ibu, Sdr/i.' },
+            { type: 'title', content: '1. KOMISI KEANGGOTAAN DAN EVANGELISASI' },
+            { type: 'subtitle', content: 'Jemaat yang Berulang Tahun Kelahiran Minggu Ini:' },
+            { type: 'text', content: 'Bp. Rajanami H. Saron Purba (7/9), Yeri Hilkia Wicaksono Sormin (9/9), Sdri. Claudya Renata Lammora Siallagan (9/9), Ivander Gamaliel Sitorus (9/9), Sdr. Robintang Oldo Samuel Simbolon (10/9), Ibu Luna Margareta Pasaribu (11/9), Sdr. Josua Jaka Iman Simbolon (11/9), Bp. Messach Togu Ebenz Wicaksono Samosir (11/9), Gr. Weslly C, Tedju (11/9), Bp. Kinon Septon Pradika Sihombing (12/9), Ibu Maria Berliana Sirait (12/9), Bp. Jefri Lamhot Pangaribuan (12/9), Rendy Renaldy (13/9), Sdr. Rai Moses Ula Andar Simamora (13/9) dan Ibu Salonta Situmorang (13/9). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.' },
+            { type: 'subtitle', content: 'Jadwal Class Meeting Kamis, 17 September 2026:' },
+            { 
+                type: 'table', 
+                headers: ['NAMA CLASS MEETING', 'TEMPAT'], 
+                rows: [
+                    ['CM Bethesda', 'Kel. Bp. Hisar Pangaribuan'],
+                    ['CM Kapernaum', 'Kel. Bp. Saorman Naibaho'],
+                    ['CM Yerikho, Yudea, Kanaan', 'Kel. Ibu Marina Marli Siahaan'],
+                    ['CM Galilea, Jerusalem', 'Kel. Bp. Jackwin Simbolon'],
+                    ['CM Efrata & Sion', 'Kel. Bp. Ricky Pasaribu'],
+                    ['CM Korintus', 'Kel. MP. Silalahi']
+                ]
+            },
+            { type: 'subtitle', content: 'Jadwal Kegiatan Jaringan Doa:' },
+            { 
+                type: 'table', 
+                headers: ['HARI/TGL', 'KEGIATAN', 'PUKUL', 'PENGKHOTBAH'], 
+                rows: [
+                    ['Senin, 14/9/2026', 'TIM DOA', '19.00 WIB', 'Pdt. David Hutagalung'],
+                    ['Rabu, 16/9/2026', 'MPD', '20.00 WIB', 'LS. Simon Yusuf'],
+                    ['Sabtu, 19/9/2026', 'Doa Pagi', '05.30 WIB', 'LS. Edy J. Napitupulu']
+                ]
+            }
+        ];
+
+        // DEFAULT STRUKTUR TATA IBADAH DINAMIS
+        let tataBlocksStore = [
+            { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM I', color: 'gold' },
+            { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Saat Teduh', badge: '' },
+            { type: 'item', content: '<strong>02. PANGGILAN BERBAKTI:</strong> Mazmur 24: 3-4', badge: 'B' },
+            { type: 'item', content: '<strong>❖ VOTUM:</strong> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.', badge: '' },
+            { type: 'item', content: '<strong>03. DOA PEMBUKAAN:</strong> Liturgis', badge: '' },
+            { type: 'item', content: '<strong>04. PUJIAN:</strong><br>• "Ajarku Berdiam"<br>• "Trima Sukacita Surga"', badge: '' },
+            { type: 'item', content: '<strong>05. PENGAKUAN IMAN RASULI</strong>', badge: '' },
+            { type: 'item', content: '<strong>06. PUJIAN:</strong><br>• "Sungguh Indah"<br>• "Sedekat Itu"', badge: '' },
+            { type: 'item', content: '<strong>07. DOA SYAFAAT:</strong> Pdt. Saut Rajagukguk', badge: '' },
+            { type: 'item', content: '<strong>08. KHOTBAH:</strong> Pdt. Saut Rajagukguk', badge: '' },
+            { type: 'item', content: '<strong>09. PERSEMBAHAN:</strong><br><em>❖ PUJIAN:</em> NRM No. 143: 1-3 "Bila Topan Trus"<br><em>❖ DOA PERSEMBAHAN</em>', badge: 'B' },
+            { type: 'item', content: '<strong>10. DOA BAPA KAMI</strong>', badge: '' },
+            { type: 'item', content: '<strong>11. BERKAT</strong>', badge: '' },
+            { type: 'item', content: '<strong>12. PUJIAN:</strong> "Kami Memuji KebesaranMu"', badge: '' },
+            { type: 'item', content: '<strong>13. POSTLUDIUM:</strong> Jemaat Dalam Saat Teduh', badge: 'D' },
+            { type: 'item', content: '<strong>14. WARTA JEMAAT</strong>', badge: '' },
+            { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM II', color: 'cyan' },
+            { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Jemaat Dalam Saat Teduh', badge: '' },
+            { type: 'item', content: '<strong>02. BERNYANYI:</strong> NRM No. 9: 1-4 "Tuhan Yang Bri Kesukaan"', badge: 'B' },
+            { type: 'item', content: '<strong>03. PANGGILAN BERBAKTI:</strong> Mazmur 24: 3-4', badge: '' },
+            { type: 'item', content: '<strong>❖ VOTUM:</strong> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.', badge: '' },
+            { type: 'item', content: '<strong>04. DOA PENGAKUAN DOSA:</strong> NRM Hal. C/Bagian Depan Buku', badge: 'D' },
+            { type: 'item', content: '<strong>05. FIRMAN PENYEGAR IMAN:</strong> Roma 10: 9', badge: '' },
+            { type: 'item', content: '<strong>06. BERNYANYI:</strong> NRM No. 51: 1-3 "Tolong HambaMu Ya Allah"', badge: 'B' },
+            { type: 'item', content: '<strong>07. RESPONSORIA:</strong> Mazmur 98: 1-5', badge: 'B' },
+            { type: 'item', content: '<strong>08. GLORIA PATRI:</strong> Mulia Bagi Bapa', badge: '' },
+            { type: 'item', content: '<strong>09. PENGAKUAN IMAN RASULI:</strong> (Diucapkan bersama-sama)', badge: '' },
+            { type: 'item', content: '<strong>10. EPISTEL:</strong> 1 Petrus 5: 6-9<br><em>❖ "Yang Berbahagia adalah mereka yang mendengarkan serta memelihara dan melaksanakan Firman Allah. Amin"</em>', badge: 'D' },
+            { type: 'item', content: '<strong>11. PERSEMBAHAN PUJIAN:</strong> Sekolah Minggu', badge: '' },
+            { type: 'item', content: '<strong>12. WARTA JEMAAT:</strong> Liturgis', badge: '' },
+            { type: 'item', content: '<strong>13. PERSEMBAHAN PUJIAN:</strong> USINDAH', badge: '' },
+            { type: 'item', content: '<strong>14. PERSEMBAHAN:</strong><br><em>❖ Nas Pembimbing:</em> Mazmur 54: 8<br><em>❖ Bernyanyi:</em> NRM. 184: 1-5 "Kuserahkan Hidupku"<br><em>❖ Mohon Tuhan Memberkati</em><br><em>❖ Doa Persembahan:</em> Pdt. Saut Rajagukguk', badge: 'B' },
+            { type: 'item', content: '<strong>15. PENERIMAAN KELAS KATEKISASI SIDI</strong>', badge: '' },
+            { type: 'item', content: '<strong>16. BERNYANYI:</strong> NRM. 171: 1-4 "Kurasa Damai Hatiku"', badge: 'D' },
+            { type: 'item', content: '<strong>17. DOA SYAFAAT:</strong> LS. Elvis Pandiangan', badge: '' },
+            { type: 'item', content: '<strong>18. BERNYANYI:</strong> "El Shaddai"', badge: '' },
+            { type: 'item', content: '<strong>19. KHOTBAH:</strong> Pdt. Saut Rajagukguk', badge: '' },
+            { type: 'item', content: '<strong>20. BERNYANYI:</strong> NRM 193: 1-4 "Kita Harus Membawa Berita"', badge: '' },
+            { type: 'item', content: '<strong>21. DOA BAPA KAMI + DOXOLOGY</strong>', badge: '' },
+            { type: 'item', content: '<strong>22. BERKAT + AMIN, AMIN, AMIN</strong>', badge: '' },
+            { type: 'item', content: '<strong>23. POSTLUDIUM:</strong> Jemaat dalam saat teduh', badge: 'D' }
+        ];
+
+        // DEFAULT STRUKTUR JADWAL IBADAH DINAMIS
+        let jadwalBlocksStore = [
+            { type: 'title', content: 'Jadwal Ibadah Umum Sesi 1 & 2' },
+            { type: 'subtitle', content: 'Minggu, 20 September 2026' },
+            { 
+                type: 'table', 
+                headers: ['PELAYAN', 'KU I (08.00 WIB)', 'KU II (10.00 WIB)'], 
+                rows: [
+                    ['Pengkhotbah', 'Pdt. David Hutagalung', 'Pdt. David Hutagalung'],
+                    ['Liturgis', 'Sdri. Dea Karen Nadeak', 'Ibu Marina Marli Siahaan'],
+                    ['Doa Syafaat', 'Pdt. David Hutagalung', 'LS. Koster Pangaribuan'],
+                    ['Operator LCD', 'Sdri. Maura Situmorang', 'Sdri. Mauri Situmorang'],
+                    ['Multimedia', 'Sdr. Marcelliano Tampubolon', 'Sdr. Abram Nadeak'],
+                    ['Pemusik', 'Sdri. Nathasya Samosir<br>Sdri. Dwitara Rajagukguk<br>Sdr. Febrian Sinambela<br>Sdr. David Marcel', 'Sdr. Robintang Simbolon'],
+                    ['Singer', 'Sdri. Sherly A. Manurung<br>Sdri. Moza Siagian', 'Bp. Ali Jekson Girsang<br>Bp. Joseph Sitepu'],
+                    ['Kolektan', 'Bp. Timbul Pandiangan<br>Ibu Debora Sihombing', 'Bp. Milton Tobing<br>Ibu Anita Emma Sihombing'],
+                    ['P. Lonceng', 'Bp. Martin Siagian', 'LS. Simon Yusuf'],
+                    ['Penyambut/Pemerhati', 'Ibu Tetty Rohani Hasibuan<br>Sdri. Calista Sihombing', 'Ibu Lis Sintha Oppusunggu<br>Ibu Mianda Simangunsong']
+                ]
+            },
+            { type: 'title', content: 'Jadwal Jaringan Doa Sepekan' },
+            { 
+                type: 'table', 
+                headers: ['HARI/TGL', 'KEGIATAN', 'PUKUL', 'PENGKHOTBAH'], 
+                rows: [
+                    ['Senin, 14/9/2026', 'TIM DOA', '19.00 WIB', 'Pdt. David Hutagalung'],
+                    ['Rabu, 16/9/2026', 'MPD', '20.00 WIB', 'LS. Simon Yusuf'],
+                    ['Sabtu, 19/9/2026', 'Doa Pagi', '05.30 WIB', 'LS. Edy J. Napitupulu']
+                ]
+            }
+        ];
+
+        // DEFAULT STRUKTUR POKOK DOA DINAMIS
+        let doaBlocksStore = [
+            { type: 'title', content: '1. BANGSA DAN NEGARA' },
+            { type: 'text', content: 'a. Penanggulangan Bencana Kebakaran dan Gunung Meletus.' },
+            { type: 'text', content: 'b. Kementrian Kehutanan.' },
+            { type: 'title', content: '2. GMI DAN JEMAAT SUNGAI YORDAN' },
+            { type: 'text', content: 'a. Usindah dan kegiatan bulan USINDAH.' },
+            { type: 'text', content: 'b. Jemaat yang mencari pekerjaan dan merindukan keturunan dan pasangan hidup.' },
+            { type: 'text', content: 'c. PRMI dan Kelas Katekisasi Sidi.' },
+            { type: 'text', content: 'd. Jemaat dan keluarga jemaat yang sakit:<br>Bp. W. Simanjuntak, Ibu Rona Gabe Sinaga, Ibu Linaria Saragih (Mertua Bp. Julianto Sinaga), dan Ibu Asna Girsang.' },
+            { type: 'text', content: 'e. Jemaat dan keluarga jemaat dalam pemulihan:<br>Ibu Poebe, Ibu Hentry Via Dolorosa Hutabarat, Bp. Jamaludin Sinaga, Ibu Ruliana Siahaan, Sdri. Jojor Hutapea, Ibu Anita Emma Sihombing, Bp. Milton Tobing, Bp. Pananggangan Sinaga, Bp. Jhonson Simanjuntak dan Sdr. Samuel Simamora.' }
+        ];
+
+        // DEFAULT STRUKTUR BACAAN ALKITAB DINAMIS
+        let renunganBlocksStore = [
+            { 
+                type: 'table', 
+                headers: ['HARI/TANGGAL', 'PAGI', 'MALAM'], 
+                rows: [
+                    ['Minggu, 13-9-2026', '1 Raja-Raja 13:1-10', 'Roma 3:9-20'],
+                    ['Senin, 14-9-2026', 'Kejadian 48:8-22', 'Ibarani 11:23-29'],
+                    ['Selasa, 15-9-2026', 'Kejadian 49:29-50:14', 'Roma 14:13-15:2'],
+                    ['Rabu, 16-9-2026', 'Kejadian 50:22-26', 'Markus 11:20-25'],
+                    ['Kamis, 17-9-2026', 'Nahum 1:1, 14-2:2', '2 Korintus 13:1-4'],
+                    ['Jumat, 18-9-2026', 'Nahum 2:3-13', '2 Korintus 13:5-10'],
+                    ['Sabtu, 19-9-2026', 'Zefanya 2:13-15', 'Matius 19:23-30']
+                ]
+            }
+        ];
+
         function togglePasswordVisibility(fieldId, iconEl) {
             let field = document.getElementById(fieldId);
             if (field.type === "password") {
@@ -1384,9 +1418,19 @@
                     if(data.chartStore) chartDataStore = data.chartStore;
                     if(data.bankStore) bankInfoStore = data.bankStore;
                     if(data.homeStore) homeDataStore = data.homeStore;
+                    if(data.wartaBlocksStore) wartaBlocksStore = data.wartaBlocksStore;
+                    if(data.tataBlocksStore) tataBlocksStore = data.tataBlocksStore;
+                    if(data.jadwalBlocksStore) jadwalBlocksStore = data.jadwalBlocksStore;
+                    if(data.doaBlocksStore) doaBlocksStore = data.doaBlocksStore;
+                    if(data.renunganBlocksStore) renunganBlocksStore = data.renunganBlocksStore;
                 }
             } catch (e) { console.log("Offline mode, using default data."); }
             applyDataToDOM();
+            renderWartaDynamicContent();
+            renderTataDynamicContent();
+            renderJadwalDynamicContent();
+            renderDoaDynamicContent();
+            renderRenunganDynamicContent();
             updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
         }
 
@@ -1396,8 +1440,372 @@
                 katStore: kategorialStore,
                 homeStore: homeDataStore,
                 chartStore: chartDataStore,
-                bankStore: bankInfoStore
+                bankStore: bankInfoStore,
+                wartaBlocksStore: wartaBlocksStore,
+                tataBlocksStore: tataBlocksStore,
+                jadwalBlocksStore: jadwalBlocksStore,
+                doaBlocksStore: doaBlocksStore,
+                renunganBlocksStore: renunganBlocksStore
             }, { merge: true });
+        }
+
+        // RENDER WARTA
+        function renderWartaDynamicContent() {
+            let container = document.getElementById('warta-dynamic-container');
+            if(!container) return;
+            let html = "";
+            wartaBlocksStore.forEach((block) => {
+                if(block.type === 'title') {
+                    html += `<div class="warta-main-title"><i class="fa-solid fa-bullhorn"></i> ${block.content}</div>`;
+                } else if(block.type === 'subtitle') {
+                    html += `<div class="warta-sub-heading">${block.content}</div>`;
+                } else if(block.type === 'text') {
+                    html += `<p class="warta-content-text"><span>${block.content}</span></p>`;
+                } else if(block.type === 'table') {
+                    html += `<div class="table-responsive"><table class="church-table"><tr>`;
+                    block.headers.forEach(h => { html += `<th>${h}</th>`; });
+                    html += `</tr>`;
+                    block.rows.forEach(row => {
+                        html += `<tr>`;
+                        row.forEach(cell => { html += `<td>${cell}</td>`; });
+                        html += `</tr>`;
+                    });
+                    html += `</table></div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function openWartaEditorModal() {
+            let listContainer = document.getElementById('wartaBuilderList');
+            let html = "";
+            wartaBlocksStore.forEach((block, idx) => {
+                html += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:10px; border-radius:8px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;">Blok #${idx + 1} (${block.type.toUpperCase()})</span>
+                        <button onclick="removeWartaBlock(${idx})" style="background:var(--accent-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-size:0.65rem; cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>`;
+                if(block.type === 'title' || block.type === 'subtitle' || block.type === 'text') {
+                    html += `<input type="text" id="wartaInput_${idx}" value="${block.content.replace(/"/g, '&quot;')}" style="width:100%; padding:7px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.78rem;">`;
+                } else if(block.type === 'table') {
+                    html += `<label style="font-size:0.68rem; color:var(--text-muted);">Header Kolom (pisahkan dengan koma):</label>
+                             <input type="text" id="wartaHeader_${idx}" value="${block.headers.join(', ')}" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem; margin-bottom:4px;">
+                             <label style="font-size:0.68rem; color:var(--text-muted);">Baris Data (tiap baris pisahkan baris baru, tiap kolom koma):</label>
+                             <textarea id="wartaRows_${idx}" style="width:100%; height:70px; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">${block.rows.map(r => r.join(', ')).join('\n')}</textarea>`;
+                }
+                html += `</div>`;
+            });
+            listContainer.innerHTML = html;
+            document.getElementById('wartaEditorModal').style.display = 'flex';
+        }
+
+        function addWartaBlock(type) {
+            if(type === 'title') wartaBlocksStore.push({ type: 'title', content: 'Judul Baru Warta' });
+            if(type === 'subtitle') wartaBlocksStore.push({ type: 'subtitle', content: 'Sub Judul Baru' });
+            if(type === 'text') wartaBlocksStore.push({ type: 'text', content: 'Tuliskan paragraf warta di sini...' });
+            if(type === 'table') wartaBlocksStore.push({ type: 'table', headers: ['Kolom 1', 'Kolom 2'], rows: [['Data 1', 'Data 2']] });
+            openWartaEditorModal();
+        }
+
+        function removeWartaBlock(idx) {
+            wartaBlocksStore.splice(idx, 1);
+            openWartaEditorModal();
+        }
+
+        async function saveWartaDynamicData() {
+            wartaBlocksStore.forEach((block, idx) => {
+                if(block.type === 'title' || block.type === 'subtitle' || block.type === 'text') {
+                    let val = document.getElementById(`wartaInput_${idx}`);
+                    if(val) block.content = val.value;
+                } else if(block.type === 'table') {
+                    let hVal = document.getElementById(`wartaHeader_${idx}`);
+                    let rVal = document.getElementById(`wartaRows_${idx}`);
+                    if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
+                    if(rVal) {
+                        let lines = rVal.value.split('\n');
+                        block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
+                    }
+                }
+            });
+            renderWartaDynamicContent();
+            await saveToFirebase();
+            closeModal('wartaEditorModal');
+            alert("Warta Jemaat berhasil diperbarui! 🎉");
+        }
+
+        // RENDER TATA IBADAH
+        function renderTataDynamicContent() {
+            let container = document.getElementById('tata-dynamic-container');
+            if(!container) return;
+            let html = "";
+            tataBlocksStore.forEach((block) => {
+                if(block.type === 'section') {
+                    let colorStyle = block.color === 'cyan' ? 'color:var(--accent-cyan); background:rgba(56,189,248,0.1);' : 'color:var(--accent-gold); background:rgba(245,158,11,0.1);';
+                    html += `<h2 style="font-family:'Playfair Display', serif; font-size:1.15rem; margin-bottom:4px; text-align:center; padding:8px; border-radius:8px; ${colorStyle}">${block.content}</h2>`;
+                } else if(block.type === 'item') {
+                    let badgeHtml = block.badge ? `<span class="liturgi-badge-${block.badge.toLowerCase()}">(${block.badge})</span>` : '';
+                    html += `<div class="warta-content-text"><span>${block.content}</span>${badgeHtml}</div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function openTataEditorModal() {
+            let listContainer = document.getElementById('tataBuilderList');
+            let html = "";
+            tataBlocksStore.forEach((block, idx) => {
+                html += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:10px; border-radius:8px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;">Blok #${idx + 1} (${block.type.toUpperCase()})</span>
+                        <button onclick="removeTataBlock(${idx})" style="background:var(--accent-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-size:0.65rem; cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>`;
+                if(block.type === 'section') {
+                    html += `<input type="text" id="tataContent_${idx}" value="${block.content.replace(/"/g, '&quot;')}" style="width:100%; padding:7px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.78rem; margin-bottom:4px;">
+                             <select id="tataColor_${idx}" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">
+                                <option value="gold" ${block.color==='gold'?'selected':''}>Warna Gold</option>
+                                <option value="cyan" ${block.color==='cyan'?'selected':''}>Warna Cyan</option>
+                             </select>`;
+                } else if(block.type === 'item') {
+                    html += `<textarea id="tataContent_${idx}" style="width:100%; height:60px; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem; margin-bottom:4px;">${block.content}</textarea>
+                             <label style="font-size:0.68rem; color:var(--text-muted);">Badge Liturgi (Kosongkan atau ketik B / D):</label>
+                             <input type="text" id="tataBadge_${idx}" value="${block.badge || ''}" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">`;
+                }
+                html += `</div>`;
+            });
+            listContainer.innerHTML = html;
+            document.getElementById('tataEditorModal').style.display = 'flex';
+        }
+
+        function addTataBlock(type) {
+            if(type === 'section') tataBlocksStore.push({ type: 'section', content: 'TATA IBADAH BARU', color: 'gold' });
+            if(type === 'item') tataBlocksStore.push({ type: 'item', content: '<strong>01. SUSUNAN BARU:</strong> Keterangan', badge: '' });
+            openTataEditorModal();
+        }
+
+        function removeTataBlock(idx) {
+            tataBlocksStore.splice(idx, 1);
+            openTataEditorModal();
+        }
+
+        async function saveTataDynamicData() {
+            tataBlocksStore.forEach((block, idx) => {
+                let cVal = document.getElementById(`tataContent_${idx}`);
+                if(cVal) block.content = cVal.value;
+                if(block.type === 'section') {
+                    let colVal = document.getElementById(`tataColor_${idx}`);
+                    if(colVal) block.color = colVal.value;
+                }
+                if(block.type === 'item') {
+                    let bVal = document.getElementById(`tataBadge_${idx}`);
+                    if(bVal) block.badge = bVal.value.trim();
+                }
+            });
+            renderTataDynamicContent();
+            await saveToFirebase();
+            closeModal('tataEditorModal');
+            alert("Tata Ibadah berhasil diperbarui! 🎉");
+        }
+
+        // RENDER JADWAL IBADAH
+        function renderJadwalDynamicContent() {
+            let container = document.getElementById('jadwal-dynamic-container');
+            if(!container) return;
+            let html = "";
+            jadwalBlocksStore.forEach((block) => {
+                if(block.type === 'title') {
+                    html += `<div class="section-title" style="margin-bottom:12px; margin-top:15px;"><i class="fa-solid fa-church"></i> ${block.content}</div>`;
+                } else if(block.type === 'subtitle') {
+                    html += `<p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">${block.content}</p>`;
+                } else if(block.type === 'table') {
+                    html += `<div class="table-responsive"><table class="church-table"><tr>`;
+                    block.headers.forEach(h => { html += `<th>${h}</th>`; });
+                    html += `</tr>`;
+                    block.rows.forEach(row => {
+                        html += `<tr>`;
+                        row.forEach(cell => { html += `<td>${cell}</td>`; });
+                        html += `</tr>`;
+                    });
+                    html += `</table></div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function openJadwalEditorModal() {
+            let listContainer = document.getElementById('jadwalBuilderList');
+            let html = "";
+            jadwalBlocksStore.forEach((block, idx) => {
+                html += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:10px; border-radius:8px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;">Blok #${idx + 1} (${block.type.toUpperCase()})</span>
+                        <button onclick="removeJadwalBlock(${idx})" style="background:var(--accent-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-size:0.65rem; cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>`;
+                if(block.type === 'title' || block.type === 'subtitle') {
+                    html += `<input type="text" id="jadwalContent_${idx}" value="${block.content.replace(/"/g, '&quot;')}" style="width:100%; padding:7px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.78rem;">`;
+                } else if(block.type === 'table') {
+                    html += `<label style="font-size:0.68rem; color:var(--text-muted);">Header Kolom (pisahkan dengan koma):</label>
+                             <input type="text" id="jadwalHeader_${idx}" value="${block.headers.join(', ')}" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem; margin-bottom:4px;">
+                             <label style="font-size:0.68rem; color:var(--text-muted);">Baris Data (tiap baris baris baru, tiap kolom koma):</label>
+                             <textarea id="jadwalRows_${idx}" style="width:100%; height:70px; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">${block.rows.map(r => r.join(', ')).join('\n')}</textarea>`;
+                }
+                html += `</div>`;
+            });
+            listContainer.innerHTML = html;
+            document.getElementById('jadwalEditorModal').style.display = 'flex';
+        }
+
+        function addJadwalBlock(type) {
+            if(type === 'table') jadwalBlocksStore.push({ type: 'table', headers: ['PELAYAN', 'KETERANGAN'], rows: [['Pengkhotbah', 'Pdt. Tamu']] });
+            openJadwalEditorModal();
+        }
+
+        function removeJadwalBlock(idx) {
+            jadwalBlocksStore.splice(idx, 1);
+            openJadwalEditorModal();
+        }
+
+        async function saveJadwalDynamicData() {
+            jadwalBlocksStore.forEach((block, idx) => {
+                if(block.type === 'title' || block.type === 'subtitle') {
+                    let val = document.getElementById(`jadwalContent_${idx}`);
+                    if(val) block.content = val.value;
+                } else if(block.type === 'table') {
+                    let hVal = document.getElementById(`jadwalHeader_${idx}`);
+                    let rVal = document.getElementById(`jadwalRows_${idx}`);
+                    if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
+                    if(rVal) {
+                        let lines = rVal.value.split('\n');
+                        block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
+                    }
+                }
+            });
+            renderJadwalDynamicContent();
+            await saveToFirebase();
+            closeModal('jadwalEditorModal');
+            alert("Jadwal Ibadah berhasil diperbarui! 🎉");
+        }
+
+        // RENDER POKOK DOA
+        function renderDoaDynamicContent() {
+            let container = document.getElementById('doa-dynamic-container');
+            if(!container) return;
+            let html = "";
+            doaBlocksStore.forEach((block) => {
+                if(block.type === 'title') {
+                    html += `<div class="warta-main-title"><i class="fa-solid fa-hands-praying"></i> ${block.content}</div>`;
+                } else if(block.type === 'text') {
+                    html += `<p class="warta-content-text"><span>${block.content}</span></p>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function openDoaEditorModal() {
+            let listContainer = document.getElementById('doaBuilderList');
+            let html = "";
+            doaBlocksStore.forEach((block, idx) => {
+                html += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:10px; border-radius:8px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;">Blok #${idx + 1} (${block.type.toUpperCase()})</span>
+                        <button onclick="removeDoaBlock(${idx})" style="background:var(--accent-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-size:0.65rem; cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>`;
+                if(block.type === 'title') {
+                    html += `<input type="text" id="doaContent_${idx}" value="${block.content.replace(/"/g, '&quot;')}" style="width:100%; padding:7px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.78rem;">`;
+                } else if(block.type === 'text') {
+                    html += `<textarea id="doaContent_${idx}" style="width:100%; height:60px; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">${block.content}</textarea>`;
+                }
+                html += `</div>`;
+            });
+            listContainer.innerHTML = html;
+            document.getElementById('doaEditorModal').style.display = 'flex';
+        }
+
+        function addDoaBlock(type) {
+            if(type === 'title') doaBlocksStore.push({ type: 'title', content: 'KATEGORI DOA BARU' });
+            if(type === 'text') doaBlocksStore.push({ type: 'text', content: 'a. Pokok doa baru...' });
+            openDoaEditorModal();
+        }
+
+        function removeDoaBlock(idx) {
+            doaBlocksStore.splice(idx, 1);
+            openDoaEditorModal();
+        }
+
+        async function saveDoaDynamicData() {
+            doaBlocksStore.forEach((block, idx) => {
+                let val = document.getElementById(`doaContent_${idx}`);
+                if(val) block.content = val.value;
+            });
+            renderDoaDynamicContent();
+            await saveToFirebase();
+            closeModal('doaEditorModal');
+            alert("Pokok Doa berhasil diperbarui! 🎉");
+        }
+
+        // RENDER BACAAN ALKITAB
+        function renderRenunganDynamicContent() {
+            let container = document.getElementById('renungan-dynamic-container');
+            if(!container) return;
+            let html = "";
+            renunganBlocksStore.forEach((block) => {
+                if(block.type === 'table') {
+                    html += `<div class="table-responsive"><table class="church-table"><tr>`;
+                    block.headers.forEach(h => { html += `<th>${h}</th>`; });
+                    html += `</tr>`;
+                    block.rows.forEach(row => {
+                        html += `<tr>`;
+                        row.forEach(cell => { html += `<td>${cell}</td>`; });
+                        html += `</tr>`;
+                    });
+                    html += `</table></div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function openRenunganEditorModal() {
+            let listContainer = document.getElementById('renunganBuilderList');
+            let html = "";
+            renunganBlocksStore.forEach((block, idx) => {
+                html += `<div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:10px; border-radius:8px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.7rem; color:var(--accent-gold); font-weight:700;">Blok #${idx + 1} (${block.type.toUpperCase()})</span>
+                        <button onclick="removeRenunganBlock(${idx})" style="background:var(--accent-red); color:#fff; border:none; padding:3px 8px; border-radius:4px; font-size:0.65rem; cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>
+                    <label style="font-size:0.68rem; color:var(--text-muted);">Header Kolom (pisahkan dengan koma):</label>
+                    <input type="text" id="renHeader_${idx}" value="${block.headers.join(', ')}" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem; margin-bottom:4px;">
+                    <label style="font-size:0.68rem; color:var(--text-muted);">Baris Data (tiap baris baris baru, tiap kolom koma):</label>
+                    <textarea id="renRows_${idx}" style="width:100%; height:80px; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">${block.rows.map(r => r.join(', ')).join('\n')}</textarea>
+                </div>`;
+            });
+            listContainer.innerHTML = html;
+            document.getElementById('renunganEditorModal').style.display = 'flex';
+        }
+
+        function addRenunganBlock(type) {
+            if(type === 'table') renunganBlocksStore.push({ type: 'table', headers: ['HARI/TANGGAL', 'PAGI', 'MALAM'], rows: [['Minggu, 1-1-2026', 'Kejadian 1:1', 'Roma 1:1']] });
+            openRenunganEditorModal();
+        }
+
+        function removeRenunganBlock(idx) {
+            renunganBlocksStore.splice(idx, 1);
+            openRenunganEditorModal();
+        }
+
+        async function saveRenunganDynamicData() {
+            renunganBlocksStore.forEach((block, idx) => {
+                let hVal = document.getElementById(`renHeader_${idx}`);
+                let rVal = document.getElementById(`renRows_${idx}`);
+                if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
+                if(rVal) {
+                    let lines = rVal.value.split('\n');
+                    block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
+                }
+            });
+            renderRenunganDynamicContent();
+            await saveToFirebase();
+            closeModal('renunganEditorModal');
+            alert("Bacaan Alkitab berhasil diperbarui! 🎉");
         }
 
         function applyDataToDOM() {
@@ -1440,7 +1848,7 @@
             currentEditingType = type;
             let title = "", bodyHTML = "";
             if (type === 'tata_ibadah') {
-                title = "Edit Menu Tata Ibadah Home";
+                title = "Edit Preview Tata Ibadah Home";
                 bodyHTML = `<div class="form-group"><label>Teks Preview Tata Ibadah:</label><textarea id="editTataText">${homeDataStore.tataText || ''}</textarea></div><div class="form-group"><label>Ganti Gambar Banner Tata Ibadah:</label><input type="file" id="editTataImgFile" accept="image/*"></div>`;
             } else if (type === 'warta') {
                 title = "Edit Warta Jemaat Home";
