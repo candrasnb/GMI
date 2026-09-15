@@ -247,7 +247,6 @@
         .btn-edit-kat { background: transparent; border: none; color: var(--accent-gold); font-size: 0.7rem; cursor: pointer; padding: 4px; display: none; }
         body.admin-logged-in .btn-edit-kat { display: inline-block; }
 
-        /* Tombol Edit Khusus Halaman Dinamis */
         .btn-edit-page-admin { display: none !important; margin-bottom: 12px; background: var(--accent-gold); color: #000; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; cursor: pointer; align-items: center; gap: 6px; }
         body.admin-logged-in .btn-edit-page-admin { display: inline-flex !important; }
 
@@ -505,7 +504,7 @@
                 </div>
             </div>
 
-            <!-- TATA IBADAH HALAMAN (DINAMIS DENGAN FITUR EDIT ADMIN) -->
+            <!-- TATA IBADAH HALAMAN -->
             <div id="page-tata-ibadah" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -515,15 +514,14 @@
 
                     <button class="btn-edit-page-admin" onclick="openTataEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Tata Ibadah (Tambah/Ubah/Hapus)</button>
 
-                    <div id="tata-dynamic-container">
-                        <!-- Konten tata ibadah dirender secara dinamis -->
-                    </div>
+                    <div id="tata-dynamic-container"></div>
                 </div>
             </div>
 
-            <!-- WARTA JEMAAT HALAMAN (DINAMIS DENGAN KEMAMPUAN EDIT ADMIN) -->
+            <!-- WARTA JEMAAT HALAMAN -->
             <div id="page-warta" class="page-sec">
-                <div class="glass-card">
+                <div class="glass-card" style="position: relative;">
+                    <button class="btn-edit-card" onclick="openLaporanEditorModal()" style="top: 15px; right: 15px;"><i class="fa-solid fa-pen"></i> Edit Laporan Keuangan</button>
                     <div class="page-view-header">
                         <button class="btn-back" onclick="closePageView()"><i class="fa-solid fa-chevron-left"></i> Kembali</button>
                         <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:700;">WARTA JEMAAT RESMI</span>
@@ -560,7 +558,7 @@
                 </div>
             </div>
 
-            <!-- JADWAL IBADAH MINGGU (DINAMIS DENGAN FITUR EDIT ADMIN) -->
+            <!-- JADWAL IBADAH MINGGU -->
             <div id="sec-jadwal" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -570,13 +568,11 @@
 
                     <button class="btn-edit-page-admin" onclick="openJadwalEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Jadwal Ibadah (Tambah/Ubah/Hapus)</button>
 
-                    <div id="jadwal-dynamic-container">
-                        <!-- Konten jadwal dirender secara dinamis -->
-                    </div>
+                    <div id="jadwal-dynamic-container"></div>
                 </div>
             </div>
 
-            <!-- POKOK DOA SYAFAAT (DINAMIS DENGAN FITUR EDIT ADMIN) -->
+            <!-- POKOK DOA SYAFAAT -->
             <div id="page-doa" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -587,13 +583,11 @@
                     <button class="btn-edit-page-admin" onclick="openDoaEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Pokok Doa (Tambah/Ubah/Hapus)</button>
 
                     <div class="section-title" style="margin-bottom:12px;"><i class="fa-solid fa-hands-praying"></i> Pokok Doa Syafaat Pekan Ini</div>
-                    <div id="doa-dynamic-container">
-                        <!-- Konten pokok doa dirender secara dinamis -->
-                    </div>
+                    <div id="doa-dynamic-container"></div>
                 </div>
             </div>
 
-            <!-- BACAAN ALKITAB HARIAN (DINAMIS DENGAN FITUR EDIT ADMIN) -->
+            <!-- BACAAN ALKITAB HARIAN -->
             <div id="page-renungan" class="page-sec">
                 <div class="glass-card">
                     <div class="page-view-header">
@@ -606,9 +600,7 @@
                     <h2 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:5px; text-align:left;">Jadwal Bacaan Alkitab Sepekan</h2>
                     <p style="font-size:0.78rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Periode 13 - 19 September 2026</p>
                     
-                    <div id="renungan-dynamic-container">
-                        <!-- Konten bacaan alkitab dirender secara dinamis -->
-                    </div>
+                    <div id="renungan-dynamic-container"></div>
                 </div>
             </div>
 
@@ -720,6 +712,27 @@
                 </ul>
             </div>
         </aside>
+    </div>
+
+    <!-- MODAL EDITOR LAPORAN KEUANGAN KUSUS ADMIN -->
+    <div class="modal" id="laporanEditorModal">
+        <div class="modal-card" style="max-width: 800px;">
+            <span class="close-modal" onclick="closeModal('laporanEditorModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:12px;"><i class="fa-solid fa-file-invoice-dollar"></i> Editor Laporan Keuangan & Password</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Atur password jemaat dan isi tabel laporan keuangan (HTML) secara langsung.</p>
+            
+            <div class="form-group">
+                <label>Password Jemaat Untuk Membuka Laporan:</label>
+                <input type="text" id="editLaporanPassInput" placeholder="Contoh: gmisungaiyordan2026">
+            </div>
+
+            <div class="form-group">
+                <label>Isi Laporan Keuangan (Format HTML / Tabel / Teks):</label>
+                <textarea id="editLaporanContentInput" style="min-height: 220px; font-family: monospace; font-size: 0.78rem;"></textarea>
+            </div>
+
+            <button class="btn-save" onclick="saveLaporanKeuanganData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Laporan Keuangan</button>
+        </div>
     </div>
 
     <div class="modal" id="adminEditModal">
@@ -1046,7 +1059,6 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
-        // DEFAULT STRUKTUR WARTA DINAMIS
         let wartaBlocksStore = [
             { type: 'text', content: '• Minggu ini adalah Minggu Keenambelas Sesudah Pentakosta dan Bulan Usindah (Hijau).' },
             { type: 'text', content: '• Bagi Bapak/Ibu, Sdr/i yang baru pertama kali berbakti di gereja ini, mohon kesediaannya untuk berdiri di tempat, agar kami dapat menyambut Bapak, Ibu, Sdr/i.' },
@@ -1078,7 +1090,6 @@
             }
         ];
 
-        // DEFAULT STRUKTUR TATA IBADAH DINAMIS
         let tataBlocksStore = [
             { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM I', color: 'gold' },
             { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Saat Teduh', badge: '' },
@@ -1123,7 +1134,6 @@
             { type: 'item', content: '<strong>23. POSTLUDIUM:</strong> Jemaat dalam saat teduh', badge: 'D' }
         ];
 
-        // DEFAULT STRUKTUR JADWAL IBADAH DINAMIS
         let jadwalBlocksStore = [
             { type: 'title', content: 'Jadwal Ibadah Umum Sesi 1 & 2' },
             { type: 'subtitle', content: 'Minggu, 20 September 2026' },
@@ -1155,7 +1165,6 @@
             }
         ];
 
-        // DEFAULT STRUKTUR POKOK DOA DINAMIS
         let doaBlocksStore = [
             { type: 'title', content: '1. BANGSA DAN NEGARA' },
             { type: 'text', content: 'a. Penanggulangan Bencana Kebakaran dan Gunung Meletus.' },
@@ -1168,7 +1177,6 @@
             { type: 'text', content: 'e. Jemaat dan keluarga jemaat dalam pemulihan:<br>Ibu Poebe, Ibu Hentry Via Dolorosa Hutabarat, Bp. Jamaludin Sinaga, Ibu Ruliana Siahaan, Sdri. Jojor Hutapea, Ibu Anita Emma Sihombing, Bp. Milton Tobing, Bp. Pananggangan Sinaga, Bp. Jhonson Simanjuntak dan Sdr. Samuel Simamora.' }
         ];
 
-        // DEFAULT STRUKTUR BACAAN ALKITAB DINAMIS
         let renunganBlocksStore = [
             { 
                 type: 'table', 
@@ -1352,6 +1360,50 @@
                 }
             } catch (e) {
                 container.innerHTML = `<p style="font-size: 0.82rem; color: var(--accent-red); text-align: center; padding: 20px;">Gagal memuat data dari database.</p>`;
+            }
+        }
+
+        async function openLaporanEditorModal() {
+            let passInput = document.getElementById('editLaporanPassInput');
+            let contentInput = document.getElementById('editLaporanContentInput');
+            
+            passInput.value = "";
+            contentInput.value = "Memuat data dari server...";
+            document.getElementById('laporanEditorModal').style.display = 'flex';
+
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                const docSnap = await window.getDoc(docRef);
+                if (docSnap.exists()) {
+                    let data = docSnap.data();
+                    passInput.value = data.laporan_pass || "";
+                    contentInput.value = data.laporan_keuangan || "";
+                }
+            } catch(e) {
+                contentInput.value = "";
+            }
+        }
+
+        async function saveLaporanKeuanganData() {
+            let newPass = document.getElementById('editLaporanPassInput').value.trim();
+            let newContent = document.getElementById('editLaporanContentInput').value;
+
+            if(!newPass) {
+                alert("Password laporan tidak boleh kosong!");
+                return;
+            }
+
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                await window.setDoc(docRef, {
+                    laporan_pass: newPass,
+                    laporan_keuangan: newContent
+                }, { merge: true });
+
+                closeModal('laporanEditorModal');
+                alert("Laporan Keuangan & Password berhasil diperbarui! 🎉");
+            } catch(e) {
+                alert("Gagal menyimpan ke database.");
             }
         }
 
