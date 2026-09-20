@@ -1077,7 +1077,6 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
-        // ARRAY WARTA LENGKAP SESUAI GAMBAR 1000556657.jpg & 1000556661.jpg
         let wartaBlocksStore = [
             { type: 'title', content: 'WARTA JEMAAT RESMI' },
             { type: 'text', content: '• Minggu ini adalah Minggu Ketujuh Belas Sesudah Pentakosta dan Bulan Usindah.' },
@@ -1169,7 +1168,6 @@
             { type: 'text', content: 'Demikianlah Warta Jemaat kita Minggu Ini, Tuhan Yesus Memberkati.' }
         ];
 
-        // ARRAY TATA IBADAH LENGKAP (KU 1 & KU 2) SESUAI GAMBAR 1000556653.jpg & 1000556655.jpg
         let tataBlocksStore = [
             { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM I', color: 'gold' },
             { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Saat Teduh', badge: '' },
@@ -1342,6 +1340,7 @@
             document.body.removeChild(a);
         }
 
+        // FUNGSI KOMPRESI GAMBAR OTOMATIS DIBAWAH 100KB
         function compressImageFile(fileInputId, callback) {
             const fileInput = document.getElementById(fileInputId);
             if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
@@ -1356,7 +1355,9 @@
                     const canvas = document.createElement('canvas');
                     let width = img.width;
                     let height = img.height;
-                    const maxDim = 400;
+                    
+                    // Batasi dimensi maksimal agar ukuran file terkompresi di bawah 100kb
+                    const maxDim = 300; 
                     if (width > height && width > maxDim) {
                         height *= maxDim / width;
                         width = maxDim;
@@ -1364,11 +1365,14 @@
                         width *= maxDim / height;
                         height = maxDim;
                     }
+                    
                     canvas.width = width;
                     canvas.height = height;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
-                    callback(canvas.toDataURL('image/jpeg', 0.5));
+                    
+                    // Kompresi kualitas jpeg ke 0.4 agar ukuran < 100kb
+                    callback(canvas.toDataURL('image/jpeg', 0.4));
                 };
                 img.src = e.target.result;
             };
@@ -1601,7 +1605,7 @@
             tataBlocksStore.forEach((block) => {
                 if(block.type === 'section') {
                     let colorStyle = block.color === 'cyan' ? 'color:var(--accent-cyan); background:rgba(56,189,248,0.1);' : 'color:var(--accent-gold); background:rgba(245,158,11,0.1);';
-                    html += `<h2 style="font-family:\'Playfair Display\', serif; font-size:1.15rem; margin-bottom:4px; text-align:center; padding:8px; border-radius:8px; ${colorStyle}">${block.content}</h2>`;
+                    html += `<h2 style="font-family:'Playfair Display', serif; font-size:1.15rem; margin-bottom:4px; text-align:center; padding:8px; border-radius:8px; ${colorStyle}">${block.content}</h2>`;
                 } else if(block.type === 'item') {
                     let badgeHtml = block.badge ? `<span class="liturgi-badge-${block.badge.toLowerCase()}">(${block.badge})</span>` : '';
                     html += `<div class="warta-content-text"><span>${block.content}</span>${badgeHtml}</div>`;
@@ -1754,9 +1758,14 @@
                 }
             });
             renderWartaDynamicContent();
-            await saveToFirebase();
-            closeModal('wartaEditorModal');
-            showToast("Warta Dinamis Berhasil Disimpan!");
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                await window.setDoc(docRef, { wartaBlocksStore: wartaBlocksStore }, { merge: true });
+                closeModal('wartaEditorModal');
+                showToast("Warta Berhasil Disimpan & Diperbarui!");
+            } catch (e) {
+                showToast("Gagal menyimpan ke server database!");
+            }
         }
 
         function openTataEditorModal() {
@@ -1810,9 +1819,14 @@
                 }
             });
             renderTataDynamicContent();
-            await saveToFirebase();
-            closeModal('tataEditorModal');
-            showToast("Tata Ibadah Berhasil Disimpan!");
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                await window.setDoc(docRef, { tataBlocksStore: tataBlocksStore }, { merge: true });
+                closeModal('tataEditorModal');
+                showToast("Tata Ibadah Berhasil Disimpan & Diperbarui!");
+            } catch (e) {
+                showToast("Gagal menyimpan ke server database!");
+            }
         }
 
         function openEditModal(type) {
@@ -1862,20 +1876,35 @@
         function saveAdminData() {
             if (currentEditingType === 'tata_ibadah') {
                 homeDataStore.tataText = document.getElementById('editTataText').value;
-                compressImageFile('editTataImgFile', (base64Img) => { if (base64Img) homeDataStore.tataImg = base64Img; finalizeSave(); });
+                compressImageFile('editTataImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.tataImg = base64Img; 
+                    finalizeSave(); 
+                });
             } else if (currentEditingType === 'warta') {
                 homeDataStore.wartaTitle = document.getElementById('editWartaTitle').value;
                 homeDataStore.wartaDate = document.getElementById('editWartaDate').value;
-                compressImageFile('editWartaImgFile', (base64Img) => { if (base64Img) homeDataStore.wartaImg = base64Img; finalizeSave(); });
+                compressImageFile('editWartaImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.wartaImg = base64Img; 
+                    finalizeSave(); 
+                });
             } else if (currentEditingType === 'jadwal') {
                 homeDataStore.alkitabText = document.getElementById('editAlkitabText').value;
-                compressImageFile('editAlkitabImgFile', (base64Img) => { if (base64Img) homeDataStore.alkitabImg = base64Img; finalizeSave(); });
+                compressImageFile('editAlkitabImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.alkitabImg = base64Img; 
+                    finalizeSave(); 
+                });
             } else if (currentEditingType === 'doa') {
                 homeDataStore.doaText = document.getElementById('editDoaText').value;
-                compressImageFile('editDoaImgFile', (base64Img) => { if (base64Img) homeDataStore.doaImg = base64Img; finalizeSave(); });
+                compressImageFile('editDoaImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.doaImg = base64Img; 
+                    finalizeSave(); 
+                });
             } else if (currentEditingType === 'renungan') {
                 homeDataStore.renJudul = document.getElementById('editRenJudul').value;
-                compressImageFile('editRenImgFile', (base64Img) => { if (base64Img) homeDataStore.renImg = base64Img; finalizeSave(); });
+                compressImageFile('editRenImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.renImg = base64Img; 
+                    finalizeSave(); 
+                });
             } else if (currentEditingType === 'live') {
                 homeDataStore.liveUrl = document.getElementById('editLiveUrl').value;
                 finalizeSave();
@@ -1883,7 +1912,10 @@
                 bankInfoStore.bankName = document.getElementById('editBankName').value;
                 bankInfoStore.accountNumber = document.getElementById('editAccountNumber').value;
                 bankInfoStore.accountName = document.getElementById('editAccountName').value;
-                compressImageFile('editBankLogoFile', (base64Img) => { if (base64Img) bankInfoStore.logoUrl = base64Img; finalizeSave(); });
+                compressImageFile('editBankLogoFile', (base64Img) => { 
+                    if (base64Img) bankInfoStore.logoUrl = base64Img; 
+                    finalizeSave(); 
+                });
             } else if (currentEditingType === 'grafik') {
                 chartDataStore.week.sesi1 = document.getElementById('editSesi1').value.split(',').map(n => parseInt(n.trim()));
                 chartDataStore.week.sesi2 = document.getElementById('editSesi2').value.split(',').map(n => parseInt(n.trim()));
@@ -1892,7 +1924,10 @@
                 kategorialStore[currentEditingKey].title = document.getElementById('editKatTitle').value;
                 kategorialStore[currentEditingKey].count = parseInt(document.getElementById('editKatCount').value) || 0;
                 kategorialStore[currentEditingKey].desc = document.getElementById('editKatDesc').value;
-                compressImageFile('editKatImgFile', (base64Img) => { if (base64Img) kategorialStore[currentEditingKey].img = base64Img; finalizeSave(); });
+                compressImageFile('editKatImgFile', (base64Img) => { 
+                    if (base64Img) kategorialStore[currentEditingKey].img = base64Img; 
+                    finalizeSave(); 
+                });
             }
         }
 
@@ -1902,7 +1937,7 @@
                 updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
                 await saveToFirebase();
                 closeModal('adminEditModal');
-                showToast("Perubahan Berhasil Disimpan ke Database!");
+                showToast("Perubahan & Kompresi Gambar Berhasil Disimpan!");
             } catch (error) {
                 showToast("Gagal menyimpan ke database!");
             }
