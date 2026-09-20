@@ -64,6 +64,16 @@
                 radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
         }
 
+        /* TOAST NOTIFICATION STYLING */
+        #toast-notification {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: linear-gradient(135deg, #10b981, #059669); color: #fff; padding: 10px 20px;
+            border-radius: 25px; font-size: 0.8rem; font-weight: 700; z-index: 99999;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); display: flex; align-items: center; gap: 8px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #toast-notification.show { transform: translateX(-50%) translateY(0); }
+
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #050811; z-index: 99999; display: flex; flex-direction: column;
@@ -309,6 +319,10 @@
     </style>
 </head>
 <body>
+
+    <div id="toast-notification">
+        <i class="fa-solid fa-circle-check"></i> <span id="toast-text">Berhasil memperbarui data!</span>
+    </div>
 
     <div id="splash-screen">
         <div class="splash-logo-wrapper">
@@ -975,6 +989,15 @@
     </div>
 
     <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             const texts = ["WELCOME", "TO WEBSITE", "GMI SUNGAI YORDAN", "GOD BLESS YOU"];
             let index = 0;
@@ -1118,71 +1141,71 @@
             <div style="font-family: 'Plus Jakarta Sans', sans-serif; color: #f8fafc;">
                 <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px dashed rgba(245, 158, 11, 0.4); padding-bottom: 10px;">
                     <h3 style="font-family: 'Playfair Display', serif; color: #f59e0b; font-size: 1rem; margin-bottom: 3px;">PENATALAYANAN DAN KEUANGAN</h3>
-                    <p style="font-size: 0.75rem; color: #94a3b8;">GMI Jemaat "Sungai Yordan" Bekasi | Laporan Persembahan[span_0](start_span)[span_0](end_span)</p>
+                    <p style="font-size: 0.75rem; color: #94a3b8;">GMI Jemaat "Sungai Yordan" Bekasi | Laporan Persembahan</p>
                 </div>
 
-                <div style="font-size: 0.8rem; font-weight: 700; color: #f59e0b; margin-bottom: 6px;"><i class="fa-solid fa-hand-holding-dollar"></i> I. RINCIAN PERSEMBAHAN[span_1](start_span)[span_1](end_span)</div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #f59e0b; margin-bottom: 6px;"><i class="fa-solid fa-hand-holding-dollar"></i> I. RINCIAN PERSEMBAHAN</div>
                 <div class="table-responsive">
                     <table class="church-table">
-                        <tr><th style="width: 10%;">NO</th><th style="width: 65%;">URAIAN</th><th style="width: 25%; text-align: right;">JUMLAH/RP[span_2](start_span)[span_2](end_span)</th></tr>
-                        <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td style="text-align: right;">3.227.014[span_3](start_span)[span_3](end_span)</td></tr>
-                        <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td style="text-align: right;">505.000[span_4](start_span)[span_4](end_span)</td></tr>
-                        <tr><td>3</td><td>Persembahan Persepuluhan: Kel. SMT. Nadeak, Nadya Simatupang, Elsa Angelita, Kel. Rudy S. Tampubolon, Gwenli Sirait, Ibu Asria br. Simarmata</td><td style="text-align: right;">3.278.030[span_5](start_span)[span_5](end_span)</td></tr>
-                        <tr><td>4</td><td>Persembahan Ucapan Syukur: Kel. GAJ.Simamora/br.Manurung, Elisa M. Pangaribuan, Christine Sitinjak, Sarah Sihombing, Hanna Sihombing, Kel. Op. Saurlina Panjaitan, NN</td><td style="text-align: right;">3.150.000[span_6](start_span)[span_6](end_span)</td></tr>
-                        <tr><td>5</td><td>Persembahan Ke Depan Untuk Dana Pensiun</td><td style="text-align: right;">2.894.140[span_7](start_span)[span_7](end_span)</td></tr>
+                        <tr><th style="width: 10%;">NO</th><th style="width: 65%;">URAIAN</th><th style="width: 25%; text-align: right;">JUMLAH/RP</th></tr>
+                        <tr><td>1</td><td>Persembahan Kebaktian Umum</td><td style="text-align: right;">3.227.014</td></tr>
+                        <tr><td>2</td><td>Persembahan Sekolah Minggu</td><td style="text-align: right;">505.000</td></tr>
+                        <tr><td>3</td><td>Persembahan Persepuluhan: Kel. SMT. Nadeak, Nadya Simatupang, Elsa Angelita, Kel. Rudy S. Tampubolon, Gwenli Sirait, Ibu Asria br. Simarmata</td><td style="text-align: right;">3.278.030</td></tr>
+                        <tr><td>4</td><td>Persembahan Ucapan Syukur: Kel. GAJ.Simamora/br.Manurung, Elisa M. Pangaribuan, Christine Sitinjak, Sarah Sihombing, Hanna Sihombing, Kel. Op. Saurlina Panjaitan, NN</td><td style="text-align: right;">3.150.000</td></tr>
+                        <tr><td>5</td><td>Persembahan Ke Depan Untuk Dana Pensiun</td><td style="text-align: right;">2.894.140</td></tr>
                         <tr style="background: rgba(245, 158, 11, 0.12); border-top: 2px solid #f59e0b;">
-                            <td colspan="2"><strong style="color: #f59e0b;">T O T A L</strong>[span_8](start_span)[span_8](end_span)</td>
-                            <td style="text-align: right; color: #f59e0b; font-weight: 800;">13.054.184[span_9](start_span)[span_9](end_span)</td>
+                            <td colspan="2"><strong style="color: #f59e0b;">T O T A L</strong></td>
+                            <td style="text-align: right; color: #f59e0b; font-weight: 800;">13.054.184</td>
                         </tr>
                     </table>
                 </div>
 
-                <div style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; margin-top: 18px; margin-bottom: 6px;"><i class="fa-solid fa-address-card"></i> II. NAMA-NAMA JEMAAT YANG SUDAH MENGEMBALIKAN FORMULIR JANJI IMAN[span_10](start_span)[span_10](end_span)</div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; margin-top: 18px; margin-bottom: 6px;"><i class="fa-solid fa-address-card"></i> II. NAMA-NAMA JEMAAT YANG SUDAH MENGEMBALIKAN FORMULIR JANJI IMAN</div>
                 <div class="table-responsive">
                     <table class="church-table">
-                        <tr><th>NO</th><th>NAMA</th><th style="text-align: right;">JANJI IMAN (RP)[span_11](start_span)[span_11](end_span)</th><th style="text-align: right;">PEMBAYARAN (RP)[span_12](start_span)[span_12](end_span)</th><th style="text-align: center;">KET.[span_13](start_span)[span_13](end_span)</th></tr>
-                        <tr><td>1</td><td>NN</td><td style="text-align: right;">10.000.000</td><td style="text-align: right;">10.000.000</td><td style="text-align: center;">Lunas[span_14](start_span)[span_14](end_span)</td></tr>
-                        <tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_15](start_span)[span_15](end_span)</td></tr>
-                        <tr><td>3</td><td>Kel, Ricky Pasaribu</td><td style="text-align: right;">7.500.000</td><td style="text-align: right;">7.500.000</td><td style="text-align: center;">Lunas[span_16](start_span)[span_16](end_span)</td></tr>
-                        <tr><td>4</td><td>Kel. DF Sipahutar</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_17](start_span)[span_17](end_span)</td></tr>
-                        <tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas[span_18](start_span)[span_18](end_span)</td></tr>
-                        <tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_19](start_span)[span_19](end_span)</td></tr>
-                        <tr><td>7</td><td>Sdri. Elsa SLA. Simatupang</td><td style="text-align: right;">7.000.000</td><td style="text-align: right;">7.000.000</td><td style="text-align: center;">Lunas[span_20](start_span)[span_20](end_span)</td></tr>
-                        <tr><td>8</td><td>Kel. GAJ. Simamora</td><td style="text-align: right;">20.000.000</td><td style="text-align: right;">20.000.000</td><td style="text-align: center;">Lunas[span_21](start_span)[span_21](end_span)</td></tr>
-                        <tr><td>9</td><td>Ibu Luci Simamora</td><td style="text-align: right;">10.240.000</td><td style="text-align: right;">10.240.000</td><td style="text-align: center;">Lunas[span_22](start_span)[span_22](end_span)</td></tr>
-                        <tr><td>10</td><td>Kel. Odi Siahaan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas[span_23](start_span)[span_23](end_span)</td></tr>
-                        <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_24](start_span)[span_24](end_span)</td></tr>
-                        <tr><td>12</td><td>Kel. M. Manullang</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_25](start_span)[span_25](end_span)</td></tr>
-                        <tr><td>13</td><td>Kel. Daniel Sinambela</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Cicilan 2[span_26](start_span)[span_26](end_span)</td></tr>
-                        <tr><td>14</td><td>Kel. Voikano Pangaribuan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas[span_27](start_span)[span_27](end_span)</td></tr>
-                        <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_28](start_span)[span_28](end_span)</td></tr>
-                        <tr><td>16</td><td>Kel. Pdt. Karno Sitoritet</td><td style="text-align: right;">1.500.000</td><td style="text-align: right;">1.500.000</td><td style="text-align: center;">Lunas[span_29](start_span)[span_29](end_span)</td></tr>
-                        <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas[span_30](start_span)[span_30](end_span)</td></tr>
-                        <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Lunas[span_31](start_span)[span_31](end_span)</td></tr>
-                        <tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai[span_32](start_span)[span_32](end_span)</td></tr>
-                        <tr><td>20</td><td>Kel. Sahat Nadeak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai[span_33](start_span)[span_33](end_span)</td></tr>
-                        <tr><td>21</td><td>Kel. FH. Panggabean</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai[span_34](start_span)[span_34](end_span)</td></tr>
-                        <tr><td>22</td><td>Kel. SBA</td><td style="text-align: right;">3.600.000</td><td style="text-align: right;">3.600.000</td><td style="text-align: center;">Lunas[span_35](start_span)[span_35](end_span)</td></tr>
-                        <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td style="text-align: right;">18.000.000</td><td style="text-align: right;">13.500.000</td><td style="text-align: center;">Cicilan 10[span_36](start_span)[span_36](end_span)</td></tr>
-                        <tr><td>24</td><td>Bram, Messach, Nathasya</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Lunas[span_37](start_span)[span_37](end_span)</td></tr>
-                        <tr><td>25</td><td>Ibu Salonta Situmorang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Lunas[span_38](start_span)[span_38](end_span)</td></tr>
-                        <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td style="text-align: right;">400.000</td><td style="text-align: right;">400.000</td><td style="text-align: center;">Tunai[span_39](start_span)[span_39](end_span)</td></tr>
-                        <tr><td>27</td><td>NN Bekasi</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Tunai[span_40](start_span)[span_40](end_span)</td></tr>
-                        <tr><td>28</td><td>Kel. Mustafa Sihombing</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Tunai[span_41](start_span)[span_41](end_span)</td></tr>
-                        <tr><td>29</td><td>Nathasya Suwarsono</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Tunai[span_42](start_span)[span_42](end_span)</td></tr>
-                        <tr><td>30</td><td>Kel. HS. Hutajulu</td><td style="text-align: right;">777.000</td><td style="text-align: right;">777.000</td><td style="text-align: center;">Tunai[span_43](start_span)[span_43](end_span)</td></tr>
-                        <tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai[span_44](start_span)[span_44](end_span)</td></tr>
-                        <tr><td>32</td><td>Kel. Koster Pangaribuan</td><td style="text-align: right;">200.000</td><td style="text-align: right;">200.000</td><td style="text-align: center;">Tunai[span_45](start_span)[span_45](end_span)</td></tr>
-                        <tr><td>33</td><td>Irma Siagian</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai[span_46](start_span)[span_46](end_span)</td></tr>
-                        <tr><td>34</td><td>NN</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai[span_47](start_span)[span_47](end_span)</td></tr>
-                        <tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td style="text-align: right;">600.000</td><td style="text-align: right;">600.000</td><td style="text-align: center;">Tunai[span_48](start_span)[span_48](end_span)</td></tr>
-                        <tr><td>36</td><td>Hertina Sitorus</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai[span_49](start_span)[span_49](end_span)</td></tr>
-                        <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai[span_50](start_span)[span_50](end_span)</td></tr>
-                        <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Tunai[span_51](start_span)[span_51](end_span)</td></tr>
+                        <tr><th>NO</th><th>NAMA</th><th style="text-align: right;">JANJI IMAN (RP)</th><th style="text-align: right;">PEMBAYARAN (RP)</th><th style="text-align: center;">KET.</th></tr>
+                        <tr><td>1</td><td>NN</td><td style="text-align: right;">10.000.000</td><td style="text-align: right;">10.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>3</td><td>Kel, Ricky Pasaribu</td><td style="text-align: right;">7.500.000</td><td style="text-align: right;">7.500.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>4</td><td>Kel. DF Sipahutar</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>7</td><td>Sdri. Elsa SLA. Simatupang</td><td style="text-align: right;">7.000.000</td><td style="text-align: right;">7.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>8</td><td>Kel. GAJ. Simamora</td><td style="text-align: right;">20.000.000</td><td style="text-align: right;">20.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>9</td><td>Ibu Luci Simamora</td><td style="text-align: right;">10.240.000</td><td style="text-align: right;">10.240.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>10</td><td>Kel. Odi Siahaan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>12</td><td>Kel. M. Manullang</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>13</td><td>Kel. Daniel Sinambela</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Cicilan 2</td></tr>
+                        <tr><td>14</td><td>Kel. Voikano Pangaribuan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>16</td><td>Kel. Pdt. Karno Sitoritet</td><td style="text-align: right;">1.500.000</td><td style="text-align: right;">1.500.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>20</td><td>Kel. Sahat Nadeak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>21</td><td>Kel. FH. Panggabean</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>22</td><td>Kel. SBA</td><td style="text-align: right;">3.600.000</td><td style="text-align: right;">3.600.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td style="text-align: right;">18.000.000</td><td style="text-align: right;">13.500.000</td><td style="text-align: center;">Cicilan 10</td></tr>
+                        <tr><td>24</td><td>Bram, Messach, Nathasya</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>25</td><td>Ibu Salonta Situmorang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Lunas</td></tr>
+                        <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td style="text-align: right;">400.000</td><td style="text-align: right;">400.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>27</td><td>NN Bekasi</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>28</td><td>Kel. Mustafa Sihombing</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>29</td><td>Nathasya Suwarsono</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>30</td><td>Kel. HS. Hutajulu</td><td style="text-align: right;">777.000</td><td style="text-align: right;">777.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>32</td><td>Kel. Koster Pangaribuan</td><td style="text-align: right;">200.000</td><td style="text-align: right;">200.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>33</td><td>Irma Siagian</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>34</td><td>NN</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td style="text-align: right;">600.000</td><td style="text-align: right;">600.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>36</td><td>Hertina Sitorus</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
+                        <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Tunai</td></tr>
                         <tr style="background: rgba(56, 189, 248, 0.12); border-top: 2px solid #38bdf8;">
-                            <td colspan="2"><strong style="color: #38bdf8;">T O T A L</strong>[span_52](start_span)[span_52](end_span)</td>
-                            <td style="text-align: right; color: #38bdf8; font-weight: 800;">153.517.000[span_53](start_span)[span_53](end_span)</td>
-                            <td style="text-align: right; color: #4ade80; font-weight: 800;">145.397.000[span_54](start_span)[span_54](end_span)</td>
+                            <td colspan="2"><strong style="color: #38bdf8;">T O T A L</strong></td>
+                            <td style="text-align: right; color: #38bdf8; font-weight: 800;">153.517.000</td>
+                            <td style="text-align: right; color: #4ade80; font-weight: 800;">145.397.000</td>
                             <td></td>
                         </tr>
                     </table>
@@ -1190,7 +1213,7 @@
 
                 <div style="margin-top: 15px; padding: 12px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; font-size: 0.75rem; color: #f8fafc; line-height: 1.6;">
                     <strong style="color: #f59e0b; display: block; margin-bottom: 4px;"><i class="fa-solid fa-triangle-exclamation"></i> Persembahan Janji Iman Mobil Gereja:</strong>
-                    Akan ditutup akhir September 2026. Bagi jemaat yang masih rindu untuk memberikan persembahan janji iman mobil gereja dapat diserahkan selama bulan September 2026[span_55](start_span)[span_55](end_span).
+                    Akan ditutup akhir September 2026. Bagi jemaat yang masih rindu untuk memberikan persembahan janji iman mobil gereja dapat diserahkan selama bulan September 2026.
                 </div>
             </div>
         `;
@@ -1219,6 +1242,9 @@
                     if (pass === correctPass) {
                         document.getElementById('persembahanLockedBox').style.display = 'none';
                         document.getElementById('persembahanUnlockedInfo').style.display = 'block';
+                        showToast("Password benar! Laporan dibuka.");
+                    } else {
+                        showToast("Password salah!");
                     }
                 }
             } catch (e) {}
@@ -1236,7 +1262,10 @@
                 document.getElementById('adminPass').value = "";
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
-            } catch (error) {}
+                showToast("Login Admin Berhasil!");
+            } catch (error) {
+                showToast("Gagal Login Admin!");
+            }
         }
 
         function downloadQrisImage() {
@@ -1284,7 +1313,9 @@
 
         function copyAccountNumber() {
             let num = document.getElementById('txtAccountNumber').innerText;
-            navigator.clipboard.writeText(num).then(() => {});
+            navigator.clipboard.writeText(num).then(() => {
+                showToast("Nomor rekening disalin!");
+            });
         }
 
         function openDoaBapaKamiModal() { document.getElementById('doaBapaKamiModal').style.display = 'flex'; }
@@ -1363,7 +1394,10 @@
                 const docRef = window.doc(window.db, "portalData", "gmi_financials");
                 await window.setDoc(docRef, { laporan_pass: newPass, laporan_keuangan: newContent }, { merge: true });
                 closeModal('laporanEditorModal');
-            } catch(e) {}
+                showToast("Laporan Keuangan Berhasil Disimpan!");
+            } catch(e) {
+                showToast("Gagal menyimpan laporan!");
+            }
         }
 
         let shuffledQuizList = [];
@@ -1419,7 +1453,6 @@
 
         function loadNextQuizQuestion() { loadQuizQuestion(); }
 
-        // FUNGSI UTOMATIS BUAT/AMBIL DATA DARI FIREBASE (GAGAL AMBIL = AUTO BUAT BARU)
         async function loadFromFirebase() {
             try {
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
@@ -1442,7 +1475,6 @@
                 await saveToFirebase();
             }
 
-            // Otomatis cek dokumen laporan keuangan terpisah
             try {
                 const finRef = window.doc(window.db, "portalData", "gmi_financials");
                 const finSnap = await window.getDoc(finRef);
@@ -1665,6 +1697,7 @@
             renderWartaDynamicContent();
             await saveToFirebase();
             closeModal('wartaEditorModal');
+            showToast("Warta Dinamis Berhasil Disimpan!");
         }
 
         function openTataEditorModal() {
@@ -1720,6 +1753,7 @@
             renderTataDynamicContent();
             await saveToFirebase();
             closeModal('tataEditorModal');
+            showToast("Tata Ibadah Berhasil Disimpan!");
         }
 
         function openEditModal(type) {
@@ -1809,7 +1843,10 @@
                 updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
                 await saveToFirebase();
                 closeModal('adminEditModal');
-            } catch (error) {}
+                showToast("Perubahan Berhasil Disimpan ke Database!");
+            } catch (error) {
+                showToast("Gagal menyimpan ke database!");
+            }
         }
 
         function openFormModal(type) {
