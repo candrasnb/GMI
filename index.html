@@ -1340,7 +1340,6 @@
             document.body.removeChild(a);
         }
 
-        // FUNGSI KOMPRESI GAMBAR OTOMATIS DIBAWAH 100KB
         function compressImageFile(fileInputId, callback) {
             const fileInput = document.getElementById(fileInputId);
             if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
@@ -1355,8 +1354,6 @@
                     const canvas = document.createElement('canvas');
                     let width = img.width;
                     let height = img.height;
-                    
-                    // Batasi dimensi maksimal agar ukuran file terkompresi di bawah 100kb
                     const maxDim = 300; 
                     if (width > height && width > maxDim) {
                         height *= maxDim / width;
@@ -1365,13 +1362,10 @@
                         width *= maxDim / height;
                         height = maxDim;
                     }
-                    
                     canvas.width = width;
                     canvas.height = height;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
-                    
-                    // Kompresi kualitas jpeg ke 0.4 agar ukuran < 100kb
                     callback(canvas.toDataURL('image/jpeg', 0.4));
                 };
                 img.src = e.target.result;
