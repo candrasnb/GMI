@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GMI Sungai Yordan Bekasi - Official Portal Gereja Methodist Indonesia</title>
     <meta name="description" content="Portal Resmi GMI Sungai Yordan Bekasi. Warta jemaat terbaru, tata ibadah, jadwal pelayanan, kuis alkitab, ayat harian, doa bapa kami, pengakuan iman rasuli, dan persembahan digital gereja.">
-    <meta name="keywords" content="GMI Sungai Yordan, Gereja Methodist Indonesia, GMI Bekasi, gereja methodist terdekat, persembahan digital gmi, warta jemaat gmi">
     
     <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png">
-    <link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXX9EDkWc59V7FkBfDF3uDLSzga7GqPmmDk5q9H7rmOoWGUhQYzliHzvjinm_SAtdAaVQsD3aTnzrNP7_SB_5IHpVNFo7iWmV4I6OhbonmmAZanU1jWBMDLAhTnYyXKWq4AhaJWN5xcTEp4yT_R94nyx9H3f2MS5f8hXZvASBP6PgdZiyhn_d84gr_xM9S/s320/1000511228.png">
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1116,7 +1114,6 @@
             }
         ];
 
-        // Laporan Keuangan Lengkap Default Versi Tabel Panjang
         let defaultFullFinancialHTML = `
             <div style="font-family: 'Plus Jakarta Sans', sans-serif; color: #f8fafc;">
                 <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px dashed rgba(245, 158, 11, 0.4); padding-bottom: 10px;">
@@ -1315,7 +1312,6 @@
             document.getElementById('verseModal').style.display = 'flex';
         }
 
-        // AMBIL LAPORAN KEUANGAN DARI DOKUMEN TERPISAH (gmi_financials)
         async function openPersembahanModal() {
             document.getElementById('persembahanModal').style.display = 'flex';
             let container = document.getElementById('dynamicFinancialContentContainer');
@@ -1327,6 +1323,7 @@
                 if (docSnap.exists() && docSnap.data().laporan_keuangan) {
                     container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${docSnap.data().laporan_keuangan}</div>`;
                 } else {
+                    await window.setDoc(docRef, { laporan_pass: "gmisungaiyordan2026", laporan_keuangan: defaultFullFinancialHTML }, { merge: true });
                     container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${defaultFullFinancialHTML}</div>`;
                 }
             } catch (e) {
@@ -1422,6 +1419,7 @@
 
         function loadNextQuizQuestion() { loadQuizQuestion(); }
 
+        // FUNGSI UTOMATIS BUAT/AMBIL DATA DARI FIREBASE (GAGAL AMBIL = AUTO BUAT BARU)
         async function loadFromFirebase() {
             try {
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
@@ -1439,6 +1437,17 @@
                     if(Array.isArray(data.renunganBlocksStore)) renunganBlocksStore = data.renunganBlocksStore;
                 } else {
                     await saveToFirebase();
+                }
+            } catch (e) {
+                await saveToFirebase();
+            }
+
+            // Otomatis cek dokumen laporan keuangan terpisah
+            try {
+                const finRef = window.doc(window.db, "portalData", "gmi_financials");
+                const finSnap = await window.getDoc(finRef);
+                if (!finSnap.exists()) {
+                    await window.setDoc(finRef, { laporan_pass: "gmisungaiyordan2026", laporan_keuangan: defaultFullFinancialHTML }, { merge: true });
                 }
             } catch (e) {}
             
