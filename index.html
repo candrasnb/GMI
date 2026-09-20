@@ -15,7 +15,6 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyC3EBnDn0tI_VYZNc7oyetucFmWmtLnOw0",
@@ -29,14 +28,11 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
 
         window.db = db;
-        window.auth = auth;
         window.doc = doc;
         window.getDoc = getDoc;
         window.setDoc = setDoc;
-        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 
         window.loadFromFirebase();
     </script>
@@ -64,7 +60,6 @@
                 radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
         }
 
-        /* TOAST NOTIFICATION STYLING */
         #toast-notification {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
             background: linear-gradient(135deg, #10b981, #059669); color: #fff; padding: 10px 20px;
@@ -391,7 +386,7 @@
                     </div>
                     <div class="card-banner-box">
                         <img id="banner-tata-img" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800" class="card-banner-img" alt="Tata Ibadah KU">
-                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> MINGGU, 27 SEPTEMBER 2026 | MINGGU KEDELAPANBELAS SESUDAH PENTAKOSTA</span></div>
+                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-cross"></i> MINGGU, 20 SEPTEMBER 2026 | MINGGU KETUJUH BELAS SESUDAH PENTAKOSTA</span></div>
                     </div>
                     <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-tata">Klik untuk membaca susunan Tata Ibadah Kebaktian Umum I dan Kebaktian Umum II secara lengkap...</p>
                 </div>
@@ -406,8 +401,8 @@
                         <img id="car-img" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800" class="carousel-img" alt="Warta Jemaat">
                         <div class="carousel-overlay">
                             <span id="car-tag" class="carousel-tag">Warta Resmi</span>
-                            <div id="car-title" class="carousel-title">Minggu Kedelapanbelas Sesudah Pentakosta & Bulan Usindah</div>
-                            <div id="car-date" class="carousel-date">Minggu, 27 September 2026 | No: 38/GMI-SY</div>
+                            <div id="car-title" class="carousel-title">Minggu Ketujuh Belas Sesudah Pentakosta & Bulan Usindah</div>
+                            <div id="car-date" class="carousel-date">Minggu, 20 September 2026 | No: 37/GMI-SY</div>
                         </div>
                     </div>
                     <p style="font-size:0.78rem; color:var(--text-muted); text-align:justify;">Klik untuk membaca ringkasan warta jemaat dan jadwal kegiatan sepekan...</p>
@@ -434,9 +429,9 @@
                     </div>
                     <div class="card-banner-box">
                         <img id="banner-doa-img" src="https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800" class="card-banner-img" alt="Pokok Doa Syafaat">
-                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-heart-pulse"></i> MINGGU KEDELAPANBELAS SESUDAH PENTAKOSTA</span></div>
+                        <div class="card-banner-overlay"><span style="font-size:0.65rem; color:var(--accent-gold); font-weight:700;"><i class="fa-solid fa-heart-pulse"></i> MINGGU KETUJUH BELAS SESUDAH PENTAKOSTA</span></div>
                     </div>
-                    <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-doa">Mendoakan Penanggulangan Bencana, Bangsa dan Negara, Puncak Usindah, serta jemaat yang sakit dan pemulihan...</p>
+                    <p style="font-size:0.8rem; color:var(--text-muted); text-align:justify;" id="preview-doa">Mendoakan Penanggulangan Bencana, Bangsa dan Negara, Bulan Usindah, serta jemaat yang sakit dan pemulihan...</p>
                 </div>
 
                 <div class="glass-card glass-card-interactive" onclick="openPageView('page-renungan')">
@@ -541,8 +536,8 @@
 
                     <button class="btn-edit-page-admin" onclick="openWartaEditorModal()"><i class="fa-solid fa-pen-to-square"></i> Edit Warta Jemaat (Tambah/Ubah/Hapus)</button>
 
-                    <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Kedelapanbelas Sesudah Pentakosta & Bulan Usindah</h2>
-                    <p id="warta-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 27 September 2026 | No: 38/GMI-SY</p>
+                    <h2 id="warta-page-title" style="font-family:'Playfair Display', serif; color:#fff; font-size:1.25rem; margin-bottom:4px; text-align:left;">Minggu Ketujuh Belas Sesudah Pentakosta & Bulan Usindah</h2>
+                    <p id="warta-page-date" style="font-size:0.75rem; color:var(--accent-gold); font-weight:600; margin-bottom:12px; text-align:left;">Minggu, 20 September 2026 | No: 37/GMI-SY</p>
                     
                     <div class="archive-btn-wrap">
                         <button class="btn-archive-list" onclick="openArchiveModal()"><i class="fa-solid fa-calendar-days"></i> Pilih Kalender Arsip Warta</button>
@@ -948,7 +943,7 @@
             
             <div class="form-group">
                 <label>Pilih Tanggal Warta:</label>
-                <input type="date" id="archiveDateInput" value="2026-09-27">
+                <input type="date" id="archiveDateInput" value="2026-09-20">
             </div>
 
             <button class="btn-save" onclick="loadArchiveByDate()"><i class="fa-solid fa-folder-open"></i> Buka Arsip Warta</button>
@@ -965,26 +960,21 @@
         </div>
     </div>
 
-    <!-- MODAL LOGIN ADMIN DENGAN EMAIL & PASSWORD MANUAL -->
+    <!-- MODAL LOGIN ADMIN DENGAN PASSWORD gmi#26sy -->
     <div class="modal" id="loginModal">
         <div class="modal-card" style="max-width: 360px;">
             <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
             <h3 style="color:var(--accent-gold); text-align:center; margin-bottom:10px; font-size:1.1rem;"><i class="fa-solid fa-shield-halved"></i> Login Admin</h3>
             
             <div class="form-group">
-                <label>Email Admin:</label>
-                <input type="email" id="adminEmail" placeholder="Masukkan email admin...">
-            </div>
-
-            <div class="form-group">
                 <label>Password Admin:</label>
                 <div class="password-input-wrap">
-                    <input type="password" id="adminPass" placeholder="Masukkan password...">
-                    <i class="fa-solid fa-eye toggle-password" onclick="togglePasswordVisibility('adminPass', this)"></i>
+                    <input type="password" id="adminPassOnly" placeholder="Masukkan password admin...">
+                    <i class="fa-solid fa-eye toggle-password" onclick="togglePasswordVisibility('adminPassOnly', this)"></i>
                 </div>
             </div>
 
-            <button class="btn-save" onclick="verifyAdmin()">Masuk Panel</button>
+            <button class="btn-save" onclick="verifyAdminPassOnly()">Masuk Panel</button>
         </div>
     </div>
 
@@ -1075,10 +1065,10 @@
             tataTitle: "Tata Ibadah Kebaktian Umum I & II",
             tataText: "Klik untuk membaca susunan Tata Ibadah Kebaktian Umum I dan Kebaktian Umum II secara lengkap...",
             tataImg: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800",
-            wartaTitle: "Minggu Kedelapanbelas Sesudah Pentakosta & Bulan Usindah",
-            wartaDate: "Minggu, 27 September 2026 | No: 38/GMI-SY",
+            wartaTitle: "Minggu Ketujuh Belas Sesudah Pentakosta & Bulan Usindah",
+            wartaDate: "Minggu, 20 September 2026 | No: 37/GMI-SY",
             wartaImg: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800",
-            doaText: "Mendoakan Penanggulangan Bencana, Bangsa dan Negara, Puncak Usindah, serta jemaat yang sakit dan pemulihan...",
+            doaText: "Mendoakan Penanggulangan Bencana, Bangsa dan Negara, Bulan Usindah, serta jemaat yang sakit dan pemulihan...",
             doaImg: "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800",
             renJudul: "Bacaan Alkitab Sepekan",
             renImg: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=800",
@@ -1087,17 +1077,141 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
+        // ARRAY WARTA LENGKAP SESUAI GAMBAR 1000556657.jpg & 1000556661.jpg
         let wartaBlocksStore = [
-            { type: 'text', content: '• Minggu ini adalah Minggu Kedelapanbelas Sesudah Pentakosta dan Puncak Bulan Usindah.' },
-            { type: 'title', content: '1. PENATALAYANAN DAN KEUANGAN' },
-            { type: 'text', content: '• Laporan persembahan lengkap dan rekapitulasi Janji Iman Mobil Gereja tersedia di bawah dengan memasukkan password jemaat.' }
+            { type: 'title', content: 'WARTA JEMAAT RESMI' },
+            { type: 'text', content: '• Minggu ini adalah Minggu Ketujuh Belas Sesudah Pentakosta dan Bulan Usindah.' },
+            { type: 'text', content: '• Bagi Bapak/Ibu, Sdr/i yang baru pertama kali berbakti di gereja ini, mohon kesediaannya untuk berdiri di tempat, agar kami dapat menyambut Bapak, Ibu, Sdr/i.' },
+            { type: 'title', content: '1. KOMISI KEANGGOTAAN DAN EVANGELISASI' },
+            { type: 'subtitle', content: 'Ulang Tahun Kelahiran' },
+            { type: 'text', content: '• Jemaat yang berulang tahun kelahiran minggu ini: Bp. Hatma Sanjoyo (14/9), Sdr. Rian Manogu (14/9), Sdr. Rianto Mangihut (14/9), Ibu Debora Sihombing (14/9), Amora Bellvania Simatupang (15/9), Sdr. Oka Doni Sipahutar (15/9), Sdr. Dipa Geraldo Parulian Silalahi (15/9), Ibu Beatrix Elisabeth M. Tobing (15/9), Darell Gilbert Timotius Sihombing (15/9), Ibu Shintawaty Simanjuntak (16/9), Bp. Ricky S. Mangisi Pasaribu (16/9), Sdri. Raphella Natania AS. Tarigan (16/9), Sdr. Theresa Septiani Simanjuntak (16/9), Elijah Tupa Raymund Purba (16/9), Bp. Poltak Situmorang (17/9), Liliana Gabriella Alexandria Sinambela (19/9) dan Gavriella Maureen Lumban Tobing (20/9). Pendeta, Majelis dan seluruh Jemaat mengucapkan selamat ulang tahun, panjang umur, sehat selalu. Tuhan Yesus Memberkati.' },
+            { type: 'subtitle', content: 'Berita Sukacita' },
+            { type: 'text', content: '• Pada hari Rabu, 16 September 2026 pukul 05.00 WIB telah dikaruniakan Tuhan seorang putra (anak pertama) bagi Kel. Bp. Alfeus Sianturi/Ibu Gokmariana Barutu. Kita doakan pemulihan ibu pasca persalinan dan tumbuh kembang anak yang baru lahir.' },
+            { type: 'subtitle', content: 'Laporan Class Meeting (Kamis, 17 September 2026)' },
+            { 
+                type: 'table', 
+                headers: ['NAMA CLASS MEETING', 'KEHADIRAN', 'BACAAN ALKITAB'], 
+                rows: [
+                    ['CM Bethesda', '11 Jiwa', '192 Pasal'],
+                    ['CM Kapernaum', '9 Jiwa', '169 Pasal'],
+                    ['CM Yerikho, Yudea, Kanaan', '14 Jiwa', '454 Pasal'],
+                    ['CM Galilea, Yerusalem', '20 Jiwa', '291 Pasal'],
+                    ['CM Efrata & Sion', '13 Jiwa', '256 Pasal'],
+                    ['CM Korintus', '12 Jiwa', '182 Pasal']
+                ]
+            },
+            { type: 'subtitle', content: 'Jadwal Kegiatan Jaringan Doa' },
+            { 
+                type: 'table', 
+                headers: ['HARI/TGL', 'KEGIATAN', 'PUKUL', 'PENGKHOTBAH'], 
+                rows: [
+                    ['Senin, 21/9/2026', 'TIM DOA', '19.00 WIB', 'Gr. Weslly C.Tedju'],
+                    ['Rabu, 23/9/2026', 'MPD', '20.00 WIB', 'LS.DF. Sipahutar'],
+                    ['Sabtu, 26/9/2026', 'Doa Pagi', '05.30 WIB', 'LS. Koster Pangaribuan']
+                ]
+            },
+            { type: 'title', content: '2. KOMISI DIAKONIA SOSIAL' },
+            { type: 'text', content: '• Sosial Kedukaan: Bagi jemaat yang belum membayar dapat ditransfer ke rekening bendahara Dana Sosial Kedukaan: BCA 5726168861 an. Luci Nasa Roni. Bukti transfer dapat dikirim kepada bendahara. Saldo Kas Sosial Kedukaan sampai Jumat, 18 September 2026 sebesar Rp. 43.606.794,-.' },
+            { type: 'title', content: '3. KOMISI PENDIDIKAN AGAMA KRISTEN (PAK)' },
+            { type: 'subtitle', content: 'Ibadah Kategorial' },
+            { 
+                type: 'table', 
+                headers: ['PELAYAN', 'USINDAH<br>Rabu, 23/9/2026<br>Pkl. 18.00 WIB', 'PRMI & P3MI<br>Sabtu, 26/9/2026<br>Pkl. 18.00 WIB', 'P2MI<br>Sabtu, 26/9/2026<br>Pkl. 18.00 WIB'], 
+                rows: [
+                    ['Pengkhotbah', 'LS. GAJ. Simamora', 'Worship Night', 'Pdt. David Hutagalung'],
+                    ['Liturgis', 'Ibu Lily', '-', 'Bp. Messach Samosir'],
+                    ['Doa Syafaat', 'Bp. FH. Panggabean', '-', 'Bp. Rudy S. Tampubolon'],
+                    ['Pemusik', 'Gr. Weslly C.Tedju', '-', 'Bp. Himmel Sihombing']
+                ]
+            },
+            { type: 'subtitle', content: 'Persekutuan USINDAH: Bulan September bulan Usindah. Kegiatan yang dilakukan selama bulan Usindah:' },
+            { 
+                type: 'table', 
+                headers: ['HARI/TGL', 'KEGIATAN', 'TEMPAT', 'KET'], 
+                rows: [
+                    ['Minggu, 20/9/2026', 'Per. Pujian KU 2', 'Gereja', ''],
+                    ['Rabu, 23/9/2026', 'Ibadah Usindah', 'Di Gereja', ''],
+                    ['Sabtu, 26/9/2026', 'Baksos Ke Panti Werda', '-', ''],
+                    ['Minggu, 27/9/2026', 'Puncak Bulan Usindah', 'Gereja (Minggu Usindah)', 'Perjamuan Kasih'],
+                    ['Rabu, 30/9/2026', 'Ibadah Usindah', 'Ibu Rita Sinaga', '']
+                ]
+            },
+            { type: 'title', content: '4. PANITIA KEBAKTIAN' },
+            { type: 'text', content: '• Persembahan Bunga Mimbar: Hari ini, Minggu, 20 September 2026 dipersembahkan oleh Kel. Ricky Pasaribu dan Darell Gilbert Sihombing. Minggu, 27 September 2026 dipersembahkan oleh Gwenli Sirait & Kel. Jefri Pangaribuan.' },
+            { type: 'subtitle', content: 'Laporan Kegiatan Gereja Minggu Lalu' },
+            { 
+                type: 'table', 
+                headers: ['HARI/TGL', 'KEGIATAN', 'HADIR', 'HARI/TGL', 'KEGIATAN', 'HADIR'], 
+                rows: [
+                    ['Sabtu, 12/9/2026', 'PRMI<br>P3MI', '11 Orang<br>22 Orang', 'Rabu, 16/9/2026', 'Usindah<br>MPD', '32 Orang<br>14 Orang'],
+                    ['Minggu, 13/9/2026', 'KU I<br>KU II<br>ASM<br>OT<br>GSM', '72 Orang<br>118 Orang<br>41 Orang<br>7 Orang<br>14 Orang', 'Kamis, 17/9/2026', 'CM', '79 Orang'],
+                    ['Selasa, 15/9/2026', 'PWMI', '29 Orang', 'Jumat, 18/9/2026<br>Sabtu, 19/9/2026', 'Sermon<br>Doa Pagi', '10 Orang<br>13 Orang']
+                ]
+            },
+            { type: 'title', content: '6. LAIN - LAIN' },
+            { type: 'text', content: '• Pelayanan Pimpinan Jemaat: Hari ini Minggu, 20 September 2026 Pimpinan Jemaat kita (Pdt. Saut Rajagukguk) dan P2MI melayani di GMI Pos Cibubur.' },
+            { type: 'text', content: '• Ibadah PGIS Komisi Wanita: Kamis, 24 September 2026 pukul 16.00 WIB, tempat Gereja Toraja Ebenhaezer Bekasi, akan diadakan Ibadah PGIS Komisi Wanita. PWMI gereja kita diundang hadir. Berangkat dari gereja pukul 15.00 WIB.' },
+            { type: 'text', content: '• Persembahan Ke Depan : Minggu, 27 September 2026 kita akan mengumpulkan persembahan ke depan untuk mendukung pelayanan Usindah.' },
+            { type: 'subtitle', content: 'BACAAN ALKITAB DALAM MINGGU INI' },
+            { 
+                type: 'table', 
+                headers: ['HARI/TANGGAL', 'PAGI', 'MALAM'], 
+                rows: [
+                    ['Minggu, 20-9-2026', '2 Raja-Raja 11:21-12:6', 'Yakobus 5:1-6'],
+                    ['Senin, 21-9-2026', 'Kejadian 27:1-29', 'Roma 6:1-16'],
+                    ['Selasa, 22-9-2026', 'Kejadian 28:10-17', 'Roma 16:17-20'],
+                    ['Rabu, 23-9-2026', 'Yesaya 41:1-13', 'Matius 18:1-5'],
+                    ['Kamis, 24-9-2026', 'Yehezkiel 12:17-28', 'Yakobus 4:11-16'],
+                    ['Jumat, 25-9-2026', 'Yehezkiel 18:5-18', 'Kisah Para Rasul 13:32-41'],
+                    ['Sabtu, 26-9-2026', 'Yehezkiel 18:19-24', 'Markus 11:27-33']
+                ]
+            },
+            { type: 'text', content: 'Demikianlah Warta Jemaat kita Minggu Ini, Tuhan Yesus Memberkati.' }
         ];
 
+        // ARRAY TATA IBADAH LENGKAP (KU 1 & KU 2) SESUAI GAMBAR 1000556653.jpg & 1000556655.jpg
         let tataBlocksStore = [
             { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM I', color: 'gold' },
             { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Saat Teduh', badge: '' },
+            { type: 'item', content: '<strong>02. PANGGILAN BERBAKTI:</strong> Mazmur 95:1&6', badge: '' },
+            { type: 'item', content: '<strong>* VOTUM:</strong> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.', badge: '' },
+            { type: 'item', content: '<strong>03. DOA PEMBUKAAN:</strong> Liturgis', badge: '' },
+            { type: 'item', content: '<strong>04. PUJIAN:</strong> "Allah Itu Baik" / "Ada Satu Sobatku"', badge: '' },
+            { type: 'item', content: '<strong>05. PENGAKUAN IMAN RASULI</strong>', badge: '' },
+            { type: 'item', content: '<strong>06. PUJIAN:</strong> "Walau Seribu Rebah" / "Engkau Alasank Hidup"', badge: '' },
+            { type: 'item', content: '<strong>07. DOA SYAFAAT:</strong> Pdt. David Hutagalung', badge: '' },
+            { type: 'item', content: '<strong>08. KHOTBAH:</strong> Pdt. David Hutagalung', badge: '' },
+            { type: 'item', content: '<strong>09. PERSEMBAHAN:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;❖ PUJIAN: NRM No. 25 "Sekarang Bersyukur"<br>&nbsp;&nbsp;&nbsp;&nbsp;❖ DOA PERSEMBAHAN', badge: 'B' },
+            { type: 'item', content: '<strong>10. DOA BAPA KAMI</strong>', badge: '' },
+            { type: 'item', content: '<strong>11. BERKAT</strong>', badge: '' },
+            { type: 'item', content: '<strong>12. PUJIAN:</strong> "Kami Memuji KebesaranMu"', badge: '' },
+            { type: 'item', content: '<strong>13. POSTLUDIUM:</strong> Jemaat Dalam Saat Teduh', badge: 'D' },
+            { type: 'item', content: '<strong>14. WARTA JEMAAT</strong>', badge: '' },
+
             { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM II', color: 'cyan' },
-            { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Jemaat Dalam Saat Teduh', badge: '' }
+            { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Jemaat Dalam Saat Teduh', badge: '' },
+            { type: 'item', content: '<strong>02. BERNYANYI:</strong> NRM No. 2: 1-4 "Ya Khalik Semesta"', badge: 'B' },
+            { type: 'item', content: '<strong>03. PANGGILAN BERBAKTI:</strong> Mazmur 95: 1 & 6', badge: '' },
+            { type: 'item', content: '<strong>* VOTUM:</strong> Pertolongan kepada kita adalah di dalam nama Allah, yang menjadikan langit dan bumi. Turunlah kiranya atas kita sekalian anugerah dan sejahtera dari Allah Bapa, dan dari Anak-Nya Yesus Kristus dan dalam persekutuan dengan Roh Kudus. Amin.', badge: '' },
+            { type: 'item', content: '<strong>04. DOA PENGAKUAN DOSA:</strong> NRM Hal. C/Bagian Depan Buku', badge: 'D' },
+            { type: 'item', content: '<strong>05. FIRMAN PENYEGAR IMAN:</strong> Yesaya 1: 18', badge: '' },
+            { type: 'item', content: '<strong>06. BERNYANYI:</strong> NRM No. 44: 1-5 "Tuhanku Gembalaku"', badge: '' },
+            { type: 'item', content: '<strong>07. RESPONSRIA:</strong> Mazmur 34: 2-11', badge: 'B' },
+            { type: 'item', content: '<strong>08. GLORIA PATRI:</strong> Mulia Bagi Bapa', badge: '' },
+            { type: 'item', content: '<strong>09. PENGAKUAN IMAN RASULI:</strong> (Diucapkan bersama-sama)', badge: '' },
+            { type: 'item', content: '<strong>10. EPISTEL:</strong> 2 Korintus 12: 1-10<br><em>Yang Berbahagia adalah mereka yang mendengarkan serta memelihara dan melaksanakan Firman Allah. Amin.</em>', badge: 'D' },
+            { type: 'item', content: '<strong>11. PERSEMBAHAN PUJIAN:</strong> USINDAH', badge: '' },
+            { type: 'item', content: '<strong>12. WARTA JEMAAT:</strong> Liturgis', badge: '' },
+            { type: 'item', content: '<strong>13. PERSEMBAHAN PUJIAN:</strong> PWMI', badge: '' },
+            { type: 'item', content: '<strong>14. PERSEMBAHAN:</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;❖ Nas Pembimbing: Amsal 3:9-10<br>&nbsp;&nbsp;&nbsp;&nbsp;❖ Bernyanyi: NRM 144: 1-5 "Ku Heran Allah Mau Memberi RahmatNya"<br>&nbsp;&nbsp;&nbsp;&nbsp;❖ Mohon Tuhan Memberkati<br>&nbsp;&nbsp;&nbsp;&nbsp;❖ Doa Persembahan: Pdt. David Hutagalung', badge: 'B' },
+            { type: 'item', content: '<strong>15. BERNYANYI:</strong> NRM 128: 1-5 "Berserah Kepada Yesus"', badge: 'D' },
+            { type: 'item', content: '<strong>16. DOA SYAFAAT:</strong> Ibu Lis Sintha Oppusunggu', badge: '' },
+            { type: 'item', content: '<strong>17. BERNYANYI:</strong> "Hanya Dekat KasihMu Bapa"', badge: '' },
+            { type: 'item', content: '<strong>18. KHOTBAH:</strong> Pdt. David Hutagalung', badge: '' },
+            { type: 'item', content: '<strong>19. BERNYANYI:</strong> NRM 155: 1-3 "Bangkitlah Kaum Tuhan"', badge: '' },
+            { type: 'item', content: '<strong>20. DOA BAPA KAMI + DOXOLOGY</strong>', badge: '' },
+            { type: 'item', content: '<strong>21. BERKAT + AMIN, AMIN, AMIN</strong>', badge: '' },
+            { type: 'item', content: '<strong>22. POSTLUDIUM:</strong> Jemaat dalam saat teduh', badge: 'D' }
         ];
 
         let jadwalBlocksStore = [
@@ -1121,9 +1235,15 @@
         ];
 
         let doaBlocksStore = [
-            { type: 'title', content: '1. BANGSA DAN NEGARA & GEREJA' },
-            { type: 'text', content: 'a. Doa untuk bangsa dan negara serta pelayanan GMI Sungai Yordan.' },
-            { type: 'text', content: 'b. Puncak perayaan bulan Usindah.' }
+            { type: 'title', content: '1. BANGSA DAN NEGARA' },
+            { type: 'text', content: 'a. Penanggulangan Bencana Kebakaran Hutan dan Gunung Meletus.' },
+            { type: 'text', content: 'b. Kementerian Keuangan dan Kementerian ATR dan BPN.' },
+            { type: 'title', content: '2. GMI DAN JEMAAT SUNGAI YORDAN' },
+            { type: 'text', content: 'a. Usindah dan kegiatan bulan USINDAH.' },
+            { type: 'text', content: 'b. Jemaat yang rindu memiliki rumah tinggal.' },
+            { type: 'text', content: 'c. Pemimpin CM dan Ketua CM.' },
+            { type: 'text', content: 'd. Jemaat dan keluarga jemaat yang sakit: Bp. W. Simanjuntak, Ibu Rona Gabe Sinaga, Ibu Linaria Saragih (Mertua Bp. Julianto Sinaga), dan Ibu Asna Girsang.' },
+            { type: 'text', content: 'e. Jemaat dan keluarga jemaat dalam pemulihan: Ibu Hentry Via Dolorosa Hutabarat, Bp. Jamaludin Sinaga, Sdri. Jojor Hutapea, Ibu Anita Emma Sihombing, Bp. Milton Tobing, Bp. Pananggangan Sinaga, Bp. Jhonson Simanjuntak dan Sdr. Samuel Simamora.' }
         ];
 
         let renunganBlocksStore = [
@@ -1131,8 +1251,13 @@
                 type: 'table', 
                 headers: ['HARI/TANGGAL', 'PAGI', 'MALAM'], 
                 rows: [
-                    ['Minggu', 'Pembacaan Pagi', 'Pembacaan Malam'],
-                    ['Senin', 'Pembacaan Pagi', 'Pembacaan Malam']
+                    ['Minggu, 20-9-2026', '2 Raja-Raja 11:21-12:6', 'Yakobus 5:1-6'],
+                    ['Senin, 21-9-2026', 'Kejadian 27:1-29', 'Roma 6:1-16'],
+                    ['Selasa, 22-9-2026', 'Kejadian 28:10-17', 'Roma 16:17-20'],
+                    ['Rabu, 23-9-2026', 'Yesaya 41:1-13', 'Matius 18:1-5'],
+                    ['Kamis, 24-9-2026', 'Yehezkiel 12:17-28', 'Yakobus 4:11-16'],
+                    ['Jumat, 25-9-2026', 'Yehezkiel 18:5-18', 'Kisah Para Rasul 13:32-41'],
+                    ['Sabtu, 26-9-2026', 'Yehezkiel 18:19-24', 'Markus 11:27-33']
                 ]
             }
         ];
@@ -1144,7 +1269,7 @@
                     <p style="font-size: 0.75rem; color: #94a3b8;">GMI Jemaat "Sungai Yordan" Bekasi | Laporan Persembahan</p>
                 </div>
 
-                <div style="font-size: 0.8rem; font-weight: 700; color: #f59e0b; margin-bottom: 6px;"><i class="fa-solid fa-hand-holding-dollar"></i> I. RINCIAN PERSEMBAHAN</div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #f59e0b; margin-bottom: 6px;"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan Persembahan Minggu, 13 September 2026</div>
                 <div class="table-responsive">
                     <table class="church-table">
                         <tr><th style="width: 10%;">NO</th><th style="width: 65%;">URAIAN</th><th style="width: 25%; text-align: right;">JUMLAH/RP</th></tr>
@@ -1158,62 +1283,6 @@
                             <td style="text-align: right; color: #f59e0b; font-weight: 800;">13.054.184</td>
                         </tr>
                     </table>
-                </div>
-
-                <div style="font-size: 0.8rem; font-weight: 700; color: #38bdf8; margin-top: 18px; margin-bottom: 6px;"><i class="fa-solid fa-address-card"></i> II. NAMA-NAMA JEMAAT YANG SUDAH MENGEMBALIKAN FORMULIR JANJI IMAN</div>
-                <div class="table-responsive">
-                    <table class="church-table">
-                        <tr><th>NO</th><th>NAMA</th><th style="text-align: right;">JANJI IMAN (RP)</th><th style="text-align: right;">PEMBAYARAN (RP)</th><th style="text-align: center;">KET.</th></tr>
-                        <tr><td>1</td><td>NN</td><td style="text-align: right;">10.000.000</td><td style="text-align: right;">10.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>2</td><td>Kel. Yos M.S. Hutapea</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>3</td><td>Kel, Ricky Pasaribu</td><td style="text-align: right;">7.500.000</td><td style="text-align: right;">7.500.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>4</td><td>Kel. DF Sipahutar</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>5</td><td>Kel. Pdt Saut Rajagukguk</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>6</td><td>Kel. Marina Marli Siahaan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>7</td><td>Sdri. Elsa SLA. Simatupang</td><td style="text-align: right;">7.000.000</td><td style="text-align: right;">7.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>8</td><td>Kel. GAJ. Simamora</td><td style="text-align: right;">20.000.000</td><td style="text-align: right;">20.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>9</td><td>Ibu Luci Simamora</td><td style="text-align: right;">10.240.000</td><td style="text-align: right;">10.240.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>10</td><td>Kel. Odi Siahaan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>11</td><td>Kel. Ibu Tetty Hasibuan</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>12</td><td>Kel. M. Manullang</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>13</td><td>Kel. Daniel Sinambela</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Cicilan 2</td></tr>
-                        <tr><td>14</td><td>Kel. Voikano Pangaribuan</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>15</td><td>Kel. Bp. Simon Yusuf</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>16</td><td>Kel. Pdt. Karno Sitoritet</td><td style="text-align: right;">1.500.000</td><td style="text-align: right;">1.500.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>17</td><td>Kel. Rudy S. Tampubolon</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>18</td><td>Kel. Ny. Friska Manurung br. Simatupang</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>19</td><td>Op. Abednego Simamora br. Aritonang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>20</td><td>Kel. Sahat Nadeak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>21</td><td>Kel. FH. Panggabean</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>22</td><td>Kel. SBA</td><td style="text-align: right;">3.600.000</td><td style="text-align: right;">3.600.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>23</td><td>Mangasa LT, Phobbe, Bima</td><td style="text-align: right;">18.000.000</td><td style="text-align: right;">13.500.000</td><td style="text-align: center;">Cicilan 10</td></tr>
-                        <tr><td>24</td><td>Bram, Messach, Nathasya</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>25</td><td>Ibu Salonta Situmorang</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Lunas</td></tr>
-                        <tr><td>26</td><td>Op. Audryna Hutapea br. Girsang</td><td style="text-align: right;">400.000</td><td style="text-align: right;">400.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>27</td><td>NN Bekasi</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>28</td><td>Kel. Mustafa Sihombing</td><td style="text-align: right;">2.000.000</td><td style="text-align: right;">2.000.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>29</td><td>Nathasya Suwarsono</td><td style="text-align: right;">5.120.000</td><td style="text-align: right;">5.120.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>30</td><td>Kel. HS. Hutajulu</td><td style="text-align: right;">777.000</td><td style="text-align: right;">777.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>31</td><td>Kel. Usdek Simanjuntak</td><td style="text-align: right;">1.000.000</td><td style="text-align: right;">1.000.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>32</td><td>Kel. Koster Pangaribuan</td><td style="text-align: right;">200.000</td><td style="text-align: right;">200.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>33</td><td>Irma Siagian</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>34</td><td>NN</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>35</td><td>Kel. Op. Isaac Sitorus</td><td style="text-align: right;">600.000</td><td style="text-align: right;">600.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>36</td><td>Hertina Sitorus</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>37</td><td>Kel. Pdt. David Hutagalung</td><td style="text-align: right;">500.000</td><td style="text-align: right;">500.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr><td>38</td><td>PT. Rama Manunggal Perkasa</td><td style="text-align: right;">3.000.000</td><td style="text-align: right;">3.000.000</td><td style="text-align: center;">Tunai</td></tr>
-                        <tr style="background: rgba(56, 189, 248, 0.12); border-top: 2px solid #38bdf8;">
-                            <td colspan="2"><strong style="color: #38bdf8;">T O T A L</strong></td>
-                            <td style="text-align: right; color: #38bdf8; font-weight: 800;">153.517.000</td>
-                            <td style="text-align: right; color: #4ade80; font-weight: 800;">145.397.000</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div style="margin-top: 15px; padding: 12px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; font-size: 0.75rem; color: #f8fafc; line-height: 1.6;">
-                    <strong style="color: #f59e0b; display: block; margin-bottom: 4px;"><i class="fa-solid fa-triangle-exclamation"></i> Persembahan Janji Iman Mobil Gereja:</strong>
-                    Akan ditutup akhir September 2026. Bagi jemaat yang masih rindu untuk memberikan persembahan janji iman mobil gereja dapat diserahkan selama bulan September 2026.
                 </div>
             </div>
         `;
@@ -1250,21 +1319,16 @@
             } catch (e) {}
         }
 
-        async function verifyAdmin() {
-            let email = document.getElementById('adminEmail').value.trim();
-            let pass = document.getElementById('adminPass').value.trim();
-            if (!email || !pass) return;
-
-            try {
-                await window.signInWithEmailAndPassword(window.auth, email, pass);
+        function verifyAdminPassOnly() {
+            let pass = document.getElementById('adminPassOnly').value.trim();
+            if (pass === "gmi#26sy") {
                 closeModal('loginModal');
-                document.getElementById('adminEmail').value = "";
-                document.getElementById('adminPass').value = "";
+                document.getElementById('adminPassOnly').value = "";
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
                 showToast("Login Admin Berhasil!");
-            } catch (error) {
-                showToast("Gagal Login Admin!");
+            } else {
+                showToast("Password Admin Salah!");
             }
         }
 
@@ -1354,7 +1418,6 @@
                 if (docSnap.exists() && docSnap.data().laporan_keuangan) {
                     container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${docSnap.data().laporan_keuangan}</div>`;
                 } else {
-                    await window.setDoc(docRef, { laporan_pass: "gmisungaiyordan2026", laporan_keuangan: defaultFullFinancialHTML }, { merge: true });
                     container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${defaultFullFinancialHTML}</div>`;
                 }
             } catch (e) {
@@ -1367,7 +1430,7 @@
             let contentInput = document.getElementById('editLaporanContentInput');
             
             passInput.value = "gmisungaiyordan2026";
-            contentInput.value = "Memuat data laporan...";
+            contentInput.value = defaultFullFinancialHTML;
             document.getElementById('laporanEditorModal').style.display = 'flex';
 
             try {
@@ -1377,12 +1440,8 @@
                     let data = docSnap.data();
                     passInput.value = data.laporan_pass || "gmisungaiyordan2026";
                     contentInput.value = data.laporan_keuangan || defaultFullFinancialHTML;
-                } else {
-                    contentInput.value = defaultFullFinancialHTML;
                 }
-            } catch(e) {
-                contentInput.value = defaultFullFinancialHTML;
-            }
+            } catch(e) {}
         }
 
         async function saveLaporanKeuanganData() {
@@ -1463,23 +1522,23 @@
                     if(data.chartStore) chartDataStore = data.chartStore;
                     if(data.bankStore) bankInfoStore = data.bankStore;
                     if(data.homeStore) homeDataStore = data.homeStore;
-                    if(Array.isArray(data.wartaBlocksStore)) wartaBlocksStore = data.wartaBlocksStore;
-                    if(Array.isArray(data.tataBlocksStore)) tataBlocksStore = data.tataBlocksStore;
-                    if(Array.isArray(data.jadwalBlocksStore)) jadwalBlocksStore = data.jadwalBlocksStore;
-                    if(Array.isArray(data.doaBlocksStore)) doaBlocksStore = data.doaBlocksStore;
-                    if(Array.isArray(data.renunganBlocksStore)) renunganBlocksStore = data.renunganBlocksStore;
+                    if(Array.isArray(data.wartaBlocksStore) && data.wartaBlocksStore.length > 0) {
+                        wartaBlocksStore = data.wartaBlocksStore;
+                    }
+                    if(Array.isArray(data.tataBlocksStore) && data.tataBlocksStore.length > 0) {
+                        tataBlocksStore = data.tataBlocksStore;
+                    }
+                    if(Array.isArray(data.jadwalBlocksStore) && data.jadwalBlocksStore.length > 0) {
+                        jadwalBlocksStore = data.jadwalBlocksStore;
+                    }
+                    if(Array.isArray(data.doaBlocksStore) && data.doaBlocksStore.length > 0) {
+                        doaBlocksStore = data.doaBlocksStore;
+                    }
+                    if(Array.isArray(data.renunganBlocksStore) && data.renunganBlocksStore.length > 0) {
+                        renunganBlocksStore = data.renunganBlocksStore;
+                    }
                 } else {
                     await saveToFirebase();
-                }
-            } catch (e) {
-                await saveToFirebase();
-            }
-
-            try {
-                const finRef = window.doc(window.db, "portalData", "gmi_financials");
-                const finSnap = await window.getDoc(finRef);
-                if (!finSnap.exists()) {
-                    await window.setDoc(finRef, { laporan_pass: "gmisungaiyordan2026", laporan_keuangan: defaultFullFinancialHTML }, { merge: true });
                 }
             } catch (e) {}
             
@@ -1542,7 +1601,7 @@
             tataBlocksStore.forEach((block) => {
                 if(block.type === 'section') {
                     let colorStyle = block.color === 'cyan' ? 'color:var(--accent-cyan); background:rgba(56,189,248,0.1);' : 'color:var(--accent-gold); background:rgba(245,158,11,0.1);';
-                    html += `<h2 style="font-family:'Playfair Display', serif; font-size:1.15rem; margin-bottom:4px; text-align:center; padding:8px; border-radius:8px; ${colorStyle}">${block.content}</h2>`;
+                    html += `<h2 style="font-family:\'Playfair Display\', serif; font-size:1.15rem; margin-bottom:4px; text-align:center; padding:8px; border-radius:8px; ${colorStyle}">${block.content}</h2>`;
                 } else if(block.type === 'item') {
                     let badgeHtml = block.badge ? `<span class="liturgi-badge-${block.badge.toLowerCase()}">(${block.badge})</span>` : '';
                     html += `<div class="warta-content-text"><span>${block.content}</span>${badgeHtml}</div>`;
