@@ -998,6 +998,14 @@
                     }, 400);
                 }
             }, 900);
+
+            // Render langsung cadangan agar tidak kosong
+            applyDataToDOM();
+            renderWartaDynamicContent();
+            renderTataDynamicContent();
+            renderJadwalDynamicContent();
+            renderDoaDynamicContent();
+            renderRenunganDynamicContent();
         });
 
         let chartMingguInstance = null;
@@ -1059,7 +1067,6 @@
             liveUrl: "https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID"
         };
 
-        // Data Warta Lengkap Terbaru Sesuai Gambar 1000556657, 1000556659, 1000556661
         let wartaBlocksStore = [
             { type: 'text', content: '• Minggu ini adalah Minggu Ketujuhbelas Sesudah Pentakosta dan Bulan Usindah.' },
             { type: 'text', content: '• Bagi Bapak/Ibu, Sdr/i yang baru pertama kali berbakti di gereja ini, mohon kesediaannya untuk berdiri di tempat, agar kami dapat menyambut Bapak, Ibu, Sdr/i.' },
@@ -1135,7 +1142,6 @@
             { type: 'text', content: '• Persembahan Ke Depan: Minggu, 27 September 2026 kita akan mengumpulkan persembahan ke depan untuk mendukung pelayanan Usindah.' }
         ];
 
-        // Data Tata Ibadah Terbaru Sesuai Gambar 1000556653 dan 1000556655
         let tataBlocksStore = [
             { type: 'section', content: 'TATA IBADAH KEBAKTIAN UMUM I', color: 'gold' },
             { type: 'item', content: '<strong>01. PRELUDIUM:</strong> Saat Teduh', badge: '' },
@@ -1542,7 +1548,6 @@
 
         function loadNextQuizQuestion() { loadQuizQuestion(); }
 
-        // Fungsional utama pemuatan data dari Firebase / Local
         async function loadFromFirebase() {
             try {
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
@@ -1553,11 +1558,13 @@
                     if(data.chartStore) chartDataStore = data.chartStore;
                     if(data.bankStore) bankInfoStore = data.bankStore;
                     if(data.homeStore) homeDataStore = data.homeStore;
-                    if(data.wartaBlocksStore) wartaBlocksStore = data.wartaBlocksStore;
-                    if(data.tataBlocksStore) tataBlocksStore = data.tataBlocksStore;
-                    if(data.jadwalBlocksStore) jadwalBlocksStore = data.jadwalBlocksStore;
-                    if(data.doaBlocksStore) doaBlocksStore = data.doaBlocksStore;
-                    if(data.renunganBlocksStore) renunganBlocksStore = data.renunganBlocksStore;
+                    if(Array.isArray(data.wartaBlocksStore)) wartaBlocksStore = data.wartaBlocksStore;
+                    if(Array.isArray(data.tataBlocksStore)) tataBlocksStore = data.tataBlocksStore;
+                    if(Array.isArray(data.jadwalBlocksStore)) jadwalBlocksStore = data.jadwalBlocksStore;
+                    if(Array.isArray(data.doaBlocksStore)) doaBlocksStore = data.doaBlocksStore;
+                    if(Array.isArray(data.renunganBlocksStore)) renunganBlocksStore = data.renunganBlocksStore;
+                } else {
+                    await saveToFirebase();
                 }
             } catch (e) { console.log("Offline mode, using default data."); }
             
@@ -1571,18 +1578,22 @@
         }
 
         async function saveToFirebase() {
-            const docRef = window.doc(window.db, "portalData", "gmi_content");
-            await window.setDoc(docRef, {
-                katStore: kategorialStore,
-                homeStore: homeDataStore,
-                chartStore: chartDataStore,
-                bankStore: bankInfoStore,
-                wartaBlocksStore: wartaBlocksStore,
-                tataBlocksStore: tataBlocksStore,
-                jadwalBlocksStore: jadwalBlocksStore,
-                doaBlocksStore: doaBlocksStore,
-                renunganBlocksStore: renunganBlocksStore
-            }, { merge: true });
+            try {
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                await window.setDoc(docRef, {
+                    katStore: kategorialStore,
+                    homeStore: homeDataStore,
+                    chartStore: chartDataStore,
+                    bankStore: bankInfoStore,
+                    wartaBlocksStore: wartaBlocksStore,
+                    tataBlocksStore: tataBlocksStore,
+                    jadwalBlocksStore: jadwalBlocksStore,
+                    doaBlocksStore: doaBlocksStore,
+                    renunganBlocksStore: renunganBlocksStore,
+                    laporan_pass: "gmisungaiyordan2026",
+                    laporan_keuangan: defaultFinancialReportHTML
+                }, { merge: true });
+            } catch(e) { console.log("Gagal menyimpan otomatis ke Firestore."); }
         }
 
         function renderWartaDynamicContent() {
