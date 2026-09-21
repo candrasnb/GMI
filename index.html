@@ -17,7 +17,6 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyC3EBnDn0tI_VYZNc7oyetucFmWmtLnOw0",
@@ -31,14 +30,11 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const auth = getAuth(app);
 
         window.db = db;
-        window.auth = auth;
         window.doc = doc;
         window.getDoc = getDoc;
         window.setDoc = setDoc;
-        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
 
         window.loadFromFirebase();
     </script>
@@ -955,13 +951,9 @@
     <div class="modal" id="loginModal">
         <div class="modal-card" style="max-width: 360px;">
             <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
-            <h3 style="color:var(--accent-gold); text-align:center; margin-bottom:10px; font-size:1.1rem;"><i class="fa-solid fa-shield-halved"></i> Login Admin</h3>
+            <h3 style="color:var(--accent-gold); text-align:center; margin-bottom:10px; font-size:1.1rem;"><i class="fa-solid fa-shield-halved"></i> Login Admin Portal</h3>
+            <p style="font-size:0.72rem; color:var(--text-muted); text-align:center; margin-bottom:12px;">Masukkan password pengurus untuk mengaktifkan mode edit.</p>
             
-            <div class="form-group">
-                <label>Email Admin:</label>
-                <input type="email" id="adminEmail" placeholder="Masukkan email admin...">
-            </div>
-
             <div class="form-group">
                 <label>Password Admin:</label>
                 <div class="password-input-wrap">
@@ -1189,12 +1181,12 @@
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
-                    let correctPass = docSnap.data().laporan_pass || "";
-                    if (pass === correctPass && correctPass !== "") {
+                    let correctPass = docSnap.data().laporan_pass || "gmisyordan2026";
+                    if (pass === correctPass) {
                         document.getElementById('persembahanLockedBox').style.display = 'none';
                         document.getElementById('persembahanUnlockedInfo').style.display = 'block';
                     } else {
-                        alert("Password laporan persembahan salah atau belum diatur di Firebase!");
+                        alert("Password laporan persembahan salah!");
                     }
                 } else {
                     alert("Gagal memverifikasi ke server.");
@@ -1204,27 +1196,23 @@
             }
         }
 
-        async function verifyAdmin() {
-            let email = document.getElementById('adminEmail').value.trim();
+        function verifyAdmin() {
             let pass = document.getElementById('adminPass').value.trim();
-
-            if (!email || !pass) {
-                alert("Masukkan email dan password admin terlebih dahulu!");
+            if (!pass) {
+                alert("Masukkan password admin terlebih dahulu!");
                 return;
             }
+            let encodedInput = btoa(pass);
+            let correctHash = "Z21pIzI2c3k="; 
 
-            try {
-                await window.signInWithEmailAndPassword(window.auth, email, pass);
-                
+            if (encodedInput === correctHash) {
                 closeModal('loginModal');
-                document.getElementById('adminEmail').value = "";
                 document.getElementById('adminPass').value = "";
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
-                alert("Login Admin Berhasil! 🎉");
-
-            } catch (error) {
-                alert("Email atau Password Admin Salah! Silakan coba lagi.");
+                alert("Login Admin Berhasil! Tombol Edit sekarang aktif. 🎉");
+            } else {
+                alert("Password Admin Salah! Silakan coba lagi.");
             }
         }
 
@@ -1317,7 +1305,7 @@
                 if (docSnap.exists() && docSnap.data().laporan_keuangan) {
                     container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-light); line-height:1.6;">${docSnap.data().laporan_keuangan}</div>`;
                 } else {
-                    container.innerHTML = `<p style="font-size:0.82rem; color:var(--text-muted); text-align:center; padding:20px;">Belum ada data laporan keuangan yang dimasukkan di Firebase.</p>`;
+                    container.innerHTML = `<p style="font-size:0.82rem; color:var(--text-muted); text-align:center; padding:20px;">Belum ada data laporan keuangan di database.</p>`;
                 }
             } catch (e) {
                 container.innerHTML = `<p style="font-size:0.82rem; color:var(--text-muted); text-align:center; padding:20px;">Gagal memuat data dari server.</p>`;
@@ -1345,17 +1333,17 @@
 
         async function saveLaporanKeuanganData() {
             let newContent = document.getElementById('editLaporanContentInput').value;
-
             try {
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 await window.setDoc(docRef, {
-                    laporan_keuangan: newContent
+                    laporan_keuangan: newContent,
+                    laporan_pass: "gmisyordan2026"
                 }, { merge: true });
 
                 closeModal('laporanEditorModal');
-                alert("Laporan Keuangan berhasil diperbarui di Database! 🎉");
+                alert("Laporan Keuangan berhasil diperbarui di gmi_content! 🎉");
             } catch(e) {
-                alert("Gagal menyimpan ke database.");
+                alert("Gagal menyimpan laporan keuangan.");
             }
         }
 
@@ -1417,19 +1405,20 @@
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 const docSnap = await window.getDoc(docRef);
                 if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    if(data.katStore) kategorialStore = data.katStore;
-                    if(data.chartStore) chartDataStore = data.chartStore;
-                    if(data.bankStore) bankInfoStore = data.bankStore;
-                    if(data.homeStore) homeDataStore = data.homeStore;
-                    if(data.wartaBlocksStore) wartaBlocksStore = data.wartaBlocksStore;
-                    if(data.tataBlocksStore) tataBlocksStore = data.tataBlocksStore;
-                    if(data.jadwalBlocksStore) jadwalBlocksStore = data.jadwalBlocksStore;
-                    if(data.doaBlocksStore) doaBlocksStore = data.doaBlocksStore;
-                    if(data.renunganBlocksStore) renunganBlocksStore = data.renunganBlocksStore;
-                    if(data.archiveStore) archiveStore = data.archiveStore;
+                    let data = docSnap.data();
+                    if(data.home) homeDataStore = data.home;
+                    if(data.wartaBlocks) wartaBlocksStore = data.wartaBlocks;
+                    if(data.tataBlocks) tataBlocksStore = data.tataBlocks;
+                    if(data.kategorial) kategorialStore = data.kategorial;
+                    if(data.bankInfo) bankInfoStore = data.bankInfo;
+                    if(data.chartData) chartDataStore = data.chartData;
+                    if(data.jadwalBlocks) jadwalBlocksStore = data.jadwalBlocks;
+                    if(data.doaBlocks) doaBlocksStore = data.doaBlocks;
+                    if(data.renunganBlocks) renunganBlocksStore = data.renunganBlocks;
                 }
-            } catch (e) { console.log("Offline mode, using default data."); }
+            } catch (e) { 
+                console.log("Offline mode, menggunakan data default."); 
+            }
             applyDataToDOM();
             renderWartaDynamicContent();
             renderTataDynamicContent();
@@ -1437,22 +1426,6 @@
             renderDoaDynamicContent();
             renderRenunganDynamicContent();
             updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
-        }
-
-        async function saveToFirebase() {
-            const docRef = window.doc(window.db, "portalData", "gmi_content");
-            await window.setDoc(docRef, {
-                katStore: kategorialStore,
-                homeStore: homeDataStore,
-                chartStore: chartDataStore,
-                bankStore: bankInfoStore,
-                wartaBlocksStore: wartaBlocksStore,
-                tataBlocksStore: tataBlocksStore,
-                jadwalBlocksStore: jadwalBlocksStore,
-                doaBlocksStore: doaBlocksStore,
-                renunganBlocksStore: renunganBlocksStore,
-                archiveStore: archiveStore
-            }, { merge: true });
         }
 
         function renderWartaDynamicContent() {
@@ -1495,7 +1468,7 @@
                 } else if(block.type === 'table') {
                     html += `<label style="font-size:0.68rem; color:var(--text-muted);">Header Kolom (pisahkan dengan koma):</label>
                              <input type="text" id="wartaHeader_${idx}" value="${block.headers.join(', ')}" style="width:100%; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem; margin-bottom:4px;">
-                             <label style="font-size:0.68rem; color:var(--text-muted);">Baris Data (tiap baris pisahkan baris baru, tiap kolom koma):</label>
+                             <label style="font-size:0.68rem; color:var(--text-muted);">Baris Data (tiap baris baris baru, tiap kolom koma):</label>
                              <textarea id="wartaRows_${idx}" style="width:100%; height:70px; padding:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); color:#fff; border-radius:6px; font-size:0.75rem;">${block.rows.map(r => r.join(', ')).join('\n')}</textarea>`;
                 }
                 html += `</div>`;
@@ -1518,14 +1491,22 @@
         }
 
         async function saveWartaDynamicData() {
-            wartaBlocksStore.forEach((block, idx) => {
-                let val = document.getElementById(`wartaInput_${idx}`);
-                if(val) block.content = val.value;
-            });
-            renderWartaDynamicContent();
-            await saveToFirebase();
-            closeModal('wartaEditorModal');
-            alert("Warta Jemaat berhasil diperbarui! 🎉");
+            try {
+                wartaBlocksStore.forEach((block, idx) => {
+                    let val = document.getElementById(`wartaInput_${idx}`);
+                    if(val) block.content = val.value;
+                });
+                renderWartaDynamicContent();
+
+                await window.setDoc(window.doc(window.db, "portalData", "gmi_content"), {
+                    wartaBlocks: wartaBlocksStore
+                }, { merge: true });
+
+                closeModal('wartaEditorModal');
+                alert("Warta Jemaat berhasil diperbarui! 🎉");
+            } catch(e) {
+                alert("Gagal menyimpan warta.");
+            }
         }
 
         function renderTataDynamicContent() {
@@ -1582,22 +1563,30 @@
         }
 
         async function saveTataDynamicData() {
-            tataBlocksStore.forEach((block, idx) => {
-                let cVal = document.getElementById(`tataContent_${idx}`);
-                if(cVal) block.content = cVal.value;
-                if(block.type === 'section') {
-                    let colVal = document.getElementById(`tataColor_${idx}`);
-                    if(colVal) block.color = colVal.value;
-                }
-                if(block.type === 'item') {
-                    let bVal = document.getElementById(`tataBadge_${idx}`);
-                    if(bVal) block.badge = bVal.value.trim();
-                }
-            });
-            renderTataDynamicContent();
-            await saveToFirebase();
-            closeModal('tataEditorModal');
-            alert("Tata Ibadah berhasil diperbarui! 🎉");
+            try {
+                tataBlocksStore.forEach((block, idx) => {
+                    let cVal = document.getElementById(`tataContent_${idx}`);
+                    if(cVal) block.content = cVal.value;
+                    if(block.type === 'section') {
+                        let colVal = document.getElementById(`tataColor_${idx}`);
+                        if(colVal) block.color = colVal.value;
+                    }
+                    if(block.type === 'item') {
+                        let bVal = document.getElementById(`tataBadge_${idx}`);
+                        if(bVal) block.badge = bVal.value.trim();
+                    }
+                });
+                renderTataDynamicContent();
+
+                await window.setDoc(window.doc(window.db, "portalData", "gmi_content"), {
+                    tataBlocks: tataBlocksStore
+                }, { merge: true });
+
+                closeModal('tataEditorModal');
+                alert("Tata Ibadah berhasil diperbarui! 🎉");
+            } catch(e) {
+                alert("Gagal menyimpan tata ibadah.");
+            }
         }
 
         function renderJadwalDynamicContent() {
@@ -1658,24 +1647,32 @@
         }
 
         async function saveJadwalDynamicData() {
-            jadwalBlocksStore.forEach((block, idx) => {
-                if(block.type === 'title' || block.type === 'subtitle') {
-                    let val = document.getElementById(`jadwalContent_${idx}`);
-                    if(val) block.content = val.value;
-                } else if(block.type === 'table') {
-                    let hVal = document.getElementById(`jadwalHeader_${idx}`);
-                    let rVal = document.getElementById(`jadwalRows_${idx}`);
-                    if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
-                    if(rVal) {
-                        let lines = rVal.value.split('\n');
-                        block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
+            try {
+                jadwalBlocksStore.forEach((block, idx) => {
+                    if(block.type === 'title' || block.type === 'subtitle') {
+                        let val = document.getElementById(`jadwalContent_${idx}`);
+                        if(val) block.content = val.value;
+                    } else if(block.type === 'table') {
+                        let hVal = document.getElementById(`jadwalHeader_${idx}`);
+                        let rVal = document.getElementById(`jadwalRows_${idx}`);
+                        if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
+                        if(rVal) {
+                            let lines = rVal.value.split('\n');
+                            block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
+                        }
                     }
-                }
-            });
-            renderJadwalDynamicContent();
-            await saveToFirebase();
-            closeModal('jadwalEditorModal');
-            alert("Jadwal Ibadah berhasil diperbarui! 🎉");
+                });
+                renderJadwalDynamicContent();
+
+                await window.setDoc(window.doc(window.db, "portalData", "gmi_content"), {
+                    jadwalBlocks: jadwalBlocksStore
+                }, { merge: true });
+
+                closeModal('jadwalEditorModal');
+                alert("Jadwal Ibadah berhasil diperbarui! 🎉");
+            } catch(e) {
+                alert("Gagal menyimpan jadwal.");
+            }
         }
 
         function renderDoaDynamicContent() {
@@ -1724,14 +1721,22 @@
         }
 
         async function saveDoaDynamicData() {
-            doaBlocksStore.forEach((block, idx) => {
-                let val = document.getElementById(`doaContent_${idx}`);
-                if(val) block.content = val.value;
-            });
-            renderDoaDynamicContent();
-            await saveToFirebase();
-            closeModal('doaEditorModal');
-            alert("Pokok Doa berhasil diperbarui! 🎉");
+            try {
+                doaBlocksStore.forEach((block, idx) => {
+                    let val = document.getElementById(`doaContent_${idx}`);
+                    if(val) block.content = val.value;
+                });
+                renderDoaDynamicContent();
+
+                await window.setDoc(window.doc(window.db, "portalData", "gmi_content"), {
+                    doaBlocks: doaBlocksStore
+                }, { merge: true });
+
+                closeModal('doaEditorModal');
+                alert("Pokok Doa berhasil diperbarui! 🎉");
+            } catch(e) {
+                alert("Gagal menyimpan pokok doa.");
+            }
         }
 
         function renderRenunganDynamicContent() {
@@ -1784,19 +1789,27 @@
         }
 
         async function saveRenunganDynamicData() {
-            renunganBlocksStore.forEach((block, idx) => {
-                let hVal = document.getElementById(`renHeader_${idx}`);
-                let rVal = document.getElementById(`renRows_${idx}`);
-                if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
-                if(rVal) {
-                    let lines = rVal.value.split('\n');
-                    block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
-                }
-            });
-            renderRenunganDynamicContent();
-            await saveToFirebase();
-            closeModal('renunganEditorModal');
-            alert("Bacaan Alkitab berhasil diperbarui! 🎉");
+            try {
+                renunganBlocksStore.forEach((block, idx) => {
+                    let hVal = document.getElementById(`renHeader_${idx}`);
+                    let rVal = document.getElementById(`renRows_${idx}`);
+                    if(hVal) block.headers = hVal.value.split(',').map(s => s.trim());
+                    if(rVal) {
+                        let lines = rVal.value.split('\n');
+                        block.rows = lines.map(line => line.split(',').map(cell => cell.trim())).filter(arr => arr.length > 0 && arr[0] !== "");
+                    }
+                });
+                renderRenunganDynamicContent();
+
+                await window.setDoc(window.doc(window.db, "portalData", "gmi_content"), {
+                    renunganBlocks: renunganBlocksStore
+                }, { merge: true });
+
+                closeModal('renunganEditorModal');
+                alert("Bacaan Alkitab berhasil diperbarui! 🎉");
+            } catch(e) {
+                alert("Gagal menyimpan bacaan alkitab.");
+            }
         }
 
         function applyDataToDOM() {
@@ -1890,51 +1903,82 @@
         function saveAdminData() {
             if (currentEditingType === 'tata_ibadah') {
                 homeDataStore.tataText = document.getElementById('editTataText').value;
-                compressImageFile('editTataImgFile', (base64Img) => { if (base64Img) homeDataStore.tataImg = base64Img; finalizeSave(); });
+                compressImageFile('editTataImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.tataImg = base64Img; 
+                    finalizeSave({ home: homeDataStore }); 
+                });
             } else if (currentEditingType === 'warta') {
                 homeDataStore.wartaTitle = document.getElementById('editWartaTitle').value;
                 homeDataStore.wartaDate = document.getElementById('editWartaDate').value;
-                compressImageFile('editWartaImgFile', (base64Img) => { if (base64Img) homeDataStore.wartaImg = base64Img; finalizeSave(); });
+                compressImageFile('editWartaImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.wartaImg = base64Img; 
+                    finalizeSave({ home: homeDataStore }); 
+                });
             } else if (currentEditingType === 'jadwal') {
                 homeDataStore.alkitabText = document.getElementById('editAlkitabText').value;
-                compressImageFile('editAlkitabImgFile', (base64Img) => { if (base64Img) homeDataStore.alkitabImg = base64Img; finalizeSave(); });
+                compressImageFile('editAlkitabImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.alkitabImg = base64Img; 
+                    finalizeSave({ home: homeDataStore }); 
+                });
             } else if (currentEditingType === 'doa') {
                 homeDataStore.doaText = document.getElementById('editDoaText').value;
-                compressImageFile('editDoaImgFile', (base64Img) => { if (base64Img) homeDataStore.doaImg = base64Img; finalizeSave(); });
+                compressImageFile('editDoaImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.doaImg = base64Img; 
+                    finalizeSave({ home: homeDataStore }); 
+                });
             } else if (currentEditingType === 'renungan') {
                 homeDataStore.renJudul = document.getElementById('editRenJudul').value;
-                compressImageFile('editRenImgFile', (base64Img) => { if (base64Img) homeDataStore.renImg = base64Img; finalizeSave(); });
+                compressImageFile('editRenImgFile', (base64Img) => { 
+                    if (base64Img) homeDataStore.renImg = base64Img; 
+                    finalizeSave({ home: homeDataStore }); 
+                });
             } else if (currentEditingType === 'live') {
                 homeDataStore.liveUrl = document.getElementById('editLiveUrl').value;
-                finalizeSave();
+                finalizeSave({ home: homeDataStore });
             } else if (currentEditingType === 'digital_bank') {
                 bankInfoStore.bankName = document.getElementById('editBankName').value;
                 bankInfoStore.accountNumber = document.getElementById('editAccountNumber').value;
                 bankInfoStore.accountName = document.getElementById('editAccountName').value;
-                compressImageFile('editBankLogoFile', (base64Img) => { if (base64Img) bankInfoStore.logoUrl = base64Img; finalizeSave(); });
+                compressImageFile('editBankLogoFile', (base64Img) => { 
+                    if (base64Img) bankInfoStore.logoUrl = base64Img; 
+                    finalizeSave({ bankInfo: bankInfoStore }); 
+                });
             } else if (currentEditingType === 'qris_image') {
-                compressImageFile('editQrisFile', (base64Img) => { if (base64Img) { bankInfoStore.qrisUrl = base64Img; finalizeSave(); } else { alert("Pilih gambar QRIS terlebih dahulu."); } });
+                compressImageFile('editQrisFile', (base64Img) => { 
+                    if (base64Img) { 
+                        bankInfoStore.qrisUrl = base64Img; 
+                        finalizeSave({ bankInfo: bankInfoStore }); 
+                    } else { 
+                        alert("Pilih gambar QRIS terlebih dahulu."); 
+                    } 
+                });
             } else if (currentEditingType === 'grafik') {
                 chartDataStore.week.sesi1 = document.getElementById('editSesi1').value.split(',').map(n => parseInt(n.trim()));
                 chartDataStore.week.sesi2 = document.getElementById('editSesi2').value.split(',').map(n => parseInt(n.trim()));
-                finalizeSave();
+                finalizeSave({ chartData: chartDataStore });
             } else if (currentEditingType === 'kategorial') {
                 kategorialStore[currentEditingKey].title = document.getElementById('editKatTitle').value;
                 kategorialStore[currentEditingKey].count = parseInt(document.getElementById('editKatCount').value) || 0;
                 kategorialStore[currentEditingKey].desc = document.getElementById('editKatDesc').value;
-                compressImageFile('editKatImgFile', (base64Img) => { if (base64Img) kategorialStore[currentEditingKey].img = base64Img; finalizeSave(); });
+                compressImageFile('editKatImgFile', (base64Img) => { 
+                    if (base64Img) kategorialStore[currentEditingKey].img = base64Img; 
+                    finalizeSave({ kategorial: kategorialStore }); 
+                });
             }
         }
 
-        async function finalizeSave() {
+        async function finalizeSave(payload) {
             try {
                 applyDataToDOM();
                 updateChartFilter('week', document.querySelector('.chart-filter-btn.active'));
-                await saveToFirebase();
+                
+                const docRef = window.doc(window.db, "portalData", "gmi_content");
+                await window.setDoc(docRef, payload, { merge: true });
+
                 closeModal('adminEditModal');
-                alert("Perubahan berhasil disimpan! 🎉");
+                alert("Perubahan berhasil disimpan ke Database! 🎉");
             } catch (error) {
-                alert("Gagal menyimpan ke database (pastikan Anda sudah login admin).");
+                alert("Gagal menyimpan ke database: " + error.message);
             }
         }
 
