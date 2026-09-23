@@ -2153,25 +2153,23 @@
             let wa = document.getElementById('formWa') ? document.getElementById('formWa').value : "-";
             let isi = document.getElementById('formIsi') ? document.getElementById('formIsi').value : "-";
             
-            let targetPhone = "6281311327715";
-            let pengantar = "";
+            let targetPhone = "6285111768186";
+            let pengantar = "Shalom GMI SUNGAI YORDAN,\n\n";
             let penutup = "";
 
             if (currentFormType === 'doa') {
-                targetPhone = "6285269607373";
-                pengantar = "Shalom Bapak Pendeta,\n\nMelalui pesan ini, saya yang terkasih dalam Tuhan memohon dukungan doa syafaat untuk pergumulan hidup saya sebagai berikut:";
-                penutup = "Demikian permohonan doa ini saya sampaikan. Kiranya Tuhan Yesus memberkati pelayanan Bapak Pendeta. Amin.";
+                pengantar += "Melalui pesan ini, saya yang terkasih dalam Tuhan memohon dukungan doa syafaat untuk pergumulan hidup saya sebagai berikut:";
+                penutup = "Demikian permohonan doa ini saya sampaikan. Kiranya Tuhan Yesus memberkati pelayanan kita. Amin.";
             } else if (currentFormType === 'konseling') {
-                targetPhone = "6285269607373";
-                pengantar = "Shalom Bapak Pendeta,\n\nKiranya kasih karunia dan damai sejahtera Tuhan menyertai pelayanan Bapak. Saya bermaksud untuk mengajukan permohonan waktu konseling pastoral dengan detail berikut:";
+                pengantar += "Kiranya kasih karunia dan damai sejahtera Tuhan senantiasa menyertai kita. Saya bermaksud untuk mengajukan permohonan waktu konseling pastoral dengan detail berikut:";
                 penutup = "Demikian permohonan ini saya sampaikan. Terima kasih atas waktu dan bimbingan rohaninya. Tuhan Yesus memberkati.";
             } else if (currentFormType === 'bunga') {
                 let tgl = document.getElementById('formTanggal') ? document.getElementById('formTanggal').value : "-";
-                pengantar = `Shalom Tim Sekretariat,\n\nKiranya sukacita Tuhan senantiasa menyertai pelayanan kita. Bersama pesan ini, saya bermaksud mengonfirmasikan persembahan Bunga Mimbar untuk tanggal ${tgl} dengan keterangan berikut:`;
+                pengantar += `Bersama pesan ini, saya bermaksud mengonfirmasikan persembahan Bunga Mimbar untuk tanggal ${tgl} dengan keterangan berikut:`;
                 penutup = "Demikian konfirmasi ini saya sampaikan. Terima kasih dan Tuhan Yesus memberkati pelayanan gereja kita.";
                 isi = `Tanggal: ${tgl}\nKeterangan: ${isi}`;
             } else if (currentFormType === 'update_data') {
-                pengantar = "Shalom Tim Sekretariat,\n\nKiranya damai sejahtera Kristus menyertai tugas pelayanan di gereja kita. Melalui pesan ini, saya ingin menyampaikan pembaruan data jemaat/keluarga kami sebagai berikut:";
+                pengantar += "Melalui pesan ini, saya ingin menyampaikan pembaruan data jemaat/keluarga kami sebagai berikut:";
                 penutup = "Demikian pembaruan data ini saya sampaikan. Terima kasih atas perhatiannya, Tuhan Yesus memberkati.";
             } else if (currentFormType === 'konfirmasi_persembahan') {
                 let jenis = document.getElementById('formJenisPersembahan') ? document.getElementById('formJenisPersembahan').value : "-";
@@ -2183,7 +2181,7 @@
                 if(jenis === 'Ucapan Syukur' && detailSyukur) jenisFinal = `Ucapan Syukur (${detailSyukur})`;
                 if(jenis === 'Persembahan Lainnya' && detailLainnya) jenisFinal = detailLainnya;
 
-                pengantar = "Shalom Tim Sekretariat,\n\nPuji Tuhan atas berkat dan kasih karunia-Nya dalam hidup kami. Bersama pesan ini, saya ingin mengonfirmasikan persembahan digital GMI Sungai Yordan dengan rincian berikut:";
+                pengantar += "Puji Tuhan atas berkat dan kasih karunia-Nya. Bersama pesan ini, saya ingin mengonfirmasikan persembahan digital GMI Sungai Yordan dengan rincian berikut:";
                 penutup = "Demikian konfirmasi persembahan ini saya sampaikan. Kiranya persembahan ini berkenan di hadapan Tuhan dan memberkati pelayanan gereja-Nya. Soli Deo Gloria.";
                 
                 isi = `Jenis Persembahan: ${jenisFinal}\nJumlah Nominal: Rp ${nominal}`;
