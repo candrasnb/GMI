@@ -766,7 +766,7 @@
         </div>
     </div>
 
-    <!-- MODAL EDITOR GALERI FOTO (MULTI BROWSE + JUDUL + HAPUS KEGIATAN) -->
+    <!-- MODAL EDITOR GALERI FOTO (MULTI BROWSE + FIX ASYNC & SIZE) -->
     <div class="modal" id="galleryEditorModal">
         <div class="modal-card" style="max-width: 650px;">
             <span class="close-modal" onclick="closeModal('galleryEditorModal')">&times;</span>
@@ -1841,11 +1841,18 @@
             }
         }
 
-        function deleteGalleryActivity(idx) {
+        async function deleteGalleryActivity(idx) {
             if(confirm("Apakah Anda yakin ingin menghapus kegiatan galeri ini?")) {
                 galleryActivitiesStore.splice(idx, 1);
-                finalizeGallerySave();
-                openGalleryEditorModal();
+                try {
+                    renderGalleryVertical();
+                    const docRef = window.doc(window.db, "portalData", "gmi_content");
+                    await window.setDoc(docRef, { galleryActivities: galleryActivitiesStore }, { merge: true });
+                    openGalleryEditorModal();
+                    alert("Kegiatan galeri berhasil dihapus.");
+                } catch(e) {
+                    alert("Gagal memperbarui database.");
+                }
             }
         }
 
@@ -1857,56 +1864,72 @@
                 return;
             }
 
-            document.getElementById('galleryUploadStatus').innerText = "Mengompres & mengunggah foto...";
+            let totalFiles = fileInput.files.length;
+            let statusEl = document.getElementById('galleryUploadStatus');
+            statusEl.innerText = `Memproses 0 dari ${totalFiles} foto...`;
+
             let processedImages = [];
-            let filesCount = fileInput.files.length;
-            let processedCount = 0;
 
-            for(let i = 0; i < filesCount; i++) {
-                let file = fileInput.files[i];
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    let img = new Image();
-                    img.onload = function() {
-                        let canvas = document.createElement('canvas');
-                        let w = img.width;
-                        let h = img.height;
-                        const maxDim = 800;
-                        if(w > h && w > maxDim) { h *= maxDim / w; w = maxDim; }
-                        else if(h > maxDim) { w *= maxDim / h; h = maxDim; }
-                        canvas.width = w; canvas.height = h;
-                        let ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, w, h);
+            const processFile = (file) => {
+                return new Promise((resolve) => {
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        let img = new Image();
+                        img.onload = function() {
+                            let canvas = document.createElement('canvas');
+                            let w = img.width;
+                            let h = img.height;
+                            const maxDim = 600;
+                            if(w > h && w > maxDim) { h *= maxDim / w; w = maxDim; }
+                            else if(h > maxDim) { w *= maxDim / h; h = maxDim; }
+                            canvas.width = w; canvas.height = h;
+                            let ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, w, h);
 
-                        let quality = 0.6;
-                        let dataUrl = canvas.toDataURL('image/jpeg', quality);
-                        while(dataUrl.length > 102400 && quality > 0.1) {
-                            quality -= 0.1;
-                            dataUrl = canvas.toDataURL('image/jpeg', quality);
-                        }
-                        processedImages.push(dataUrl);
-                        processedCount++;
-
-                        if(processedCount === filesCount) {
-                            galleryActivitiesStore.push({ title: title, images: processedImages });
-                            finalizeGallerySave();
-                            closeModal('galleryEditorModal');
-                            alert("Galeri kegiatan baru berhasil ditambahkan di bawah! 🎉");
-                        }
+                            let quality = 0.5;
+                            let dataUrl = canvas.toDataURL('image/jpeg', quality);
+                            while(dataUrl.length > 70000 && quality > 0.1) {
+                                quality -= 0.1;
+                                dataUrl = canvas.toDataURL('image/jpeg', quality);
+                            }
+                            resolve(dataUrl);
+                        };
+                        img.onerror = () => resolve(null);
+                        img.src = e.target.result;
                     };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
+                    reader.onerror = () => resolve(null);
+                    reader.readAsDataURL(file);
+                });
+            };
 
-        async function finalizeGallerySave() {
+            for(let i = 0; i < totalFiles; i++) {
+                statusEl.innerText = `Memproses foto ${i + 1} dari ${totalFiles}...`;
+                let resultUrl = await processFile(fileInput.files[i]);
+                if(resultUrl) {
+                    processedImages.push(resultUrl);
+                }
+            }
+
+            if(processedImages.length === 0) {
+                alert("Gagal memproses foto. Silakan coba pilih ulang.");
+                statusEl.innerText = "";
+                return;
+            }
+
+            statusEl.innerText = "Menyimpan ke server Firebase...";
+
+            galleryActivitiesStore.push({ title: title, images: processedImages });
+            
             try {
                 renderGalleryVertical();
                 const docRef = window.doc(window.db, "portalData", "gmi_content");
                 await window.setDoc(docRef, { galleryActivities: galleryActivitiesStore }, { merge: true });
+                
+                closeModal('galleryEditorModal');
+                alert("Galeri kegiatan baru beserta " + processedImages.length + " foto berhasil disimpan ke Firebase! 🎉");
             } catch(e) {
-                console.log("Gagal menyimpan galeri.");
+                alert("Gagal menyimpan ke Firebase. Kemungkinan ukuran data terlalu besar. Coba unggah jumlah foto yang lebih sedikit.");
+                console.error(e);
             }
         }
 
