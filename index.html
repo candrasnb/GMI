@@ -13,7 +13,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, collection, addDate, addDoc, getDocs, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyC3EBnDn0tI_VYZNc7oyetucFmWmtLnOw0",
@@ -32,6 +32,12 @@
         window.doc = doc;
         window.getDoc = getDoc;
         window.setDoc = setDoc;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.getDocs = getDocs;
+        window.deleteDoc = deleteDoc;
+        window.query = query;
+        window.orderBy = orderBy;
 
         window.loadFromFirebase();
     </script>
@@ -766,12 +772,12 @@
         </div>
     </div>
 
-    <!-- MODAL EDITOR GALERI FOTO (MULTI BROWSE + AUTO COMPRESS SUPER KECIL) -->
+    <!-- MODAL EDITOR GALERI FOTO (MENYIMPAN KE DOKUMEN BARU/KOLEKSI TERPISAH DI FIREBASE) -->
     <div class="modal" id="galleryEditorModal">
         <div class="modal-card" style="max-width: 650px;">
             <span class="close-modal" onclick="closeModal('galleryEditorModal')">&times;</span>
             <h3 style="color:var(--accent-gold); margin-bottom:12px;"><i class="fa-solid fa-images"></i> Panel Update & Kelola Galeri Kegiatan</h3>
-            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Tambahkan kegiatan baru beserta beberapa foto sekaligus (bisa select banyak foto).</p>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Tambah kegiatan baru (otomatis tersimpan sebagai folder/dokumen baru di Firebase agar tidak penuh).</p>
 
             <div class="form-group">
                 <label>Judul Kegiatan Baru:</label>
@@ -783,7 +789,7 @@
                 <div id="galleryFileLabel" style="font-size: 0.72rem; color: var(--accent-cyan); margin-top: 4px;">Tidak ada file yang dipilih</div>
             </div>
 
-            <button class="btn-save" onclick="saveNewGalleryActivity()"><i class="fa-solid fa-cloud-arrow-up"></i> Upload & Tambah Kegiatan Baru</button>
+            <button class="btn-save" onclick="saveNewGalleryActivity()"><i class="fa-solid fa-cloud-arrow-up"></i> Upload & Simpan ke Dokumen Baru</button>
             <div id="galleryUploadStatus" style="font-size:0.75rem; color:var(--accent-cyan); margin-top:6px; text-align:center;"></div>
 
             <div style="margin-top: 20px; border-top: 1px dashed var(--border-gold); padding-top: 15px;">
@@ -1130,17 +1136,8 @@
             'usindah': { title: 'Usia Indah (Usindah)', desc: 'Puncak Bulan Usindah September 2026.', img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800', count: 35 }
         };
 
-        let galleryActivitiesStore = [
-            { title: "Ibadah Minggu & Puncak Bulan Usindah", images: [
-                "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800",
-                "https://images.unsplash.com/photo-1507692049790-de58290a4334?q=80&w=800",
-                "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=800"
-            ]},
-            { title: "Persekutuan Kategorial PWMI & P2MI", images: [
-                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800",
-                "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800"
-            ]}
-        ];
+        // Galeri disimpan dalam array objek dari dokumen terpisah di Firestore
+        let galleryActivitiesStore = [];
 
         let chartDataStore = {
             week: { labels: ['Pekan 1', 'Pekan 2', 'Pekan 3', 'Pekan 4'], sesi1: [110, 125, 118, 130], sesi2: [85, 90, 92, 98] },
@@ -1683,10 +1680,17 @@
                     if(data.jadwalBlocks) jadwalBlocksStore = data.jadwalBlocks;
                     if(data.doaBlocks) doaBlocksStore = data.doaBlocks;
                     if(data.renunganBlocks) renunganBlocksStore = data.renunganBlocks;
-                    if(data.galleryActivities) galleryActivitiesStore = data.galleryActivities;
                 }
+
+                // AMBIL DATA GALERI DARI KOLEKSI TERPISAH (TIAP KEGIATAN MENJADI DOKUMEN/FOLDER BARU)
+                const galleryColRef = window.collection(window.db, "gallery_activities");
+                const querySnapshot = await window.getDocs(galleryColRef);
+                galleryActivitiesStore = [];
+                querySnapshot.forEach((docSnap) => {
+                    galleryActivitiesStore.push({ id: docSnap.id, ...docSnap.data() });
+                });
             } catch (e) { 
-                console.log("Offline mode."); 
+                console.log("Offline mode / error load:", e); 
             }
             applyDataToDOM();
             renderWartaDynamicContent();
@@ -1709,13 +1713,15 @@
                         <div class="gallery-horizontal-viewport" id="galleryViewport_${actIdx}">
                             <div class="gallery-horizontal-slider" id="gallerySlider_${actIdx}">
                 `;
-                act.images.forEach(imgUrl => {
-                    html += `
-                        <div class="gallery-slider-item">
-                            <img src="${imgUrl}" class="gallery-slider-img" alt="${act.title}">
-                        </div>
-                    `;
-                });
+                if(act.images && Array.isArray(act.images)) {
+                    act.images.forEach(imgUrl => {
+                        html += `
+                            <div class="gallery-slider-item">
+                                <img src="${imgUrl}" class="gallery-slider-img" alt="${act.title}">
+                            </div>
+                        `;
+                    });
+                }
                 html += `</div></div></div>`;
             });
             container.innerHTML = html || "<p style='font-size:0.78rem; color:var(--text-muted); text-align:center;'>Belum ada foto galeri kegiatan.</p>";
@@ -1724,7 +1730,7 @@
                 galleryActivitiesStore.forEach((act, actIdx) => {
                     let viewport = document.getElementById(`galleryViewport_${actIdx}`);
                     let slider = document.getElementById(`gallerySlider_${actIdx}`);
-                    if(viewport && slider && act.images.length > 1) {
+                    if(viewport && slider && act.images && act.images.length > 1) {
                         if(slider.dataset.intervalId) {
                             clearInterval(parseInt(slider.dataset.intervalId));
                         }
@@ -1820,11 +1826,11 @@
             
             let manageList = document.getElementById('galleryManageList');
             let mHtml = "";
-            galleryActivitiesStore.forEach((act, idx) => {
+            galleryActivitiesStore.forEach((act) => {
                 mHtml += `
                     <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.04); padding: 8px 10px; border-radius: 6px;">
-                        <span style="font-size: 0.75rem; color: #fff;">${act.title} (${act.images.length} foto)</span>
-                        <button onclick="deleteGalleryActivity(${idx})" style="background: var(--accent-red); color: #fff; border: none; padding: 3px 8px; border-radius: 4px; font-size: 0.68rem; cursor: pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                        <span style="font-size: 0.75rem; color: #fff;">${act.title} (${act.images ? act.images.length : 0} foto)</span>
+                        <button onclick="deleteGalleryActivity('${act.id}')" style="background: var(--accent-red); color: #fff; border: none; padding: 3px 8px; border-radius: 4px; font-size: 0.68rem; cursor: pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
                     </div>
                 `;
             });
@@ -1841,22 +1847,20 @@
             }
         }
 
-        async function deleteGalleryActivity(idx) {
-            if(confirm("Apakah Anda yakin ingin menghapus kegiatan galeri ini?")) {
-                galleryActivitiesStore.splice(idx, 1);
+        async function deleteGalleryActivity(docId) {
+            if(confirm("Apakah Anda yakin ingin menghapus kegiatan galeri ini dari database?")) {
                 try {
-                    renderGalleryVertical();
-                    const docRef = window.doc(window.db, "portalData", "gmi_content");
-                    await window.setDoc(docRef, { galleryActivities: galleryActivitiesStore }, { merge: true });
+                    await window.deleteDoc(window.doc(window.db, "gallery_activities", docId));
+                    await loadFromFirebase();
                     openGalleryEditorModal();
-                    alert("Kegiatan galeri berhasil dihapus.");
+                    alert("Kegiatan galeri berhasil dihapus!");
                 } catch(e) {
-                    alert("Gagal memperbarui database.");
+                    alert("Gagal menghapus kegiatan dari database.");
                 }
             }
         }
 
-        // FUNGSI MULTI-UPLOAD DENGAN AUTO KOMPRESI OTOMATIS SUPER KECIL AGAR AMAN DI FIRESTORE
+        // FUNGSI UPLOAD YANG MENYIMPAN KE DOKUMEN/FOLDER BARU (SUB-COLLECTION / KOLEKSI TERPISAH)
         async function saveNewGalleryActivity() {
             let title = document.getElementById('galleryInputTitle').value.trim();
             let fileInput = document.getElementById('galleryInputFiles');
@@ -1881,7 +1885,6 @@
                             let w = img.width;
                             let h = img.height;
                             
-                            // Resolusi maksimal diset 400px agar sangat ringan & aman di Firestore
                             const maxDim = 400; 
                             if(w > h && w > maxDim) { h *= maxDim / w; w = maxDim; }
                             else if(h > maxDim) { w *= maxDim / h; h = maxDim; }
@@ -1891,7 +1894,6 @@
                             let ctx = canvas.getContext('2d');
                             ctx.drawImage(img, 0, 0, w, h);
 
-                            // Kompresi agresif hingga ukuran string di bawah 35KB per foto
                             let quality = 0.4;
                             let dataUrl = canvas.toDataURL('image/jpeg', quality);
                             while(dataUrl.length > 35000 && quality > 0.1) {
@@ -1922,20 +1924,22 @@
                 return;
             }
 
-            statusEl.innerText = "Menyimpan ke server Firebase...";
+            statusEl.innerText = "Membuat folder/dokumen baru di Firebase...";
 
-            galleryActivitiesStore.push({ title: title, images: processedImages });
-            
             try {
-                renderGalleryVertical();
-                const docRef = window.doc(window.db, "portalData", "gmi_content");
-                await window.setDoc(docRef, { galleryActivities: galleryActivitiesStore }, { merge: true });
-                
+                // Menyimpan sebagai dokumen baru di koleksi 'gallery_activities' sehingga membentuk folder baru & tidak penuh
+                await window.addDoc(window.collection(window.db, "gallery_activities"), {
+                    title: title,
+                    images: processedImages,
+                    createdAt: new Date().toISOString()
+                });
+
+                await loadFromFirebase();
                 closeModal('galleryEditorModal');
-                alert("Galeri kegiatan baru beserta " + processedImages.length + " foto berhasil disimpan dengan aman! 🎉");
+                alert("Galeri kegiatan berhasil disimpan ke dokumen/folder baru di Firebase dengan aman! 🎉");
             } catch(e) {
-                alert("Gagal menyimpan ke Firebase karena ukuran total masih terlalu besar. Coba kurangi jumlah foto sekaligus yang diunggah.");
-                console.error(e);
+                alert("Gagal menyimpan ke Firebase: " + e.message);
+                statusEl.innerText = "";
             }
         }
 
