@@ -766,7 +766,7 @@
         </div>
     </div>
 
-    <!-- MODAL EDITOR GALERI FOTO (MULTI BROWSE + FIX ASYNC & SIZE) -->
+    <!-- MODAL EDITOR GALERI FOTO (MULTI BROWSE + AUTO COMPRESS SUPER KECIL) -->
     <div class="modal" id="galleryEditorModal">
         <div class="modal-card" style="max-width: 650px;">
             <span class="close-modal" onclick="closeModal('galleryEditorModal')">&times;</span>
@@ -1856,6 +1856,7 @@
             }
         }
 
+        // FUNGSI MULTI-UPLOAD DENGAN AUTO KOMPRESI OTOMATIS SUPER KECIL AGAR AMAN DI FIRESTORE
         async function saveNewGalleryActivity() {
             let title = document.getElementById('galleryInputTitle').value.trim();
             let fileInput = document.getElementById('galleryInputFiles');
@@ -1866,7 +1867,7 @@
 
             let totalFiles = fileInput.files.length;
             let statusEl = document.getElementById('galleryUploadStatus');
-            statusEl.innerText = `Memproses 0 dari ${totalFiles} foto...`;
+            statusEl.innerText = `Memproses 0 dari ${totalFiles} foto (kompresi otomatis)...`;
 
             let processedImages = [];
 
@@ -1879,16 +1880,21 @@
                             let canvas = document.createElement('canvas');
                             let w = img.width;
                             let h = img.height;
-                            const maxDim = 600;
+                            
+                            // Resolusi maksimal diset 400px agar sangat ringan & aman di Firestore
+                            const maxDim = 400; 
                             if(w > h && w > maxDim) { h *= maxDim / w; w = maxDim; }
                             else if(h > maxDim) { w *= maxDim / h; h = maxDim; }
-                            canvas.width = w; canvas.height = h;
+                            
+                            canvas.width = w; 
+                            canvas.height = h;
                             let ctx = canvas.getContext('2d');
                             ctx.drawImage(img, 0, 0, w, h);
 
-                            let quality = 0.5;
+                            // Kompresi agresif hingga ukuran string di bawah 35KB per foto
+                            let quality = 0.4;
                             let dataUrl = canvas.toDataURL('image/jpeg', quality);
-                            while(dataUrl.length > 70000 && quality > 0.1) {
+                            while(dataUrl.length > 35000 && quality > 0.1) {
                                 quality -= 0.1;
                                 dataUrl = canvas.toDataURL('image/jpeg', quality);
                             }
@@ -1926,9 +1932,9 @@
                 await window.setDoc(docRef, { galleryActivities: galleryActivitiesStore }, { merge: true });
                 
                 closeModal('galleryEditorModal');
-                alert("Galeri kegiatan baru beserta " + processedImages.length + " foto berhasil disimpan ke Firebase! 🎉");
+                alert("Galeri kegiatan baru beserta " + processedImages.length + " foto berhasil disimpan dengan aman! 🎉");
             } catch(e) {
-                alert("Gagal menyimpan ke Firebase. Kemungkinan ukuran data terlalu besar. Coba unggah jumlah foto yang lebih sedikit.");
+                alert("Gagal menyimpan ke Firebase karena ukuran total masih terlalu besar. Coba kurangi jumlah foto sekaligus yang diunggah.");
                 console.error(e);
             }
         }
