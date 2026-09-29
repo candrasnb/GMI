@@ -693,7 +693,7 @@
             <div class="table-responsive">
                 <table class="church-table">
                     <tr><th>JABATAN</th><th>NAMA PEGAWAI / PELAYAN</th></tr>
-                    <tr><td>Pimpinan Jemaat</td><td>Pdt. Saut Marulitua Rajagukguk, S.Th.</td></tr>
+                    <tr><td>Pimpinan Jemaat</td><td>Pdt. Saut Marulitua Rajagukguk, S.Th</td></tr>
                     <tr><td>Asisten</td><td>Pdt. David Hutagalung</td></tr>
                     <tr><td>Lay Leader</td><td>LS. Gok Ari Joso Simamora</td></tr>
                     <tr><td>Bendahara</td><td>Ibu Marina Marli Siahaan</td></tr>
@@ -998,6 +998,17 @@
                     <input type="text" id="inputQuizNickname" placeholder="Contoh: Bpk. Budi / Kak Rina">
                 </div>
                 <button class="btn-save" onclick="startQuizWithNickname()"><i class="fa-solid fa-play"></i> Mulai Kuis</button>
+            </div>
+
+            <!-- STEP 1.5: PROMPT LANJUTKAN / ULANGI SESI SEBELUMNYA -->
+            <div id="quizResumePromptStep" style="display: none; text-align: center;">
+                <div style="font-size: 1.4rem; color: var(--accent-cyan); margin-bottom: 8px;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <h3 style="color: var(--accent-gold); font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 10px;">Lanjutkan Kuis Sebelumnya?</h3>
+                <p id="quizResumePromptText" style="font-size: 0.8rem; color: var(--text-light); line-height: 1.6; margin-bottom: 15px; text-align: justify;"></p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-save" style="background: rgba(255,255,255,0.1); color: #fff; margin-top: 0;" onclick="restartQuizSession()"><i class="fa-solid fa-rotate-right"></i> Ulangi dari Awal</button>
+                    <button class="btn-save" style="background: var(--accent-gold); color: #000; margin-top: 0;" onclick="resumeQuizSession()"><i class="fa-solid fa-play"></i> Lanjutkan</button>
+                </div>
             </div>
 
             <!-- STEP 2: QUIZ PLAY -->
@@ -1644,7 +1655,7 @@
             }
         }
 
-        // LOGIKA KUIS ALKITAB (100 SOAL LENGKAP & INTEGRASI FIREBASE)
+        // LOGIKA KUIS ALKITAB (100 SOAL LENGKAP & INTEGRASI FIREBASE + LANJUTKAN/ULANGI)
         let shuffledQuizList = [];
         let currentQuizIndex = 0;
         let userQuizScore = 0;
@@ -1654,6 +1665,7 @@
             document.getElementById('inputQuizNickname').value = "";
             document.getElementById('quizNicknameStep').style.display = 'block';
             document.getElementById('quizPlayStep').style.display = 'none';
+            document.getElementById('quizResumePromptStep').style.display = 'none';
             document.getElementById('quizModal').style.display = 'flex';
         }
 
@@ -1664,17 +1676,80 @@
                 return;
             }
             currentQuizNickname = nick;
+
+            let savedQuizKey = `gmi_quiz_${currentQuizNickname.toLowerCase()}`;
+            let savedData = localStorage.getItem(savedQuizKey);
+
+            if (savedData) {
+                try {
+                    let parsed = JSON.parse(savedData);
+                    if (parsed && parsed.currentIndex < 100) {
+                        document.getElementById('quizNicknameStep').style.display = 'none';
+                        document.getElementById('quizResumePromptText').innerText = `Halo ${currentQuizNickname}, Anda memiliki sesi kuis yang belum selesai di soal nomor ${parsed.currentIndex + 1} dengan skor ${parsed.score}. Apakah Anda ingin melanjutkan atau mengulangi dari awal?`;
+                        document.getElementById('quizResumePromptStep').style.display = 'block';
+                        return;
+                    }
+                } catch(e) {}
+            }
+
+            initNewQuiz();
+        }
+
+        function initNewQuiz() {
             shuffledQuizList = [...bibleQuizPool].sort(() => Math.random() - 0.5);
             currentQuizIndex = 0;
             userQuizScore = 0;
+            saveQuizProgressToLocal();
             
             document.getElementById('quizTitlePlayer').innerText = `Kuis Alkitab (${currentQuizNickname})`;
             document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore} / 100`;
             document.getElementById('nextQuizBtn').style.display = 'none';
             
             document.getElementById('quizNicknameStep').style.display = 'none';
+            document.getElementById('quizResumePromptStep').style.display = 'none';
             document.getElementById('quizPlayStep').style.display = 'block';
             loadQuizQuestion();
+        }
+
+        function resumeQuizSession() {
+            let savedQuizKey = `gmi_quiz_${currentQuizNickname.toLowerCase()}`;
+            let savedData = localStorage.getItem(savedQuizKey);
+            if (savedData) {
+                try {
+                    let parsed = JSON.parse(savedData);
+                    shuffledQuizList = parsed.shuffledList;
+                    currentQuizIndex = parsed.currentIndex;
+                    userQuizScore = parsed.score;
+
+                    document.getElementById('quizTitlePlayer').innerText = `Kuis Alkitab (${currentQuizNickname})`;
+                    document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore} / 100`;
+                    document.getElementById('nextQuizBtn').style.display = 'none';
+
+                    document.getElementById('quizResumePromptStep').style.display = 'none';
+                    document.getElementById('quizPlayStep').style.display = 'block';
+                    loadQuizQuestion();
+                    return;
+                } catch(e) {}
+            }
+            initNewQuiz();
+        }
+
+        function restartQuizSession() {
+            let savedQuizKey = `gmi_quiz_${currentQuizNickname.toLowerCase()}`;
+            localStorage.removeItem(savedQuizKey);
+            initNewQuiz();
+        }
+
+        function saveQuizProgressToLocal() {
+            if (!currentQuizNickname) return;
+            let savedQuizKey = `gmi_quiz_${currentQuizNickname.toLowerCase()}`;
+            let sessionData = {
+                nickname: currentQuizNickname,
+                shuffledList: shuffledQuizList,
+                currentIndex: currentQuizIndex,
+                score: userQuizScore
+            };
+            localStorage.setItem(savedQuizKey, JSON.stringify(sessionData));
         }
 
         function loadQuizQuestion() {
@@ -1683,7 +1758,8 @@
                 document.getElementById('quizOptionsList').innerHTML = `<p style="color:var(--accent-gold); text-align:center; font-weight:700; margin: 12px 0; font-size:1.1rem;">Skor Akhir Anda: ${userQuizScore} dari 100</p>`;
                 document.getElementById('nextQuizBtn').style.display = 'none';
                 
-                // SIMPAN KE FIREBASE (sub-collection quiz_results)
+                let savedQuizKey = `gmi_quiz_${currentQuizNickname.toLowerCase()}`;
+                localStorage.removeItem(savedQuizKey);
                 saveQuizResultToFirebase(currentQuizNickname, userQuizScore);
                 return;
             }
@@ -1715,6 +1791,7 @@
             }
             document.getElementById('nextQuizBtn').style.display = 'block';
             currentQuizIndex++;
+            saveQuizProgressToLocal();
         }
 
         function loadNextQuizQuestion() { loadQuizQuestion(); }
