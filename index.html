@@ -540,6 +540,12 @@
                         <li><a onclick="openKategorialPage('usindah')">Usindah <span id="val-usindah">35</span></a> <button class="btn-edit-kat" onclick="openEditKatModal('usindah')"><i class="fa-solid fa-pen"></i></button></li>
                     </ul>
                 </div>
+                <!-- TOMBOL ADMIN VIEW KUIS HASIL -->
+                <div class="glass-card" style="display: none;" id="adminQuizResultsCard">
+                    <h3 style="font-size:0.9rem; color:var(--accent-gold); margin-bottom:8px; font-family:'Playfair Display', serif;"><i class="fa-solid fa-clipboard-user"></i> Panel Admin Kuis</h3>
+                    <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:10px;">Lihat rekap jemaat yang mengerjakan Kuis Alkitab.</p>
+                    <button class="btn-save" style="margin-top:0; background:var(--accent-cyan); color:#000;" onclick="openAdminQuizResultsModal()"><i class="fa-solid fa-eye"></i> View Data Kuis Jemaat</button>
+                </div>
             </aside>
         </div>
     </section>
@@ -687,7 +693,7 @@
             <div class="table-responsive">
                 <table class="church-table">
                     <tr><th>JABATAN</th><th>NAMA PEGAWAI / PELAYAN</th></tr>
-                    <tr><td>Pimpinan Jemaat</td><td>Pdt. Saut Marulitua Rajagukguk, S.Th</td></tr>
+                    <tr><td>Pimpinan Jemaat</td><td>Pdt. Saut Marulitua Rajagukguk, S.Th. (Hotline Gereja)</td></tr>
                     <tr><td>Asisten</td><td>Pdt. David Hutagalung</td></tr>
                     <tr><td>Lay Leader</td><td>LS. Gok Ari Joso Simamora</td></tr>
                     <tr><td>Bendahara</td><td>Ibu Marina Marli Siahaan</td></tr>
@@ -767,6 +773,19 @@
             </div>
 
             <button class="btn-save" onclick="saveLaporanKeuanganData()"><i class="fa-solid fa-floppy-disk"></i> Simpan Laporan Keuangan</button>
+        </div>
+    </div>
+
+    <!-- MODAL ADMIN VIEW HASIL KUIS -->
+    <div class="modal" id="adminQuizResultsModal">
+        <div class="modal-card" style="max-width: 650px;">
+            <span class="close-modal" onclick="closeModal('adminQuizResultsModal')">&times;</span>
+            <h3 style="color:var(--accent-gold); margin-bottom:12px;"><i class="fa-solid fa-clipboard-user"></i> Rekap Jemaat Pengerja Kuis Alkitab</h3>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Daftar jemaat yang telah menyelesaikan kuis 100 soal:</p>
+            <div id="adminQuizResultsContainer" style="max-height: 350px; overflow-y: auto;">
+                <p style="font-size:0.8rem; color:var(--text-muted); text-align:center;">Memuat data dari Firebase...</p>
+            </div>
+            <button class="btn-save" onclick="closeModal('adminQuizResultsModal')" style="margin-top:12px;"><i class="fa-solid fa-xmark"></i> Tutup</button>
         </div>
     </div>
 
@@ -965,19 +984,35 @@
         </div>
     </div>
 
+    <!-- MODAL KUIS ALKITAB -->
     <div class="modal" id="quizModal">
         <div class="modal-card" style="max-width: 480px;">
             <span class="close-modal" onclick="closeModal('quizModal')">&times;</span>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <h3 style="color: var(--accent-gold); font-family: 'Playfair Display', serif; font-size: 1.05rem;"><i class="fa-solid fa-brain"></i> Kuis Alkitab Rohani</h3>
-                <span id="quizScoreBadge" style="font-size: 0.7rem; background: rgba(245,158,11,0.2); color: var(--accent-gold); padding: 2px 8px; border-radius: 8px; font-weight: 700;">Skor: 0</span>
+            <!-- STEP 1: INPUT NICKNAME -->
+            <div id="quizNicknameStep">
+                <div style="text-align:center; font-size: 1.4rem; color: var(--accent-gold); margin-bottom: 8px;"><i class="fa-solid fa-brain"></i></div>
+                <h3 style="color: var(--accent-gold); font-family: 'Playfair Display', serif; font-size: 1.1rem; text-align:center; margin-bottom: 8px;">Kuis Alkitab 100 Soal</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 15px;">Silakan masukkan nama atau nickname Anda sebelum mulai mengerjakan kuis </p>
+                <div class="form-group">
+                    <label>Nama / Nickname:</label>
+                    <input type="text" id="inputQuizNickname" placeholder="Contoh: Bpk. Budi / Kak Rina">
+                </div>
+                <button class="btn-save" onclick="startQuizWithNickname()"><i class="fa-solid fa-play"></i> Mulai Kuis</button>
             </div>
-            <div id="quizContainer">
-                <p id="quizQuestion" style="font-size: 0.85rem; color: #fff; margin-bottom: 12px; font-weight: 600; text-align: left;"></p>
-                <div id="quizOptionsList"></div>
-                <div id="quizFeedback" style="margin-top: 10px; font-size: 0.8rem; font-weight: 700; text-align: center; min-height: 20px;"></div>
+
+            <!-- STEP 2: QUIZ PLAY -->
+            <div id="quizPlayStep" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="color: var(--accent-gold); font-family: 'Playfair Display', serif; font-size: 1.05rem;" id="quizTitlePlayer">Kuis Alkitab</h3>
+                    <span id="quizScoreBadge" style="font-size: 0.7rem; background: rgba(245,158,11,0.2); color: var(--accent-gold); padding: 2px 8px; border-radius: 8px; font-weight: 700;">Skor: 0</span>
+                </div>
+                <div id="quizContainer">
+                    <p id="quizQuestion" style="font-size: 0.85rem; color: #fff; margin-bottom: 12px; font-weight: 600; text-align: left;"></p>
+                    <div id="quizOptionsList"></div>
+                    <div id="quizFeedback" style="margin-top: 10px; font-size: 0.8rem; font-weight: 700; text-align: center; min-height: 20px;"></div>
+                </div>
+                <button id="nextQuizBtn" class="btn-save" style="display: none; margin-top: 12px;" onclick="loadNextQuizQuestion()">Soal Selanjutnya <i class="fa-solid fa-arrow-right"></i></button>
             </div>
-            <button id="nextQuizBtn" class="btn-save" style="display: none; margin-top: 12px;" onclick="loadNextQuizQuestion()">Soal Selanjutnya <i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>
 
@@ -1100,17 +1135,108 @@
             { text: "Tetapi orang-orang yang menanti-nantikan TUHAN mendapat kekuatan baru: mereka seumpama rajawali...", ref: "Yesaya 40:31" }
         ];
 
+        // 100 SOAL KUIS ALKITAB LENGKAP
         const bibleQuizPool = [
-            { q: "Siapakah manusia pertama yang diciptakan Allah?", options: ["Kain", "Habel", "Adam", "Set"], correct: 2 },
-            { q: "Siapakah nama isteri pertama Adam?", options: ["Sarah", "Hawa", "Reah", "Maria"], correct: 1 },
-            { q: "Berapa hari Allah menciptakan langit dan bumi beserta isinya?", options: ["5 hari", "6 hari", "7 hari", "10 hari"], correct: 1 },
-            { q: "Siapakah yang membuat bahtera besar untuk menyelamatkan keluarganya dari air bah?", options: ["Abraham", "Musa", "Nuh", "Lot"], correct: 2 },
-            { q: "Binatang apakah yang membawa daun zaitun kembali ke bahtera Nuh?", options: ["Burung Gagak", "Burung Merpati", "Burung Rajawali", "Burung Tekukur"], correct: 1 },
-            { q: "Di gunung manakah bahtera Nuh kandas?", options: ["Gunung Sinai", "Gunung Ararat", "Gunung Horeb", "Gunung Karmel"], correct: 1 },
-            { q: "Siapakah bapa orang beriman yang dipanggil Allah dari Ur-Kasdim?", options: ["Isak", "Yakub", "Abraham", "Lot"], correct: 2 },
-            { q: "Siapakah isteri Abraham yang melahirkan Isak di masa tuanya?", options: ["Hagar", "Sarah", "Keturah", "Rebekah"], correct: 1 },
-            { q: "Siapakah anak perjanjian Abraham dan Sarah?", options: ["Ismael", "Isak", "Esau", "Yakub"], correct: 1 },
-            { q: "Siapakah anak Ishak yang rambutnya merah dan berbulu?", options: ["Yakub", "Esau", "Ruben", "Yusuf"], correct: 1 }
+            { q: "Siapakah manusia pertama yang diciptakan Allah?", options: ["Nuh", "Adam", "Abraham", "Musa"], correct: 1 },
+            { q: "Siapakah imam yang membesarkan Samuel?", options: ["Harun", "Eli", "Zadok", "Abyatar"], correct: 1 },
+            { q: "Berapa tahun Salomo membangun Bait Allah?", options: ["5 tahun", "7 tahun", "10 tahun", "12 tahun"], correct: 1 },
+            { q: "Siapakah ayah Bezalel, pembuat perlengkapan Kemah Suci?", options: ["Uri", "Hur", "Nahason", "Eleazar"], correct: 0 },
+            { q: "Siapakah yang membangun bahtera?", options: ["Lot", "Nuh", "Abraham", "Henokh"], correct: 1 },
+            { q: "Dari suku Israel manakah Rasul Paulus berasal?", options: ["Yehuda", "Lewi", "Benyamin", "Efraim"], correct: 2 },
+            { q: "Siapakah nama kakek Raja Daud?", options: ["Boas", "Obed", "Isai", "Elimelekh"], correct: 1 },
+            { q: "Siapakah nama ayah Nabi Hosea?", options: ["Beeri", "Hilkia", "Petuel", "Amitai"], correct: 0 },
+            { q: "Siapakah yang mengalahkan Goliat?", options: ["Saul", "Daud", "Yonatan", "Samuel"], correct: 1 },
+            { q: "Berapa keranjang sisa makanan setelah Yesus memberi makan sekitar 5.000 orang?", options: ["7", "10", "12", "14"], correct: 2 },
+            { q: "Berapa jumlah ikan besar yang ditangkap para murid setelah kebangkitan Yesus?", options: ["120", "144", "153", "200"], correct: 2 },
+            { q: "Siapakah nama panitera kota Efesus yang menenangkan kerusuhan dalam Kisah Para Rasul?", options: ["Aleksander", "Demetrius", "Namanya tidak disebutkan", "Tikhikus"], correct: 2 },
+            { q: "Di kota manakah Yesus dilahirkan?", options: ["Nazaret", "Yerusalem", "Betlehem", "Kapernaum"], correct: 2 },
+            { q: "Siapakah ayah Yohanes Pembaptis?", options: ["Simeon", "Zakaria", "Yusuf", "Nikodemus"], correct: 1 },
+            { q: "Raja Yehuda manakah yang mendapat tambahan umur 15 tahun?", options: ["Yosia", "Hizkia", "Manasye", "Yotam"], correct: 1 },
+            { q: "Siapakah ayah Nabi Yoel?", options: ["Beeri", "Petuel", "Buzi", "Hilkia"], correct: 1 },
+            { q: "Siapakah ibu Yesus?", options: ["Marta", "Elisabet", "Maria", "Salome"], correct: 2 },
+            { q: "Siapakah yang menafsirkan tulisan di dinding bagi Raja Belsyazar?", options: ["Ezra", "Daniel", "Nehemia", "Yehezkiel"], correct: 1 },
+            { q: "Siapakah yang membunuh Raja Eglon dari Moab?", options: ["Otniel", "Ehud", "Barak", "Gideon"], correct: 1 },
+            { q: "Apakah nama gerbang tempat Petrus mengetuk setelah dibebaskan dari penjara oleh malaikat?", options: ["Gerbang Indah", "Gerbang Air", "Rumah Maria, ibu Markus", "Gerbang Domba"], correct: 2 },
+            { q: "Berapa jumlah murid utama Yesus?", options: ["10", "11", "12", "70"], correct: 2 },
+            { q: "Kota apakah yang pertama kali ditaklukkan Israel setelah menyeberangi Sungai Yordan?", options: ["Ai", "Yerikho", "Hebron", "Betel"], correct: 1 },
+            { q: "Apakah nama lain Tomas dalam Injil Yohanes?", options: ["Kefas", "Didimus", "Boanerges", "Barnabas"], correct: 1 },
+            { q: "Siapakah nama ayah mertua Kayafas?", options: ["Hanas", "Gamaliel", "Nikodemus", "Zakaria"], correct: 0 },
+            { q: "Siapakah yang memimpin bangsa Israel keluar dari Mesir?", options: ["Harun", "Musa", "Yosua", "Kaleb"], correct: 1 },
+            { q: "Berapa usia Abraham ketika Ishak lahir?", options: ["75 tahun", "90 tahun", "99 tahun", "100 tahun"], correct: 3 },
+            { q: "Siapakah raja Israel yang memerintah hanya tujuh hari di Tirza?", options: ["Zimri", "Omri", "Ela", "Nadab"], correct: 0 },
+            { q: "Siapakah nama ibu Raja Yosia?", options: ["Yedida", "Atalya", "Maakha", "Naama"], correct: 0 },
+            { q: "Siapakah murid yang mengkhianati Yesus?", options: ["Tomas", "Petrus", "Yudas Iskariot", "Matius"], correct: 2 },
+            { q: "Siapakah rekan Paulus yang dipenjara bersamanya di Filipi?", options: ["Barnabas", "Silas", "Timotius", "Titus"], correct: 1 },
+            { q: "Siapakah nama istri Imam Harun?", options: ["Elisheba", "Zipora", "Yokhebed", "Miryam"], correct: 0 },
+            { q: "Siapakah nama ayah Nabi Yehezkiel?", options: ["Buzi", "Hilkia", "Ner", "Safan"], correct: 0 },
+            { q: "Apakah nama laut yang terbelah ketika bangsa Israel keluar dari Mesir?", options: ["Laut Galilea", "Laut Mati", "Laut Teberau", "Laut Tengah"], correct: 2 },
+            { q: "Berapa hari Lazarus berada di dalam kubur sebelum dibangkitkan Yesus?", options: ["2 hari", "3 hari", "4 hari", "7 hari"], correct: 2 },
+            { q: "Siapakah nama ayah Gideon?", options: ["Yoas", "Abinoam", "Kenaz", "Manoah"], correct: 0 },
+            { q: "Siapakah nama nenek Timotius?", options: ["Eunike", "Lois", "Dorkas", "Lidia"], correct: 1 },
+            { q: "Siapakah yang dilemparkan ke dalam gua singa?", options: ["Yeremia", "Daniel", "Yehezkiel", "Ezra"], correct: 1 },
+            { q: "Siapakah yang menggantikan Yudas Iskariot sebagai rasul?", options: ["Barnabas", "Matias", "Silas", "Markus"], correct: 1 },
+            { q: "Siapakah anak Yonatan yang kedua kakinya timpang?", options: ["Isyboset", "Mefiboset", "Abner", "Meribaal"], correct: 1 },
+            { q: "Siapakah nama gubernur Siprus yang menjadi percaya setelah mendengar pemberitaan Paulus?", options: ["Sergius Paulus", "Galio", "Feliks", "Festus"], correct: 0 },
+            { q: "Siapakah yang ditelan ikan besar?", options: ["Amos", "Yunus", "Mikha", "Hosea"], correct: 1 },
+            { q: "Siapakah perempuan yang menyembunyikan dua pengintai Israel di Yerikho?", options: ["Debora", "Rahab", "Yael", "Rut"], correct: 1 },
+            { q: "Siapakah nabi yang menubuatkan bahwa Mesias akan lahir di Betlehem?", options: ["Mikha", "Nahum", "Habakuk", "Maleakhi"], correct: 0 },
+            { q: "Siapakah nama kepala rumah ibadat di Korintus yang menjadi percaya kepada Tuhan?", options: ["Krispus", "Sostenes", "Erastus", "Gayus"], correct: 0 },
+            { q: "Siapakah raja pertama Israel?", options: ["Daud", "Saul", "Salomo", "Samuel"], correct: 1 },
+            { q: "Di pulau manakah Paulus terdampar setelah kapalnya karam?", options: ["Kreta", "Siprus", "Malta", "Patmos"], correct: 2 },
+            { q: "Siapakah nama ibu Samuel?", options: ["Penina", "Hana", "Abigail", "Mikhal"], correct: 1 },
+            { q: "Berapa anak laki-laki yang dimiliki Haman?", options: ["7", "10", "12", "14"], correct: 1 },
+            { q: "Siapakah yang membaptis Yesus?", options: ["Petrus", "Yohanes Pembaptis", "Andreas", "Filipus"], correct: 1 },
+            { q: "Perumpamaan tentang anak yang hilang terdapat dalam Injil apa?", options: ["Matius", "Markus", "Lukas", "Yohanes"], correct: 2 },
+            { q: "Siapakah hakim Israel yang memiliki 30 anak laki-laki yang mengendarai 30 ekor keledai?", options: ["Yair", "Tola", "Ebzan", "Abdon"], correct: 0 },
+            { q: "Apakah nama pelabuhan tempat Paulus berpindah ke kapal Aleksandria dalam perjalanan menuju Roma?", options: ["Mira", "Troas", "Miletus", "Seleukia"], correct: 0 },
+            { q: "Siapakah penerus Musa?", options: ["Harun", "Yosua", "Kaleb", "Eleazar"], correct: 1 },
+            { q: "Siapakah pemungut cukai bertubuh pendek yang memanjat pohon?", options: ["Matius", "Zakheus", "Bartimeus", "Nikodemus"], correct: 1 },
+            { q: "Siapakah yang menemukan kitab Taurat di rumah Tuhan pada masa Raja Yosia?", options: ["Imam Hilkia", "Safan", "Ahikam", "Hulda"], correct: 0 },
+            { q: "Siapakah nama ayah Raja Saul?", options: ["Kish", "Ner", "Abiel", "Abner"], correct: 0 },
+            { q: "Siapakah raja yang terkenal karena kebijaksanaannya?", options: ["Saul", "Daud", "Salomo", "Hizkia"], correct: 2 },
+            { q: "Siapakah orang Farisi yang datang menemui Yesus pada malam hari?", options: ["Gamaliel", "Nikodemus", "Yairus", "Yusuf dari Arimatea"], correct: 1 },
+            { q: "Berapa anak perempuan Ayub yang lahir setelah pemulihannya?", options: ["2", "3", "7", "10"], correct: 1 },
+            { q: "Siapakah nama ketiga anak perempuan Ayub setelah pemulihannya?", options: ["Yemima, Kezia, dan Keren-Hapukh", "Lea, Rahel, dan Dina", "Mahlah, Noa, dan Hogla", "Orpa, Rut, dan Naomi"], correct: 0 },
+            { q: "Apakah mukjizat pertama Yesus menurut Injil Yohanes?", options: ["Menyembuhkan orang buta", "Berjalan di atas air", "Mengubah air menjadi anggur", "Membangkitkan Lazarus"], correct: 2 },
+            { q: "Siapakah nabi yang menantang nabi-nabi Baal di Gunung Karmel?", options: ["Elisa", "Elia", "Yesaya", "Yeremia"], correct: 1 },
+            { q: "Berapa lama Tabut Perjanjian berada di rumah Abinadab sebelum dipindahkan oleh Daud?", options: ["7 tahun", "20 tahun", "40 tahun", "70 tahun"], correct: 1 },
+            { q: "Siapakah pasangan suami istri yang berbohong mengenai hasil penjualan tanah?", options: ["Akwila dan Priskila", "Ananias dan Safira", "Feliks dan Drusila", "Herodes dan Herodias"], correct: 1 },
+            { q: "Di taman apakah Yesus berdoa sebelum ditangkap?", options: ["Eden", "Getsemani", "Golgota", "Betesda"], correct: 1 },
+            { q: "Siapakah yang membaptis sida-sida dari Etiopia?", options: ["Petrus", "Filipus", "Paulus", "Barnabas"], correct: 1 },
+            { q: "Siapakah nama juru minuman Raja Ahasyweros yang kemudian membangun kembali tembok Yerusalem?", options: ["Ezra", "Nehemia", "Zerubabel", "Mordekhai"], correct: 1 },
+            { q: "Siapakah panglima Aram yang disembuhkan dari penyakit kusta?", options: ["Naaman", "Gehazi", "Benhadad", "Hazael"], correct: 0 },
+            { q: "Siapakah yang menyangkal Yesus tiga kali?", options: ["Yohanes", "Petrus", "Tomas", "Andreas"], correct: 1 },
+            { q: "Siapakah penjual kain ungu yang menerima pemberitaan Paulus di Filipi?", options: ["Dorkas", "Febe", "Lidia", "Priskila"], correct: 2 },
+            { q: "Siapakah nama ibu Musa?", options: ["Yokhebed", "Elisheba", "Zipora", "Miryam"], correct: 0 },
+            { q: "Dalam perjalanan menuju kota manakah Saulus mengalami pertobatan?", options: ["Yerusalem", "Damsyik", "Antiokhia", "Tarsus"], correct: 1 },
+            { q: "Siapakah saudara laki-laki Musa yang menjadi imam besar?", options: ["Yosua", "Harun", "Kaleb", "Hur"], correct: 1 },
+            { q: "Siapakah yang membangun kembali tembok Yerusalem setelah pembuangan?", options: ["Ezra", "Daniel", "Nehemia", "Zerubabel"], correct: 2 },
+            { q: "Apakah nama sumur tempat Yesus berbicara dengan perempuan Samaria?", options: ["Sumur Abraham", "Sumur Ishak", "Sumur Yakub", "Sumur Yusuf"], correct: 2 },
+            { q: "Siapakah dokter yang menjadi rekan perjalanan Paulus?", options: ["Markus", "Lukas", "Titus", "Silas"], correct: 1 },
+            { q: "Kitab apakah yang terakhir dalam Perjanjian Baru?", options: ["Yudas", "Ibrani", "Wahyu", "Kisah Para Rasul"], correct: 2 },
+            { q: "Siapakah yang disebut sebagai martir Kristen pertama?", options: ["Yakobus", "Stefanus", "Filipus", "Barnabas"], correct: 1 },
+            { q: "Siapakah nabi perempuan yang dimintai petunjuk setelah kitab Taurat ditemukan pada masa Yosia?", options: ["Debora", "Hulda", "Hana", "Miryam"], correct: 1 },
+            { q: "Siapakah pemimpin perempuan yang menjadi hakim di Israel?", options: ["Ester", "Debora", "Rut", "Yael"], correct: 1 },
+            { q: "Siapakah ayah Ishak?", options: ["Abraham", "Yakub", "Esau", "Lot"], correct: 0 },
+            { q: "Di kota manakah murid-murid pertama kali disebut “Kristen”?", options: ["Yerusalem", "Efesus", "Antiokhia", "Korintus"], correct: 2 },
+            { q: "Siapakah raja yang membakar gulungan kitab nubuat Yeremia?", options: ["Yoyakim", "Zedekia", "Yosia", "Yoyakhin"], correct: 0 },
+            { q: "Apakah pekerjaan Petrus sebelum dipanggil menjadi murid Yesus?", options: ["Tukang kayu", "Nelayan", "Pemungut cukai", "Ahli Taurat"], correct: 1 },
+            { q: "Siapakah yang menerima Sepuluh Perintah Allah?", options: ["Abraham", "Musa", "Yosua", "Samuel"], correct: 1 },
+            { q: "Siapakah yang berjalan di atas air menghampiri Yesus?", options: ["Yohanes", "Yakobus", "Petrus", "Andreas"], correct: 2 },
+            { q: "Siapakah nama hamba Imam Besar yang telinganya dipotong oleh Petrus?", options: ["Malkhus", "Bartimeus", "Lazarus", "Tikhikus"], correct: 0 },
+            { q: "Berapa lama bangsa Israel mengembara di padang gurun?", options: ["20 tahun", "30 tahun", "40 tahun", "70 tahun"], correct: 2 },
+            { q: "Siapakah yang dimasukkan ke dalam perapian yang menyala-nyala?", options: ["Daniel, Ezra, dan Nehemia", "Sadrakh, Mesakh, dan Abednego", "Kain, Habel, dan Set", "Petrus, Yakobus, dan Yohanes"], correct: 1 },
+            { q: "Siapakah yang menolong memikul salib Yesus?", options: ["Simon Petrus", "Simon dari Kirene", "Simon orang Zelot", "Yusuf dari Arimatea"], correct: 1 },
+            { q: "Di kota manakah Paulus menyampaikan khotbah di Areopagus?", options: ["Roma", "Atena", "Korintus", "Efesus"], correct: 1 },
+            { q: "Siapakah mertua Rut?", options: ["Orpa", "Naomi", "Debora", "Hana"], correct: 1 },
+            { q: "Siapakah yang menciptakan langit dan bumi?", options: ["Musa", "Malaikat", "Allah", "Adam"], correct: 2 },
+            { q: "Siapakah saudara perempuan Lazarus?", options: ["Maria dan Marta", "Maria dan Elisabet", "Marta dan Salome", "Yohana dan Susana"], correct: 0 },
+            { q: "Siapakah nama perempuan yang dibangkitkan Petrus di Yope?", options: ["Lidia", "Dorkas", "Febe", "Priskila"], correct: 1 },
+            { q: "Siapakah yang membawa tubuh Yesus dan menguburkannya dalam kubur baru?", options: ["Nikodemus saja", "Yusuf dari Arimatea", "Petrus", "Yohanes"], correct: 1 },
+            { q: "Berapa hari Yesus berpuasa di padang gurun?", options: ["7 hari", "21 hari", "30 hari", "40 hari"], correct: 3 },
+            { q: "Siapakah yang menggantikan Elia sebagai nabi?", options: ["Elisa", "Samuel", "Yesaya", "Yeremia"], correct: 0 },
+            { q: "Siapakah pasangan suami istri yang menjelaskan jalan Allah dengan lebih teliti kepada Apolos?", options: ["Ananias dan Safira", "Akwila dan Priskila", "Zakharia dan Elisabet", "Feliks dan Drusila"], correct: 1 },
+            { q: "Apakah nama pulau tempat Yohanes menerima penglihatan dalam kitab Wahyu?", options: ["Malta", "Kreta", "Patmos", "Siprus"], correct: 2 }
         ];
 
         const biblePuzzlePool = [
@@ -1381,7 +1507,8 @@
                 document.getElementById('adminPass').value = "";
                 document.body.classList.add('admin-logged-in');
                 document.getElementById('authIcon').className = "fa-solid fa-unlock-keyhole";
-                alert("Login Admin Berhasil! Tombol Edit sekarang aktif. 🎉");
+                document.getElementById('adminQuizResultsCard').style.display = 'block';
+                alert("Login Admin Berhasil! Tombol Edit & Panel Kuis Jemaat sekarang aktif. 🎉");
             } else {
                 alert("Password Admin Salah! Silakan coba lagi.");
             }
@@ -1517,29 +1644,51 @@
             }
         }
 
+        // LOGIKA KUIS ALKITAB (100 SOAL LENGKAP & INTEGRASI FIREBASE)
         let shuffledQuizList = [];
         let currentQuizIndex = 0;
         let userQuizScore = 0;
+        let currentQuizNickname = "";
 
         function openQuizModal() {
+            document.getElementById('inputQuizNickname').value = "";
+            document.getElementById('quizNicknameStep').style.display = 'block';
+            document.getElementById('quizPlayStep').style.display = 'none';
+            document.getElementById('quizModal').style.display = 'flex';
+        }
+
+        function startQuizWithNickname() {
+            let nick = document.getElementById('inputQuizNickname').value.trim();
+            if (!nick) {
+                alert("Masukkan nama atau nickname terlebih dahulu!");
+                return;
+            }
+            currentQuizNickname = nick;
             shuffledQuizList = [...bibleQuizPool].sort(() => Math.random() - 0.5);
             currentQuizIndex = 0;
             userQuizScore = 0;
-            document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore}`;
+            
+            document.getElementById('quizTitlePlayer').innerText = `Kuis Alkitab (${currentQuizNickname})`;
+            document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore} / 100`;
             document.getElementById('nextQuizBtn').style.display = 'none';
+            
+            document.getElementById('quizNicknameStep').style.display = 'none';
+            document.getElementById('quizPlayStep').style.display = 'block';
             loadQuizQuestion();
-            document.getElementById('quizModal').style.display = 'flex';
         }
 
         function loadQuizQuestion() {
             if (currentQuizIndex >= shuffledQuizList.length) {
-                document.getElementById('quizQuestion').innerText = "🎉 Puji Tuhan! Sesi Kuis Alkitab selesai.";
-                document.getElementById('quizOptionsList').innerHTML = `<p style="color:var(--accent-gold); text-align:center; font-weight:700; margin: 12px 0;">Skor Akhir: ${userQuizScore}</p>`;
+                document.getElementById('quizQuestion').innerText = `🎉 Puji Tuhan, ${currentQuizNickname}! Kuis Alkitab 100 soal selesai.`;
+                document.getElementById('quizOptionsList').innerHTML = `<p style="color:var(--accent-gold); text-align:center; font-weight:700; margin: 12px 0; font-size:1.1rem;">Skor Akhir Anda: ${userQuizScore} dari 100</p>`;
                 document.getElementById('nextQuizBtn').style.display = 'none';
+                
+                // SIMPAN KE FIREBASE (sub-collection quiz_results)
+                saveQuizResultToFirebase(currentQuizNickname, userQuizScore);
                 return;
             }
             let qData = shuffledQuizList[currentQuizIndex];
-            document.getElementById('quizQuestion').innerText = `Soal ${currentQuizIndex + 1}: ${qData.q}`;
+            document.getElementById('quizQuestion').innerText = `Soal ${currentQuizIndex + 1}/100: ${qData.q}`;
             document.getElementById('quizFeedback').innerText = "";
             document.getElementById('nextQuizBtn').style.display = 'none';
 
@@ -1559,7 +1708,7 @@
             });
             if (selectedIndex === correctIndex) {
                 userQuizScore += 1;
-                document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore}`;
+                document.getElementById('quizScoreBadge').innerText = `Skor: ${userQuizScore} / 100`;
                 document.getElementById('quizFeedback').innerHTML = `<span style="color: #4ade80;">Benar! 🙌</span>`;
             } else {
                 document.getElementById('quizFeedback').innerHTML = `<span style="color: #f87171;">Kurang tepat! 💪</span>`;
@@ -1569,6 +1718,47 @@
         }
 
         function loadNextQuizQuestion() { loadQuizQuestion(); }
+
+        async function saveQuizResultToFirebase(nickname, score) {
+            try {
+                const resultsColRef = window.collection(window.db, "portalData", "gmi_content", "quiz_results");
+                await window.addDoc(resultsColRef, {
+                    nickname: nickname,
+                    score: score,
+                    total: 100,
+                    timestamp: new Date().toISOString()
+                });
+            } catch(e) {
+                console.log("Gagal menyimpan skor kuis ke Firebase.");
+            }
+        }
+
+        async function openAdminQuizResultsModal() {
+            let container = document.getElementById('adminQuizResultsContainer');
+            container.innerHTML = `<p style="font-size:0.8rem; color:var(--text-muted); text-align:center;">Memuat data dari Firebase...</p>`;
+            document.getElementById('adminQuizResultsModal').style.display = 'flex';
+
+            try {
+                const resultsColRef = window.collection(window.db, "portalData", "gmi_content", "quiz_results");
+                const snapshot = await window.getDocs(resultsColRef);
+                if (snapshot.empty) {
+                    container.innerHTML = `<p style="font-size:0.8rem; color:var(--text-muted); text-align:center;">Belum ada jemaat yang mengerjakan kuis.</p>`;
+                    return;
+                }
+
+                let html = `<div class="table-responsive"><table class="church-table"><tr><th>NO</th><th>NAMA / NICKNAME</th><th>SKOR</th><th>WAKTU</th></tr>`;
+                let i = 1;
+                snapshot.forEach((docSnap) => {
+                    let d = docSnap.data();
+                    let dateStr = d.timestamp ? new Date(d.timestamp).toLocaleString('id-ID') : "-";
+                    html += `<tr><td>${i++}</td><td><strong>${d.nickname}</strong></td><td><span style="color:var(--accent-gold); font-weight:700;">${d.score} / ${d.total}</span></td><td><span style="font-size:0.68rem; color:var(--text-muted);">${dateStr}</span></td></tr>`;
+                });
+                html += `</table></div>`;
+                container.innerHTML = html;
+            } catch(e) {
+                container.innerHTML = `<p style="font-size:0.8rem; color:var(--accent-red); text-align:center;">Gagal mengambil data kuis dari Firebase.</p>`;
+            }
+        }
 
         let shuffledPuzzleList = [];
         let currentPuzzleIndex = 0;
@@ -1689,7 +1879,6 @@
                     if(data.renunganBlocks) renunganBlocksStore = data.renunganBlocks;
                 }
 
-                // Ambil galeri dari sub-koleksi terpisah agar tidak pernah penuh
                 const galleryColRef = window.collection(window.db, "portalData", "gmi_content", "gallery_items");
                 const gallerySnapshot = await window.getDocs(galleryColRef);
                 if (!gallerySnapshot.empty) {
@@ -1876,7 +2065,6 @@
             }
         }
 
-        // FUNGSI MULTI-UPLOAD: OTOMATIS MEMBUAT DOKUMEN BARU DI SUB-KOLEKSI FIREBASE
         async function saveNewGalleryActivity() {
             let title = document.getElementById('galleryInputTitle').value.trim();
             let fileInput = document.getElementById('galleryInputFiles');
@@ -1943,7 +2131,6 @@
             statusEl.innerText = "Membuat dokumen baru di server Firebase...";
 
             try {
-                // OTOMATIS MENAMBAHKAN DOKUMEN BARU KE SUB-KOLEKSI GALLERY_ITEMS
                 const galleryColRef = window.collection(window.db, "portalData", "gmi_content", "gallery_items");
                 const docRefAdded = await window.addDoc(galleryColRef, {
                     title: title,
@@ -1958,7 +2145,6 @@
                 alert("Dokumen galeri baru berhasil dibuat di Firebase dengan " + processedImages.length + " foto! 🚀");
             } catch(e) {
                 alert("Gagal menyimpan dokumen baru ke Firebase.");
-                console.error(e);
             }
         }
 
